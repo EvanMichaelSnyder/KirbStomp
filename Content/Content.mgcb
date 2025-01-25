@@ -13,3 +13,32 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Arial.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/build:Arial.spritefont
+
+#begin shuttle.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:shuttle.png
+
+#begin earth.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:earth.png
+
+#begin SmileyWalk.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:SmileyWalk.png
+
+#begin sleepKirby.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:sleepKirby.png
+
+#begin stars.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:stars.jpg

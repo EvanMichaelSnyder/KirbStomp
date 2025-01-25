@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>/Users/kkankanits/Desktop/VSCode/KirbStomp/Content/stars.jpg</SourceFile>
+  <SourceTime>2025-01-24T20:17:49.1843193-05:00</SourceTime>
+  <DestFile>/Users/kkankanits/Desktop/VSCode/KirbStomp/Content/bin/DesktopGL/Content/stars.xnb</DestFile>
+  <DestTime>2025-01-24T20:18:14.85426-05:00</DestTime>
+  <Importer>TextureImporter</Importer>
+  <ImporterTime>2024-08-16T13:05:56-04:00</ImporterTime>
+  <Processor>TextureProcessor</Processor>
+  <ProcessorTime>2024-08-16T13:05:56-04:00</ProcessorTime>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

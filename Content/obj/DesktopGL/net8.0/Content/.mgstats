@@ -1,1 +1,7 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"/Users/kkankanits/Desktop/VSCode/KirbStomp/Content/Arial.spritefont","/Users/kkankanits/Desktop/VSCode/KirbStomp/Content/bin/DesktopGL/Content/Arial.xnb","FontDescriptionProcessor","SpriteFontContent",2008,37922,0.299136
+"/Users/kkankanits/Desktop/VSCode/KirbStomp/Content/earth.png","/Users/kkankanits/Desktop/VSCode/KirbStomp/Content/bin/DesktopGL/Content/earth.xnb","TextureProcessor","Texture2DContent",52980,133301,0.007565
+"/Users/kkankanits/Desktop/VSCode/KirbStomp/Content/shuttle.png","/Users/kkankanits/Desktop/VSCode/KirbStomp/Content/bin/DesktopGL/Content/shuttle.xnb","TextureProcessor","Texture2DContent",9105,125045,0.034128
+"/Users/kkankanits/Desktop/VSCode/KirbStomp/Content/sleepKirby.png","/Users/kkankanits/Desktop/VSCode/KirbStomp/Content/bin/DesktopGL/Content/sleepKirby.xnb","TextureProcessor","Texture2DContent",51347,146869,0.006286
+"/Users/kkankanits/Desktop/VSCode/KirbStomp/Content/SmileyWalk.png","/Users/kkankanits/Desktop/VSCode/KirbStomp/Content/bin/DesktopGL/Content/SmileyWalk.xnb","TextureProcessor","Texture2DContent",40026,262229,0.008949
+"/Users/kkankanits/Desktop/VSCode/KirbStomp/Content/stars.jpg","/Users/kkankanits/Desktop/VSCode/KirbStomp/Content/bin/DesktopGL/Content/stars.xnb","TextureProcessor","Texture2DContent",150614,1920085,0.054271
