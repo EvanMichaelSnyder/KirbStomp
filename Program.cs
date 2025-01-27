@@ -1,2 +1,2 @@
-﻿using var game = new KirbStomp.Game1();
+﻿using var game = new Sprint0.Game1();
 game.Run();
