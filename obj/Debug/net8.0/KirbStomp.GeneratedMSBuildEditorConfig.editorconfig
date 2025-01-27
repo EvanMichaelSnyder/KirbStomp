@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = KirbStomp
-build_property.ProjectDir = /Users/leocheng/Documents/Ohio State University/SP2025/INT CSE 3902/MonoGame Projects/KirbStomp/
+build_property.ProjectDir = C:\dev\OSU\CSE3902\KirbStomp\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
