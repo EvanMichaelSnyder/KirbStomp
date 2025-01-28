@@ -1,52 +1,66 @@
-﻿using Microsoft.Xna.Framework;
+﻿
+using KirbStomp.Inputs;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Linq;
 
 namespace KirbStomp;
 
 public class Game1 : Game
 {
-    private GraphicsDeviceManager _graphics;
-    private SpriteBatch _spriteBatch;
+	public GraphicsDeviceManager _graphics;
+	private SpriteBatch _spriteBatch;
+	private GlobalInputs inputs;
 
-    public Game1()
-    {
-        _graphics = new GraphicsDeviceManager(this);
-        Content.RootDirectory = "Content";
-        IsMouseVisible = true;
-    }
+	public Game1()
+	{
+		_graphics = new GraphicsDeviceManager(this);
+		Content.RootDirectory = "Content";
+		IsMouseVisible = true;
+	}
 
-    protected override void Initialize()
-    {
-        // TODO: Add your initialization logic here
+	protected override void Initialize()
+	{
+		// TODO: InitializeAll();
+		inputs = new GlobalInputs();
+		base.Initialize();
+	}
 
-        base.Initialize();
-    }
+	protected override void LoadContent()
+	{
+		_spriteBatch = new SpriteBatch(GraphicsDevice);
+	}
 
-    protected override void LoadContent()
-    {
-        _spriteBatch = new SpriteBatch(GraphicsDevice);
+	protected override void Update(GameTime gameTime)
+	{
+		inputs.UpdateAllControllers();
+		// THIS CAN BE MOVED INTO A CLASS
+		if (inputs.IsInputJustPressed(Keys.Escape) || inputs.IsInputJustReleased(Inputs.Controllers.MouseButtons.RightMouseButton))
+			Exit();
 
-        // TODO: use this.Content to load your game content here
-    }
+		// TODO: Add your update logic here
+		// UpdateAll, including Mouse & Keyboard inputs, Sprite state, Aniamtion state, 
+		base.Update(gameTime);
 
-    protected override void Update(GameTime gameTime)
-    {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
 
-        // TODO: Add your update logic here
 
-        base.Update(gameTime);
-    }
 
+		// TODO QUADS LABELING (OPTIONAL), TEXT SPRITE CREDITS (TODO), 
+		// OPTIONALLY, use Sprite2, design version 2 for all sprites and animations using data driven programming
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Red);
 		// Update
+	}
 
-        // TODO: Add your drawing code here
+	protected override void Draw(GameTime gameTime)
+	{
+		GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        base.Draw(gameTime);
-    }
+		_spriteBatch.Begin();
+
+		_spriteBatch.End();
+		base.Draw(gameTime);
+	}
 }
