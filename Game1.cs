@@ -44,6 +44,7 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.Black);
 
+
         // TODO: Add your drawing code here
 
         base.Draw(gameTime);
