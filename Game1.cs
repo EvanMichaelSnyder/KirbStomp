@@ -24,6 +24,7 @@ public class Game1 : Game
 	{
 		// TODO: InitializeAll();
 		inputs = new GlobalInputs();
+		inputs.AddCommandToKeyStatus(Keys.P, new TestCommand(), InputStatus.JustPressed); // TODO TESTING WITH THE KEY P
 		base.Initialize();
 	}
 
@@ -42,17 +43,12 @@ public class Game1 : Game
 		// TODO: Add your update logic here
 		// UpdateAll, including Mouse & Keyboard inputs, Sprite state, Aniamtion state, 
 		base.Update(gameTime);
-
+	}
 
 
 
 		// TODO QUADS LABELING (OPTIONAL), TEXT SPRITE CREDITS (TODO), 
 		// OPTIONALLY, use Sprite2, design version 2 for all sprites and animations using data driven programming
-    protected override void Draw(GameTime gameTime)
-    {
-        GraphicsDevice.Clear(Color.Red);
-		// Update
-	}
 
 	protected override void Draw(GameTime gameTime)
 	{
