@@ -98,7 +98,7 @@ namespace KirbStomp.Inputs
 		// Calling Commands Back
 
 
-		public bool AddCommandToKeyStatus(Keys key, ICommands command, InputStatus status)
+		public bool AddCommandToKeyStatus(Keys key, ICommands command, InputStatus status) // Can be cleaned up
 		{
 			if (status == InputStatus.Released) return false;
 			Dictionary<Keys, HashSet<ICommands>>  dict = statusDictionaryDictionary[status];
