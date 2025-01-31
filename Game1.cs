@@ -24,6 +24,7 @@ public class Game1 : Game
 	{
 		// TODO: InitializeAll();
 		inputs = new GlobalInputs();
+		inputs.AddCommandToKeyStatus(Keys.P, new TestCommand(), InputStatus.JustPressed); // TODO TESTING WITH THE KEY P
 		base.Initialize();
 	}
 
@@ -42,7 +43,7 @@ public class Game1 : Game
 		// TODO: Add your update logic here
 		// UpdateAll, including Mouse & Keyboard inputs, Sprite state, Aniamtion state, 
 		base.Update(gameTime);
-
+	}
 
 
 
