@@ -238,19 +238,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/kkankanits/.nuget/packages/": {}
+    "/Users/leocheng/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/kkankanits/Desktop/VSCode/sprint1/KirbStomp/KirbStomp.csproj",
+      "projectUniqueName": "/Users/leocheng/Documents/Github/KirbStomp/KirbStomp.csproj",
       "projectName": "KirbStomp",
-      "projectPath": "/Users/kkankanits/Desktop/VSCode/sprint1/KirbStomp/KirbStomp.csproj",
-      "packagesPath": "/Users/kkankanits/.nuget/packages/",
-      "outputPath": "/Users/kkankanits/Desktop/VSCode/sprint1/KirbStomp/obj/",
+      "projectPath": "/Users/leocheng/Documents/Github/KirbStomp/KirbStomp.csproj",
+      "packagesPath": "/Users/leocheng/.nuget/packages/",
+      "outputPath": "/Users/leocheng/Documents/Github/KirbStomp/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/kkankanits/.nuget/NuGet/NuGet.Config"
+        "/Users/leocheng/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -273,8 +273,7 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.100"
+      }
     },
     "frameworks": {
       "net8.0": {
@@ -305,7 +304,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/9.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
