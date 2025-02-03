@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace KirbStomp.Inputs
 {
-
+	// HHHHH
     internal class GlobalInputs
     {
 		private KeyboardController keyboard;
