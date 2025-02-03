@@ -25,7 +25,7 @@ jobs:
       run: dotnet tool install dotnet-mgcb
       shell: bash
     - name: Install FreeImage on macOS
-      if: ${{ matrix.os-version }} == 'macos-latest'
+      if: runner.os == 'macOS'
       run: |
         if ! command -v brew &>/dev/null; then
           echo "Installing Homebrew..."
@@ -33,6 +33,12 @@ jobs:
         fi
         echo "Installing FreeImage..."
         brew install freeimage
+        
+        echo "Finding FreeImage installation path..."
+        FREEIMAGE_PATH=$(brew --prefix freeimage)
+
+        echo "Copying FreeImage libraries to /usr/local/lib/..."
+        sudo cp -R $FREEIMAGE_PATH/lib/* /usr/local/lib/
       shell: bash
     - name: Build Kirbstomp 
       run: dotnet build
