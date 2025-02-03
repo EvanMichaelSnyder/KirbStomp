@@ -8,34 +8,14 @@ on:
     branches: [main, SprintTwo]
 
 jobs:
-  android-build-check:
-    runs-on: windows-latest
+  mac-build-check:
+    runs-on: mac-latest
 
     steps:
     - name: Checkout the repo
       uses: actions/checkout@v2
-    - name: Build android project
-      uses: igotinfected-ci/build-monogame@v2
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v4
       with:
-        solution-path: '${{ github.workspace }}\KirbStomp\KirbStomp.sln'
-        content-mgcb-path: '${{ github.workspace }}\KirbStomp\Content'
-        content-mgcb-platform: 'Android'
-        csproj-path: '${{ github.workspace }}\KirbStomp\KirbStomp.csproj'
-        build-target: "PackageForAndroid"
-        build-configuration: "Release"
-  # mac-build-check:
-  #   runs-on: windows-latest
-
-  #   steps:
-  #   - name: Checkout the repo
-  #     uses: actions/checkout@v2
-  #   - name: Build Windows project
-  #     uses: igotinfected-ci/build-monogame@v2
-  #     with: 
-  #       solution-path: '${{ github.workspace }}\KirbStomp\KirbStomp.sln'
-  #       content-mgcb-path: '${{ github.workspace }}\KirbStomp\Content'
-  #       content-mgcb-platform: 'Windows'
-  #       csproj-path: '${{ github.workspace }}\KirbStomp\KirbStomp.csproj'
-  #       build-target: "PackageForWindows"
-  #       build-configuration: "Release"
+        dotnet-version: '8.0.x'
 
