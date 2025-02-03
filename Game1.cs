@@ -1,4 +1,5 @@
 ﻿
+using KirbStomp.ecs;
 using KirbStomp.Inputs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,8 +13,22 @@ public class Game1 : Game
 	public GraphicsDeviceManager _graphics;
 	private SpriteBatch _spriteBatch;
 	private GlobalInputs inputs;
+	//singleton
+	private static Game1 inst;
+	//test stuff
+	private Scene scene;
 
-	public Game1()
+	//return singleton of game1
+	public static Game1 get()
+	{
+		if(inst == null)
+		{
+			inst = new Game1();
+		}
+		return inst;
+	}
+
+	private Game1()
 	{
 		_graphics = new GraphicsDeviceManager(this);
 		Content.RootDirectory = "Content";
@@ -31,6 +46,7 @@ public class Game1 : Game
 	protected override void LoadContent()
 	{
 		_spriteBatch = new SpriteBatch(GraphicsDevice);
+		this.scene = SceneLoader.LoadScene("doesnt matter rn");
 	}
 
 	protected override void Update(GameTime gameTime)
@@ -41,6 +57,8 @@ public class Game1 : Game
 			Exit();
 
 		// TODO: Add your update logic here
+
+		
 		// UpdateAll, including Mouse & Keyboard inputs, Sprite state, Aniamtion state, 
 		base.Update(gameTime);
 
@@ -53,7 +71,12 @@ public class Game1 : Game
 
 		_spriteBatch.Begin();
 
-		_spriteBatch.End();
+        //TODO , current is bad implentation, update shouldnt be in draw ...update scene***********************%
+        this.scene.Update((float)(gameTime.ElapsedGameTime.TotalSeconds));
+
+        _spriteBatch.End();
 		base.Draw(gameTime);
 	}
+
+	public SpriteBatch GetSpriteBatch() { return _spriteBatch; }
 }
