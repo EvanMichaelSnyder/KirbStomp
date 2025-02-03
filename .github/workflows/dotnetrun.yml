@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
   push:
   pull_request:
-    branches: [main, SprintTwo]
 
 jobs:
   build-check:
