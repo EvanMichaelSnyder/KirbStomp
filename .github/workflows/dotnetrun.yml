@@ -1,0 +1,30 @@
+name: Dotnet Run
+
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+    branches: [main, SprintTwo]
+
+jobs:
+  build-check:
+    name: ${{ matrix.os-version }}-build-check
+    strategy:
+      fail-fast: false
+      matrix:
+        os-version: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os-version }}
+
+    steps:
+    - name: Checkout the repo
+      uses: actions/checkout@v2
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '3.1.x'
+    - name: Install MCGB
+      run: dotnet tool install dotnet-mgcb
+      shell: bash
+    - name: Build Kirbstomp 
+      run: dotnet build
+
