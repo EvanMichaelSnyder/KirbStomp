@@ -8,19 +8,34 @@ on:
     branches: [main, SprintTwo]
 
 jobs:
-  mac-build-check:
+  android-build-check:
     runs-on: windows-latest
 
     steps:
     - name: Checkout the repo
       uses: actions/checkout@v2
-    - name: Build Windows project
+    - name: Build android project
       uses: igotinfected-ci/build-monogame@v2
-      with: 
+      with:
         solution-path: '${{ github.workspace }}\KirbStomp\KirbStomp.sln'
         content-mgcb-path: '${{ github.workspace }}\KirbStomp\Content'
-        content-mgcb-platform: 'Windows'
+        content-mgcb-platform: 'Android'
         csproj-path: '${{ github.workspace }}\KirbStomp\KirbStomp.csproj'
-        build-target: "PackageForWindows"
+        build-target: "PackageForAndroid"
         build-configuration: "Release"
+  # mac-build-check:
+  #   runs-on: windows-latest
+
+  #   steps:
+  #   - name: Checkout the repo
+  #     uses: actions/checkout@v2
+  #   - name: Build Windows project
+  #     uses: igotinfected-ci/build-monogame@v2
+  #     with: 
+  #       solution-path: '${{ github.workspace }}\KirbStomp\KirbStomp.sln'
+  #       content-mgcb-path: '${{ github.workspace }}\KirbStomp\Content'
+  #       content-mgcb-platform: 'Windows'
+  #       csproj-path: '${{ github.workspace }}\KirbStomp\KirbStomp.csproj'
+  #       build-target: "PackageForWindows"
+  #       build-configuration: "Release"
 
