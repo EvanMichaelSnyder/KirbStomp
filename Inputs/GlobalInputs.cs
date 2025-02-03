@@ -16,6 +16,7 @@ namespace KirbStomp.Inputs
 		Pressed, JustPressed, Released, JustReleased
 	}
 
+
 	internal class GlobalInputs
     {
 		private KeyboardController keyboard;
@@ -25,6 +26,7 @@ namespace KirbStomp.Inputs
 		private Dictionary<Keys, HashSet<ICommands>> keysJustPressedCBFNDictionary;
 		private Dictionary<Keys, HashSet<ICommands>> keysJustReleasedCBFNDictionary;
 
+		private HashSet<ICommands> mouseMovedCBFNDictionary;
 		// Purely for development, it's easier than using switchcases to me
 		private Dictionary<InputStatus, Dictionary<Keys, HashSet<ICommands>>> statusDictionaryDictionary;
 
@@ -50,7 +52,7 @@ namespace KirbStomp.Inputs
 			keyboard.Update();
 			CallBackNecessaryKeys();
 			mouse.Update();
-			//CallbackNecessaryMouseStates(); TODO
+			CallbackNecessaryMouseStates();
 		}
 
 
@@ -110,7 +112,10 @@ namespace KirbStomp.Inputs
 			commands.Add(command);
 			return true;
 		}
-
+		public void AddMousePositionCallback(ICommands command)
+		{
+			mouseMovedCBFNDictionary.Add(command);
+		}
 		private void CallBackNecessaryKeys()
 		{
 			CallBackKeysAndFunctionsFromDictionary(keysPressedCBFNDictionary, keyboard.GetKeysPressed());
@@ -132,5 +137,17 @@ namespace KirbStomp.Inputs
 			}
 		}
 
+
+
+
+		private void CallbackNecessaryMouseStates()
+		{
+			if (mouse.MouseMoved()) // Only one deemed necessary to callback
+			{
+				foreach (ICommands command in mouseMovedCBFNDictionary) command.Execute();
+			}
+		}
+
 	}
 }
+

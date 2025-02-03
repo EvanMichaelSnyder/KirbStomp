@@ -49,7 +49,7 @@ public class Game1 : Game
 
 		// TODO QUADS LABELING (OPTIONAL), TEXT SPRITE CREDITS (TODO), 
 		// OPTIONALLY, use Sprite2, design version 2 for all sprites and animations using data driven programming
-    }
+    
 	protected override void Draw(GameTime gameTime)
 	{
 		GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -60,3 +60,4 @@ public class Game1 : Game
 		base.Draw(gameTime);
 	}
 }
+
