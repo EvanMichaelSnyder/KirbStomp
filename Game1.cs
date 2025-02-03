@@ -53,7 +53,7 @@ public class Game1 : Game
 
 		_spriteBatch.Begin();
 
-		_spriteBatch.End()
+		_spriteBatch.End();
 		base.Draw(gameTime);
 	}
 }
