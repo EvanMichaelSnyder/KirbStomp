@@ -24,6 +24,16 @@ jobs:
     - name: Install MCGB
       run: dotnet tool install dotnet-mgcb
       shell: bash
+    - name: Install FreeImage on macOS
+      if: ${{ matrix.os-version }} == 'macos-latest'
+      run: |
+        if ! command -v brew &>/dev/null; then
+          echo "Installing Homebrew..."
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        fi
+        echo "Installing FreeImage..."
+        brew install freeimage
+      shell: bash
     - name: Build Kirbstomp 
       run: dotnet build
 
