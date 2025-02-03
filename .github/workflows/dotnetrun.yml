@@ -33,9 +33,12 @@ jobs:
         fi
         echo "Installing FreeImage..."
         brew install freeimage
-        
+
         echo "Finding FreeImage installation path..."
         FREEIMAGE_PATH=$(brew --prefix freeimage)
+
+        echo "Creating /usr/local/lib if it does not exist..."
+        sudo mkdir -p /usr/local/lib
 
         echo "Copying FreeImage libraries to /usr/local/lib/..."
         sudo cp -R $FREEIMAGE_PATH/lib/* /usr/local/lib/
