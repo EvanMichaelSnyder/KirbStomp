@@ -22,9 +22,6 @@ jobs:
     - name: Install MCGB
       run: dotnet tool install dotnet-mgcb
       shell: bash
-    # - name: Rebuilding Game content
-    #   run: dotnet mgcb -r Content/Content.mgcb
-    #   shell: bash
-    - name: Run Kirbstomp 
-      run: dotnet run 
+    - name: Build Kirbstomp 
+      run: dotnet build
 
