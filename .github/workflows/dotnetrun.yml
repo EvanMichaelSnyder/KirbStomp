@@ -1,0 +1,26 @@
+name: Dotnet Run
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, SprintTwo, NewWorkflow]
+  pull_request:
+    branches: [main, SprintTwo]
+
+jobs:
+  mac-build-check:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout the repo
+      uses: actions/checkout@v2
+    - name: Build Mac project
+      uses: igotinfected-ci/build-monogame@v2
+      with: 
+        solution-path: '${{ github.workspace }}\KirbStomp\KirbStomp.sln'
+        content-mgcb-path: '${{ github.workspace }}\KirbStomp\Content'
+        content-mgcb-platform: 'Mac'
+        csproj-path: '${{ github.workspace }}\KirbStomp\KirbStomp.csproj'
+        build-target: "PackageForMac"
+        build-configuration: "Release"
+
