@@ -10,7 +10,7 @@ on:
 
 jobs:
   mac-build-check:
-    runs-on: mac-latest
+    runs-on: macos-latest
 
     steps:
     - name: Checkout the repo
