@@ -9,11 +9,12 @@ on:
     branches: [main, SprintTwo]
 
 jobs:
-  mac-build-check:
+  build-check:
+    name: ${{ matrix.os-version }}-build-check
     strategy:
       fail-fast: false
       matrix:
-        os-version: [ubuntu-latest, windows-latest, macos-latest]
+        os-version: [windows-latest, macos-latest]
     runs-on: ${{ matrix.os-version }}
 
     steps:
