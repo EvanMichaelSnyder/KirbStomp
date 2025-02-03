@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace KirbStomp;
 
-// cccc this
+// cccc thisa
 public class Game1 : Game
 {
 	public GraphicsDeviceManager _graphics;
