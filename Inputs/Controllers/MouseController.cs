@@ -16,14 +16,14 @@ namespace KirbStomp.Inputs.Controllers
 	{
 		private static MouseController instance;
 		private delegate bool GetButtonIsPressed(MouseState button);
-		
+
 		private MouseState previousState;
 		private MouseState currentState;
 		private Point mousePosition;
 		private int scrollWheel;
 		private int horizonalScrollWheel;
 		private Dictionary<MouseButtons, GetButtonIsPressed> buttonDictionary;
-		
+
 		private MouseController()
 		{
 			currentState = Mouse.GetState();
@@ -82,6 +82,10 @@ namespace KirbStomp.Inputs.Controllers
 		{
 			return this.mousePosition;
 		}
+		public bool MouseMoved()
+		{
+			return currentState.Position.Equals(previousState.Position);
+		}
 		public void SetMousePosition(Point position)
 		{
 			this.mousePosition = position;
@@ -90,9 +94,21 @@ namespace KirbStomp.Inputs.Controllers
 		{
 			return this.scrollWheel;
 		}
+		public bool MouseScrolled()
+		{
+			return currentState.ScrollWheelValue.Equals(previousState.ScrollWheelValue);
+		}
 		public int GetHorizontalScrollWheel()
 		{
 			return this.horizonalScrollWheel;
 		}
+		public bool MouseScrolledHorizontally()
+		{
+			return currentState.HorizontalScrollWheelValue.Equals(previousState.HorizontalScrollWheelValue);
+		}
+
+
+
+
 	}
 }

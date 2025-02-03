@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace KirbStomp.Inputs.Controllers
 {
+	public delegate void KeyCallBackFN(Keys key);
 	// NOTE: This class will inherintly be ties to Xna.Framework.Input.Keyboard and it's states
 	internal class KeyboardController : IController
 	{
@@ -52,6 +53,7 @@ namespace KirbStomp.Inputs.Controllers
 
 		private void UpdateKeysStates()
 		{
+
 			Keys[] currentlyPressedKeys = currentState.GetPressedKeys();
 			Keys[] previouslyPressedKeys = previousState.GetPressedKeys();
 			IEnumerable<Keys> justReleasedKeys = previouslyPressedKeys.Except(currentlyPressedKeys); // 
@@ -67,7 +69,6 @@ namespace KirbStomp.Inputs.Controllers
 					keysJustPressed.Add(key);
 				}
 			}
-
 		}
 		public HashSet<Keys> GetKeysPressed()
 		{
@@ -98,6 +99,7 @@ namespace KirbStomp.Inputs.Controllers
 		{
 			return !keysPressed.Contains(key);
 		}
+
 
 	}
 }
