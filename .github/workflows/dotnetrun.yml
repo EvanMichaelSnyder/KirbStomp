@@ -2,6 +2,7 @@ name: Dotnet Run
 
 on:
   workflow_dispatch:
+    branches: [main, SprintTwo, NewWorkflow]
   push:
     branches: [main, SprintTwo, NewWorkflow]
   pull_request:
