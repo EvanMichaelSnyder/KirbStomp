@@ -19,4 +19,7 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '3.1.x'
+    - name: Install MCGB
+      run: dotnet tool install dotnet-mgcb
+      shell: bash
 
