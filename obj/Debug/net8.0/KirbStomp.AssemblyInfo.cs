@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KirbStomp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+92c91b4a998d5f9763a5ac001a0a990cde1a009b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+72b53d2f4b028040fdca34fb2202069d5513a5d9")]
 [assembly: System.Reflection.AssemblyProductAttribute("KirbStomp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KirbStomp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
