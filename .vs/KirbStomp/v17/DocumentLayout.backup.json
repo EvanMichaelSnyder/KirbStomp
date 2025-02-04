@@ -1,0 +1,156 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\conno\\source\\repos\\KirbStomp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\ecs\\gameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:ecs\\gameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\ecs\\component.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:ecs\\component.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\ecs\\sceneloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:ecs\\sceneloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\ecs\\components\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:ecs\\components\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\inputs\\controllers\\keyboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:inputs\\controllers\\keyboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\inputs\\globalinputs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:inputs\\globalinputs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\inputs\\icommands.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:inputs\\icommands.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GameObject.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\ecs\\GameObject.cs",
+              "RelativeDocumentMoniker": "ecs\\GameObject.cs",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\ecs\\GameObject.cs",
+              "RelativeToolTip": "ecs\\GameObject.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwEYAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T19:10:31.436Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "KeyboardController.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Inputs\\Controllers\\KeyboardController.cs",
+              "RelativeDocumentMoniker": "Inputs\\Controllers\\KeyboardController.cs",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Inputs\\Controllers\\KeyboardController.cs",
+              "RelativeToolTip": "Inputs\\Controllers\\KeyboardController.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T18:35:22.891Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SceneLoader.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\ecs\\SceneLoader.cs",
+              "RelativeDocumentMoniker": "ecs\\SceneLoader.cs",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\ecs\\SceneLoader.cs",
+              "RelativeToolTip": "ecs\\SceneLoader.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAAACEAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T18:26:08.515Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "GlobalInputs.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Inputs\\GlobalInputs.cs",
+              "RelativeDocumentMoniker": "Inputs\\GlobalInputs.cs",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Inputs\\GlobalInputs.cs",
+              "RelativeToolTip": "Inputs\\GlobalInputs.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAQwBcAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T17:41:30.25Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ICommands.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Inputs\\ICommands.cs",
+              "RelativeDocumentMoniker": "Inputs\\ICommands.cs",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Inputs\\ICommands.cs",
+              "RelativeToolTip": "Inputs\\ICommands.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T17:41:29.21Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Game1.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Game1.cs",
+              "RelativeDocumentMoniker": "Game1.cs",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Game1.cs",
+              "RelativeToolTip": "Game1.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAkwFIAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T16:55:16.961Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Component.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\ecs\\Component.cs",
+              "RelativeDocumentMoniker": "ecs\\Component.cs",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\ecs\\Component.cs",
+              "RelativeToolTip": "ecs\\Component.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T19:10:24.372Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PlayerMovement.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\ecs\\Components\\PlayerMovement.cs",
+              "RelativeDocumentMoniker": "ecs\\Components\\PlayerMovement.cs",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\ecs\\Components\\PlayerMovement.cs",
+              "RelativeToolTip": "ecs\\Components\\PlayerMovement.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAAwDEAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T17:31:49.031Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
