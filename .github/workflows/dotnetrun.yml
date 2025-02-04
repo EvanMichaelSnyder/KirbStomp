@@ -3,7 +3,8 @@ name: Dotnet Run
 on:
   workflow_dispatch:
   push:
-  pull_request:
+  pull_request_target:
+    types: [opened, synchronize]
 
 jobs:
   build-check:
