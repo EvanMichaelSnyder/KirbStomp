@@ -38,7 +38,7 @@ public class Game1 : Game
 	protected override void Initialize()
 	{
 		// TODO: InitializeAll();
-		inputs = new GlobalInputs();
+		inputs = GlobalInputs.GetInstance();
 		inputs.AddCommandToKeyStatus(Keys.P, new TestCommand(), InputStatus.JustPressed); // TODO TESTING WITH THE KEY P
 		base.Initialize();
 	}

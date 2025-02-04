@@ -31,9 +31,10 @@ namespace KirbStomp.Inputs
 		private Dictionary<InputStatus, Dictionary<Keys, HashSet<ICommands>>> statusDictionaryDictionary;
 
 
+		private static GlobalInputs instance;
 
-		public GlobalInputs()
-        {
+		private GlobalInputs()
+		{
 			keysPressedCBFNDictionary = new();
 			keysJustPressedCBFNDictionary = new();
 			keysJustReleasedCBFNDictionary = new();
@@ -46,8 +47,13 @@ namespace KirbStomp.Inputs
 			keyboard = KeyboardController.GetInstance();
 			mouse = MouseController.GetInstance();
 		}
+		public static GlobalInputs GetInstance()
+		{
+			if (instance == null) instance = new GlobalInputs();
+			return instance;
+		}
 
-        public void UpdateAllControllers()
+		public void UpdateAllControllers()
 		{
 			keyboard.Update();
 			CallBackNecessaryKeys();
