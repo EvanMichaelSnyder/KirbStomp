@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using KirbStomp.ecs.Components;
+using Microsoft.Xna.Framework.Input;
 
 namespace KirbStomp.ecs
 {
@@ -21,10 +22,17 @@ namespace KirbStomp.ecs
             GameObject test = new GameObject();
             test.AddComponent(new TestSprite());
             test.setPosition(new Vector2(100, 200));
-            test.AddComponent(new MoveRightTest());
+            Component playerMovement = new PlayerMovement(200,.8f,150, Keys.W, Keys.A, Keys.D);
+            test.AddComponent(playerMovement);
             scene.AddGameObject(test);
 
-            //
+            GameObject test2 = new GameObject();
+            test2.AddComponent(new TestSprite());
+            test2.setPosition(new Vector2(300, 200));
+            Component playerMove2 = new PlayerMovement(200, .8f, 150, Keys.Up, Keys.Left, Keys.Right);
+            test2.AddComponent(playerMove2);
+            scene.AddGameObject(test2);
+            //***
             return scene;
 
         }

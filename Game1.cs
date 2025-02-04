@@ -79,5 +79,11 @@ public class Game1 : Game
 	}
 
 	public SpriteBatch GetSpriteBatch() { return _spriteBatch; }
+
+	//TODO make GlobalInputs public
+	internal GlobalInputs GetGlobalInputs()
+	{
+		return this.inputs;
+	}
 }
 
