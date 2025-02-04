@@ -55,5 +55,32 @@ namespace KirbStomp.ecs
             this.position = pos;
         }
 
+        //return null if cant find component with id, return component otherwise... use hasComponentWithID first
+        public Component getComponentWithID(int id)
+        {
+            foreach (Component component in this.components)
+            {
+                if(component.GetID() == id)
+                {
+                    return component;
+                }
+            }
+
+            return null;
+        }
+        //return if has component with ID
+        public bool hasComponentWithID(int id)
+        {
+            bool hasID = false;
+            foreach (Component component in this.components)
+            {
+                if (component.GetID() == id)
+                {
+                    hasID = true;
+                }
+            }
+            return hasID;
+        }
+
     }
 }
