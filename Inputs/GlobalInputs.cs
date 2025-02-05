@@ -38,6 +38,7 @@ namespace KirbStomp.Inputs
 			keysPressedCBFNDictionary = new();
 			keysJustPressedCBFNDictionary = new();
 			keysJustReleasedCBFNDictionary = new();
+			mouseMovedCBFNDictionary = new();
 			statusDictionaryDictionary = new() // Maybe this wasn't the best Idea...
 			{
 				{InputStatus.Pressed, keysPressedCBFNDictionary},
