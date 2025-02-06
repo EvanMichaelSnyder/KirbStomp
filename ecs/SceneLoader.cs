@@ -32,8 +32,15 @@ namespace KirbStomp.ecs
             Component playerMove2 = new PlayerMovement(200, .8f, 150, Keys.Up, Keys.Left, Keys.Right);
             test2.AddComponent(playerMove2);
             scene.AddGameObject(test2);
-            //***
-            return scene;
+
+			GameObject itemTest = new();
+			itemTest.AddComponent(new TestSprite());
+			itemTest.AddComponent(new Item());
+			itemTest.setPosition(new Vector2(0, 0));
+			scene.AddGameObject(itemTest);
+
+			//***
+			return scene;
 
         }
 

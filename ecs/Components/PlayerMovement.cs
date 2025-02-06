@@ -35,7 +35,7 @@ namespace KirbStomp.ecs.Components
             this.jumpKey = jumpKey;
             this.moveLeftKey = moveLeftKey;
             this.moveRightKey = moveRightKey;
-            this.input = Game1.get().GetGlobalInputs();
+			this.input = GlobalInputs.GetInstance(); 
 
             this.yPosAdjust = 0;
             this.xPosAdjust = 0;
