@@ -12,6 +12,7 @@ public class Game1 : Game
 	public GraphicsDeviceManager _graphics;
 	private SpriteBatch _spriteBatch;
 	private GlobalInputs inputs;
+	private Texture2D blocks;
 
 	public Game1()
 	{
@@ -31,6 +32,7 @@ public class Game1 : Game
 	protected override void LoadContent()
 	{
 		_spriteBatch = new SpriteBatch(GraphicsDevice);
+		blocks = Content.Load<Texture2D>("Platform_Blocks");
 	}
 
 	protected override void Update(GameTime gameTime)
@@ -39,6 +41,10 @@ public class Game1 : Game
 		// THIS CAN BE MOVED INTO A CLASS
 		if (inputs.IsInputJustPressed(Keys.Escape) || inputs.IsInputJustReleased(Inputs.Controllers.MouseButtons.RightMouseButton))
 			Exit();
+		else if (inputs.IsInputJustPressed(Keys.T))
+		{
+
+		}
 
 		// TODO: Add your update logic here
 		// UpdateAll, including Mouse & Keyboard inputs, Sprite state, Aniamtion state, 
@@ -52,6 +58,7 @@ public class Game1 : Game
 		GraphicsDevice.Clear(Color.CornflowerBlue);
 
 		_spriteBatch.Begin();
+		_spriteBatch.Draw(blocks, new Rectangle(150, 150, 72, 80), new Rectangle(0, 0, 72, 80), Color.White);
 
 		_spriteBatch.End();
 		base.Draw(gameTime);
