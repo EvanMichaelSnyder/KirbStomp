@@ -1,7 +1,7 @@
-﻿
-using KirbStomp.ecs;
-using KirbStomp.ECSV2.ECSV2Test;
-using KirbStomp.Inputs;
+﻿using KirbStomp.Engine.ecs;
+using KirbStomp.Engine.ECSV2Test;
+using KirbStomp.Engine.Inputs;
+using KirbStomp.Engine.Inputs.Controllers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -42,7 +42,6 @@ public class Game1 : Game
 	{
 		// TODO: InitializeAll();
 		inputs = GlobalInputs.GetInstance();
-		inputs.AddCommandToKeyStatus(Keys.P, new TestCommand(), InputStatus.JustPressed); // TODO TESTING WITH THE KEY P
 		base.Initialize();
 	}
 
@@ -59,7 +58,7 @@ public class Game1 : Game
 		float dT = (gameTime.ElapsedGameTime.Milliseconds) / 1000.0f;
 		inputs.UpdateAllControllers();
 		// THIS CAN BE MOVED INTO A CLASS
-		if (inputs.IsInputJustPressed(Keys.Escape) || inputs.IsInputJustReleased(Inputs.Controllers.MouseButtons.RightMouseButton))
+		if (inputs.IsInputJustPressed(Keys.Escape) || inputs.IsInputJustReleased(MouseButtons.RightMouseButton))
 			Exit();
 
 		// TODO: Add your update logic here

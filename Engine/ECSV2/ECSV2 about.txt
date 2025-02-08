@@ -1,0 +1,21 @@
+﻿General Work Flow:
+
+Creating an entity:
+Each entity is Created in ECSV2scene's constructor
+Each entity is a collection of components
+Add the appropriate components (these can be actual data or just tag components) and all done
+
+Animation:
+Animation Components are essentially just data needed to access an animation from an AnimationRepository
+
+You can tell AnimationSystem to make either set the next Animation of an entity, or force the current animation to change
+
+
+
+
+NOTE:
+
+The more I think of components having the ability to update, the less I agree with such aspects, since systems are not always using mutually exclusive components
+there can be overlap in which components are being used multiple time, and then you have an arbitrary way of updating components.
+In order to prevent this arbitrary choice, and only updating on first go, you'll then need the components to be even more complex having data on whether they've been updated this instance or not,
+which I don't think is a great path for futher development
