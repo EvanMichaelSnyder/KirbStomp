@@ -18,10 +18,11 @@ namespace KirbStomp.Engine.ECSV2Test
         private SystemsManager systemManager;
         public ECSV2Scene(Game1 game)
         {
-            allEntities = new()
-            {
-                ExMarioCharacter.CreateExampleMarioCharacter(game)
-            };
+			allEntities = new()
+			{
+				ExMarioCharacter.CreateExampleMarioCharacter(game),
+				SwappingItems.CreateSwappingItemsEntity()
+			};
             systemManager = new SystemsManager();
         }
 

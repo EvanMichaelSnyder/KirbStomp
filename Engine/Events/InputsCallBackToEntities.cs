@@ -15,11 +15,11 @@ namespace KirbStomp.Engine.Events
     {
         private Dictionary<EntitysKeyCallBackFN, ECSEntity> fnEntityDictionary;
         private Dictionary<Keys, List<EntitysKeyCallBackFN>> keyEntityFNCallbacks;
-        private GlobalInputs inputs;
 
         public InputsCallBackToEntities()
         {
-            inputs = GlobalInputs.GetInstance();
+			fnEntityDictionary = new();
+			keyEntityFNCallbacks = new();
         }
 
         public void Execute(Keys key)
@@ -33,7 +33,18 @@ namespace KirbStomp.Engine.Events
                     fn(entity);
                 }
             }
-
         }
+
+		public bool AddEntityKeyCallBack(ECSEntity entity, Keys key, EntitysKeyCallBackFN fn)
+		{
+			if (fnEntityDictionary.ContainsKey(fn)) return false;
+			fnEntityDictionary.Add(fn, entity);
+
+			if (!keyEntityFNCallbacks.ContainsKey(key)) keyEntityFNCallbacks.Add(key, new());
+			keyEntityFNCallbacks[key].Add(fn);
+
+			return true;
+		}
+
     }
 }

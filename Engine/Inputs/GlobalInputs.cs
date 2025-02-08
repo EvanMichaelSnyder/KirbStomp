@@ -24,23 +24,30 @@ namespace KirbStomp.Engine.Inputs
         private KeyboardController keyboard;
         private MouseController mouse;
 
-        private IKeyCommands keyPressedCBFN;
-        private IKeyCommands keyJustPressedCBFN;
-        private IKeyCommands keyJustReleasedCBFN;
+        private HashSet<IKeyCommands> keyPressedCBFN;
+        private HashSet<IKeyCommands> keyJustPressedCBFN;
+        private HashSet<IKeyCommands> keyJustReleasedCBFN;
 
         private HashSet<ICommands> mouseMovedCBFNDictionary;
         // Purely for development, it's easier than using switchcases to me
-        private Dictionary<InputStatus, Dictionary<Keys, HashSet<IKeyCommands>>> statusDictionaryDictionary;
+        private Dictionary<InputStatus, HashSet<IKeyCommands>> statusDictionaryDictionary;
 
 
         private static GlobalInputs instance;
 
         private GlobalInputs()
         {
-            keyPressedCBFN = new DelegateToIKeyCommand(default);
-            keyJustPressedCBFN = new DelegateToIKeyCommand(default);
-            keyJustReleasedCBFN = new DelegateToIKeyCommand(default);
-            mouseMovedCBFNDictionary = new();
+			keyPressedCBFN = new();
+			keyJustPressedCBFN = new();
+			keyJustReleasedCBFN = new();
+			mouseMovedCBFNDictionary = new();
+			statusDictionaryDictionary = new()
+			{
+				{ InputStatus.Pressed, keyPressedCBFN},
+				{ InputStatus.JustPressed, keyJustPressedCBFN },
+				{ InputStatus.JustReleased, keyJustReleasedCBFN }
+			};
+
             keyboard = KeyboardController.GetInstance();
             mouse = MouseController.GetInstance();
         }
@@ -105,13 +112,8 @@ namespace KirbStomp.Engine.Inputs
         public bool AddCommandToKeyStatus(Keys key, IKeyCommands command, InputStatus status) // Can be cleaned up
         {
             if (status == InputStatus.Released) return false;
-            Dictionary<Keys, HashSet<IKeyCommands>> dict = statusDictionaryDictionary[status];
-            HashSet<IKeyCommands> commands;
-
-            if (!dict.TryGetValue(key, out commands))
-                dict.Add(key, commands = new());
-
-            commands.Add(command);
+            HashSet<IKeyCommands> keyCommands = statusDictionaryDictionary[status];
+			keyCommands.Add(command);
             return true;
         }
         public void AddMousePositionCallback(ICommands command)
@@ -120,14 +122,21 @@ namespace KirbStomp.Engine.Inputs
         }
         private void CallBackNecessaryKeys()
         {
-            foreach (Keys key in keyboard.GetKeysPressed())
-                keyPressedCBFN.Execute(key);
-            foreach (Keys key in keyboard.GetKeysJustPressed())
-                keyJustPressedCBFN.Execute(key);
-            foreach (Keys key in keyboard.GetKeysJustReleased())
-                keyJustReleasedCBFN.Execute(key);
+			ExecuteAllCBFN(keyboard.GetKeysPressed(), keyPressedCBFN);
+			ExecuteAllCBFN(keyboard.GetKeysJustPressed(), keyJustPressedCBFN);
+			ExecuteAllCBFN(keyboard.GetKeysJustReleased(), keyJustReleasedCBFN);
         }
-
+		
+		private void ExecuteAllCBFN(HashSet<Keys> keyList, HashSet<IKeyCommands> commands)
+		{
+			foreach (Keys key in keyList)
+			{
+				foreach(IKeyCommands command in commands)
+				{
+					command.Execute(key);
+				}
+			}
+		}
 
 
 

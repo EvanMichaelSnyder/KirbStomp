@@ -1,10 +1,10 @@
-﻿using KirbStomp.Engine.Commands;
-using KirbStomp.Engine.ECSV2.ECSEntityManagement;
+﻿using KirbStomp.Engine.ECSV2.ECSEntityManagement;
 using KirbStomp.Engine.Events.Commands;
 using KirbStomp.Engine.Inputs;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,10 +14,21 @@ namespace KirbStomp.Engine.Events
     internal class GlobalEvents
     {
         private static GlobalEvents instance;
-        private InputsCallBackToEntities inputCallBacks;
+        private InputsCallBackToEntities inputPressedCallBacks;
+        private InputsCallBackToEntities inputJustPressedCallBacks;
+        private InputsCallBackToEntities inputJustReleasedCallBacks;
+		private GlobalInputs inputs;
+		private Dictionary<InputStatus, InputsCallBackToEntities> dict;
         private GlobalEvents()
         {
-            //SetInputCallBack();
+			dict = new()
+			{
+				{	InputStatus.Pressed, inputPressedCallBacks = new()},
+				{	InputStatus.JustPressed, inputJustPressedCallBacks = new() },
+				{   InputStatus.JustReleased, inputJustReleasedCallBacks = new() }
+
+			};
+			inputs = GlobalInputs.GetInstance();
         }
         public static GlobalEvents GetInstance()
         {
@@ -27,11 +38,14 @@ namespace KirbStomp.Engine.Events
 
         public void SubscriptToInputEvents(ECSEntity entity, IKeyCommands callbackFN)
         {
-			
+			Debug.WriteLine("NOT IMPLEMENTED YET");
         }
-        public void SubscriptToKeyEvents(ECSEntity entity, Keys key, InputStatus status, IKeyCommands callbackFN)
+        public void SubscriptToKeyEvents(ECSEntity entity, Keys key, InputStatus status, EntitysKeyCallBackFN callbackFN)
         {
-
+			InputsCallBackToEntities command = dict[status];
+			command.AddEntityKeyCallBack(entity, key, callbackFN);
+			inputs.AddCommandToKeyStatus(key, command, status);
+			
         }
 
 
