@@ -1,2 +1,3 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/conno/Source/Repos/KirbStomp/Content/Smile.png","C:/Users/conno/Source/Repos/KirbStomp/Content/bin/DesktopGL/Content/Smile.xnb","TextureProcessor","Texture2DContent",4489,196693,0.1619748
+"C:/dev/OSU/CSE3902/Fork-Test/Content/mario.png","C:/dev/OSU/CSE3902/Fork-Test/Content/bin/DesktopGL/Content/mario.xnb","TextureProcessor","Texture2DContent",6584,304645,0.1830654
+"C:/dev/OSU/CSE3902/Fork-Test/Content/Smile.png","C:/dev/OSU/CSE3902/Fork-Test/Content/bin/DesktopGL/Content/Smile.xnb","TextureProcessor","Texture2DContent",4489,196693,0.1443399

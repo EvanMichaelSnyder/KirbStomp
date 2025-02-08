@@ -4,9 +4,11 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/conno/Source/Repos/KirbStomp/Content/Smile.png</File>
+    <File>C:/dev/OSU/CSE3902/Fork-Test/Content/mario.png</File>
+    <File>C:/dev/OSU/CSE3902/Fork-Test/Content/Smile.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>
