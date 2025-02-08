@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,7 +46,7 @@ namespace KirbStomp.Inputs.Controllers
 		private void ResetKeysSets()
 		{
 			keysPressed.Clear();
-			keysJustReleased.Clear();
+			keysJustPressed.Clear();
 			keysJustReleased.Clear();
 		}
 
@@ -53,35 +54,50 @@ namespace KirbStomp.Inputs.Controllers
 		{
 			Keys[] currentlyPressedKeys = currentState.GetPressedKeys();
 			Keys[] previouslyPressedKeys = previousState.GetPressedKeys();
-			previouslyPressedKeys.Except(currentlyPressedKeys); // 
-
+			IEnumerable<Keys> justReleasedKeys = previouslyPressedKeys.Except(currentlyPressedKeys); // 
+			foreach (Keys key in justReleasedKeys)
+			{
+				keysJustReleased.Add(key);
+			}
 			foreach (Keys key in currentlyPressedKeys)
 			{
 				keysPressed.Add(key);
 				if (previousState.IsKeyUp(key))
+				{
 					keysJustPressed.Add(key);
+				}
 			}
-			foreach (Keys key in previouslyPressedKeys)
-			{
-				if (currentState.IsKeyUp(key))
-					keysJustReleased.Add(key);
-			}
+
+		}
+		public HashSet<Keys> GetKeysPressed()
+		{
+			return this.keysPressed;
 		}
 		public bool IsKeyPressed(Keys key)
 		{
 			return keysPressed.Contains(key);
 		}
+		public HashSet<Keys> GetKeysJustPressed()
+		{
+			return this.keysJustPressed;
+		}
 		public bool IsKeyJustPressed(Keys key)
 		{
 			return keysJustPressed.Contains(key);
+		}
+		public HashSet<Keys> GetKeysJustReleased()
+		{
+			return this.keysJustReleased;
+		}
+		public bool IsKeyJustReleased(Keys key)
+		{
+			return keysJustReleased.Contains(key);
+		
 		}
 		public bool IsKeyReleased(Keys key)
 		{
 			return !keysPressed.Contains(key);
 		}
-		public bool IsKeyJustReleased(Keys key)
-		{
-			return keysJustReleased.Contains(key);
-		}
+
 	}
 }
