@@ -1,5 +1,6 @@
 ﻿
 using KirbStomp.ecs;
+using KirbStomp.ECSV2.ECSV2Test;
 using KirbStomp.Inputs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,6 +18,8 @@ public class Game1 : Game
 	private static Game1 inst;
 	//test stuff
 	private Scene scene;
+
+	private ECSV2Scene sceneV2;
 
 	//return singleton of game1
 	public static Game1 get()
@@ -46,11 +49,14 @@ public class Game1 : Game
 	protected override void LoadContent()
 	{
 		_spriteBatch = new SpriteBatch(GraphicsDevice);
-		this.scene = SceneLoader.LoadScene("doesnt matter rn");
+		//this.scene = SceneLoader.LoadScene("doesnt matter rn");
+		this.sceneV2 = new ECSV2Scene(this);
+		sceneV2.LoadAll(Content);
 	}
 
 	protected override void Update(GameTime gameTime)
 	{
+		float dT = (gameTime.ElapsedGameTime.Milliseconds) / 1000.0f;
 		inputs.UpdateAllControllers();
 		// THIS CAN BE MOVED INTO A CLASS
 		if (inputs.IsInputJustPressed(Keys.Escape) || inputs.IsInputJustReleased(Inputs.Controllers.MouseButtons.RightMouseButton))
@@ -58,7 +64,7 @@ public class Game1 : Game
 
 		// TODO: Add your update logic here
 
-		
+		sceneV2.UpdateAll(dT);
 		// UpdateAll, including Mouse & Keyboard inputs, Sprite state, Aniamtion state, 
 		base.Update(gameTime);
 
@@ -72,8 +78,8 @@ public class Game1 : Game
 		_spriteBatch.Begin();
 
         //TODO , current is bad implentation, update shouldnt be in draw ...update scene***********************%
-        this.scene.Update((float)(gameTime.ElapsedGameTime.TotalSeconds));
-
+        //this.scene.Update((float)(gameTime.ElapsedGameTime.TotalSeconds));
+		this.sceneV2.DrawAll(_spriteBatch);
         _spriteBatch.End();
 		base.Draw(gameTime);
 	}

@@ -12,8 +12,16 @@ namespace KirbStomp.ECSV2.ECSEntities
     {
         private readonly Dictionary<uint, List<IECSComponent>> entityComponents;
         private readonly Dictionary<Type, List<IECSComponent>> componentsPool;
-
-
+		private static ECSManager instance;
+		private ECSManager() {
+			entityComponents = new();
+			componentsPool = new();
+		}
+		public static ECSManager GetInstance()
+		{
+			if (instance == null) instance = new ECSManager();
+			return instance;
+		}
         public ECSEntity CreateEntity()
         {
             ECSEntity entity = new ECSEntity();
@@ -84,7 +92,7 @@ namespace KirbStomp.ECSV2.ECSEntities
             foreach (var entityId in entityComponents.Keys)
             {
                 entity = new();
-
+				entity.SetID(entityId);
                 component1 = GetComponent<T1>(entity);
                 if (component1 != null)
                 {

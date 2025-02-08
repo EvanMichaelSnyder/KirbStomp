@@ -19,9 +19,9 @@ namespace ECSV2.Systems{
 		private readonly ECSManager manager;
 		private AnimationsRepository animationsRepository;
 
-		public AnimationSystem(ECSManager manager)
+		public AnimationSystem()
 		{
-			this.manager = manager;
+			this.manager = ECSManager.GetInstance();
 			this.animationsRepository = AnimationsRepository.GetInstance();
 		}
 

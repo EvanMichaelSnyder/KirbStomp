@@ -24,10 +24,11 @@ namespace KirbStomp.ECSV2.Animations.Content
         }
         public void LoadFromXML()
         {
-            string projectPath = AppContext.BaseDirectory; // is in Proj/bin/debug/net8.0, go back three time ../../., Now we'r ein our projectfile file with bin, content, and other coding files
-            string filePath = projectPath + "..\\..\\..\\Engine\\Animations\\Content\\Animation.XML";
+			string projectPath = Environment.CurrentDirectory.ToString(); // is in Proj/bin/debug/net8.0, go back three time ../../., Now we'r ein our projectfile file with bin, content, and other coding files
+            string filePath = projectPath + "..\\..\\..\\..\\ECSV2\\Animations\\Content\\Animation.XML";
 
-            XDocument document = XDocument.Load(filePath);
+			Debug.WriteLine("CurrentDir: {0}", projectPath);
+			XDocument document = XDocument.Load(filePath);
 
             foreach (XElement animationElement in document.Descendants("Animation"))
             {
