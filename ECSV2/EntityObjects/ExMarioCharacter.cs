@@ -20,8 +20,8 @@ namespace KirbStomp.ECSV2.EntityObjects
 		{
 			ECSManager manager = ECSManager.GetInstance();
 			ECSEntity entity = manager.CreateEntity();
-			manager.AddComponent<SpriteComponent>(entity, new SpriteComponent(game1.Content.Load<Texture2D>("mario"), new(), Color.White));
-			manager.AddComponent<AnimationComponent>(entity, new AnimationComponent());
+			manager.AddComponent<SpriteComponent>(entity, new SpriteComponent(game1.Content.Load<Texture2D>("mario"), new(), new(), Color.White));
+			manager.AddComponent<AnimationComponent>(entity, new AnimationComponent("Runnnning"));
 			manager.AddComponent<RigidBody2DComponent>(entity, new RigidBody2DComponent(new Vector2(0, 0), new Vector2(50, 50), new Vector2(0, 0)));
 			manager.AddComponent<ExamplePlayerState>(entity, new ExamplePlayerState("Player 1"));
 			manager.AddComponent<PlayerControls>(entity, new());

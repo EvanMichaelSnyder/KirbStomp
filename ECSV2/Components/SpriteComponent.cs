@@ -13,11 +13,13 @@ namespace KirbStomp.ECSV2.Components
     {
         public Texture2D spriteSheet;
         public Rectangle spriteSource;
+		public Point spriteDimensions;
         public Color color;
-        public SpriteComponent(Texture2D texture, Rectangle source, Color color)
+        public SpriteComponent(Texture2D texture, Rectangle source, Point spriteDimensions, Color color)
         {
             spriteSheet = texture;
             spriteSource = source;
+			this.spriteDimensions = spriteDimensions;
             this.color = color;
         }
     }

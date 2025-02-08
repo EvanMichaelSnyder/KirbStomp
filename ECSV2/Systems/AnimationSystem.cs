@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,12 +17,11 @@ using System.Threading.Tasks;
 namespace ECSV2.Systems{
 	internal class AnimationSystem : IUpdatableSystem, ILoadableSystem
 	{
-		private readonly ECSManager manager;
+		private static readonly ECSManager manager = ECSManager.GetInstance();
 		private AnimationsRepository animationsRepository;
-
+		
 		public AnimationSystem()
 		{
-			this.manager = ECSManager.GetInstance();
 			this.animationsRepository = AnimationsRepository.GetInstance();
 		}
 
@@ -41,9 +41,12 @@ namespace ECSV2.Systems{
 					animationComponent.durationSinceLastFrame = 0;
 					animationComponent.currentFrame++;
 					if (animationComponent.currentFrame >= animation.numberOfFrames)
+					{
 						animationComponent.currentFrame = 0;
+						animationComponent.CycleAnimation();
+					}
 				}
-				UpdateSpriteFromAnimation(sprite, animation.spriteSheet, animation.sourceFrames[animationComponent.currentFrame]);
+				UpdateSpriteFromAnimation(sprite, animation, animationComponent.currentFrame);
 				
 				
 			}
@@ -57,14 +60,43 @@ namespace ECSV2.Systems{
 			{
 				animationName = animationComponent.animationName;
 				animation = animationsRepository.GetAnimation(animationName);
-				animation.Load(content);
+				if(animation != null) animation.Load(content);
 			}
 
 		}
-		private void UpdateSpriteFromAnimation(SpriteComponent sprite, Texture2D spriteSheet, Rectangle source)
+
+
+		// This implementation was for quick development.
+		// There is another implementation where we keep a Container of entities to change the current/next frame and change it all during the update loop.
+		// This container implemntation updated on Update may be more appropriate for a System
+		public static bool ChangeEntitysCurrentAnimation(ECSEntity entity, string animationName, int startingFrame = 0)
 		{
-			sprite.spriteSheet = spriteSheet;
-			sprite.spriteSource = source;
+			AnimationComponent component = manager.GetComponent<AnimationComponent>(entity);
+			if (component == null) return false;
+			
+			component.animationName = animationName;
+			component.currentFrame = startingFrame;
+			return true;
+		}
+
+
+		public static bool ChangeEntitysNextAnimation(ECSEntity entity, string animationName, int startingFrame = 0)
+		{
+			AnimationComponent component = manager.GetComponent<AnimationComponent>(entity);
+			if (component == null) return false;
+
+			component.nextAnimation = animationName;
+			component.nextStartingFrame = startingFrame;
+			return true;
+		}
+		private void UpdateSpriteFromAnimation(SpriteComponent sprite, Animation animation, int currentFrame)
+		{
+			Rectangle frame = animation.sourceFrames[currentFrame];
+			sprite.spriteSheet = animation.spriteSheet;
+			sprite.spriteSource = frame;
+			sprite.spriteDimensions.X = frame.Width;
+			sprite.spriteDimensions.Y = frame.Height;
+
 		}
 	}
 }

@@ -42,7 +42,7 @@ namespace KirbStomp.ECSV2.Animations.Content
 
         public Animation GetAnimation(string animationName)
         {
-            return animationDictionary.TryGetValue(animationName, out var animation) ? animation : null;
+            return animationDictionary.TryGetValue(animationName, out var animation) ? animation : animationDictionary["default"];
         }
 
 
@@ -54,7 +54,10 @@ namespace KirbStomp.ECSV2.Animations.Content
             string animationTextureName = animationElement.Attribute("textureName").Value;
             float animationDuration = float.Parse(animationElement.Attribute("duration").Value);
             bool animationLoops = bool.Parse(animationElement.Attribute("loop").Value);
-            List<Rectangle> animationFrames = new();
+			XAttribute isDefaultAttribute = animationElement.Attribute("isDefault");
+			bool isDefault = isDefaultAttribute != null && bool.Parse(isDefaultAttribute.Value);
+
+			List<Rectangle> animationFrames = new();
             Animation animation;
 
 
@@ -66,8 +69,9 @@ namespace KirbStomp.ECSV2.Animations.Content
             {
                 animation = new Animation(animationName, animationTextureName,
                     animationFrames, animationDuration / animationFrames.Count, animationLoops);
-
+				
                 output = animationDictionary.TryAdd(animationName, animation);
+				if (isDefault) animationDictionary["default"] = animation;
             }
             return output;
         }
@@ -80,5 +84,7 @@ namespace KirbStomp.ECSV2.Animations.Content
             int height = int.Parse(rectElement.Attribute("height").Value);
             return new Rectangle(x, y, width, height);
         }
+
+
     }
 }

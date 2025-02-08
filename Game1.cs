@@ -49,7 +49,7 @@ public class Game1 : Game
 	protected override void LoadContent()
 	{
 		_spriteBatch = new SpriteBatch(GraphicsDevice);
-		//this.scene = SceneLoader.LoadScene("doesnt matter rn");
+		this.scene = SceneLoader.LoadScene("doesnt matter rn");
 		this.sceneV2 = new ECSV2Scene(this);
 		sceneV2.LoadAll(Content);
 	}
@@ -78,7 +78,7 @@ public class Game1 : Game
 		_spriteBatch.Begin();
 
         //TODO , current is bad implentation, update shouldnt be in draw ...update scene***********************%
-        //this.scene.Update((float)(gameTime.ElapsedGameTime.TotalSeconds));
+        this.scene.Update((float)(gameTime.ElapsedGameTime.TotalSeconds));
 		this.sceneV2.DrawAll(_spriteBatch);
         _spriteBatch.End();
 		base.Draw(gameTime);
