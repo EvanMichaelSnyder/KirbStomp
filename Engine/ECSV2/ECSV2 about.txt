@@ -10,6 +10,15 @@ Animation Components are essentially just data needed to access an animation fro
 
 You can tell AnimationSystem to make either set the next Animation of an entity, or force the current animation to change
 
+Sprites:
+Sprites are 1 frame animations,
+
+Inputs:
+Event based inputs.
+Components (either data based of state based components) will subscribe to the event system and input a function (SO far only implementation for keyboard call backs have been made),
+the function which is typically declared in the components will give a function which modifies their own members to an event system, which then is checked and processed by a system given 
+some components and their members.
+
 
 
 
