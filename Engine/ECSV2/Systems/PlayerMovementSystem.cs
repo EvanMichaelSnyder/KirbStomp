@@ -24,7 +24,7 @@ namespace KirbStomp.Engine.ECSV2.Systems
         }
         public void Update(float deltaTime)
         {
-            foreach (var (entity, playerControls, playerState) in manager.GetEntitiesWithComponents<PlayerControls, ExamplePlayerState>())
+            foreach (var (entity, playerControls, playerState) in manager.GetEntitiesWithComponents<PlayerControlsComponent, ExamplePlayerState>())
             {
                 playerState.normalMovementDirection.X = Convert.ToInt32(inputs.IsInputPressed(playerControls.moveRightKey)) - Convert.ToInt32(inputs.IsInputPressed(playerControls.moveLeftKey));
                 playerState.isWalking = playerState.normalMovementDirection.X != 0;

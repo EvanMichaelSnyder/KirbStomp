@@ -20,8 +20,30 @@ the function which is typically declared in the components will give a function 
 some components and their members.
 
 Event System:
+	Subscribe or unsubscribe to listen to an event type, current only even there is is Keyboard Event
 
+SYSTEMS:
+	There should be a serious consideration taken on how much Systems should work and WHAT each system should do
+	ie: Should systems work based off of components with data, or should it work with tags that'll give information on what components I'll have.
+		Should there be 1 system for updating things that cycle through phases, or should animation handle animaiton cycling, projectiles handle projectile phase cycling etc
 
+Game Loop:
+Initialize
+	Initialize
+Load
+	System Loader
+Update
+	Global Inputs Updates
+	Update each System
+		Update All Non-Player State
+		Update All Player State
+		Update All Physics
+			Movement, (WILL THIS CONSIDER POTENTIAL COLLISION, THIS MAY CHANGE ORDER)
+		Update All Collision
+		Update All Cyclable Data
+		Update All Sprites
+Draw
+	System draws all drawables
 
 
 NOTE:

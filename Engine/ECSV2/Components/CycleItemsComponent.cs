@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace KirbStomp.Engine.ECSV2.Components
 {
-    internal class CycleItems : IECSComponent, IDisposable
+    internal class CycleItemsComponent : IECSComponent, IDisposable
     {
 		private ECSEntity entity;
 		private int index;
@@ -20,7 +20,7 @@ namespace KirbStomp.Engine.ECSV2.Components
 		Keys cycleForward;
 		Keys cycleBack;
 		private string[] items;
-        public CycleItems(ECSEntity entity, string[] items, int numberOfItems, Keys cycleForwardKey, Keys cycleBackKey)
+        public CycleItemsComponent(ECSEntity entity, string[] items, int numberOfItems, Keys cycleForwardKey, Keys cycleBackKey)
         {
 			this.entity = entity;
 			index = 0;

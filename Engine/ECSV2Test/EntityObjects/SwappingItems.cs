@@ -20,7 +20,7 @@ namespace KirbStomp.Engine.ECSV2Test.EntityObjects
             manager.AddComponent(entity, new AnimationComponent("Runnnning"));
             manager.AddComponent(entity, new RigidBody2DComponent(new Vector2(0, 0), new Vector2(50, 50), new Vector2(0, 0)));
 			string[] items = { "A,", "B,", "C", "D" };
-			manager.AddComponent(entity, new CycleItems(entity, items, items.Count(), Keys.K, Keys.J));
+			manager.AddComponent(entity, new CycleItemsComponent(entity, items, items.Count(), Keys.K, Keys.J));
             return entity;
 
         }
