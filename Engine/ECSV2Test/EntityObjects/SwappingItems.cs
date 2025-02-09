@@ -23,9 +23,12 @@ namespace KirbStomp.Engine.ECSV2Test.EntityObjects
 			manager.AddComponent(entity, new CycleItemsComponent(entity, items, items.Count(), Keys.K, Keys.J));
 			List<(int, float, Vector2)> path = new()
 			{
-				(0, 100, new(1, 0)),
-				(30, 100, new (-1, 0)),
-				(60, 100, new(1,0))
+				(0, 200, new(0, 1)),
+				(10, 100, new (1, 0)),
+				(20, 100, new (1, -1)),
+				(30, 100, new (-1, -1)),
+				(40, 100, new(-1,0)),
+				(50, 100, new (0, 1))
 
 			};
 			manager.AddComponent(entity, new SetTrajectory(path, 0, 2));
