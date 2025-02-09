@@ -19,6 +19,8 @@ Components (either data based of state based components) will subscribe to the e
 the function which is typically declared in the components will give a function which modifies their own members to an event system, which then is checked and processed by a system given 
 some components and their members.
 
+Event System:
+
 
 
 

@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 
 namespace KirbStomp.Engine.ECSV2.Components
 {
-    internal class CycleItems : IECSComponent
+    internal class CycleItems : IECSComponent, IDisposable
     {
-
+		private ECSEntity entity;
 		private int index;
 		private int totalItems;
 		Keys cycleForward;
@@ -22,18 +22,24 @@ namespace KirbStomp.Engine.ECSV2.Components
 		private string[] items;
         public CycleItems(ECSEntity entity, string[] items, int numberOfItems, Keys cycleForwardKey, Keys cycleBackKey)
         {
+			this.entity = entity;
 			index = 0;
 			GlobalEvents events = GlobalEvents.GetInstance();
 			cycleForward = cycleForwardKey;
 			cycleBack = cycleBackKey;
-			events.SubscriptToKeyEvents(entity, cycleForward, Inputs.InputStatus.JustPressed, IncrementIndex);
-			events.SubscriptToKeyEvents(entity, cycleBack, Inputs.InputStatus.JustPressed, DecrementIndex);
+			events.SubscribeToKeyEvents(entity, cycleForward, Inputs.InputStatus.JustPressed, IncrementIndex);
+			events.SubscribeToKeyEvents(entity, cycleBack, Inputs.InputStatus.JustPressed, DecrementIndex);
 
 
 			this.items = items;
 			this.totalItems = numberOfItems;
 
         }
+		public void Dispose()
+		{
+			GlobalEvents events = GlobalEvents.GetInstance();
+			events.UnsubscriptAllEntityEvents(entity);
+		}
 		public void IncrementIndex(ECSEntity entity)
 		{
 			this.index++;

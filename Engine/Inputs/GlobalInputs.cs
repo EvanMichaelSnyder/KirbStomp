@@ -116,6 +116,14 @@ namespace KirbStomp.Engine.Inputs
 			keyCommands.Add(command);
             return true;
         }
+		public bool RemoveCommandToKeyStatus(Keys key, IKeyCommands command, InputStatus status)
+		{
+            if (status == InputStatus.Released) return false;
+            HashSet<IKeyCommands> keyCommands = statusDictionaryDictionary[status];
+			keyCommands.Remove(command);
+            return true;
+
+		}
         public void AddMousePositionCallback(ICommands command)
         {
             mouseMovedCBFNDictionary.Add(command);

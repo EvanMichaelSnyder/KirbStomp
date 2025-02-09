@@ -2,6 +2,7 @@
 using KirbStomp.Engine.ECSV2.ECSEntityManagement;
 using KirbStomp.Engine.ECSV2.Systems.SystemsManagement;
 using KirbStomp.Engine.ECSV2Test.EntityObjects;
+using KirbStomp.Engine.Inputs;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -29,6 +30,10 @@ namespace KirbStomp.Engine.ECSV2Test
         public void UpdateAll(float deltaTime)
         {
             systemManager.UpdateAllSystem(deltaTime);
+			if(GlobalInputs.GetInstance().IsInputJustPressed(Microsoft.Xna.Framework.Input.Keys.L))
+			{
+				ECSManager.GetInstance().RemoveEntity(allEntities[1]);
+			}
         }
 
         public void LoadAll(ContentManager content)

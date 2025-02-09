@@ -21,7 +21,7 @@ namespace KirbStomp.Engine.ECSV2Test.EntityObjects
             ECSManager manager = ECSManager.GetInstance();
             ECSEntity entity = manager.CreateEntity();
             manager.AddComponent(entity, new SpriteComponent(default, new(), new(), Color.White));
-            manager.AddComponent(entity, new AnimationComponent("Runnnning"));
+            manager.AddComponent(entity, new AnimationComponent("Running"));
             manager.AddComponent(entity, new RigidBody2DComponent(new Vector2(0, 0), new Vector2(50, 50), new Vector2(0, 0)));
             manager.AddComponent(entity, new ExamplePlayerState("Player 1"));
             manager.AddComponent<PlayerControls>(entity, new());
