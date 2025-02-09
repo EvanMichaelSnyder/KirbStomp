@@ -14,12 +14,13 @@ namespace KirbStomp.Engine.ECSV2.Components
 {
     internal class CycleItemsComponent : IECSComponent, IDisposable
     {
-		private ECSEntity entity;
-		private int index;
-		private int totalItems;
-		Keys cycleForward;
-		Keys cycleBack;
-		private string[] items;
+		public readonly ECSEntity entity;
+		public int index;
+		public int totalItems;
+		public Keys cycleForward;
+		public Keys cycleBack;
+		public string[] items;
+		public bool changeHandled;
         public CycleItemsComponent(ECSEntity entity, string[] items, int numberOfItems, Keys cycleForwardKey, Keys cycleBackKey)
         {
 			this.entity = entity;
@@ -29,7 +30,7 @@ namespace KirbStomp.Engine.ECSV2.Components
 			cycleBack = cycleBackKey;
 			events.SubscribeToKeyEvents(entity, cycleForward, Inputs.InputStatus.JustPressed, IncrementIndex);
 			events.SubscribeToKeyEvents(entity, cycleBack, Inputs.InputStatus.JustPressed, DecrementIndex);
-
+			changeHandled = true;
 
 			this.items = items;
 			this.totalItems = numberOfItems;
@@ -44,12 +45,14 @@ namespace KirbStomp.Engine.ECSV2.Components
 		{
 			this.index++;
 			if (index >= totalItems) index = 0;
+			changeHandled = false;
 			Debug.WriteLine($"Incremented: We're on item {items[index].ToString()}");
 		}
 		public void DecrementIndex(ECSEntity entity)
 		{
 			this.index--;
 			if (index < 0) index = totalItems - 1;
+			changeHandled = false;
 			Debug.WriteLine($"Decremented: We're on item {items[index].ToString()}");
 		}
     }

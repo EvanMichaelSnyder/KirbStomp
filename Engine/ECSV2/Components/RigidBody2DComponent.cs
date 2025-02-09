@@ -26,6 +26,7 @@ namespace KirbStomp.Engine.ECSV2.Components
         {
             position += velocity * deltaTime + (float)0.5 * acceleration * deltaTime * deltaTime;
             velocity += acceleration * deltaTime;
+			Debug.WriteLine($"{position.ToString()}");
         }
     }
 }

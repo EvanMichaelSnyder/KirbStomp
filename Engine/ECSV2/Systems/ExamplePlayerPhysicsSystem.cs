@@ -24,7 +24,6 @@ namespace KirbStomp.Engine.ECSV2.Systems
             foreach (var (entity, rigidBody, playerState) in manager.GetEntitiesWithComponents<RigidBody2DComponent, ExamplePlayerState>())
             {
                 previousPosition = rigidBody.position;
-                rigidBody.Update(deltaTime);
 
                 // ALl the magic numbers should be somewhere else
                 if (rigidBody.position.Y < 400)

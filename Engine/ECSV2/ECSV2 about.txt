@@ -32,8 +32,12 @@ Initialize
 	Initialize
 Load
 	System Loader
+		Loads and Initializes all Entities through SCENE
 Update
 	Global Inputs Updates
+	INDEPENDENT
+		Events whenever there's an event triggering event will IMMEDIATELY process the event callback fn
+	INDEPENDENT
 	Update each System
 		Update All Non-Player State
 		Update All Player State
