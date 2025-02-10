@@ -39,6 +39,9 @@ public class Game1 : Game
 		Content.RootDirectory = "Content";
 		IsMouseVisible = true;
 	}
+	// 
+	//	Following GraphicsAdapter stuff can be later moved into another file or class file which deals with graphics windows
+	//
 	public static (int width, int height) GetAdjustedWindowSize()
 	{
 		// Get screen dimensions

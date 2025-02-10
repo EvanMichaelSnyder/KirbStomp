@@ -21,6 +21,9 @@ namespace KirbStomp.Engine.ECSV2.Systems
         private static readonly ECSManager manager = ECSManager.GetInstance();
         private AnimationsRepository animationsRepository;
 
+		private static Dictionary<uint, (string, int)> entitiesToChangeCurrentFrame = new();
+		private static Dictionary<uint, (string, int)> entitiesToChangeNextFrame = new();
+
         public AnimationSystem()
         {
             animationsRepository = AnimationsRepository.GetInstance();
@@ -32,11 +35,24 @@ namespace KirbStomp.Engine.ECSV2.Systems
 
             Animation animation;
             string animationName;
-            foreach (var (entity, sprite, animationComponent) in manager.GetEntitiesWithComponents<SpriteComponent, AnimationComponent>())
+			(string, int) changingAnimationData;
+			foreach (var (entity, sprite, animationComponent) in manager.GetEntitiesWithComponents<SpriteComponent, AnimationComponent>())
             {
-                animationName = animationComponent.animationName;
-                animation = animationsRepository.GetAnimation(animationName);
+				// The following two if states can be put into their own helper function TODO
+				if (entitiesToChangeCurrentFrame.TryGetValue(entity.GetID(), out changingAnimationData))
+				{
+					ChangeCurrentAnimation(animationComponent, changingAnimationData.Item1, changingAnimationData.Item2);
+					entitiesToChangeCurrentFrame.Remove(entity.GetID());
+				}
+				if (entitiesToChangeNextFrame.TryGetValue(entity.GetID(), out changingAnimationData))
+				{
+					ChangeNextAnimation(animationComponent, changingAnimationData.Item1, changingAnimationData.Item2);
+					entitiesToChangeNextFrame.Remove(entity.GetID());
+				}
+
+				animationName = animationComponent.animationName;
                 animationComponent.durationSinceLastFrame += deltaTime;
+                animation = animationsRepository.GetAnimation(animationName);
                 if (animationComponent.durationSinceLastFrame >= animation.frameDuration)
                 {
                     animationComponent.durationSinceLastFrame = 0;
@@ -47,7 +63,8 @@ namespace KirbStomp.Engine.ECSV2.Systems
                         animationComponent.CycleAnimation();
                     }
                 }
-                UpdateSpriteFromAnimation(sprite, animation, animationComponent.currentFrame);
+
+				UpdateSpriteFromAnimation(sprite, animation, animationComponent.currentFrame);
 
 
             }
@@ -55,39 +72,36 @@ namespace KirbStomp.Engine.ECSV2.Systems
 
         public void Load(ContentManager content)
         {
-            Animation animation;
-            string animationName;
-            foreach (var (entity, animationComponent) in manager.GetEntitiesWithComponent<AnimationComponent>())
-            {
-                animationName = animationComponent.animationName;
-                animation = animationsRepository.GetAnimation(animationName);
-                if (animation != null) animation.Load(content);
-            }
+			foreach (var nameAnimationPair in AnimationsRepository.animationDictionary)
+			{
+				nameAnimationPair.Value.Load(content);
+			}
 
         }
-
+		private void ChangeCurrentAnimation(AnimationComponent animation, string newName, int startingFrame)
+		{
+			animation.currentFrame = startingFrame;
+			animation.animationName = newName;
+			animation.nextAnimation = newName;
+			animation.durationSinceLastFrame = 0.0f;
+		}
+		private void ChangeNextAnimation(AnimationComponent animation, string newName, int startingFrame)
+		{
+			animation.nextAnimation = newName;
+			animation.nextStartingFrame = startingFrame;
+		}
 
         // This implementation was for quick development.
         // There is another implementation where we keep a Container of entities to change the current/next frame and change it all during the update loop.
         // This container implemntation updated on Update may be more appropriate for a System
         public static bool ChangeEntitysCurrentAnimation(ECSEntity entity, string animationName, int startingFrame = 0)
         {
-            AnimationComponent component = manager.GetComponent<AnimationComponent>(entity);
-            if (component == null) return false;
-
-            component.animationName = animationName;
-            component.currentFrame = startingFrame;
-            return true;
+			return entitiesToChangeCurrentFrame.TryAdd(entity.GetID(), (animationName, startingFrame));
         }
 
         public static bool ChangeEntitysNextAnimation(ECSEntity entity, string animationName, int startingFrame = 0)
         {
-            AnimationComponent component = manager.GetComponent<AnimationComponent>(entity);
-            if (component == null) return false;
-
-            component.nextAnimation = animationName;
-            component.nextStartingFrame = startingFrame;
-            return true;
+			return entitiesToChangeNextFrame.TryAdd(entity.GetID(), (animationName, startingFrame));
         }
         private void UpdateSpriteFromAnimation(SpriteComponent sprite, Animation animation, int currentFrame)
         {
