@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Xml.Linq;
 namespace KirbStomp.Engine.Animations
@@ -15,9 +16,10 @@ namespace KirbStomp.Engine.Animations
         public List<Rectangle> sourceFrames { get; set; }
         public int numberOfFrames { get; set; }
         public float frameDuration { get; set; }
+		public List<Point> perFrameOffset { get; set; }
         public bool loop { get; set; }
         public Animation() { }
-        public Animation(string name, string texture, List<Rectangle> frames, float perFrameDuration, bool loops)
+        public Animation(string name, string texture, List<Rectangle> frames, float perFrameDuration, bool loops, List<Point> perFrameOffset)
         {
             animationName = name;
             textureName = texture;
@@ -25,11 +27,21 @@ namespace KirbStomp.Engine.Animations
             frameDuration = perFrameDuration;
             loop = loops;
             numberOfFrames = sourceFrames.Count;
+			this.perFrameOffset = perFrameOffset;
         }
 
         public void Load(ContentManager content)
         {
-            spriteSheet = content.Load<Texture2D>(textureName);
+			try
+			{
+			spriteSheet = content.Load<Texture2D>(textureName);
+			} catch (Exception e)
+			{
+				Console.WriteLine(e.Message);
+				Debug.WriteLine(e.Message);
+				spriteSheet = content.Load<Texture2D>("mario"); // Default
+			}
+
         }
     }
 }

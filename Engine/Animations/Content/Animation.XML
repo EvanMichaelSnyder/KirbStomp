@@ -1,5 +1,5 @@
 ﻿<Animations>
-	<Animation name="Running" textureName="mario" duration ="1.0" loop="true" xAnimationOffset ="0" yAnimationoffset = "0" >
+	<Animation name="Running" textureName="mario" duration ="1.0" loop="true" xAnimationOffset ="0" yAnimationOffset = "0" >
 		<Frame>
 			<SourceRectangle x="145" y="48" width="29" height="35" xPerFrameOffset="0" yPerFrameOffset="0"/>
 		</Frame>
@@ -11,25 +11,25 @@
 		</Frame>
 	</Animation>
 	
-	<Animation name="Idle" textureName="mario" duration ="1.0" loop="true" xAnimationOffset ="0" yAnimationoffset = "0" isDefault ="true">
+	<Animation name="Idle" textureName="mario" duration ="1.0" loop="true" xAnimationOffset ="0" yAnimationOffset = "0" isDefault ="true">
 		<Frame>
 			<SourceRectangle x="174" y="48" width="29" height="35" xPerFrameOffset="0" yPerFrameOffset="0"/>
 		</Frame>
 
 	</Animation>
 
-	<Animation name="Firework" textureName="Items" duration ="1.0" loop="true" xAnimationOffset ="0" yAnimationoffset = "0" isDefault ="true">
+	<Animation name="Firework" textureName="Items" duration ="1.0" loop="true" xAnimationOffset ="0" yAnimationOffset = "0" isDefault ="true">
 		<Frame>
 			<SourceRectangle x="39" y="16" width="95" height="137" xPerFrameOffset="0" yPerFrameOffset="0"/>
 		</Frame>
 	</Animation>
-	<Animation name="Star" textureName="Items" duration ="1.0" loop="true" xAnimationOffset ="0" yAnimationoffset = "0" isDefault ="true">
+	<Animation name="Star" textureName="Items" duration ="1.0" loop="true" xAnimationOffset ="0" yAnimationOffset = "0" isDefault ="true">
 		<Frame>
 			<SourceRectangle x="237" y="16" width="126" height="126" xPerFrameOffset="0" yPerFrameOffset="0"/>
 		</Frame>
 
 	</Animation>
-	<Animation name="Hamburger" textureName="Items" duration ="1.0" loop="true" xAnimationOffset ="0" yAnimationoffset = "0" isDefault ="true">
+	<Animation name="Hamburger" textureName="Items" duration ="1.0" loop="true" xAnimationOffset ="0" yAnimationOffset = "0" isDefault ="true">
 		<Frame>
 			<SourceRectangle x="447" y="16" width="136" height="118" xPerFrameOffset="0" yPerFrameOffset="0"/>
 		</Frame>

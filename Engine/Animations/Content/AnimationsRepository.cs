@@ -13,6 +13,7 @@ namespace KirbStomp.Engine.Animations.Content
 	internal class AnimationsRepository
 	{
 		private static Dictionary<string, Animation> animationDictionary;
+		private static List<string> allTextureSheets;
 		private static AnimationsRepository instance;
 		public static AnimationsRepository GetInstance()
 		{
@@ -22,19 +23,20 @@ namespace KirbStomp.Engine.Animations.Content
 		private AnimationsRepository()
 		{
 			animationDictionary = new();
+			allTextureSheets = new();
 			LoadFromXML();
 		}
 		public void LoadFromXML([CallerFilePath] string currentFile = "")
-        {
-            string projectPath = Environment.CurrentDirectory.ToString(); // is in Proj/bin/debug/net8.0, go back three time ../../., Now we'r ein our projectfile file with bin, content, and other coding files
+		{
+			string projectPath = Environment.CurrentDirectory.ToString(); // is in Proj/bin/debug/net8.0, go back three time ../../., Now we'r ein our projectfile file with bin, content, and other coding files
 																		  //string filePath = projectPath + "\\Engine\\Animations\\Content\\Animation.XML";
 			//string filePath = projectPath + "/Engine/Animations/Content/Animation.XML";
-            Debug.WriteLine("CurrentDir: {0}", currentFile);
+			Debug.WriteLine("CurrentDir: {0}", currentFile);
 			string directory = Path.GetDirectoryName(currentFile);
 			string xmlPath = Path.Combine(directory, "Animation.XML");
-            XDocument document = XDocument.Load(xmlPath);
-
-            foreach (XElement animationElement in document.Descendants("Animation"))
+			XDocument document = XDocument.Load(xmlPath);
+			
+			foreach (XElement animationElement in document.Descendants("Animation"))
             {
                 if (!AddAnimationElement(animationElement))
                 {
@@ -54,41 +56,56 @@ namespace KirbStomp.Engine.Animations.Content
         private bool AddAnimationElement(XElement animationElement)
         {
             bool output = false;
-            string animationName = animationElement.Attribute("name").Value;
-            string animationTextureName = animationElement.Attribute("textureName").Value;
-            float animationDuration = float.Parse(animationElement.Attribute("duration").Value);
-            bool animationLoops = bool.Parse(animationElement.Attribute("loop").Value);
+			string animationName = GetValueOrDefault(animationElement, "name", "Idle");
+			string animationTextureName = GetValueOrDefault(animationElement, "textureName", "mario");
+			float animationDuration = float.Parse(GetValueOrDefault(animationElement, "duration", "1,0"));
+            bool animationLoops = bool.Parse(GetValueOrDefault(animationElement, "loop", "true"));
+			int xAnimationOffset = int.Parse(GetValueOrDefault(animationElement, "xAnimationOffset", "0"));
+			int yAnimationOffset = int.Parse(GetValueOrDefault(animationElement, "yAnimationOffset", "0"));
             XAttribute isDefaultAttribute = animationElement.Attribute("isDefault");
             bool isDefault = isDefaultAttribute != null && bool.Parse(isDefaultAttribute.Value);
 
             List<Rectangle> animationFrames = new();
             Animation animation;
-
-
+			List<Point> perFrameOffset = new();
+			(Rectangle, Point) frameData;
             foreach (XElement frame in animationElement.Descendants("Frame"))
-            {
-                animationFrames.Add(GetRectangleFromFrame(frame));
+			{
+				frameData = GetRectangeAndOffsetFromFrame(frame);
+				animationFrames.Add(frameData.Item1);
+				perFrameOffset.Add(frameData.Item2);
             }
             if (animationName != null && animationTextureName != null)
             {
+				allTextureSheets.Add(animationTextureName);
                 animation = new Animation(animationName, animationTextureName,
-                    animationFrames, animationDuration / animationFrames.Count, animationLoops);
+                    animationFrames, animationDuration / animationFrames.Count, animationLoops, perFrameOffset);
 
                 output = animationDictionary.TryAdd(animationName, animation);
                 if (isDefault) animationDictionary["default"] = animation;
             }
             return output;
         }
-        private Rectangle GetRectangleFromFrame(XElement frame)
-        {
-            XElement rectElement = frame.Element("SourceRectangle");
-            int x = int.Parse(rectElement.Attribute("x").Value);
-            int y = int.Parse(rectElement.Attribute("y").Value);
-            int width = int.Parse(rectElement.Attribute("width").Value);
-            int height = int.Parse(rectElement.Attribute("height").Value);
-            return new Rectangle(x, y, width, height);
-        }
 
+		private string GetValueOrDefault(XElement element, string name, string defaultOutput)
+		{
+			string output = "";
+			return (output = element.Attribute(name).Value) != null ? output : defaultOutput;
+		}
+
+
+
+        private (Rectangle, Point) GetRectangeAndOffsetFromFrame(XElement frame)
+		{
+            XElement rectElement = frame.Element("SourceRectangle");
+			int x = int.Parse(GetValueOrDefault(rectElement, "x", "0")); 
+			int y = int.Parse(GetValueOrDefault(rectElement, "y", "0")); 
+			int width = int.Parse(GetValueOrDefault(rectElement, "width", "100")); 
+			int height = int.Parse(GetValueOrDefault(rectElement, "height", "100"));
+			int xOffset = int.Parse(GetValueOrDefault(rectElement, "xPerFrameOffset", "0"));
+			int yOffset = int.Parse(GetValueOrDefault(rectElement, "yPerFrameOffset", "0"));
+			return (new Rectangle(x, y, width, height), new Point(xOffset, yOffset));
+        }
 
     }
 }

@@ -16,7 +16,6 @@ public class Game1 : Game
 	//singleton
 	private static Game1 inst;
 	//test stuff
-
 	private ECSV2Scene sceneV2;
 
 	//return singleton of game1

@@ -1,5 +1,6 @@
 ﻿using KirbStomp.Engine.ECSV2.Components.IECSComponents;
 using KirbStomp.Engine.ECSV2.ECSEntityManagement;
+using KirbStomp.Engine.ECSV2.Systems;
 using KirbStomp.Engine.Events;
 using KirbStomp.Engine.Events.Commands;
 using Microsoft.Xna.Framework.Input;
@@ -46,6 +47,7 @@ namespace KirbStomp.Engine.ECSV2.Components
 			this.index++;
 			if (index >= totalItems) index = 0;
 			changeHandled = false;
+			//AnimationSystem.ChangeEntitysCurrentAnimation(entity, items[index]);
 			Debug.WriteLine($"Incremented: We're on item {items[index].ToString()}");
 		}
 		public void DecrementIndex(ECSEntity entity)
@@ -53,6 +55,7 @@ namespace KirbStomp.Engine.ECSV2.Components
 			this.index--;
 			if (index < 0) index = totalItems - 1;
 			changeHandled = false;
+			//AnimationSystem.ChangeEntitysCurrentAnimation(entity, items[index]);
 			Debug.WriteLine($"Decremented: We're on item {items[index].ToString()}");
 		}
     }
