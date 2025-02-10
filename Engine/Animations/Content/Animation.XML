@@ -17,4 +17,21 @@
 		</Frame>
 
 	</Animation>
+
+	<Animation name="Firework" textureName="Items" duration ="1.0" loop="true" xAnimationOffset ="0" yAnimationoffset = "0" isDefault ="true">
+		<Frame>
+			<SourceRectangle x="39" y="16" width="95" height="137" xPerFrameOffset="0" yPerFrameOffset="0"/>
+		</Frame>
+	</Animation>
+	<Animation name="Star" textureName="Items" duration ="1.0" loop="true" xAnimationOffset ="0" yAnimationoffset = "0" isDefault ="true">
+		<Frame>
+			<SourceRectangle x="237" y="16" width="126" height="126" xPerFrameOffset="0" yPerFrameOffset="0"/>
+		</Frame>
+
+	</Animation>
+	<Animation name="Hamburger" textureName="Items" duration ="1.0" loop="true" xAnimationOffset ="0" yAnimationoffset = "0" isDefault ="true">
+		<Frame>
+			<SourceRectangle x="447" y="16" width="136" height="118" xPerFrameOffset="0" yPerFrameOffset="0"/>
+		</Frame>
+	</Animation>
 </Animations>

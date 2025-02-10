@@ -18,8 +18,6 @@ public class Game1 : Game
 	//test stuff
 
 
-	private ECSV2Scene sceneV2;
-
 	//return singleton of game1
 	public static Game1 get()
 	{
