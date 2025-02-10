@@ -24,6 +24,7 @@ namespace KirbStomp.Engine.ECSV2.Components
         public bool isFalling;
         public bool jumped;
 
+		public float spriteScale;
 
 
         public ExamplePlayerState(string name)
@@ -32,6 +33,7 @@ namespace KirbStomp.Engine.ECSV2.Components
             movementVel = 100;
             jumpVelocity = 500;
             normalMovementDirection = new();
+			spriteScale = 1.2f;
         }
         public void Update(float deltatTime)
         {

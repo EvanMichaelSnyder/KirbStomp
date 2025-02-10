@@ -1,15 +1,16 @@
 ﻿<Animations>
-	<Animation name="Running" textureName="mario" duration ="1.0" loop="true">
+	<Animation name="Running" textureName="mario" duration ="1.0" loop="true" animationOffset ="00" >
 		<Frame>
-			<SourceRectangle x="145" y="48" width="29" height="35"/>
+			<SourceRectangle x="145" y="48" width="29" height="35" perFrameOffset="10"/>
+		</Frame>v
+		<Frame>
+			<SourceRectangle x="116" y="48" width="29" height="35" perFrameOffset="10"/>
 		</Frame>
 		<Frame>
-			<SourceRectangle x="116" y="48" width="29" height="35"/>
-		</Frame>
-		<Frame>
-			<SourceRectangle x="87" y="48" width="29" height="35"/>
+			<SourceRectangle x="87" y="48" width="29" height="35" perFrameOffset="10"/>
 		</Frame>
 	</Animation>
+	
 	<Animation name="Idle" textureName="mario" duration ="1.0" loop="true" isDefault ="true">
 		<Frame>
 			<SourceRectangle x="174" y="48" width="29" height="35"/>

@@ -30,18 +30,49 @@ public class Game1 : Game
 		}
 		return inst;
 	}
-
+	private SpriteFont _font;
+	public static double globalXBoundMax = 800;
+	public static double globalYBoundMax = 480;
+	public static double globalScaleX = 1.0;
+	public static double globalScaleY = 1.0;
+	public static double globalAspectRatio = 5 / 3.0;
 	private Game1()
 	{
 		_graphics = new GraphicsDeviceManager(this);
 		Content.RootDirectory = "Content";
 		IsMouseVisible = true;
 	}
+	public static (int width, int height) GetAdjustedWindowSize()
+	{
+		// Get screen dimensions
+		int screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+		int screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
 
+		// Calculate 5:3 window size
+		double maxWidth = screenWidth * 0.80; // 80% of screen width
+		double maxHeight = screenHeight * 0.80; // 80% of screen height
+
+		double windowWidth = maxWidth;
+		double windowHeight = maxWidth / globalAspectRatio;
+
+		// Return the calculated width and height as integers
+		return ((int)windowWidth, (int)windowHeight);
+	}
 	protected override void Initialize()
 	{
 		// TODO: InitializeAll();
 		inputs = GlobalInputs.GetInstance();
+
+		var (width, height) = GetAdjustedWindowSize();
+		//width = 1600;
+		//height = 900;
+		globalScaleX = width / globalXBoundMax;
+		globalScaleY = height / globalYBoundMax;
+		_graphics.PreferredBackBufferWidth = width;
+		_graphics.PreferredBackBufferHeight = height;
+		//Custom Graphics Settings
+		_graphics.ApplyChanges();
+
 		base.Initialize();
 	}
 
