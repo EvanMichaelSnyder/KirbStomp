@@ -1,0 +1,58 @@
+﻿General Work Flow:
+
+Creating an entity:
+Each entity is Created in ECSV2scene's constructor
+Each entity is a collection of components
+Add the appropriate components (these can be actual data or just tag components) and all done
+
+Animation:
+Animation Components are essentially just data needed to access an animation from an AnimationRepository
+
+You can tell AnimationSystem to make either set the next Animation of an entity, or force the current animation to change
+
+Sprites:
+Sprites are 1 frame animations,
+
+Inputs:
+Event based inputs.
+Components (either data based of state based components) will subscribe to the event system and input a function (SO far only implementation for keyboard call backs have been made),
+the function which is typically declared in the components will give a function which modifies their own members to an event system, which then is checked and processed by a system given 
+some components and their members.
+
+Event System:
+	Subscribe or unsubscribe to listen to an event type, current only even there is is Keyboard Event
+
+SYSTEMS:
+	There should be a serious consideration taken on how much Systems should work and WHAT each system should do
+	ie: Should systems work based off of components with data, or should it work with tags that'll give information on what components I'll have.
+		Should there be 1 system for updating things that cycle through phases, or should animation handle animaiton cycling, projectiles handle projectile phase cycling etc
+
+Game Loop:
+Initialize
+	Initialize
+Load
+	System Loader
+		Loads and Initializes all Entities through SCENE
+Update
+	Global Inputs Updates
+	INDEPENDENT
+		Events whenever there's an event triggering event will IMMEDIATELY process the event callback fn
+	INDEPENDENT
+	Update each System
+		Update All Non-Player State
+		Update All Player State
+		Update All Physics
+			Movement, (WILL THIS CONSIDER POTENTIAL COLLISION, THIS MAY CHANGE ORDER)
+		Update All Collision
+		Update All Cyclable Data
+		Update All Sprites
+Draw
+	System draws all drawables
+
+
+NOTE:
+
+The more I think of components having the ability to update, the less I agree with such aspects, since systems are not always using mutually exclusive components
+there can be overlap in which components are being used multiple time, and then you have an arbitrary way of updating components.
+In order to prevent this arbitrary choice, and only updating on first go, you'll then need the components to be even more complex having data on whether they've been updated this instance or not,
+which I don't think is a great path for futher development
