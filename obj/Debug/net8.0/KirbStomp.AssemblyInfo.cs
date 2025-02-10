@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KirbStomp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+47a73fd2f1669da4ee2a555b5831ee67e3e46ad6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90e2633178017fdf73404cb15c5a6e573d6ee177")]
 [assembly: System.Reflection.AssemblyProductAttribute("KirbStomp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KirbStomp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
