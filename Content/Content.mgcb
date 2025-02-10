@@ -42,3 +42,18 @@
 /processor:TextureProcessor
 /build:Items.png
 
+#begin LinkTransparentSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:LinkTransparentSpriteSheet.png
+
+#begin MarioTransparentSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:MarioTransparentSpriteSheet.png
+
+#begin MegaManTransparentSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:MegaManTransparentSpriteSheet.png
+
