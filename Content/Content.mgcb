@@ -37,3 +37,8 @@
 /processorParam:TextureFormat=Color
 /build:Smile.png
 
+#begin Items.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Items.png
+
