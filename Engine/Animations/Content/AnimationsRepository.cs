@@ -33,7 +33,7 @@ namespace KirbStomp.Engine.Animations.Content
 			string directory = Path.GetDirectoryName(currentFile);
 			string xmlPath = Path.Combine(directory, "Animation.XML");
             XDocument document = XDocument.Load(xmlPath);
-
+			
             foreach (XElement animationElement in document.Descendants("Animation"))
             {
                 if (!AddAnimationElement(animationElement))
@@ -58,6 +58,8 @@ namespace KirbStomp.Engine.Animations.Content
             string animationTextureName = animationElement.Attribute("textureName").Value;
             float animationDuration = float.Parse(animationElement.Attribute("duration").Value);
             bool animationLoops = bool.Parse(animationElement.Attribute("loop").Value);
+			int xAnimationOffset = int.Parse(animationElement.Attribute("xAnimationOffset").Value);
+			int yAnimationOffset = int.Parse(animationElement.Attribute("yAnimationOffset").Value);
             XAttribute isDefaultAttribute = animationElement.Attribute("isDefault");
             bool isDefault = isDefaultAttribute != null && bool.Parse(isDefaultAttribute.Value);
 
@@ -79,6 +81,7 @@ namespace KirbStomp.Engine.Animations.Content
             }
             return output;
         }
+
         private Rectangle GetRectangleFromFrame(XElement frame)
         {
             XElement rectElement = frame.Element("SourceRectangle");
