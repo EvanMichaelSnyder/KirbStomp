@@ -18,6 +18,7 @@ namespace KirbStomp.Engine.Animations
         public int numberOfFrames { get; set; }
         public float frameDuration { get; set; }
         public bool loop { get; set; }
+
         public Animation() { }
         public Animation(string name, string texture, List<Rectangle> frames, float perFrameDuration, bool loops, List<Point> perFrameOffset)
         {

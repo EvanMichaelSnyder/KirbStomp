@@ -15,12 +15,14 @@ namespace KirbStomp.Engine.ECSV2.Components
         public Rectangle spriteSource;
         public Point spriteDimensions;
         public Color color;
+		public float scale;
         public SpriteComponent(Texture2D texture, Rectangle source, Point spriteDimensions, Color color)
         {
             spriteSheet = texture;
             spriteSource = source;
             this.spriteDimensions = spriteDimensions;
             this.color = color;
+			this.scale = 1.0f;
         }
     }
 }

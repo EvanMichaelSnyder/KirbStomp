@@ -106,11 +106,14 @@ namespace KirbStomp.Engine.ECSV2.Systems
         private void UpdateSpriteFromAnimation(SpriteComponent sprite, Animation animation, int currentFrame)
         {
             Rectangle frame = animation.sourceFrames[currentFrame];
+			Point perFrameOffset = animation.perFrameOffset[currentFrame];
+			float scale;
+			AnimationsRepository.perTextureScale.TryGetValue(animation.textureName, out scale);
             sprite.spriteSheet = animation.spriteSheet;
             sprite.spriteSource = frame;
-            sprite.spriteDimensions.X = frame.Width;
-            sprite.spriteDimensions.Y = frame.Height;
-
+			sprite.spriteDimensions.X = frame.Width + perFrameOffset.X;
+			sprite.spriteDimensions.Y = frame.Height + perFrameOffset.Y;
+			sprite.scale = scale;
         }
     }
 }

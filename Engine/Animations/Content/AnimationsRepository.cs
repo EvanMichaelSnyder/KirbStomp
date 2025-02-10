@@ -13,7 +13,7 @@ namespace KirbStomp.Engine.Animations.Content
 	internal class AnimationsRepository
 	{
 		public static Dictionary<string, Animation> animationDictionary;
-		private static Dictionary<string, float> perTextureScale;
+		public static Dictionary<string, float> perTextureScale;
 		private static AnimationsRepository instance;
 		public static AnimationsRepository GetInstance()
 		{
