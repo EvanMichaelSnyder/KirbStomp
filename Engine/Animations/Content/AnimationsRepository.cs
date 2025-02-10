@@ -12,8 +12,8 @@ namespace KirbStomp.Engine.Animations.Content
 {
 	internal class AnimationsRepository
 	{
-		private static Dictionary<string, Animation> animationDictionary;
-		private static List<string> allTextureSheets;
+		public static Dictionary<string, Animation> animationDictionary;
+		public static Dictionary<string, float> perTextureScale;
 		private static AnimationsRepository instance;
 		public static AnimationsRepository GetInstance()
 		{
@@ -23,7 +23,7 @@ namespace KirbStomp.Engine.Animations.Content
 		private AnimationsRepository()
 		{
 			animationDictionary = new();
-			allTextureSheets = new();
+			perTextureScale = new();
 			LoadFromXML();
 		}
 		public void LoadFromXML([CallerFilePath] string currentFile = "")
@@ -53,6 +53,7 @@ namespace KirbStomp.Engine.Animations.Content
 
 
         // Helper methods for LoadFromXML to make it more readable
+		// This parser can be split off into sections and cleaned up overall, for now this is essentially brute force with hard coded strings
         private bool AddAnimationElement(XElement animationElement)
         {
             bool output = false;
@@ -75,9 +76,11 @@ namespace KirbStomp.Engine.Animations.Content
 				animationFrames.Add(frameData.Item1);
 				perFrameOffset.Add(frameData.Item2);
             }
+
+			perTextureScale.TryAdd(animationTextureName, 1.2f);
+
             if (animationName != null && animationTextureName != null)
             {
-				allTextureSheets.Add(animationTextureName);
                 animation = new Animation(animationName, animationTextureName,
                     animationFrames, animationDuration / animationFrames.Count, animationLoops, perFrameOffset);
 
@@ -106,6 +109,5 @@ namespace KirbStomp.Engine.Animations.Content
 			int yOffset = int.Parse(GetValueOrDefault(rectElement, "yPerFrameOffset", "0"));
 			return (new Rectangle(x, y, width, height), new Point(xOffset, yOffset));
         }
-
     }
 }

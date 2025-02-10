@@ -1,4 +1,5 @@
-﻿using KirbStomp.Engine.ECSV2.Components;
+﻿using KirbStomp.Engine.Animations.Content;
+using KirbStomp.Engine.ECSV2.Components;
 using KirbStomp.Engine.ECSV2.ECSEntityManagement;
 using KirbStomp.Engine.ECSV2.Systems.ISystems;
 using Microsoft.Xna.Framework;
@@ -29,15 +30,15 @@ namespace KirbStomp.Engine.ECSV2.Systems
 			var (gWidth, gHeight) = Game1.GetAdjustedWindowSize();
 
 			float tempOffset = 0;
-			float tempSpriteScale = 1.2f;
-
+			float scale = 1.2f;
             foreach (var (entity, rigidBody, sprite) in manager.GetEntitiesWithComponents<RigidBody2DComponent, SpriteComponent>())
             {
                 pointPos = rigidBody.position.ToPoint();
-				xPos = (int)(scaleX * (pointPos.X + (tempOffset) * tempSpriteScale));
-                yPos = (int)(scaleY * (pointPos.Y + (tempOffset) * tempSpriteScale));
-                width = (int)(scaleX * (sprite.spriteDimensions.X * tempSpriteScale));
-                height = (int)(scaleX * (sprite.spriteDimensions.X * tempSpriteScale));
+				scale = sprite.scale;
+				xPos = (int)(scaleX * (pointPos.X + (tempOffset) * scale));
+                yPos = (int)(scaleY * (pointPos.Y + (tempOffset) * scale));
+                width = (int)(scaleX * (sprite.spriteDimensions.X * scale));
+                height = (int)(scaleX * (sprite.spriteDimensions.X * scale));
 
                 spriteBatch.Draw(sprite.spriteSheet, new Rectangle(xPos, yPos, width, height), sprite.spriteSource, sprite.color);
                 //Debug.WriteLine($"Drew Sprite {0} at position ({1}, {2})", entity.ToString(), position.posX, position.posY);
