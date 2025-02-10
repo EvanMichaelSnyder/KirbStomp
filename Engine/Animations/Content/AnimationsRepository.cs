@@ -4,31 +4,35 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
+using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 
 namespace KirbStomp.Engine.Animations.Content
 {
-    internal class AnimationsRepository
-    {
-        private static Dictionary<string, Animation> animationDictionary;
-        private static AnimationsRepository instance;
-        public static AnimationsRepository GetInstance()
-        {
-            if (instance == null) instance = new AnimationsRepository();
-            return instance;
-        }
-        private AnimationsRepository()
-        {
-            animationDictionary = new();
-            LoadFromXML();
-        }
-        public void LoadFromXML()
+	internal class AnimationsRepository
+	{
+		private static Dictionary<string, Animation> animationDictionary;
+		private static AnimationsRepository instance;
+		public static AnimationsRepository GetInstance()
+		{
+			if (instance == null) instance = new AnimationsRepository();
+			return instance;
+		}
+		private AnimationsRepository()
+		{
+			animationDictionary = new();
+			LoadFromXML();
+		}
+		public void LoadFromXML([CallerFilePath] string currentFile = "")
         {
             string projectPath = Environment.CurrentDirectory.ToString(); // is in Proj/bin/debug/net8.0, go back three time ../../., Now we'r ein our projectfile file with bin, content, and other coding files
-            string filePath = projectPath + "\\..\\..\\..\\Engine\\Animations\\Content\\Animation.XML";
-
-            Debug.WriteLine("CurrentDir: {0}", projectPath);
-            XDocument document = XDocument.Load(filePath);
+																		  //string filePath = projectPath + "\\Engine\\Animations\\Content\\Animation.XML";
+			//string filePath = projectPath + "/Engine/Animations/Content/Animation.XML";
+            Debug.WriteLine("CurrentDir: {0}", currentFile);
+			string directory = Path.GetDirectoryName(currentFile);
+			string xmlPath = Path.Combine(directory, "Animation.XML");
+            XDocument document = XDocument.Load(xmlPath);
 
             foreach (XElement animationElement in document.Descendants("Animation"))
             {
