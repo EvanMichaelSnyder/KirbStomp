@@ -59,7 +59,8 @@ namespace KirbStomp.Engine.Animations.Content
             float animationDuration = float.Parse(animationElement.Attribute("duration").Value);
             bool animationLoops = bool.Parse(animationElement.Attribute("loop").Value);
 			int xAnimationOffset = int.Parse(animationElement.Attribute("xAnimationOffset").Value);
-			int yAnimationOffset = int.Parse(animationElement.Attribute("yAnimationOffset").Value);
+			string parsed = "";
+			int yAnimationOffset = int.Parse(parsed = animationElement.Attribute("yAnimationOffset").Value == null ? parsed : "0");
             XAttribute isDefaultAttribute = animationElement.Attribute("isDefault");
             bool isDefault = isDefaultAttribute != null && bool.Parse(isDefaultAttribute.Value);
 

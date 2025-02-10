@@ -17,7 +17,6 @@ public class Game1 : Game
 	private static Game1 inst;
 	//test stuff
 
-	private ECSV2Scene sceneV2;
 
 	private ECSV2Scene sceneV2;
 
