@@ -1,4 +1,5 @@
-﻿using KirbStomp.Engine.ECSV2.ECSEntityManagement;
+﻿using KirbStomp.Engine.ECSV2.Components.IECSComponents;
+using KirbStomp.Engine.ECSV2.ECSEntityManagement;
 using KirbStomp.Engine.ECSV2.Systems;
 using KirbStomp.Engine.Events;
 using KirbStomp.Engine.Events.Commands;
