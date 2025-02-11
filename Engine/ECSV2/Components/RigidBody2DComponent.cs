@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using KirbStomp.Engine.ECSV2.Components.IECSComponents;
 using Microsoft.Xna.Framework;
 
 namespace KirbStomp.Engine.ECSV2.Components

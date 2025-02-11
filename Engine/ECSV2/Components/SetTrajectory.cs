@@ -1,5 +1,4 @@
-﻿using KirbStomp.Engine.ECSV2.Components.IECSComponents;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KirbStomp.Engine.ECSV2.Components
 {
-	internal class SetTrajectory : Component
+    internal class SetTrajectory : Component
 	{
 		public int currentFrame;
 		public int currentIndex;
