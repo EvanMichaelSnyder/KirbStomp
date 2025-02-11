@@ -57,3 +57,8 @@
 /processor:TextureProcessor
 /build:MegaManTransparentSpriteSheet.png
 
+#begin PlatformBlocks.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:PlatformBlocks.png
+

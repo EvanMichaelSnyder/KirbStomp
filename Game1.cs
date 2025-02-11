@@ -81,6 +81,7 @@ public class Game1 : Game
 		_spriteBatch = new SpriteBatch(GraphicsDevice);
 		this.sceneV2 = new ECSV2Scene(this);
 		sceneV2.LoadAll(Content);
+		// blocks = Content.Load<Texture2D>("Platform_Blocks");
 	}
 
 	protected override void Update(GameTime gameTime)
@@ -90,6 +91,10 @@ public class Game1 : Game
 		// THIS CAN BE MOVED INTO A CLASS
 		if (inputs.IsInputJustPressed(Keys.Escape) || inputs.IsInputJustReleased(MouseButtons.RightMouseButton))
 			Exit();
+		else if (inputs.IsInputJustPressed(Keys.T))
+		{
+
+		}
 
 		// TODO: Add your update logic here
 
@@ -105,6 +110,7 @@ public class Game1 : Game
 		GraphicsDevice.Clear(Color.CornflowerBlue);
 
 		_spriteBatch.Begin();
+		// _spriteBatch.Draw(blocks, new Rectangle(150, 150, 72, 80), new Rectangle(0, 0, 72, 80), Color.White);
 
         //TODO , current is bad implentation, update shouldnt be in draw ...update scene***********************%
 		this.sceneV2.DrawAll(_spriteBatch);
