@@ -26,8 +26,9 @@ namespace KirbStomp.Engine.ECSV2.Systems
 		private static Dictionary<uint, (string, int)> entitiesToChangeNextFrame = new();
 
         public AnimationSystem()
-        {
-            animationsRepository = AnimationsRepository.GetInstance();
+		{
+			animationsRepository = new AnimationsRepository(new() { "mario", "Items", "Link", "MegaMan", "NewMario"});
+			animationsRepository.InitializeAnimations();
         }
 
 
@@ -73,11 +74,10 @@ namespace KirbStomp.Engine.ECSV2.Systems
 
         public void Load(ContentManager content)
         {
-			foreach (var nameAnimationPair in AnimationsRepository.animationDictionary)
+			foreach (Animation animation in animationsRepository.GetAllAnimations())
 			{
-				nameAnimationPair.Value.Load(content);
+				animation.Load(content);
 			}
-
         }
 		private void ChangeCurrentAnimation(AnimationComponent animation, string newName, int startingFrame)
 		{
@@ -115,6 +115,7 @@ namespace KirbStomp.Engine.ECSV2.Systems
 			sprite.SetSpriteWidth(frame.Width + perFrameOffset.X);
 			sprite.SetSpriteHeight(frame.Height + perFrameOffset.Y);
 			sprite.SetScale(scale);
+
         }
     }
 }
