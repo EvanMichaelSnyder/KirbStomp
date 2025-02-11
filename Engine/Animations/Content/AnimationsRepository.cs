@@ -78,5 +78,20 @@ namespace KirbStomp.Engine.Animations.Content
 				}
 			}
 		}
+		public IEnumerable<(string, float, Dictionary<string, Animation>)> GetAllTextureScalesAndAnimations()
+		{
+
+			foreach(var keyValue in spriteSheetDataDictionary)
+			{
+				yield return (keyValue.Key, keyValue.Value.Item1, keyValue.Value.Item2);
+			}
+		}
+		public IEnumerable<(string, float)> GetTextureScales()
+		{
+			foreach(var keyValue in spriteSheetDataDictionary)
+			{
+				yield return (keyValue.Key, keyValue.Value.Item1);
+			}
+		}
     }
 }
