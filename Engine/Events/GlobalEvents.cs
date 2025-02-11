@@ -36,23 +36,23 @@ namespace KirbStomp.Engine.Events
             return instance;
         }
 
-        public void SubscribeToInputEvents(ECSEntity entity, IKeyCommands callbackFN)
+        public void SubscribeToInputEvents(Entity entity, IKeyCommands callbackFN)
         {
 			Debug.WriteLine("NOT IMPLEMENTED YET");
         }
-        public void SubscribeToKeyEvents(ECSEntity entity, Keys key, InputStatus status, EntitysKeyCallBackFN callbackFN)
+        public void SubscribeToKeyEvents(Entity entity, Keys key, InputStatus status, EntitysKeyCallBackFN callbackFN)
         {
 			InputsCallBackToEntities command = dict[status];
 			command.AddEntityKeyCallBack(entity, key, callbackFN);
 			inputs.AddCommandToKeyStatus(key, command, status);
         }
-		public void UnsubscribeToKeyEvents(ECSEntity entity, Keys key, InputStatus status, EntitysKeyCallBackFN callbackFN)
+		public void UnsubscribeToKeyEvents(Entity entity, Keys key, InputStatus status, EntitysKeyCallBackFN callbackFN)
 		{
 			InputsCallBackToEntities command = dict[status];
 			command.RemoveEntityKeyCallBackFn(key, callbackFN);
 			inputs.RemoveCommandToKeyStatus(key, command, status);
 		}
-		public void UnsubscriptAllEntityEvents(ECSEntity entity)
+		public void UnsubscriptAllEntityEvents(Entity entity)
 		{
 			inputPressedCallBacks.RemoveAlLEntitiesCallBacks(entity);
 			inputJustPressedCallBacks.RemoveAlLEntitiesCallBacks(entity);

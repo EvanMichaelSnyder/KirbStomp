@@ -14,35 +14,55 @@ namespace KirbStomp.Engine.ECSV2.Systems
 {
     internal class DrawSpriteSystem : IDrawableSystem
     {
-        private readonly ECSManager manager;
+        private readonly EntityManager manager;
+        private float xOffSet,yOffSet;
         public DrawSpriteSystem()
         {
-            manager = ECSManager.GetInstance();
+            manager = EntityManager.GetInstance();
+            this.xOffSet = 0;
+            this.yOffSet = 0;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            int xPos, yPos;
-            int width, height;
-            Point pointPos;
-			float scaleX = (float)Game1.globalScaleX;
-			float scaleY = (float)Game1.globalScaleY;
-			var (gWidth, gHeight) = Game1.GetAdjustedWindowSize();
-
-			float tempOffset = 0;
-			float scale = 1.2f;
-            foreach (var (entity, rigidBody, sprite) in manager.GetEntitiesWithComponents<RigidBody2DComponent, SpriteComponent>())
+            float scale;
+            int yPos, xPos, xOff, yOff, width, height;
+            float scaleX = (float)Game1.globalScaleX;
+            float scaleY = (float)Game1.globalScaleY;
+            var (gWidth, gHeight) = Game1.GetAdjustedWindowSize();
+            float tempOffset = 0;
+            List<Entity> entities = getDrawableEntity();
+            foreach (Entity entity in entities)
             {
-                pointPos = rigidBody.position.ToPoint();
-				scale = sprite.scale;
-				xPos = (int)(scaleX * (pointPos.X + (tempOffset) * scale));
-                yPos = (int)(scaleY * (pointPos.Y + (tempOffset) * scale));
-                width = (int)(scaleX * (sprite.spriteDimensions.X * scale));
-                height = (int)(scaleX * (sprite.spriteDimensions.X * scale));
+                SpriteComponent sprite = this.manager.GetComponent<SpriteComponent>(entity);
+				scale = sprite.getScale();
+                xOff = (int)sprite.getOffSet().X;
+                yOff = (int)sprite.getOffSet().Y;
+                Vector2 pos = entity.getPosition();
+                xPos = (int)(scaleX * (pos.X + (xOff) ));
+                yPos = (int)(scaleY * (pos.Y + (yOff) ));
+                width = (int)(scaleX * (sprite.getSpriteWidth() * scale));
+                height = (int)(scaleX * (sprite.getSpriteHeight() * scale));
 
-                spriteBatch.Draw(sprite.spriteSheet, new Rectangle(xPos, yPos, width, height), sprite.spriteSource, sprite.color);
+                spriteBatch.Draw(sprite.GetTexture(), new Rectangle(xPos, yPos, width, height), sprite.GetSpriteSrc(), sprite.GetColor());
                 //Debug.WriteLine($"Drew Sprite {0} at position ({1}, {2})", entity.ToString(), position.posX, position.posY);
             }
+
+
+        }
+
+        private List<Entity> getDrawableEntity()
+        {
+            List<Entity> list = new List<Entity>();
+            List<Entity> entities = this.manager.getEntities();
+            foreach (Entity entity in entities)
+            {
+                if (this.manager.hasComponent<SpriteComponent>(entity))
+                {
+                    list.Add(entity);
+                }
+            }
+            return list;
         }
     }
 }

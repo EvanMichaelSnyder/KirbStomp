@@ -1,12 +1,14 @@
 ﻿using KirbStomp.Engine.Animations;
 using KirbStomp.Engine.Animations.Content;
 using KirbStomp.Engine.ECSV2.Components;
+using KirbStomp.Engine.ECSV2.Components.IECSComponents;
 using KirbStomp.Engine.ECSV2.ECSEntityManagement;
 using KirbStomp.Engine.ECSV2.Systems.ISystems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
@@ -18,7 +20,7 @@ namespace KirbStomp.Engine.ECSV2.Systems
 {
     internal class AnimationSystem : IUpdatableSystem, ILoadableSystem
     {
-        private static readonly ECSManager manager = ECSManager.GetInstance();
+        private readonly EntityManager manager = EntityManager.GetInstance();
         private AnimationsRepository animationsRepository;
 
 		private static Dictionary<uint, (string, int)> entitiesToChangeCurrentFrame = new();
@@ -27,6 +29,7 @@ namespace KirbStomp.Engine.ECSV2.Systems
         public AnimationSystem()
         {
             animationsRepository = AnimationsRepository.GetInstance();
+            this.manager = EntityManager.GetInstance();
         }
 
 
@@ -36,8 +39,11 @@ namespace KirbStomp.Engine.ECSV2.Systems
             Animation animation;
             string animationName;
 			(string, int) changingAnimationData;
-			foreach (var (entity, sprite, animationComponent) in manager.GetEntitiesWithComponents<SpriteComponent, AnimationComponent>())
+            List<Entity> entities = this.getAnimatableEnitities();
+			foreach (Entity entity in entities)
             {
+                AnimationComponent animationComponent = this.manager.GetComponent<AnimationComponent>(entity);
+                SpriteComponent sprite = this.manager.GetComponent<SpriteComponent>(entity);
 				// The following two if states can be put into their own helper function TODO
 				if (entitiesToChangeCurrentFrame.TryGetValue(entity.GetID(), out changingAnimationData))
 				{
@@ -49,6 +55,7 @@ namespace KirbStomp.Engine.ECSV2.Systems
 					ChangeNextAnimation(animationComponent, changingAnimationData.Item1, changingAnimationData.Item2);
 					entitiesToChangeNextFrame.Remove(entity.GetID());
 				}
+
 
 				animationName = animationComponent.animationName;
                 animationComponent.durationSinceLastFrame += deltaTime;
@@ -69,6 +76,23 @@ namespace KirbStomp.Engine.ECSV2.Systems
 
             }
         }
+
+        private List<Entity> getAnimatableEnitities()
+        {
+            List<Entity> animEntity = new List<Entity>();
+            List<Entity> entities = this.manager.getEntities();
+            foreach (Entity entity in entities)
+            {
+                if(this.manager.hasComponent<SpriteComponent>(entity) && this.manager.hasComponent<AnimationComponent>(entity))
+                {
+                    animEntity.Add(entity);
+                }
+            }
+
+            return animEntity;
+        }
+
+        
 
         public void Load(ContentManager content)
         {
@@ -94,12 +118,12 @@ namespace KirbStomp.Engine.ECSV2.Systems
         // This implementation was for quick development.
         // There is another implementation where we keep a Container of entities to change the current/next frame and change it all during the update loop.
         // This container implemntation updated on Update may be more appropriate for a System
-        public static bool ChangeEntitysCurrentAnimation(ECSEntity entity, string animationName, int startingFrame = 0)
+        public static bool ChangeEntitysCurrentAnimation(Entity entity, string animationName, int startingFrame = 0)
         {
 			return entitiesToChangeCurrentFrame.TryAdd(entity.GetID(), (animationName, startingFrame));
         }
 
-        public static bool ChangeEntitysNextAnimation(ECSEntity entity, string animationName, int startingFrame = 0)
+        public static bool ChangeEntitysNextAnimation(Entity entity, string animationName, int startingFrame = 0)
         {
 			return entitiesToChangeNextFrame.TryAdd(entity.GetID(), (animationName, startingFrame));
         }
@@ -109,11 +133,12 @@ namespace KirbStomp.Engine.ECSV2.Systems
 			Point perFrameOffset = animation.perFrameOffset[currentFrame];
 			float scale;
 			AnimationsRepository.perTextureScale.TryGetValue(animation.textureName, out scale);
-            sprite.spriteSheet = animation.spriteSheet;
-            sprite.spriteSource = frame;
-			sprite.spriteDimensions.X = frame.Width + perFrameOffset.X;
-			sprite.spriteDimensions.Y = frame.Height + perFrameOffset.Y;
-			sprite.scale = scale;
+            sprite.setTexture(animation.spriteSheet);
+            sprite.setSpriteSrc(frame);
+            sprite.setSpriteWidth(frame.Width);
+            sprite.setSpriteHeight(frame.Height);
+            sprite.setScale(scale);
+			
         }
     }
 }

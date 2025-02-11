@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace KirbStomp.Engine.Events
 {
-    public delegate void EntitysKeyCallBackFN(ECSEntity entity);
+    public delegate void EntitysKeyCallBackFN(Entity entity);
     internal class InputsCallBackToEntities : IKeyCommands
     {
-        private Dictionary<EntitysKeyCallBackFN, ECSEntity> fnEntityDictionary;
+        private Dictionary<EntitysKeyCallBackFN, Entity> fnEntityDictionary;
 		private Dictionary<EntitysKeyCallBackFN, Keys> callBackToKeyDictionary;
         private Dictionary<Keys, List<EntitysKeyCallBackFN>> keyEntityFNCallbacks;
 
@@ -27,7 +27,7 @@ namespace KirbStomp.Engine.Events
 
         public void Execute(Keys key)
         {
-            ECSEntity entity;
+            Entity entity;
             if (keyEntityFNCallbacks.TryGetValue(key, out List<EntitysKeyCallBackFN> CBFNList))
             {
                 foreach (EntitysKeyCallBackFN fn in CBFNList)
@@ -38,7 +38,7 @@ namespace KirbStomp.Engine.Events
             }
         }
 
-		public bool AddEntityKeyCallBack(ECSEntity entity, Keys key, EntitysKeyCallBackFN fn)
+		public bool AddEntityKeyCallBack(Entity entity, Keys key, EntitysKeyCallBackFN fn)
 		{
 			if (fnEntityDictionary.ContainsKey(fn)) return false;
 			fnEntityDictionary.Add(fn, entity);
@@ -58,7 +58,7 @@ namespace KirbStomp.Engine.Events
 			return false;
 		}
 		
-		public bool RemoveAlLEntitiesCallBacks(ECSEntity entity)
+		public bool RemoveAlLEntitiesCallBacks(Entity entity)
 		{
 			List<EntitysKeyCallBackFN> list = new();
 			foreach(var pair in fnEntityDictionary)
