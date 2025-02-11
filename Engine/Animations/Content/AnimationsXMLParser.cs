@@ -127,7 +127,7 @@ namespace KirbStomp.Engine.Animations.Content
 
 		private static string GetValueOrDefault(XElement element, string name, string defaultOutput)
 		{
-			string output = "";
+			string output = ""; // Let program know it went to a defaulted value TODO
 			return (output = element.Attribute(name).Value) != null ? output : defaultOutput;
 		}
 		private static Point ParseIntoPoint(string input)

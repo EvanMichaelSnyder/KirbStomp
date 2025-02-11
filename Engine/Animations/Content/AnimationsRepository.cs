@@ -14,39 +14,49 @@ namespace KirbStomp.Engine.Animations.Content
 {
 	internal class AnimationsRepository
 	{
-		public static Dictionary<string, Animation> animationDictionary;
-		public static Dictionary<string, float> perTextureScale;
-		private static AnimationsRepository instance;
-		private static List<string> spriteSheetsToLoad;
-		public static AnimationsRepository GetInstance()
+		private List<string> animationXMLFiles;
+		private Dictionary<string, (float, Dictionary<string, Animation>)> spriteSheetDataDictionary;
+		public AnimationsRepository(List<string> animationXMLFiles)
 		{
-			if (instance == null) instance = new AnimationsRepository();
-			return instance;
+			this.animationXMLFiles = animationXMLFiles;
+			this.spriteSheetDataDictionary = new();
 		}
-		private AnimationsRepository()
-		{
-			animationDictionary = new();
-			perTextureScale = new();
-			spriteSheetsToLoad = new()
-			{
-				"mario.XML",
-				"Items.XML",
-				"NewMario.XML",
-				"Link.XML",
-				"MegaMan.XML"
-			};
-
-		}
-		public static void LoadAllAnimations([CallerFilePath] string currentFile = "")
+		public void LoadAllAnimations([CallerFilePath] string currentFile = "")
 		{
 			string textureName;
 			float textureScale;
 			Dictionary<string, Animation> animationsDictionary; // TODO there's ambiguity rn
 			string path;
-			foreach (string file in spriteSheetsToLoad)
+			foreach (string file in animationXMLFiles)
 			{
 				path = Path.Combine(currentFile, file);
 				(textureName, textureScale, animationsDictionary) = AnimationsXMLParser.LoadAnimationsFromXML(path);
+				spriteSheetDataDictionary.Add(textureName, (textureScale, animationsDictionary));
+			}
+		}
+
+		public Animation GetAnimation(string spriteSheetName, string animationName)
+		{
+			if (spriteSheetDataDictionary.TryGetValue(spriteSheetName, out var scaleAndAnimationDictionary))
+			{
+				return scaleAndAnimationDictionary.Item2.TryGetValue(animationName, out Animation animation) ? animation : null;
+			}
+			return null;
+		}
+		// This one is temporary, just to let things work output
+		public Animation GetAnimation(string animationName)
+		{
+			return GetAnimation("mario.XML", animationName);
+		}
+		
+		public IEnumerable<Animation> GetAllAnimations()
+		{
+			foreach (var (scale, animations) in spriteSheetDataDictionary.Values)
+			{
+				foreach(Animation animation in animations.Values)
+				{
+					yield return animation;
+				}
 			}
 		}
     }
