@@ -12,13 +12,13 @@ namespace KirbStomp.Engine.ECSV2Test.EntityObjects
 {
     internal class SwappingItems
     {
-        public static Entity CreateSwappingItemsEntity()
+        public static ECSEntity CreateSwappingItemsEntity()
         {
-            EntityManager manager = EntityManager.GetInstance();
-            Entity entity = manager.CreateEntity();
-            manager.AddComponent(entity, new SpriteComponent(default, new(), 100, 100, Color.White));
+            ECSManager manager = ECSManager.GetInstance();
+            ECSEntity entity = manager.CreateEntity();
+            manager.AddComponent(entity, new SpriteComponent(default, new(), new(), Color.White));
             manager.AddComponent(entity, new AnimationComponent("Idle"));
-            manager.AddComponent(entity, new RigidBody2DComponent(RigidBody2DComponent.BodyType.DYNAMIC));
+            manager.AddComponent(entity, new RigidBody2DComponent(new Vector2(0, 0), new Vector2(50, 50), new Vector2(0, 0)));
 			string[] items = { "Idle", "Running", "Hamburger", "Star", "Firework"};
 			manager.AddComponent(entity, new CycleItemsComponent(entity, items, items.Count(), Keys.K, Keys.J));
 			List<(int, float, Vector2)> path = new()

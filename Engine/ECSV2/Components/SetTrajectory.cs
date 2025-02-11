@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KirbStomp.Engine.ECSV2.Components
 {
-	internal class SetTrajectory : Component
+	internal class SetTrajectory : IECSComponent
 	{
 		public int currentFrame;
 		public int currentIndex;
