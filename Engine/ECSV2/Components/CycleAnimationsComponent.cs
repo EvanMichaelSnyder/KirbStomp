@@ -15,16 +15,17 @@ using System.Threading.Tasks;
 
 namespace KirbStomp.Engine.ECSV2.Components
 {
-	internal class CycleItemsComponent : Component, IDisposable
+	internal class CycleAnimationsComponent
+		: Component, IDisposable
 	{
 		public readonly Entity entity;
 		public int index;
 		public int totalItems;
 		public Keys cycleForward;
 		public Keys cycleBack;
-		public string[] items;
+		public (string, string)[] animations;
 		public bool changeHandled;
-		public CycleItemsComponent(Entity entity, string[] items, int numberOfItems, Keys cycleForwardKey, Keys cycleBackKey)
+		public CycleAnimationsComponent(Entity entity, (string, string)[] animations, int numberOfItems, Keys cycleForwardKey, Keys cycleBackKey)
 		{
 			this.entity = entity;
 			index = 0;
@@ -35,7 +36,7 @@ namespace KirbStomp.Engine.ECSV2.Components
 			events.SubscribeToKeyEvents(entity, cycleBack, Inputs.InputStatus.JustPressed, DecrementIndex);
 			changeHandled = true;
 
-			this.items = items;
+			this.animations = animations;
 			this.totalItems = numberOfItems;
 
 		}
@@ -49,16 +50,16 @@ namespace KirbStomp.Engine.ECSV2.Components
 			this.index++;
 			if (index >= totalItems) index = 0;
 			changeHandled = false;
-			AnimationSystem.ChangeEntitysCurrentAnimation(entity, ("mario", items[index]));
-			Debug.WriteLine($"Incremented: We're on item {items[index].ToString()}");
+			AnimationSystem.ChangeEntitysCurrentAnimation(entity, animations[index]);
+			Debug.WriteLine($"Incremented: We're on item {animations[index].ToString()}");
 		}
 		public void DecrementIndex(Entity entity)
 		{
 			this.index--;
 			if (index < 0) index = totalItems - 1;
 			changeHandled = false;
-			AnimationSystem.ChangeEntitysCurrentAnimation(entity, ("mario", items[index]));
-			Debug.WriteLine($"Decremented: We're on item {items[index].ToString()}");
+			AnimationSystem.ChangeEntitysCurrentAnimation(entity, animations[index]);
+			Debug.WriteLine($"Decremented: We're on item {animations[index].ToString()}");
 		}
 	}
 }

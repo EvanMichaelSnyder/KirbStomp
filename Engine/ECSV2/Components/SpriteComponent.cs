@@ -22,6 +22,21 @@ namespace KirbStomp.Engine.ECSV2.Components
 		private int zIndex;
 
 		private float Xoffset, Yoffset;
+		public SpriteComponent()
+		{	
+			spriteSheet = default;
+			spriteSource = new();
+			this.width = 0;
+			this.height = 0;
+			this.color = Color.White;
+			this.scale = 1.0f;
+			this.zIndex = 0;
+			//TODO implement rotation if wanted
+			rotation = 0;
+			Xoffset = 0;
+			Yoffset = 0;
+
+		}
 		public SpriteComponent(Texture2D texture, Rectangle source, float width, float height, Color color, int zIndex = 100, float scale = 1.0f)
 		{
 			spriteSheet = texture;
