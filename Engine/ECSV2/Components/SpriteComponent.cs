@@ -1,4 +1,4 @@
-﻿using KirbStomp.Engine.ECSV2.Components.IECSComponents;
+﻿using KirbStomp.Engine.ECSV2.Components.IComponents;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace KirbStomp.Engine.ECSV2.Components
 {
-    internal class SpriteComponent : IECSComponent
+    internal class SpriteComponent : Component
     {
         private Texture2D spriteSheet;
         private Rectangle spriteSource;
@@ -25,7 +25,8 @@ namespace KirbStomp.Engine.ECSV2.Components
         {
             spriteSheet = texture;
             spriteSource = source;
-            this.spriteDimensions = spriteDimensions;
+			this.width = width;
+			this.height = height;
             this.color = color;
             this.scale = scale;
             this.zIndex = zIndex;
@@ -35,76 +36,79 @@ namespace KirbStomp.Engine.ECSV2.Components
             Yoffset = 0;
         }
 
-        public void setOffSet(Vector2 offset)
+        public void SetOffSet(Vector2 offset)
         {
             Xoffset = offset.X;
             Yoffset = offset.Y;
         }
-        public Vector2 getOffSet()
+        public Vector2 GetOffSet()
         {
             return new Vector2(Xoffset, Yoffset);
         }
 
-        public void setRotation(float rotation)
+        public void SetRotation(float rotation)
         {
             this.rotation = rotation;
         }
-        public float getRotation()
+        public float GetRotation()
         {
             return rotation;
         }
 
-        public void setZIndex(int zindex)
+        public void SetZIndex(int zindex)
         {
             zIndex = zindex;
         }
-        public int getZIndex()
+        public int GetZIndex()
         {
             return zIndex;
         }
 
-        public void setScale(float scale)
+        public void SetScale(float scale)
         {
             this.scale = scale;
         }
 
-        public float getScale()
+        public float GetScale()
         {
             return scale;
         }
-        public void setTexture(Texture2D tex)
+        public void SetTexture(Texture2D tex)
         {
             spriteSheet = tex;
         }
-
-        public void setSpriteSrc(Rectangle src)
+		public Texture2D GetTexture()
+		{
+			return this.spriteSheet;
+		}
+        public void SetSpriteSource(Rectangle src)
         {
             //dont allow non sprite class to change this using reference
             spriteSource = new Rectangle(src.X, src.Y, src.Width, src.Height);
         }
 
-        public void setSpriteDimensions(float width, float height)
+        public void SetSpriteDimensions(float width, float height)
         {
             this.width = width;
             this.height = height;
         }
 
-        public float getSpriteWidth()
+        public float GetSpriteWidth()
         {
             return width;
         }
 
-        public float getSpriteHeight()
+        public float GetSpriteHeight()
         {
             return height;
         }
 
-        public void setSpriteHeight(float height)
+        public void SetSpriteHeight(float height)
         {
             this.height = height;
         }
 
-        public void setSpriteWidth(float width)
+        public void SetSpriteWidth(float width)
         {
             this.width = width;
         }
@@ -114,15 +118,11 @@ namespace KirbStomp.Engine.ECSV2.Components
             return color;
         }
 
-        public void setColor(Color color)
+        public void SetColor(Color color)
         {
             this.color = color;
         }
-        public Texture2D GetTexture()
-        {
-            return spriteSheet;
-        }
-        public Rectangle GetSpriteSrc()
+        public Rectangle GetSpriteSource()
         {
             return spriteSource;
         }

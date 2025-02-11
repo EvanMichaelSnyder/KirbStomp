@@ -1,5 +1,5 @@
-﻿using KirbStomp.Engine.ECSV2.Components.IECSComponents;
-using KirbStomp.Engine.ECSV2.ECSEntityManagement;
+﻿using KirbStomp.Engine.ECSV2.Components.IComponents;
+using KirbStomp.Engine.ECSV2.EntityManagement;
 using KirbStomp.Engine.ECSV2.Systems;
 using KirbStomp.Engine.Events;
 using KirbStomp.Engine.Events.Commands;
@@ -13,16 +13,16 @@ using System.Threading.Tasks;
 
 namespace KirbStomp.Engine.ECSV2.Components
 {
-    internal class CycleItemsComponent : IECSComponent, IDisposable
+    internal class CycleItemsComponent : Component, IDisposable
     {
-		public readonly ECSEntity entity;
+		public readonly Entity entity;
 		public int index;
 		public int totalItems;
 		public Keys cycleForward;
 		public Keys cycleBack;
 		public string[] items;
 		public bool changeHandled;
-        public CycleItemsComponent(ECSEntity entity, string[] items, int numberOfItems, Keys cycleForwardKey, Keys cycleBackKey)
+        public CycleItemsComponent(Entity entity, string[] items, int numberOfItems, Keys cycleForwardKey, Keys cycleBackKey)
         {
 			this.entity = entity;
 			index = 0;
@@ -42,7 +42,7 @@ namespace KirbStomp.Engine.ECSV2.Components
 			GlobalEvents events = GlobalEvents.GetInstance();
 			events.UnsubscriptAllEntityEvents(entity);
 		}
-		public void IncrementIndex(ECSEntity entity)
+		public void IncrementIndex(Entity entity)
 		{
 			this.index++;
 			if (index >= totalItems) index = 0;
@@ -50,7 +50,7 @@ namespace KirbStomp.Engine.ECSV2.Components
 			AnimationSystem.ChangeEntitysCurrentAnimation(entity, items[index]);
 			Debug.WriteLine($"Incremented: We're on item {items[index].ToString()}");
 		}
-		public void DecrementIndex(ECSEntity entity)
+		public void DecrementIndex(Entity entity)
 		{
 			this.index--;
 			if (index < 0) index = totalItems - 1;

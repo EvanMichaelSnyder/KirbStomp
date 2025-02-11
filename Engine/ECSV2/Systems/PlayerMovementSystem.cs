@@ -9,17 +9,17 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using KirbStomp.Engine.ECSV2.ECSEntityManagement;
+using KirbStomp.Engine.ECSV2.EntityManagement;
 
 namespace KirbStomp.Engine.ECSV2.Systems
 {
     internal class PlayerMovementSystem : IUpdatableSystem
     {
-        private ECSManager manager;
+        private EntityManager manager;
         private GlobalInputs inputs;
         public PlayerMovementSystem()
         {
-            manager = ECSManager.GetInstance();
+            manager = EntityManager.GetInstance();
             inputs = GlobalInputs.GetInstance();
         }
         public void Update(float deltaTime)

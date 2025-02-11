@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using KirbStomp.Engine.ECSV2.Components.IECSComponents;
+using KirbStomp.Engine.ECSV2.Components.IComponents;
 
 namespace KirbStomp.Engine.ECSV2.Components
 {
-    internal class AnimationComponent : IECSComponent
+    internal class AnimationComponent : Component
     {
         public string animationName { get; set; }
         public int currentFrame { get; set; }

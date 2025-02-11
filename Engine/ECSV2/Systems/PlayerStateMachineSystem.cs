@@ -1,5 +1,5 @@
 ﻿using KirbStomp.Engine.ECSV2.Components;
-using KirbStomp.Engine.ECSV2.ECSEntityManagement;
+using KirbStomp.Engine.ECSV2.EntityManagement;
 using KirbStomp.Engine.ECSV2.Systems.ISystems;
 using System;
 using System.Collections.Generic;
@@ -11,10 +11,10 @@ namespace KirbStomp.Engine.ECSV2.Systems
 {
     internal class PlayerStateMachineSystem : IUpdatableSystem
     {
-        private ECSManager manager;
+        private EntityManager manager;
         public PlayerStateMachineSystem()
         {
-            manager = ECSManager.GetInstance();
+            manager = EntityManager.GetInstance();
         }
         public void Update(float deltaTime)
         {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 
-namespace KirbStomp.Engine.ECSV2.ECSEntityManagement
+namespace KirbStomp.Engine.ECSV2.EntityManagement
 {
     public class Entity
     {

@@ -1,5 +1,4 @@
 ﻿using KirbStomp.Engine.ECSV2.Components;
-using KirbStomp.Engine.ECSV2.ECSEntityManagement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -7,16 +6,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KirbStomp.Engine.ECSV2.EntityManagement;
 
 namespace KirbStomp.Engine.ECSV2Test.EntityObjects
 {
     internal class SwappingItems
     {
-        public static ECSEntity CreateSwappingItemsEntity()
+        public static Entity CreateSwappingItemsEntity()
         {
-            ECSManager manager = ECSManager.GetInstance();
-            ECSEntity entity = manager.CreateEntity();
-            manager.AddComponent(entity, new SpriteComponent(default, new(), new(), Color.White));
+            EntityManager manager = EntityManager.GetInstance();
+            Entity entity = manager.CreateEntity();
+            manager.AddComponent(entity, new SpriteComponent(default, new(), 5, 5, Color.White));
             manager.AddComponent(entity, new AnimationComponent("Idle"));
             manager.AddComponent(entity, new RigidBody2DComponent(new Vector2(0, 0), new Vector2(50, 50), new Vector2(0, 0)));
 			string[] items = { "Idle", "Running", "Hamburger", "Star", "Firework"};

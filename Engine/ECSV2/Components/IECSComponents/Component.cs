@@ -1,11 +1,11 @@
-﻿using System;
+﻿using KirbStomp.Engine.ECSV2.EntityManagement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using KirbStomp.Engine.ECSV2.ECSEntityManagement;
 
-namespace KirbStomp.Engine.ECSV2.Components.IECSComponents
+namespace KirbStomp.Engine.ECSV2.Components.IComponents
 {
     public abstract class Component
     {

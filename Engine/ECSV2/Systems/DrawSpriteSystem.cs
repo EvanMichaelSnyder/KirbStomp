@@ -1,23 +1,17 @@
-﻿using KirbStomp.Engine.Animations.Content;
-using KirbStomp.Engine.ECSV2.Components;
-using KirbStomp.Engine.ECSV2.ECSEntityManagement;
+﻿using KirbStomp.Engine.ECSV2.Components;
+using KirbStomp.Engine.ECSV2.EntityManagement;
 using KirbStomp.Engine.ECSV2.Systems.ISystems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KirbStomp.Engine.ECSV2.Systems
 {
     internal class DrawSpriteSystem : IDrawableSystem
     {
-        private readonly ECSManager manager;
+        private readonly EntityManager manager;
         public DrawSpriteSystem()
         {
-            manager = ECSManager.GetInstance();
+            manager = EntityManager.GetInstance();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -34,13 +28,13 @@ namespace KirbStomp.Engine.ECSV2.Systems
             foreach (var (entity, rigidBody, sprite) in manager.GetEntitiesWithComponents<RigidBody2DComponent, SpriteComponent>())
             {
                 pointPos = rigidBody.position.ToPoint();
-				scale = sprite.scale;
+				scale = sprite.GetScale();
 				xPos = (int)(scaleX * (pointPos.X + (tempOffset) * scale));
                 yPos = (int)(scaleY * (pointPos.Y + (tempOffset) * scale));
-                width = (int)(scaleX * (sprite.spriteDimensions.X * scale));
-                height = (int)(scaleX * (sprite.spriteDimensions.X * scale));
+                width = (int)(scaleX * (sprite.GetSpriteWidth() * scale));
+                height = (int)(scaleX * (sprite.GetSpriteHeight() * scale));
 
-                spriteBatch.Draw(sprite.spriteSheet, new Rectangle(xPos, yPos, width, height), sprite.spriteSource, sprite.color);
+                spriteBatch.Draw(sprite.GetTexture(), new Rectangle(xPos, yPos, width, height), sprite.GetSpriteSource(), sprite.GetColor());
                 //Debug.WriteLine($"Drew Sprite {0} at position ({1}, {2})", entity.ToString(), position.posX, position.posY);
             }
         }

@@ -4,12 +4,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using KirbStomp.Engine.ECSV2.Components.IECSComponents;
+using KirbStomp.Engine.ECSV2.Components.IComponents;
 using Microsoft.Xna.Framework;
 
 namespace KirbStomp.Engine.ECSV2.Components
 {
-    internal class RigidBody2DComponent : IECSComponent, IUpdatableECSComponent
+    internal class RigidBody2DComponent : Component, IUpdatableECSComponent
     {
         public Vector2 position;
         public Vector2 velocity;

@@ -1,5 +1,5 @@
-﻿using KirbStomp.Engine.ECSV2.Components.IECSComponents;
-using KirbStomp.Engine.ECSV2.ECSEntityManagement;
+﻿using KirbStomp.Engine.ECSV2.Components.IComponents;
+using KirbStomp.Engine.ECSV2.EntityManagement;
 using KirbStomp.Engine.ECSV2.Systems.SystemsManagement;
 using KirbStomp.Engine.ECSV2Test.EntityObjects;
 using KirbStomp.Engine.Inputs;
@@ -15,7 +15,7 @@ namespace KirbStomp.Engine.ECSV2Test
 {
     internal class ECSV2Scene
     {
-        private List<ECSEntity> allEntities;
+        private List<Entity> allEntities;
         private SystemsManager systemManager;
         public ECSV2Scene(Game1 game)
         {
@@ -34,7 +34,7 @@ namespace KirbStomp.Engine.ECSV2Test
 			// FORCING AN ENTITY REMOVAL FOR TESTING THIS SHOULD NOT BE HERE OTHERWISE
 			if(GlobalInputs.GetInstance().IsInputJustPressed(Microsoft.Xna.Framework.Input.Keys.L))
 			{
-				ECSManager.GetInstance().RemoveEntity(allEntities[1]);
+				EntityManager.GetInstance().RemoveEntity(allEntities[1]);
 			}
         }
 

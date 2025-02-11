@@ -1,5 +1,5 @@
 ﻿using KirbStomp.Engine.ECSV2.Components;
-using KirbStomp.Engine.ECSV2.ECSEntityManagement;
+using KirbStomp.Engine.ECSV2.EntityManagement;
 using KirbStomp.Engine.ECSV2.Systems.ISystems;
 using Microsoft.Xna.Framework;
 using System;
@@ -12,10 +12,10 @@ namespace KirbStomp.Engine.ECSV2.Systems
 {
     internal class ExamplePlayerPhysicsSystem : ISystem, IUpdatableSystem
     {
-        private readonly ECSManager manager;
+        private readonly EntityManager manager;
         public ExamplePlayerPhysicsSystem()
         {
-            manager = ECSManager.GetInstance();
+            manager = EntityManager.GetInstance();
         }
 
         public void Update(float deltaTime)

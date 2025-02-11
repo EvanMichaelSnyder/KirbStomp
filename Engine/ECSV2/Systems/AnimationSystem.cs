@@ -1,7 +1,8 @@
 ﻿using KirbStomp.Engine.Animations;
 using KirbStomp.Engine.Animations.Content;
 using KirbStomp.Engine.ECSV2.Components;
-using KirbStomp.Engine.ECSV2.ECSEntityManagement;
+using KirbStomp.Engine.ECSV2.EntityManagement;
+using KirbStomp.Engine.ECSV2.EntityManagement;
 using KirbStomp.Engine.ECSV2.Systems.ISystems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -18,7 +19,7 @@ namespace KirbStomp.Engine.ECSV2.Systems
 {
     internal class AnimationSystem : IUpdatableSystem, ILoadableSystem
     {
-        private static readonly ECSManager manager = ECSManager.GetInstance();
+        private static readonly EntityManager manager = EntityManager.GetInstance();
         private AnimationsRepository animationsRepository;
 
 		private static Dictionary<uint, (string, int)> entitiesToChangeCurrentFrame = new();
@@ -94,12 +95,12 @@ namespace KirbStomp.Engine.ECSV2.Systems
         // This implementation was for quick development.
         // There is another implementation where we keep a Container of entities to change the current/next frame and change it all during the update loop.
         // This container implemntation updated on Update may be more appropriate for a System
-        public static bool ChangeEntitysCurrentAnimation(ECSEntity entity, string animationName, int startingFrame = 0)
+        public static bool ChangeEntitysCurrentAnimation(Entity entity, string animationName, int startingFrame = 0)
         {
 			return entitiesToChangeCurrentFrame.TryAdd(entity.GetID(), (animationName, startingFrame));
         }
 
-        public static bool ChangeEntitysNextAnimation(ECSEntity entity, string animationName, int startingFrame = 0)
+        public static bool ChangeEntitysNextAnimation(Entity entity, string animationName, int startingFrame = 0)
         {
 			return entitiesToChangeNextFrame.TryAdd(entity.GetID(), (animationName, startingFrame));
         }

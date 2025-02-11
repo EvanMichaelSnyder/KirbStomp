@@ -1,4 +1,4 @@
-﻿using KirbStomp.Engine.ECSV2.Components.IECSComponents;
+﻿using KirbStomp.Engine.ECSV2.Components.IComponents;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace KirbStomp.Engine.ECSV2.Components
 {
-    internal class PlayerControlsComponent : IECSComponent, IUpdatableECSComponent
+    internal class PlayerControlsComponent : Component, IUpdatableECSComponent
     {
         public Keys moveLeftKey;
         public Keys moveRightKey;

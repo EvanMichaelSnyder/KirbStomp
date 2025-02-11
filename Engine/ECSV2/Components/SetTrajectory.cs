@@ -1,4 +1,4 @@
-﻿using KirbStomp.Engine.ECSV2.Components.IECSComponents;
+﻿using KirbStomp.Engine.ECSV2.Components.IComponents;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

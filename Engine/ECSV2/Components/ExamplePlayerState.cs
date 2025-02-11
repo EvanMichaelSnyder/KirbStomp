@@ -5,11 +5,11 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using KirbStomp.Engine.ECSV2.Components.IECSComponents;
+using KirbStomp.Engine.ECSV2.Components.IComponents;
 
 namespace KirbStomp.Engine.ECSV2.Components
 {
-    internal class ExamplePlayerState : IECSComponent, IUpdatableECSComponent
+    internal class ExamplePlayerState : Component, IUpdatableECSComponent
     {
         public string name;
         public int playerCondition;

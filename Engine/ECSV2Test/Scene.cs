@@ -1,5 +1,4 @@
-﻿
-using KirbStomp.Engine.ECSV2.ECSEntityManagement;
+﻿using KirbStomp.Engine.ECSV2.EntityManagement;
 using KirbStomp.Engine.ECSV2.Systems.SystemsManagement;
 using KirbStomp.Engine.ECSV2Test.EntityObjects;
 using KirbStomp.Engine.Inputs;
