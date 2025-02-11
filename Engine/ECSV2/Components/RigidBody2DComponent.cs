@@ -9,24 +9,87 @@ using Microsoft.Xna.Framework;
 
 namespace KirbStomp.Engine.ECSV2.Components
 {
-    internal class RigidBody2DComponent : IECSComponent, IUpdatableECSComponent
+    public class RigidBody2DComponent : Component
     {
-        public Vector2 position;
-        public Vector2 velocity;
-        public Vector2 acceleration;
-
-        public RigidBody2DComponent(Vector2 initialPosition, Vector2 initialVelocity, Vector2 initialAcceleration)
+        public enum BodyType
         {
-            position = initialPosition;
-            velocity = initialVelocity;
-            acceleration = initialAcceleration;
+            STATIC,
+            DYNAMIC,
+        }
+        private Vector2 velocity;
+        private Vector2 acceleration;
+        private BodyType bodyType;
+
+        public RigidBody2DComponent(BodyType type = BodyType.DYNAMIC)
+        {
+            this.bodyType = type;
+            this.acceleration = new Vector2 (0, 0);
+            this.velocity = new Vector2 (0, 0);
         }
 
         public void Update(float deltaTime)
         {
-            position += velocity * deltaTime + (float)0.5 * acceleration * deltaTime * deltaTime;
-            velocity += acceleration * deltaTime;
+            if(this.bodyType == BodyType.DYNAMIC)
+            {
+                Vector2 currentPos = this.entity.getPosition();
+                currentPos += velocity * deltaTime + (float)0.5 * acceleration * deltaTime * deltaTime;
+                this.entity.setPosition(currentPos);
+                velocity += acceleration * deltaTime;
+            }
 			//Debug.WriteLine($"{position.ToString()}");
+        }
+
+        public void setVelocity(Vector2 velocity)
+        {
+            this.velocity.X = velocity.X;
+            this.velocity.Y = velocity.Y;
+        }
+
+        public void setAcceleration(Vector2 acceleration)
+        {
+            this.acceleration.X = acceleration.X;
+            this.acceleration.Y = acceleration.Y;
+        }
+
+        public void setXAcceleration(float xAcceleration)
+        {
+            this.acceleration.X = xAcceleration;
+        }
+
+        public void setYAcceleration(float yAcceleration)
+        {
+            this.acceleration.Y = yAcceleration;
+        }
+
+        public void setXVelocity(float xVelocity)
+        {
+            this.velocity.X = xVelocity;
+        }
+        public void setYVelocity(float yVelocity)
+        {
+            this.velocity.Y = yVelocity;
+        }
+
+        public Vector2 getAcceleration()
+        {
+            //copy of accel, dont allow to adjust vec
+            return new Vector2(this.acceleration.X, this.acceleration.Y);
+        }
+
+        public Vector2 getVelocity()
+        {
+            //copy
+            return new Vector2(this.velocity.X, this.velocity.Y);
+        }
+
+        public void setBodyType(BodyType type)
+        {
+            this.bodyType = type;
+        }
+
+        public BodyType getBodyType()
+        {
+            return this.bodyType;
         }
     }
 }
