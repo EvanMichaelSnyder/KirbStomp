@@ -1,0 +1,9 @@
+﻿<Animations>
+	<Texture spriteSheet="MegaManTransparentSpriteSheet" scale="1.0"/>
+
+	<Animation name="Idle" duration ="1.0" loop="true" animationOffset="(0, 0)" isDefault ="true">
+		<Frame position="(16, 115)" size="(31, 45)" perFrameOffset="(0, 0)"/>
+		<Frame position="(52, 115)" size="(31, 45)" perFrameOffset="(0, 0)"/>
+	</Animation>
+	
+</Animations>
