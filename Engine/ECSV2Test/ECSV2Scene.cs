@@ -37,7 +37,6 @@ namespace KirbStomp.Engine.ECSV2Test
 				EntityManager.GetInstance().RemoveEntity(allEntities[1]);
 			}
         }
-
         public void LoadAll(ContentManager content)
         {
             systemManager.LoadAlLSystem(content);

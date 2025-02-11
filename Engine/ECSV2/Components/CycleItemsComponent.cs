@@ -1,4 +1,6 @@
 ﻿using KirbStomp.Engine.ECSV2.Components.IComponents;
+
+
 using KirbStomp.Engine.ECSV2.EntityManagement;
 using KirbStomp.Engine.ECSV2.Systems;
 using KirbStomp.Engine.Events;
@@ -13,8 +15,8 @@ using System.Threading.Tasks;
 
 namespace KirbStomp.Engine.ECSV2.Components
 {
-    internal class CycleItemsComponent : Component, IDisposable
-    {
+	internal class CycleItemsComponent : Component, IDisposable
+	{
 		public readonly Entity entity;
 		public int index;
 		public int totalItems;
@@ -22,8 +24,8 @@ namespace KirbStomp.Engine.ECSV2.Components
 		public Keys cycleBack;
 		public string[] items;
 		public bool changeHandled;
-        public CycleItemsComponent(Entity entity, string[] items, int numberOfItems, Keys cycleForwardKey, Keys cycleBackKey)
-        {
+		public CycleItemsComponent(Entity entity, string[] items, int numberOfItems, Keys cycleForwardKey, Keys cycleBackKey)
+		{
 			this.entity = entity;
 			index = 0;
 			GlobalEvents events = GlobalEvents.GetInstance();
@@ -36,7 +38,7 @@ namespace KirbStomp.Engine.ECSV2.Components
 			this.items = items;
 			this.totalItems = numberOfItems;
 
-        }
+		}
 		public void Dispose()
 		{
 			GlobalEvents events = GlobalEvents.GetInstance();
@@ -58,5 +60,5 @@ namespace KirbStomp.Engine.ECSV2.Components
 			AnimationSystem.ChangeEntitysCurrentAnimation(entity, items[index]);
 			Debug.WriteLine($"Decremented: We're on item {items[index].ToString()}");
 		}
-    }
+	}
 }

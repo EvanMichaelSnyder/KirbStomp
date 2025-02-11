@@ -40,7 +40,7 @@ namespace KirbStomp.Engine.ECSV2.Systems
 						trajectory.currentIndex = 0;
 					}
 				}
-				rigidBody.velocity = path[trajectory.currentIndex].Item3 * path[trajectory.currentIndex].Item2;
+				rigidBody.SetVelocity(path[trajectory.currentIndex].Item3 * path[trajectory.currentIndex].Item2);
 			}
 		}
 	}

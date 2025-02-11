@@ -44,7 +44,7 @@ namespace KirbStomp.Engine.ECSV2.EntityManagement
 			componentsPool[typeof(T)].Add(component);
 
 			//make it so every component knows its entity.
-			component.setEntity(entity);
+			component.SetEntity(entity);
 
 			return true;
 		}

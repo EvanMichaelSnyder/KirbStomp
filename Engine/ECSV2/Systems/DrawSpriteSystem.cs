@@ -27,7 +27,7 @@ namespace KirbStomp.Engine.ECSV2.Systems
 			float scale = 1.2f;
             foreach (var (entity, rigidBody, sprite) in manager.GetEntitiesWithComponents<RigidBody2DComponent, SpriteComponent>())
             {
-                pointPos = rigidBody.position.ToPoint();
+                pointPos = entity.GetPosition().ToPoint();
 				scale = sprite.GetScale();
 				xPos = (int)(scaleX * (pointPos.X + (tempOffset) * scale));
                 yPos = (int)(scaleY * (pointPos.Y + (tempOffset) * scale));

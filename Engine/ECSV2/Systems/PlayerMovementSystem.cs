@@ -28,7 +28,7 @@ namespace KirbStomp.Engine.ECSV2.Systems
             {
                 playerState.normalMovementDirection.X = Convert.ToInt32(inputs.IsInputPressed(playerControls.moveRightKey)) - Convert.ToInt32(inputs.IsInputPressed(playerControls.moveLeftKey));
                 playerState.isWalking = playerState.normalMovementDirection.X != 0;
-                playerState.isFalling = manager.GetComponent<RigidBody2DComponent>(entity).velocity.Y != 0;
+                playerState.isFalling = manager.GetComponent<RigidBody2DComponent>(entity).GetYVelocity() != 0;
                 playerState.jumped = inputs.IsInputJustPressed(playerControls.jumpKey) && !playerState.isFalling;
                 if (playerState.jumped) Debug.WriteLine("Jumped!");
                 if (playerState.isWalking) Debug.WriteLine("WALKING, AND I SET THE STATE OF PlayerState Component");

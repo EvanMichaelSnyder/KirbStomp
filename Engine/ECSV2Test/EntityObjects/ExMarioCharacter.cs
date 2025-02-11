@@ -21,10 +21,10 @@ namespace KirbStomp.Engine.ECSV2Test.EntityObjects
         {
             EntityManager manager = EntityManager.GetInstance();
             Entity entity = manager.CreateEntity();
-            manager.AddComponent(entity, new SpriteComponent(default, new(), 5, 5, Color.White));
-            manager.AddComponent(entity, new AnimationComponent("Running"));
-            manager.AddComponent(entity, new RigidBody2DComponent(new Vector2(0, 0), new Vector2(50, 50), new Vector2(0, 0)));
-            manager.AddComponent(entity, new ExamplePlayerState("Player 1"));
+			manager.AddComponent(entity, new SpriteComponent(default, new(), 100, 100, Color.White));
+			manager.AddComponent(entity, new AnimationComponent("Running"));
+			manager.AddComponent(entity, new RigidBody2DComponent(RigidBody2DComponent.BodyType.DYNAMIC));
+			manager.AddComponent(entity, new ExamplePlayerState("Player 1"));
             manager.AddComponent<PlayerControlsComponent>(entity, new());
             return entity;
         }

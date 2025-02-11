@@ -1,7 +1,7 @@
 ﻿using KirbStomp.Engine.Animations;
 using KirbStomp.Engine.Animations.Content;
 using KirbStomp.Engine.ECSV2.Components;
-using KirbStomp.Engine.ECSV2.EntityManagement;
+
 using KirbStomp.Engine.ECSV2.EntityManagement;
 using KirbStomp.Engine.ECSV2.Systems.ISystems;
 using Microsoft.Xna.Framework;
@@ -110,11 +110,11 @@ namespace KirbStomp.Engine.ECSV2.Systems
 			Point perFrameOffset = animation.perFrameOffset[currentFrame];
 			float scale;
 			AnimationsRepository.perTextureScale.TryGetValue(animation.textureName, out scale);
-            sprite.spriteSheet = animation.spriteSheet;
-            sprite.spriteSource = frame;
-			sprite.spriteDimensions.X = frame.Width + perFrameOffset.X;
-			sprite.spriteDimensions.Y = frame.Height + perFrameOffset.Y;
-			sprite.scale = scale;
+			sprite.SetTexture(animation.spriteSheet);
+			sprite.SetSpriteSource(frame);
+			sprite.SetSpriteWidth(frame.Width + perFrameOffset.X);
+			sprite.SetSpriteHeight(frame.Height + perFrameOffset.Y);
+			sprite.SetScale(scale);
         }
     }
 }

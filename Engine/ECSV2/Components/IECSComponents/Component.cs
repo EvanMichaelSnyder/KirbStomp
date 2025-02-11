@@ -24,7 +24,7 @@ namespace KirbStomp.Engine.ECSV2.Components.IComponents
             return id;
         }
         //sets components parent entity, so that components can use it
-        public void setEntity(Entity entity)
+        public void SetEntity(Entity entity)
         {
             //components probaly shouldn't change their entity
             if (this.entity == null)
