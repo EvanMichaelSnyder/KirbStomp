@@ -12,10 +12,10 @@ namespace KirbStomp.Engine.ECSV2.Systems
 {
 	internal class SetPathSystem : ISystem, IUpdatableSystem
 	{
-		private EntityManager manager;
+		private ECSManager manager;
 		public SetPathSystem()
 		{
-			manager = EntityManager.GetInstance();
+			manager = ECSManager.GetInstance();
 		}
 		public void Update(float deltaTime)
 		{
@@ -40,7 +40,7 @@ namespace KirbStomp.Engine.ECSV2.Systems
 						trajectory.currentIndex = 0;
 					}
 				}
-				rigidBody.setVelocity(path[trajectory.currentIndex].Item3 * path[trajectory.currentIndex].Item2);
+				rigidBody.velocity = path[trajectory.currentIndex].Item3 * path[trajectory.currentIndex].Item2;
 			}
 		}
 	}

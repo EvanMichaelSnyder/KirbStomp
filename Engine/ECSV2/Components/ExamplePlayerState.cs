@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace KirbStomp.Engine.ECSV2.Components
 {
-    internal class ExamplePlayerState : Component, IUpdate
+    internal class ExamplePlayerState : IECSComponent, IUpdatableECSComponent
     {
         public string name;
         public int playerCondition;
