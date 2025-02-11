@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "C:\\Users\\conno\\source\\repos\\KirbStomp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2\\components\\iecscomponents\\component.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:engine\\ecsv2\\components\\iecscomponents\\component.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2test\\entityobjects\\exmariocharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:engine\\ecsv2test\\entityobjects\\exmariocharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2\\components\\spritecomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:engine\\ecsv2\\components\\spritecomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2\\components\\iecscomponents\\iupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:engine\\ecsv2\\components\\iecscomponents\\iupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2\\systems\\animationsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:engine\\ecsv2\\systems\\animationsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -19,14 +35,6 @@
       "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:engine\\ecsv2\\components\\exampleplayerstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2\\components\\iupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:engine\\ecsv2\\components\\iupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2\\components\\component.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:engine\\ecsv2\\components\\component.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2\\systems\\globalmovementsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:engine\\ecsv2\\systems\\globalmovementsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -37,10 +45,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2\\systems\\physicssystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:engine\\ecsv2\\systems\\physicssystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2test\\entityobjects\\exmariocharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:engine\\ecsv2test\\entityobjects\\exmariocharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2\\ecsentitymanagement\\entitymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -77,10 +81,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2\\systems\\systemsmanagement\\systemsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:engine\\ecsv2\\systems\\systemsmanagement\\systemsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2\\components\\spritecomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:engine\\ecsv2\\components\\spritecomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2test\\entityobjects\\swappingitems.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -142,25 +142,12 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Component.cs",
-              "DocumentMoniker": "C:\\Users\\conno\\Source\\Repos\\KirbStomp\\Engine\\ECSV2\\Components\\Component.cs",
-              "RelativeDocumentMoniker": "Engine\\ECSV2\\Components\\Component.cs",
-              "ToolTip": "C:\\Users\\conno\\Source\\Repos\\KirbStomp\\Engine\\ECSV2\\Components\\Component.cs",
-              "RelativeToolTip": "Engine\\ECSV2\\Components\\Component.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAowB8AAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T20:57:23.677Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "IUpdate.cs",
-              "DocumentMoniker": "C:\\Users\\conno\\Source\\Repos\\KirbStomp\\Engine\\ECSV2\\Components\\IUpdate.cs",
-              "RelativeDocumentMoniker": "Engine\\ECSV2\\Components\\IUpdate.cs",
-              "ToolTip": "C:\\Users\\conno\\Source\\Repos\\KirbStomp\\Engine\\ECSV2\\Components\\IUpdate.cs",
-              "RelativeToolTip": "Engine\\ECSV2\\Components\\IUpdate.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\Source\\Repos\\KirbStomp\\Engine\\ECSV2\\Components\\IECSComponents\\IUpdate.cs",
+              "RelativeDocumentMoniker": "Engine\\ECSV2\\Components\\IECSComponents\\IUpdate.cs",
+              "ToolTip": "C:\\Users\\conno\\Source\\Repos\\KirbStomp\\Engine\\ECSV2\\Components\\IECSComponents\\IUpdate.cs",
+              "RelativeToolTip": "Engine\\ECSV2\\Components\\IECSComponents\\IUpdate.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-10T20:57:48.012Z",
@@ -168,38 +155,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ExamplePlayerState.cs",
-              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Components\\ExamplePlayerState.cs",
-              "RelativeDocumentMoniker": "Engine\\ECSV2\\Components\\ExamplePlayerState.cs",
-              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Components\\ExamplePlayerState.cs",
-              "RelativeToolTip": "Engine\\ECSV2\\Components\\ExamplePlayerState.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAQwBMAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T16:10:08.486Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Scene.cs",
-              "DocumentMoniker": "C:\\Users\\conno\\Source\\Repos\\KirbStomp\\Engine\\ECSV2Test\\Scene.cs",
-              "RelativeDocumentMoniker": "Engine\\ECSV2Test\\Scene.cs",
-              "ToolTip": "C:\\Users\\conno\\Source\\Repos\\KirbStomp\\Engine\\ECSV2Test\\Scene.cs*",
-              "RelativeToolTip": "Engine\\ECSV2Test\\Scene.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T16:16:05.706Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "PlayerMovementSystem.cs",
               "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Systems\\PlayerMovementSystem.cs",
               "RelativeDocumentMoniker": "Engine\\ECSV2\\Systems\\PlayerMovementSystem.cs",
-              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Systems\\PlayerMovementSystem.cs*",
-              "RelativeToolTip": "Engine\\ECSV2\\Systems\\PlayerMovementSystem.cs*",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Systems\\PlayerMovementSystem.cs",
+              "RelativeToolTip": "Engine\\ECSV2\\Systems\\PlayerMovementSystem.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-10T16:14:08.636Z",
@@ -207,7 +168,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "AnimationSystem.cs",
               "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Systems\\AnimationSystem.cs",
               "RelativeDocumentMoniker": "Engine\\ECSV2\\Systems\\AnimationSystem.cs",
@@ -220,7 +181,72 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SpriteComponent.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\Source\\Repos\\KirbStomp\\Engine\\ECSV2\\Components\\SpriteComponent.cs",
+              "RelativeDocumentMoniker": "Engine\\ECSV2\\Components\\SpriteComponent.cs",
+              "ToolTip": "C:\\Users\\conno\\Source\\Repos\\KirbStomp\\Engine\\ECSV2\\Components\\SpriteComponent.cs*",
+              "RelativeToolTip": "Engine\\ECSV2\\Components\\SpriteComponent.cs*",
+              "ViewState": "AgIAADQAAAAAAAAAAAAwwGQAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-10T15:48:29.009Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ExMarioCharacter.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2Test\\EntityObjects\\ExMarioCharacter.cs",
+              "RelativeDocumentMoniker": "Engine\\ECSV2Test\\EntityObjects\\ExMarioCharacter.cs",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2Test\\EntityObjects\\ExMarioCharacter.cs",
+              "RelativeToolTip": "Engine\\ECSV2Test\\EntityObjects\\ExMarioCharacter.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBYAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-10T21:32:11.199Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Component.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\Source\\Repos\\KirbStomp\\Engine\\ECSV2\\Components\\IECSComponents\\Component.cs",
+              "RelativeDocumentMoniker": "Engine\\ECSV2\\Components\\IECSComponents\\Component.cs",
+              "ToolTip": "C:\\Users\\conno\\Source\\Repos\\KirbStomp\\Engine\\ECSV2\\Components\\IECSComponents\\Component.cs*",
+              "RelativeToolTip": "Engine\\ECSV2\\Components\\IECSComponents\\Component.cs*",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAowB8AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-10T20:57:23.677Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "Scene.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\Source\\Repos\\KirbStomp\\Engine\\ECSV2Test\\Scene.cs",
+              "RelativeDocumentMoniker": "Engine\\ECSV2Test\\Scene.cs",
+              "ToolTip": "C:\\Users\\conno\\Source\\Repos\\KirbStomp\\Engine\\ECSV2Test\\Scene.cs",
+              "RelativeToolTip": "Engine\\ECSV2Test\\Scene.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-10T16:16:05.706Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ExamplePlayerState.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Components\\ExamplePlayerState.cs",
+              "RelativeDocumentMoniker": "Engine\\ECSV2\\Components\\ExamplePlayerState.cs",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Components\\ExamplePlayerState.cs",
+              "RelativeToolTip": "Engine\\ECSV2\\Components\\ExamplePlayerState.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAQwBQAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-10T16:10:08.486Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "GlobalMovementSystem.cs",
               "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Systems\\GlobalMovementSystem.cs",
               "RelativeDocumentMoniker": "Engine\\ECSV2\\Systems\\GlobalMovementSystem.cs",
@@ -233,7 +259,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "ItemCycleSystem.cs",
               "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Systems\\ItemCycleSystem.cs",
               "RelativeDocumentMoniker": "Engine\\ECSV2\\Systems\\ItemCycleSystem.cs",
@@ -246,7 +272,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "PhysicsSystem.cs",
               "DocumentMoniker": "C:\\Users\\conno\\Source\\Repos\\KirbStomp\\Engine\\ECSV2\\Systems\\PhysicsSystem.cs",
               "RelativeDocumentMoniker": "Engine\\ECSV2\\Systems\\PhysicsSystem.cs",
@@ -259,25 +285,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ExMarioCharacter.cs",
-              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2Test\\EntityObjects\\ExMarioCharacter.cs",
-              "RelativeDocumentMoniker": "Engine\\ECSV2Test\\EntityObjects\\ExMarioCharacter.cs",
-              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2Test\\EntityObjects\\ExMarioCharacter.cs",
-              "RelativeToolTip": "Engine\\ECSV2Test\\EntityObjects\\ExMarioCharacter.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAIA7wBYAAABSAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T21:32:11.199Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "EntityManager.cs",
               "DocumentMoniker": "C:\\Users\\conno\\Source\\Repos\\KirbStomp\\Engine\\ECSV2\\ECSEntityManagement\\EntityManager.cs",
               "RelativeDocumentMoniker": "Engine\\ECSV2\\ECSEntityManagement\\EntityManager.cs",
-              "ToolTip": "C:\\Users\\conno\\Source\\Repos\\KirbStomp\\Engine\\ECSV2\\ECSEntityManagement\\EntityManager.cs",
-              "RelativeToolTip": "Engine\\ECSV2\\ECSEntityManagement\\EntityManager.cs",
+              "ToolTip": "C:\\Users\\conno\\Source\\Repos\\KirbStomp\\Engine\\ECSV2\\ECSEntityManagement\\EntityManager.cs*",
+              "RelativeToolTip": "Engine\\ECSV2\\ECSEntityManagement\\EntityManager.cs*",
               "ViewState": "AgIAAAoAAAAAAAAAAAAAAFkAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-10T16:11:21.25Z",
@@ -285,20 +298,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "SetTrajectory.cs",
               "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Components\\SetTrajectory.cs",
               "RelativeDocumentMoniker": "Engine\\ECSV2\\Components\\SetTrajectory.cs",
-              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Components\\SetTrajectory.cs",
-              "RelativeToolTip": "Engine\\ECSV2\\Components\\SetTrajectory.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAjAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Components\\SetTrajectory.cs*",
+              "RelativeToolTip": "Engine\\ECSV2\\Components\\SetTrajectory.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-10T20:58:00.345Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "PlayerStateMachineSystem.cs",
               "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Systems\\PlayerStateMachineSystem.cs",
               "RelativeDocumentMoniker": "Engine\\ECSV2\\Systems\\PlayerStateMachineSystem.cs",
@@ -311,38 +324,38 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "RigidBody2DComponent.cs",
               "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Components\\RigidBody2DComponent.cs",
               "RelativeDocumentMoniker": "Engine\\ECSV2\\Components\\RigidBody2DComponent.cs",
-              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Components\\RigidBody2DComponent.cs",
-              "RelativeToolTip": "Engine\\ECSV2\\Components\\RigidBody2DComponent.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAswBEAAAAPAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Components\\RigidBody2DComponent.cs*",
+              "RelativeToolTip": "Engine\\ECSV2\\Components\\RigidBody2DComponent.cs*",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAswBIAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-11T15:54:13.436Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "PlayerControlsComponent.cs",
               "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Components\\PlayerControlsComponent.cs",
               "RelativeDocumentMoniker": "Engine\\ECSV2\\Components\\PlayerControlsComponent.cs",
               "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Components\\PlayerControlsComponent.cs",
               "RelativeToolTip": "Engine\\ECSV2\\Components\\PlayerControlsComponent.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAAwAoAAAA/AAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAwAsAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-10T16:10:07.572Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "DrawSpriteSystem.cs",
               "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Systems\\DrawSpriteSystem.cs",
               "RelativeDocumentMoniker": "Engine\\ECSV2\\Systems\\DrawSpriteSystem.cs",
-              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Systems\\DrawSpriteSystem.cs",
-              "RelativeToolTip": "Engine\\ECSV2\\Systems\\DrawSpriteSystem.cs",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Systems\\DrawSpriteSystem.cs*",
+              "RelativeToolTip": "Engine\\ECSV2\\Systems\\DrawSpriteSystem.cs*",
               "ViewState": "AgIAAB8AAAAAAAAAAAAtwEEAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-10T16:17:34.718Z",
@@ -350,7 +363,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "SetPathSystem.cs",
               "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Systems\\SetPathSystem.cs",
               "RelativeDocumentMoniker": "Engine\\ECSV2\\Systems\\SetPathSystem.cs",
@@ -363,7 +376,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "Projectiles.cs",
               "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Systems\\Projectiles.cs",
               "RelativeDocumentMoniker": "Engine\\ECSV2\\Systems\\Projectiles.cs",
@@ -376,7 +389,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "SystemsManager.cs",
               "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Systems\\SystemsManagement\\SystemsManager.cs",
               "RelativeDocumentMoniker": "Engine\\ECSV2\\Systems\\SystemsManagement\\SystemsManager.cs",
@@ -385,19 +398,6 @@
               "ViewState": "AgIAADMAAAAAAAAAAAAowBkAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-10T21:23:30.175Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "SpriteComponent.cs",
-              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Components\\SpriteComponent.cs",
-              "RelativeDocumentMoniker": "Engine\\ECSV2\\Components\\SpriteComponent.cs",
-              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Components\\SpriteComponent.cs",
-              "RelativeToolTip": "Engine\\ECSV2\\Components\\SpriteComponent.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAwwGMAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T15:48:29.009Z",
               "EditorCaption": ""
             },
             {
@@ -419,9 +419,9 @@
               "Title": "CycleItemsComponent.cs",
               "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Components\\CycleItemsComponent.cs",
               "RelativeDocumentMoniker": "Engine\\ECSV2\\Components\\CycleItemsComponent.cs",
-              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Components\\CycleItemsComponent.cs",
-              "RelativeToolTip": "Engine\\ECSV2\\Components\\CycleItemsComponent.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAADMAAAAjAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Components\\CycleItemsComponent.cs*",
+              "RelativeToolTip": "Engine\\ECSV2\\Components\\CycleItemsComponent.cs*",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAADQAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-10T20:57:55.116Z",
               "EditorCaption": ""
@@ -484,9 +484,9 @@
               "Title": "AnimationComponent.cs",
               "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Components\\AnimationComponent.cs",
               "RelativeDocumentMoniker": "Engine\\ECSV2\\Components\\AnimationComponent.cs",
-              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Components\\AnimationComponent.cs",
-              "RelativeToolTip": "Engine\\ECSV2\\Components\\AnimationComponent.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Components\\AnimationComponent.cs*",
+              "RelativeToolTip": "Engine\\ECSV2\\Components\\AnimationComponent.cs*",
+              "ViewState": "AgIAABAAAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-10T16:12:25.26Z",
               "EditorCaption": ""
