@@ -108,8 +108,7 @@ namespace KirbStomp.Engine.ECSV2.Systems
         {
             Rectangle frame = animation.sourceFrames[currentFrame];
 			Point perFrameOffset = animation.perFrameOffset[currentFrame];
-			float scale;
-			AnimationsRepository.perTextureScale.TryGetValue(animation.textureName, out scale);
+			float scale = animationsRepository.GetTexturesScale(animation.textureName);
 			sprite.SetTexture(animation.spriteSheet);
 			sprite.SetSpriteSource(frame);
 			sprite.SetSpriteWidth(frame.Width + perFrameOffset.X);
