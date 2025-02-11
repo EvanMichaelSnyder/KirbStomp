@@ -1,5 +1,4 @@
 ﻿using KirbStomp.Engine.ECSV2.Components;
-
 using KirbStomp.Engine.ECSV2.EntityManagement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -11,15 +10,16 @@ using System.Threading.Tasks;
 
 namespace KirbStomp.Engine.ECSV2Test.EntityObjects
 {
-	internal class SwappingItems
+	internal class Block
 	{
-		public static Entity CreateSwappingItemsEntity()
+		public static Entity CreateEntity()
 		{
 			EntityManager manager = EntityManager.GetInstance();
 			Entity entity = manager.CreateEntity();
+			entity.SetPosition(400, 200);
 			manager.AddComponent(entity, new SpriteComponent(default, new(), 100, 100, Color.White));
 			manager.AddComponent(entity, new AnimationComponent(("mario", "Idle")));
-			manager.AddComponent(entity, new RigidBody2DComponent(RigidBody2DComponent.BodyType.DYNAMIC));
+			manager.AddComponent(entity, new RigidBody2DComponent(RigidBody2DComponent.BodyType.STATIC));
 			(string, string)[] animations = { ( "MarioTransparentSpriteSheet", "Idle" ), 
 				("MarioTransparentSpriteSheet", "StartNeutralAttack"),
 				("MarioTransparentSpriteSheet", "MiddleNeutralAttack"),
@@ -27,21 +27,8 @@ namespace KirbStomp.Engine.ECSV2Test.EntityObjects
 				("LinkTransparentSpriteSheet", "StartNeutralAttack"),
 				("Items", "Firework")
 			};
-			manager.AddComponent(entity, new CycleAnimationsComponent(entity, animations, animations.Count(), Keys.J, Keys.K));
-			List<(int, float, Vector2)> path = new()
-			{
-				(0, 200, new(0, 1)),
-				(10, 100, new (1, 0)),
-				(20, 100, new (1, -1)),
-				(30, 100, new (-1, -1)),
-				(40, 100, new(-1,0)),
-				(50, 100, new (0, 1))
-
-			};
-			manager.AddComponent(entity, new SetTrajectory(path, 0, 2));
-			return entity;
-
+			manager.AddComponent(entity, new CycleAnimationsComponent(entity, animations, animations.Count(), Keys.U, Keys.I));
+			return default;
 		}
-
 	}
 }

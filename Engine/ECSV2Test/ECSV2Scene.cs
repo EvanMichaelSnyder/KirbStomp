@@ -21,6 +21,7 @@ namespace KirbStomp.Engine.ECSV2Test
         {
 			allEntities = new()
 			{
+				Block.CreateEntity(),
 				ExMarioCharacter.CreateExampleMarioCharacter(game),
 				SwappingItems.CreateSwappingItemsEntity()
 			};

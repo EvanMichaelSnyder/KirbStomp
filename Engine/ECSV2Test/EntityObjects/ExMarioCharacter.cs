@@ -22,7 +22,7 @@ namespace KirbStomp.Engine.ECSV2Test.EntityObjects
             EntityManager manager = EntityManager.GetInstance();
             Entity entity = manager.CreateEntity();
 			manager.AddComponent(entity, new SpriteComponent(default, new(), 100, 100, Color.White));
-			manager.AddComponent(entity, new AnimationComponent("Running"));
+			manager.AddComponent(entity, new AnimationComponent(("mario", "Running")));
 			manager.AddComponent(entity, new RigidBody2DComponent(RigidBody2DComponent.BodyType.DYNAMIC));
 			manager.AddComponent(entity, new ExamplePlayerState("Player 1"));
             manager.AddComponent<PlayerControlsComponent>(entity, new());
