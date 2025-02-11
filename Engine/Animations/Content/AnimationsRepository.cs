@@ -28,6 +28,9 @@ namespace KirbStomp.Engine.Animations.Content
 			perTextureScale = new();
 			LoadAnimationsFromXML("mario.XML");
 			LoadAnimationsFromXML("Items.XML");
+			LoadAnimationsFromXML("NewMario.XML");
+			LoadAnimationsFromXML("Link.XML");
+			LoadAnimationsFromXML("MegaMan.XML");
 
 		}
 		public void LoadAnimationsFromXML(string fileToLoad, [CallerFilePath] string currentFile = "")
