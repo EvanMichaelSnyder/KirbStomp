@@ -1,5 +1,4 @@
-﻿using KirbStomp.Engine.ECSV2.Components.IComponents;
-using KirbStomp.Engine.ECSV2.EntityManagement;
+﻿using KirbStomp.Engine.ECSV2.EntityManagement;
 using KirbStomp.Engine.ECSV2.Systems.SystemsManagement;
 using KirbStomp.Engine.ECSV2Test.EntityObjects;
 using KirbStomp.Engine.Inputs;
@@ -13,18 +12,21 @@ using System.Threading.Tasks;
 
 namespace KirbStomp.Engine.ECSV2Test
 {
-    internal class ECSV2Scene
+    //scene abstractly is like the level and everything that contains. This includes entites, hud, etc.
+    internal class Scene
     {
-        private List<Entity> allEntities;
         private SystemsManager systemManager;
-        public ECSV2Scene(Game1 game)
+        private EntityManager entityManager;
+        public Scene(Game1 game)
         {
-			allEntities = new()
-			{
-				ExMarioCharacter.CreateExampleMarioCharacter(game),
-				SwappingItems.CreateSwappingItemsEntity()
-			};
+            this.entityManager = EntityManager.GetInstance();
             systemManager = new SystemsManager();
+            //TODO REMOVE TEST
+            Entity mario = ExMarioCharacter.CreateExampleMarioCharacter(game);
+            Entity swap = SwappingItems.CreateSwappingItemsEntity();
+
+			
+            
         }
 
         public void UpdateAll(float deltaTime)
@@ -34,9 +36,10 @@ namespace KirbStomp.Engine.ECSV2Test
 			// FORCING AN ENTITY REMOVAL FOR TESTING THIS SHOULD NOT BE HERE OTHERWISE
 			if(GlobalInputs.GetInstance().IsInputJustPressed(Microsoft.Xna.Framework.Input.Keys.L))
 			{
-				EntityManager.GetInstance().RemoveEntity(allEntities[1]);
+                EntityManager.GetInstance().RemoveEntity(this.entityManager.getEntities()[0]);
 			}
         }
+
         public void LoadAll(ContentManager content)
         {
             systemManager.LoadAlLSystem(content);

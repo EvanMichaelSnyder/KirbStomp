@@ -1,5 +1,5 @@
 ﻿using KirbStomp.Engine.ECSV2.Components;
-using KirbStomp.Engine.ECSV2.ECSEntityManagement;
+using KirbStomp.Engine.ECSV2.EntityManagement;
 using KirbStomp.Engine.ECSV2.Systems.ISystems;
 using Microsoft.Xna.Framework;
 using System;
@@ -12,10 +12,10 @@ namespace KirbStomp.Engine.ECSV2.Systems
 {
     internal class ExamplePlayerPhysicsSystem : ISystem, IUpdatableSystem
     {
-        private readonly ECSManager manager;
+        private readonly EntityManager manager;
         public ExamplePlayerPhysicsSystem()
         {
-            manager = ECSManager.GetInstance();
+            manager = EntityManager.GetInstance();
         }
 
         public void Update(float deltaTime)
@@ -23,19 +23,19 @@ namespace KirbStomp.Engine.ECSV2.Systems
             Vector2 previousPosition;
             foreach (var (entity, rigidBody, playerState) in manager.GetEntitiesWithComponents<RigidBody2DComponent, ExamplePlayerState>())
             {
-                previousPosition = rigidBody.position;
+                previousPosition = entity.GetPosition();
 
                 // ALl the magic numbers should be somewhere else
-                if (rigidBody.position.Y < 400)
+                if (entity.GetPosition().Y < 400)
                 {
-                    rigidBody.acceleration.Y = 500;
+                    rigidBody.SetYAcceleration(500);
                 }
-                if (rigidBody.position.Y > 400)
+                if (entity.GetPosition().Y > 400)
                 {
-                    rigidBody.position.Y = 400;
-                    rigidBody.velocity.Y = 0;
-                    rigidBody.acceleration.Y = 0;
-                }
+					entity.SetPosition(entity.GetPosition().X, 400);
+					rigidBody.SetYVelocity(0);
+					rigidBody.SetYAcceleration(0);
+				}
             }
         }
     }

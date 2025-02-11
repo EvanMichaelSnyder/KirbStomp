@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KirbStomp.Engine.ECSV2.Components.IECSComponents
+namespace KirbStomp.Engine.ECSV2.Components.IComponents
 {
-    internal interface IECSComponent
+    public interface IUpdate
     {
+        public void Update(float deltaTime);
     }
 }
