@@ -16,7 +16,7 @@ public class Game1 : Game
 	//singleton
 	private static Game1 inst;
 	//test stuff
-	private Scene sceneV2;
+	private ECSV2Scene sceneV2;
 
 	//return singleton of game1
 	public static Game1 get()
@@ -79,7 +79,7 @@ public class Game1 : Game
 	protected override void LoadContent()
 	{
 		_spriteBatch = new SpriteBatch(GraphicsDevice);
-		this.sceneV2 = new Scene(this);
+		this.sceneV2 = new ECSV2Scene(this);
 		sceneV2.LoadAll(Content);
 	}
 

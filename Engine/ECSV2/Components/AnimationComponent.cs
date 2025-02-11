@@ -7,7 +7,7 @@ using KirbStomp.Engine.ECSV2.Components.IECSComponents;
 
 namespace KirbStomp.Engine.ECSV2.Components
 {
-    internal class AnimationComponent : Component
+    internal class AnimationComponent : IECSComponent
     {
         public string animationName { get; set; }
         public int currentFrame { get; set; }

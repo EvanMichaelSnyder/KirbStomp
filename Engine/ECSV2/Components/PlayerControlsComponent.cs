@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace KirbStomp.Engine.ECSV2.Components
 {
-    internal class PlayerControlsComponent : Component, IUpdate
+    internal class PlayerControlsComponent : IECSComponent, IUpdatableECSComponent
     {
         public Keys moveLeftKey;
         public Keys moveRightKey;

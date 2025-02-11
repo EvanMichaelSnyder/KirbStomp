@@ -11,10 +11,10 @@ namespace KirbStomp.Engine.ECSV2.Systems
 {
 	internal class ItemCycleSystem : IUpdatableSystem
 	{
-		private EntityManager manager;
+		private ECSManager manager;
 		public ItemCycleSystem()
 		{
-			manager = EntityManager.GetInstance();
+			manager = ECSManager.GetInstance();
 		}
 		public void Update(float deltaTime)
 		{
