@@ -14,27 +14,31 @@ namespace KirbStomp.Engine.Animations.Content
 {
 	internal class AnimationsRepository
 	{
-		private List<string> animationXMLFiles;
+		private List<string> animationFileNames;
 		private Dictionary<string, (float, Dictionary<string, Animation>)> spriteSheetDataDictionary;
 		public AnimationsRepository(List<string> animationXMLFiles)
 		{
-			this.animationXMLFiles = animationXMLFiles;
+			this.animationFileNames = animationXMLFiles;
 			this.spriteSheetDataDictionary = new();
 		}
-		public void LoadAllAnimations([CallerFilePath] string currentFile = "")
+		public void InitializeAnimations()
 		{
 			string textureName;
 			float textureScale;
 			Dictionary<string, Animation> animationsDictionary; // TODO there's ambiguity rn
 			string path;
-			foreach (string file in animationXMLFiles)
+			foreach (string name in animationFileNames)
 			{
-				path = Path.Combine(currentFile, file);
+				path = GetRelativeFilePath(name + ".XML");
 				(textureName, textureScale, animationsDictionary) = AnimationsXMLParser.LoadAnimationsFromXML(path);
 				spriteSheetDataDictionary.Add(textureName, (textureScale, animationsDictionary));
 			}
 		}
-
+		private string GetRelativeFilePath(string file, [CallerFilePath] string currentPath="")
+		{
+			string dir = Path.GetDirectoryName(currentPath);
+			return Path.Combine(dir, file);
+		}
 		public Animation GetAnimation(string spriteSheetName, string animationName)
 		{
 			if (spriteSheetDataDictionary.TryGetValue(spriteSheetName, out var scaleAndAnimationDictionary))
@@ -46,9 +50,24 @@ namespace KirbStomp.Engine.Animations.Content
 		// This one is temporary, just to let things work output
 		public Animation GetAnimation(string animationName)
 		{
-			return GetAnimation("mario.XML", animationName);
+			foreach(var spriteSheetAndData in spriteSheetDataDictionary)
+			{
+				if (spriteSheetAndData.Value.Item2.ContainsKey(animationName))
+				{
+					return spriteSheetAndData.Value.Item2[animationName];
+				}
+			}
+			return GetAnimation("mario", animationName);
 		}
-		
+		public float GetTexturesScale(string textureName)
+		{
+			if (spriteSheetDataDictionary.TryGetValue(textureName, out var scaleAndAnimationDictionary))
+			{
+				return scaleAndAnimationDictionary.Item1;
+			}
+			return 1.0f;
+
+		}
 		public IEnumerable<Animation> GetAllAnimations()
 		{
 			foreach (var (scale, animations) in spriteSheetDataDictionary.Values)

@@ -19,14 +19,13 @@ namespace KirbStomp.Engine.Animations.Content
 			float scale = 1.0f;
 			Dictionary<string, Animation> animationDictionary = new();
 			string textureName = "Err";
-			float textureScale;
 
 
 			if (!TryLoadDocument(fileDirectoryToLoad, out XDocument document)) return (textureName, scale, animationDictionary);
 			if (!TryGetXElement(document, "Animations", out XElement animationsElement, fileDirectoryToLoad)) return (textureName, scale, animationDictionary);
 			if(!TryGetXElement(animationsElement, "Texture", out XElement textureElement)) return (textureName, scale, animationDictionary);
 
-			(textureName, textureScale) = TextureElementToData(textureElement);
+			(textureName, scale) = TextureElementToData(textureElement);
 			foreach (XElement animationElement in animationsElement.Elements("Animation"))
 			{
 				var (animationName, animation) = GetAnimationFromElement(animationElement, textureName);
