@@ -1,4 +1,4 @@
-﻿using KirbStomp.Engine.ECSV2.Components.IECSComponents;
+﻿
 using KirbStomp.Engine.ECSV2.Components;
 using KirbStomp.Engine.ECSV2.Systems.ISystems;
 using KirbStomp.Engine.Inputs;

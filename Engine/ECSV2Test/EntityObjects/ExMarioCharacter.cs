@@ -1,4 +1,5 @@
-﻿using KirbStomp.Engine.ECSV2.Components;
+﻿
+using KirbStomp.Engine.ECSV2.Components;
 using KirbStomp.Engine.ECSV2.ECSEntityManagement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;

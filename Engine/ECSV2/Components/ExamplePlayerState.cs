@@ -1,11 +1,11 @@
-﻿using KirbStomp.Engine.ECSV2.Components.IECSComponents;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using KirbStomp.Engine.ECSV2.Components.IECSComponents;
 
 namespace KirbStomp.Engine.ECSV2.Components
 {
