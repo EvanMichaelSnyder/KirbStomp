@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace KirbStomp.Engine.Events
 {
-    public delegate void EntitysKeyCallBackFN(Entity entity);
     internal class InputsCallBackToEntities : IKeyCommands
     {
         private Dictionary<EntitysKeyCallBackFN, Entity> fnEntityDictionary;

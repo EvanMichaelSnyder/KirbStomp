@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace KirbStomp.Engine.Events
 {
+    public delegate void EntitysKeyCallBackFN(Entity entity);
     internal class GlobalEvents
     {
         private static GlobalEvents instance;
@@ -36,10 +37,6 @@ namespace KirbStomp.Engine.Events
             return instance;
         }
 
-        public void SubscribeToInputEvents(Entity entity, IKeyCommands callbackFN)
-        {
-			Debug.WriteLine("NOT IMPLEMENTED YET");
-        }
         public void SubscribeToKeyEvents(Entity entity, Keys key, InputStatus status, EntitysKeyCallBackFN callbackFN)
         {
 			InputsCallBackToEntities command = dict[status];
