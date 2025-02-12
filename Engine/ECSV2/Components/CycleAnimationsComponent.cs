@@ -18,13 +18,13 @@ namespace KirbStomp.Engine.ECSV2.Components
 	internal class CycleAnimationsComponent
 		: Component, IDisposable
 	{
-		public readonly Entity entity;
-		public int index;
-		public int totalItems;
-		public Keys cycleForward;
-		public Keys cycleBack;
-		public (string, string)[] animations;
-		public bool changeHandled;
+		private readonly Entity entity;
+		private int index;
+		private int totalItems;
+		private Keys cycleForward;
+		private Keys cycleBack;
+		private (string, string)[] animations;
+		private bool changeHandled;
 		public CycleAnimationsComponent(Entity entity, (string, string)[] animations, int numberOfItems, Keys cycleForwardKey, Keys cycleBackKey)
 		{
 			this.entity = entity;
@@ -51,7 +51,7 @@ namespace KirbStomp.Engine.ECSV2.Components
 			if (index >= totalItems) index = 0;
 			changeHandled = false;
 			AnimationSystem.ChangeEntitysCurrentAnimation(entity, animations[index]);
-			Debug.WriteLine($"Incremented: We're on item {animations[index].ToString()}");
+			Logger.Log($"Incremented: We're on item {animations[index].ToString()}");
 		}
 		public void DecrementIndex(Entity entity)
 		{
@@ -59,7 +59,7 @@ namespace KirbStomp.Engine.ECSV2.Components
 			if (index < 0) index = totalItems - 1;
 			changeHandled = false;
 			AnimationSystem.ChangeEntitysCurrentAnimation(entity, animations[index]);
-			Debug.WriteLine($"Decremented: We're on item {animations[index].ToString()}");
+			Logger.Log($"Decremented: We're on item {animations[index].ToString()}");
 		}
 	}
 }

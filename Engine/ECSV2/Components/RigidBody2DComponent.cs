@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using KirbStomp.Engine.ECSV2.Components.IComponents;
+using KirbStomp.Engine.ECSV2.EntityManagement;
 using Microsoft.Xna.Framework;
 
 namespace KirbStomp.Engine.ECSV2.Components
@@ -26,6 +27,15 @@ namespace KirbStomp.Engine.ECSV2.Components
 			this.acceleration = new Vector2(0, 0);
 			this.velocity = new Vector2(0, 0);
 		}
+		public RigidBody2DComponent(Entity entity, Vector2 initialPosition, BodyType type = BodyType.DYNAMIC)
+		{
+			this.SetEntity(entity);
+			this.bodyType = type;
+			this.acceleration = new Vector2(0, 0);
+			this.entity.SetPosition(initialPosition);
+		}
+
+
 
 		public void Update(float deltaTime)
 		{
