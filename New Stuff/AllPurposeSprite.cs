@@ -34,8 +34,13 @@ using KirbStomp;
             _currentAnimation = newFrame;
             _currentFrame = newFrame;
         }
+        public void ChangeFrame(MarioState newFrame)
+        {
+            _currentAnimation = newFrame;
+            _currentFrame = newFrame;
+        }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 location, GameTime gameTime)
+    public void Draw(SpriteBatch spriteBatch, Vector2 location, GameTime gameTime)
         {
             Rectangle sourceRectangle;
             Rectangle destinationRectangle;
@@ -58,10 +63,10 @@ using KirbStomp;
             //animate after draw is complete
             elapsedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
             // Check if enough time has passed to change the frame 
-            if (elapsedTime >= entry.frameDuration)
+            if (elapsedTime >= entry.frameDuration*1.5)
             {
                 elapsedTime = 0;
-                ChangeAnimation(entry.nextFrame);
+                ChangeFrame(entry.nextFrame);
             }
         }
 

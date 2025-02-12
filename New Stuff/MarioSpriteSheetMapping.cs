@@ -263,7 +263,7 @@ public class MarioSpriteSheetMapping
                 {SlideTurn,TurnLeftWhileRunRight    },                
                 {Crouch,None                        },
                 {Jump,JumpRight                     },
-                {AirIdle,JumpRight3                 },      
+                {AirIdle,JumpRight3                },      
                 {AirMove,JumpRight3                 },      
                 {Landing,LandRight                  },
         };
@@ -278,9 +278,19 @@ public class MarioSpriteSheetMapping
                     {TurnLeftWhileRunRight , SlideTurn    },
                     {None                  , Crouch          },
                     {JumpRight             , Jump              },
-                    {JumpRight2            , AirIdle        },
-                    {JumpRight3            , AirMove        },
+                    {JumpRight3            , AirIdle        },
+                    //{JumpRight3            , AirMove        },
                     {LandRight             , Landing        },
+        };
+    public static Dictionary<MarioState, bool> isFinalFrame =
+    new Dictionary<MarioState, bool>
+        {
+            { IdleRight10,true },
+            { JumpRight3,true },
+            { LandRight3,true },
+            { RunRight8,true },
+            {default,false },
+
         };
 
     public static double MarioSpriteScale = 1.2; //changing this will change behaivor think of this as a multiplier for character size
@@ -320,12 +330,12 @@ public class MarioSpriteSheetMapping
         //Jump RIGHT
             { JumpRight,  (new Rectangle(15, 84, 24, 42), new Vector2(0, 0), new Vector2(0, -4), 100, JumpRight2) },
             { JumpRight2, (new Rectangle(45, 84, 27, 42), new Vector2(0, 0), new Vector2(0, -4), 70, JumpRight3) },
-            { JumpRight3, (new Rectangle(78, 84, 29, 42), new Vector2(0, 0), new Vector2(0, -4), 100, LandRight) },
+            { JumpRight3, (new Rectangle(78, 84, 29, 42), new Vector2(0, 0), new Vector2(0, -4), 100, JumpRight3) },
 
         //Land RIGHT
             { LandRight, (new Rectangle(111, 84, 29, 42), new Vector2(0, 0), new Vector2(0, -4), 100, LandRight2) },
             { LandRight2, (new Rectangle(141, 84, 29, 42), new Vector2(0, 0), new Vector2(0, -4), 100, LandRight3) },
-            { LandRight3, (new Rectangle(171, 84, 29, 42), new Vector2(0, 0), new Vector2(0, -4), 100, JumpRight) },
+            { LandRight3, (new Rectangle(171, 84, 29, 42), new Vector2(0, 0), new Vector2(0, -4), 100, LandRight3) },
 
         //Run Right
             { RunRight,  (new Rectangle(12, 148, 28, 39), new Vector2(0, 0), new Vector2(0, -1),  70, RunRight2) },

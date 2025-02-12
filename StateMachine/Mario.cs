@@ -57,7 +57,7 @@ namespace KirbStomp
             //just pass current facing direction current state enum and current frame
             //stateMachine.State.CurrentState();
 
-        public void handleStates()
+        internal void HandleStates()
         {
             foreach (var input in actionList.actions.Where(i => IsDirection(i)))
             {
@@ -126,12 +126,17 @@ namespace KirbStomp
         }
         public void updateState()
         {
-            handleStates();
-            sprite.ChangeAnimation(MarioSpriteSheetMapping.convertToMarioState[this.stateMachine.State.CurrentState]);
+            HandleStates();
+            if (MarioSpriteSheetMapping.isFinalFrame.ContainsKey(sprite.GetAnimation()))
+                {
+                if (MarioSpriteSheetMapping.isFinalFrame[sprite.GetAnimation()])
+                {
+                    sprite.ChangeAnimation(MarioSpriteSheetMapping.convertToMarioState[this.stateMachine.State.CurrentState]);
+                }
+            }   
+            }
 
-        }
-
-        static bool IsDirection(GameButtons input)
+            static bool IsDirection(GameButtons input)
         {
             return input == GameButtons.Left || input == GameButtons.Right
                 || input == GameButtons.Up || input == GameButtons.Down;

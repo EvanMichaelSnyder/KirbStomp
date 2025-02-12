@@ -3,6 +3,54 @@
   "WorkspaceRootPath": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\snyde\\source\\repos\\snyderosu\\kirbstomp\\new stuff\\allpurposesprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:new stuff\\allpurposesprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\snyde\\source\\repos\\snyderosu\\kirbstomp\\new stuff\\ispritecomplete.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:new stuff\\ispritecomplete.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\snyde\\source\\repos\\snyderosu\\kirbstomp\\new stuff\\mariospritesheetmapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:new stuff\\mariospritesheetmapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\snyde\\source\\repos\\snyderosu\\kirbstomp\\content\\mariotransparentspritesheet.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:content\\mariotransparentspritesheet.png||{58961B49-13E0-48C0-9258-13CBC4D40279}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\snyde\\source\\repos\\snyderosu\\kirbstomp\\statemachine\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:statemachine\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\snyde\\source\\repos\\snyderosu\\kirbstomp\\statemachine\\mario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:statemachine\\mario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\snyde\\source\\repos\\snyderosu\\kirbstomp\\statemachine\\statemachine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:statemachine\\statemachine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\snyde\\source\\repos\\snyderosu\\kirbstomp\\statemachine\\stateenums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:statemachine\\stateenums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\snyde\\source\\repos\\snyderosu\\kirbstomp\\statemachine\\updatebuttoncommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:statemachine\\updatebuttoncommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\snyde\\source\\repos\\snyderosu\\kirbstomp\\statemachine\\actionlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:statemachine\\actionlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\snyde\\source\\repos\\snyderosu\\kirbstomp\\statemachine\\icharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:statemachine\\icharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\snyde\\source\\repos\\snyderosu\\kirbstomp\\statemachine\\icommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:statemachine\\icommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\snyde\\source\\repos\\snyderosu\\kirbstomp\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
       "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
     },
@@ -113,7 +161,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 416,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -129,12 +177,167 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MarioTransparentSpriteSheet.png",
+              "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\Content\\MarioTransparentSpriteSheet.png",
+              "RelativeDocumentMoniker": "Content\\MarioTransparentSpriteSheet.png",
+              "ToolTip": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\Content\\MarioTransparentSpriteSheet.png",
+              "RelativeToolTip": "Content\\MarioTransparentSpriteSheet.png",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-02-12T17:11:34.319Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "StateMachine.cs",
+              "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\StateMachine\\StateMachine.cs",
+              "RelativeDocumentMoniker": "StateMachine\\StateMachine.cs",
+              "ToolTip": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\StateMachine\\StateMachine.cs",
+              "RelativeToolTip": "StateMachine\\StateMachine.cs",
+              "ViewState": "AgIAAF0BAAAAAAAAAAAqwHgBAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T16:54:07.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "StateEnums.cs",
+              "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\StateMachine\\StateEnums.cs",
+              "RelativeDocumentMoniker": "StateMachine\\StateEnums.cs",
+              "ToolTip": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\StateMachine\\StateEnums.cs",
+              "RelativeToolTip": "StateMachine\\StateEnums.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T16:53:27.682Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ISpriteComplete.cs",
+              "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\New Stuff\\ISpriteComplete.cs",
+              "RelativeDocumentMoniker": "New Stuff\\ISpriteComplete.cs",
+              "ToolTip": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\New Stuff\\ISpriteComplete.cs",
+              "RelativeToolTip": "New Stuff\\ISpriteComplete.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T16:53:05.976Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ICharacter.cs",
+              "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\StateMachine\\ICharacter.cs",
+              "RelativeDocumentMoniker": "StateMachine\\ICharacter.cs",
+              "ToolTip": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\StateMachine\\ICharacter.cs",
+              "RelativeToolTip": "StateMachine\\ICharacter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T16:53:00.878Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AllPurposeSprite.cs",
+              "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\New Stuff\\AllPurposeSprite.cs",
+              "RelativeDocumentMoniker": "New Stuff\\AllPurposeSprite.cs",
+              "ToolTip": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\New Stuff\\AllPurposeSprite.cs*",
+              "RelativeToolTip": "New Stuff\\AllPurposeSprite.cs*",
+              "ViewState": "AgIAADUAAAAAAAAAAAAgwEEAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T16:52:26.741Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Mario.cs",
+              "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\StateMachine\\Mario.cs",
+              "RelativeDocumentMoniker": "StateMachine\\Mario.cs",
+              "ToolTip": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\StateMachine\\Mario.cs",
+              "RelativeToolTip": "StateMachine\\Mario.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAgwIEAAABYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T16:52:22.513Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "MarioSpriteSheetMapping.cs",
+              "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\New Stuff\\MarioSpriteSheetMapping.cs",
+              "RelativeDocumentMoniker": "New Stuff\\MarioSpriteSheetMapping.cs",
+              "ToolTip": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\New Stuff\\MarioSpriteSheetMapping.cs",
+              "RelativeToolTip": "New Stuff\\MarioSpriteSheetMapping.cs",
+              "ViewState": "AgIAALYAAAAAAAAAAAAgwCUBAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T16:53:10.766Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ICommand.cs",
+              "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\StateMachine\\ICommand.cs",
+              "RelativeDocumentMoniker": "StateMachine\\ICommand.cs",
+              "ToolTip": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\StateMachine\\ICommand.cs",
+              "RelativeToolTip": "StateMachine\\ICommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T16:54:01.369Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Game1.cs",
+              "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\StateMachine\\Game1.cs",
+              "RelativeDocumentMoniker": "StateMachine\\Game1.cs",
+              "ToolTip": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\StateMachine\\Game1.cs",
+              "RelativeToolTip": "StateMachine\\Game1.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAQwDoAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T16:53:00.098Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UpdateButtonCommand.cs",
+              "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\StateMachine\\UpdateButtonCommand.cs",
+              "RelativeDocumentMoniker": "StateMachine\\UpdateButtonCommand.cs",
+              "ToolTip": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\StateMachine\\UpdateButtonCommand.cs",
+              "RelativeToolTip": "StateMachine\\UpdateButtonCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T16:54:08.313Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ActionList.cs",
+              "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\StateMachine\\ActionList.cs",
+              "RelativeDocumentMoniker": "StateMachine\\ActionList.cs",
+              "ToolTip": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\StateMachine\\ActionList.cs",
+              "RelativeToolTip": "StateMachine\\ActionList.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAAAcAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T16:52:59.314Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "KirbStomp.csproj",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\KirbStomp.csproj",
               "RelativeDocumentMoniker": "KirbStomp.csproj",
-              "ToolTip": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\KirbStomp.csproj*",
-              "RelativeToolTip": "KirbStomp.csproj*",
+              "ToolTip": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\KirbStomp.csproj",
+              "RelativeToolTip": "KirbStomp.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2025-02-12T00:42:09.545Z",
@@ -142,7 +345,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 13,
               "Title": "app.manifest",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\app.manifest",
               "RelativeDocumentMoniker": "app.manifest",
@@ -155,7 +358,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 12,
               "Title": "README.md",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\README.md",
               "RelativeDocumentMoniker": "README.md",
@@ -168,7 +371,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 15,
               "Title": "Microsoft.Common.CurrentVersion.targets",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
@@ -180,7 +383,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 16,
               "Title": "MonoGame.Content.Builder.Task.targets",
               "DocumentMoniker": "C:\\Users\\snyde\\.nuget\\packages\\monogame.content.builder.task\\3.8.2.1105\\build\\MonoGame.Content.Builder.Task.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\.nuget\\packages\\monogame.content.builder.task\\3.8.2.1105\\build\\MonoGame.Content.Builder.Task.targets",
@@ -192,7 +395,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 17,
               "Title": "Microsoft.NET.Sdk.DefaultItems.Shared.targets",
               "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\9.0.101\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.Sdk.DefaultItems.Shared.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\9.0.101\\Sdks\\Microsoft.NET.Sdk\\targets\\Microsoft.NET.Sdk.DefaultItems.Shared.targets",
@@ -204,7 +407,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 44,
               "Title": "Icon.ico - Icon [256x256, 32 bit, PNG]",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\Icon.ico",
               "RelativeDocumentMoniker": "Icon.ico",
@@ -216,7 +419,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 22,
               "Title": "project.assets.json",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\obj\\project.assets.json",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\obj\\project.assets.json",
@@ -227,7 +430,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 21,
               "Title": "project.nuget.cache",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\obj\\project.nuget.cache",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\obj\\project.nuget.cache",
@@ -238,7 +441,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 20,
               "Title": "Sprint0.csproj.nuget.dgspec.json",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\obj\\Sprint0.csproj.nuget.dgspec.json",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\obj\\Sprint0.csproj.nuget.dgspec.json",
@@ -249,7 +452,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 19,
               "Title": "Sprint0.csproj.nuget.g.props",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\obj\\Sprint0.csproj.nuget.g.props",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\obj\\Sprint0.csproj.nuget.g.props",
@@ -260,7 +463,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 18,
               "Title": "Sprint0.csproj.nuget.g.targets",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\obj\\Sprint0.csproj.nuget.g.targets",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\obj\\Sprint0.csproj.nuget.g.targets",
@@ -271,7 +474,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 23,
               "Title": "AnimationProto.csproj.nuget.g.props",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\obj\\AnimationProto.csproj.nuget.g.props",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\obj\\AnimationProto.csproj.nuget.g.props",
@@ -282,7 +485,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 24,
               "Title": "AnimationProto.csproj.nuget.dgspec.json",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\obj\\AnimationProto.csproj.nuget.dgspec.json",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\obj\\AnimationProto.csproj.nuget.dgspec.json",
@@ -293,7 +496,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 25,
               "Title": "ISpriteComplete.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\Interfaces\\ISpriteComplete.cs",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\Interfaces\\ISpriteComplete.cs",
@@ -304,7 +507,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 26,
               "Title": "ISprite.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\Interfaces\\ISprite.cs",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\Interfaces\\ISprite.cs",
@@ -315,7 +518,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 27,
               "Title": "IController.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\Interfaces\\IController.cs",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\Interfaces\\IController.cs",
@@ -326,7 +529,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 28,
               "Title": "ICommand.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\Interfaces\\ICommand.cs",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\Interfaces\\ICommand.cs",
@@ -337,7 +540,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 29,
               "Title": "ICharacter.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\Interfaces\\ICharacter.cs",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\Interfaces\\ICharacter.cs",
@@ -348,7 +551,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 30,
               "Title": "MarioTransparentSpriteSheet.png",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\Content\\MarioTransparentSpriteSheet.png",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\Content\\MarioTransparentSpriteSheet.png",
@@ -359,7 +562,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 31,
               "Title": "luigi.png",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\Content\\luigi.png",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\Content\\luigi.png",
@@ -370,7 +573,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 32,
               "Title": "File.spritefont",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\Content\\File.spritefont",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\Content\\File.spritefont",
@@ -381,7 +584,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 33,
               "Title": "dotnet-tools.json",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\.config\\dotnet-tools.json",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\.config\\dotnet-tools.json",
@@ -392,7 +595,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 34,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\Program.cs",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\Program.cs",
@@ -403,7 +606,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 35,
               "Title": "MarioSpriteSheetMapping.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\MarioSpriteSheetMapping.cs",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\MarioSpriteSheetMapping.cs",
@@ -414,7 +617,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 36,
               "Title": "Mario.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\Mario.cs",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\Mario.cs",
@@ -425,7 +628,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 37,
               "Title": "LuigiSpriteSheetMapping.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\LuigiSpriteSheetMapping.cs",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\LuigiSpriteSheetMapping.cs",
@@ -436,7 +639,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 38,
               "Title": "Icon.ico",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\Icon.ico",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\Icon.ico",
@@ -447,7 +650,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 39,
               "Title": "Icon.bmp",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\Icon.bmp",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\Icon.bmp",
@@ -458,7 +661,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 40,
               "Title": "Game1.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\Game1.cs",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\Game1.cs",
@@ -469,7 +672,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 41,
               "Title": "CharacterLuigi.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\CharacterLuigi.cs",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\CharacterLuigi.cs",
@@ -480,7 +683,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 42,
               "Title": "app.manifest",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\app.manifest",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\app.manifest",
@@ -491,7 +694,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 43,
               "Title": "AnimationProto.csproj.user",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\Animated Proto Git no working\\Sprint0\\AnimationProto.csproj.user",
               "RelativeDocumentMoniker": "..\\..\\Animated Proto Git no working\\Sprint0\\AnimationProto.csproj.user",
