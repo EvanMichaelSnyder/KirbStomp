@@ -110,8 +110,8 @@ namespace KirbStomp.Engine.ECSV2.Systems
 			float scale = animationsRepository.GetTexturesScale(animation.textureName);
 			sprite.SetTexture(animation.spriteSheet);
 			sprite.SetSpriteSource(frame);
-			sprite.SetSpriteWidth(frame.Width + perFrameOffset.X);
-			sprite.SetSpriteHeight(frame.Height + perFrameOffset.Y);
+			sprite.SetSpriteWidth(frame.Width);
+			sprite.SetSpriteHeight(frame.Height);
 			sprite.SetScale(scale);
 
         }
