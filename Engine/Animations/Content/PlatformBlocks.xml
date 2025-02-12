@@ -5,19 +5,19 @@
 		<Frame position="(0, 0)" size="(72, 80)" perFrameOffset="(0, 0)" />
 	</Animation>
 
-	<Animation name="Steel" duration="1.0" loop="true" animationOffset="(0, 0)" isDefault="true">
+	<Animation name="Steel" duration="1.0" loop="true" animationOffset="(0, 0)">
 		<Frame position="(72, 0)" size="(72, 80)" perFrameOffset="(0, 0)" />
 	</Animation>
 
-	<Animation name="Wood" duration="1.0" loop="true" animationOffset="(0, 0)" isDefault="true">
+	<Animation name="Wood" duration="1.0" loop="true" animationOffset="(0, 0)" >
 		<Frame position="(144, 0)" size="(72, 80)" perFrameOffset="(0, 0)" />
 	</Animation>
 
-	<Animation name="Pipes" duration="1.0" loop="true" animationOffset="(0, 0)" isDefault="true">
+	<Animation name="Pipes" duration="1.0" loop="true" animationOffset="(0, 0)">
 		<Frame position="(216, 0)" size="(72, 80)" perFrameOffset="(0, 0)" />
 	</Animation>
 
-	<Animation name="Dirt" duration="1.0" loop="true" animationOffset="(0, 0)" isDefault="true">
+	<Animation name="Dirt" duration="1.0" loop="true" animationOffset="(0, 0)">
 		<Frame position="(288, 0)" size="(72, 80)" perFrameOffset="(0, 0)" />
 	</Animation>
 </Animations>
