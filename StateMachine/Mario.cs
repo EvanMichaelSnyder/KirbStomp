@@ -39,7 +39,7 @@ namespace KirbStomp
         {
             stateMachine.performBehavior();
             actionList.resetList();
-            if (stateMachine.State.AnimationFrame >= 20)
+            if (stateMachine.State.AnimationFrame >= 1000)
             {
                 actionList.addAction(GameButtons.End);
             }

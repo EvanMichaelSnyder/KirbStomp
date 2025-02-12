@@ -286,6 +286,7 @@ public class MarioSpriteSheetMapping
     new Dictionary<MarioState, bool>
         {
             { IdleRight10,true },
+            { JumpRight2,true },
             { JumpRight3,true },
             { LandRight3,true },
             { RunRight8,true },
@@ -293,7 +294,7 @@ public class MarioSpriteSheetMapping
 
         };
 
-    public static double MarioSpriteScale = 1.2; //changing this will change behaivor think of this as a multiplier for character size
+    public static double MarioSpriteScale = 3.0; //changing this will change behaivor think of this as a multiplier for character size
     // Using a tuple to store Rectangle (sprite), Vector2 (offset), Vector2 (scale) and MarioState (next frame)
     // scale is also used for inversion
     public static Dictionary<MarioState, (Rectangle sprite, Vector2 offsetAnimation, Vector2 offsetState, int frameDuration, MarioState nextFrame)> StateToSpriteMap = new Dictionary<MarioState, (Rectangle sprite, Vector2 offsetTransition, Vector2 offsetState, int frameDuration, MarioState nextFrame)>
@@ -329,7 +330,8 @@ public class MarioSpriteSheetMapping
 
         //Jump RIGHT
             { JumpRight,  (new Rectangle(15, 84, 24, 42), new Vector2(0, 0), new Vector2(0, -4), 100, JumpRight2) },
-            { JumpRight2, (new Rectangle(45, 84, 27, 42), new Vector2(0, 0), new Vector2(0, -4), 70, JumpRight3) },
+            { JumpRight2, (new Rectangle(45, 84, 27, 42), new Vector2(0, 0), new Vector2(0, -4), 70, JumpRight2) },
+        //Air Idle
             { JumpRight3, (new Rectangle(78, 84, 29, 42), new Vector2(0, 0), new Vector2(0, -4), 100, JumpRight3) },
 
         //Land RIGHT

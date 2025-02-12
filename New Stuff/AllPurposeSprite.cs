@@ -63,7 +63,7 @@ using KirbStomp;
             //animate after draw is complete
             elapsedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
             // Check if enough time has passed to change the frame 
-            if (elapsedTime >= entry.frameDuration*1.5)
+            if (elapsedTime >= entry.frameDuration)
             {
                 elapsedTime = 0;
                 ChangeFrame(entry.nextFrame);
