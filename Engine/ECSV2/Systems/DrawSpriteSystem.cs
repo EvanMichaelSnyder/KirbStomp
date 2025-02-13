@@ -31,10 +31,10 @@ namespace KirbStomp.Engine.ECSV2.Systems
                 float tempOffsetY = sprite.GetOffSet().Y;
                 pointPos = entity.GetPosition().ToPoint();
 				scale = sprite.GetScale();
-				xPos = (int)(scaleX * (pointPos.X + (tempOffset) * scale));
-                yPos = (int)(scaleY * (pointPos.Y + (tempOffset) * scale));
+				xPos = (int)(scaleX * (pointPos.X + (tempOffsetX) * scale));
+                yPos = (int)(scaleY * (pointPos.Y + (tempOffsetY) * scale));
                 width = (int)(scaleX * (sprite.GetSpriteWidth() * scale));
-                height = (int)(scaleX * (sprite.GetSpriteHeight() * scale));
+                height = (int)(scaleY * (sprite.GetSpriteHeight() * scale));
 
                 spriteBatch.Draw(sprite.GetTexture(), new Rectangle(xPos, yPos, width, height), sprite.GetSpriteSource(), sprite.GetColor());
                 //Debug.WriteLine($"Drew Sprite {0} at position ({1}, {2})", entity.ToString(), position.posX, position.posY);

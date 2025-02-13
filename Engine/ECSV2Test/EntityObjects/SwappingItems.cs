@@ -20,12 +20,13 @@ namespace KirbStomp.Engine.ECSV2Test.EntityObjects
 			manager.AddComponent(entity, new SpriteComponent(default, new(), 100, 100, Color.White));
 			manager.AddComponent(entity, new AnimationComponent(("mario", "Idle")));
 			manager.AddComponent(entity, new RigidBody2DComponent(RigidBody2DComponent.BodyType.DYNAMIC));
-			(string, string)[] animations = { ( "MarioTransparentSpriteSheet", "Idle" ), 
+			(string, string)[] animations = { ( "MarioTransparentSpriteSheet", "Idle"), 
 				("MarioTransparentSpriteSheet", "AttackNeutral1"),
 				("MarioTransparentSpriteSheet", "AttackNeutral2"),
 				("MarioTransparentSpriteSheet", "AttackNeutral3"),
-				("LinkTransparentSpriteSheet", "StartNeutralAttack"),
-				("Items", "Firework")
+				("MarioTransparentSpriteSheet", "Jump"),
+				("MarioTransparentSpriteSheet", "Landing"),
+				("MarioTransparentSpriteSheet", "Run")
 			};
 			manager.AddComponent(entity, new CycleAnimationsComponent(entity, animations, animations.Count(), Keys.J, Keys.K));
 			List<(int, float, Vector2)> path = new()

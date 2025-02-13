@@ -20,7 +20,6 @@ namespace KirbStomp.Engine.ECSV2.Components
 			currentFrame = startingFrame;
 			durationSinceLastFrame = durationSpentOnCurrentFrame;
 			nextAnimationData = (fullAnimationName.Item1, fullAnimationName.Item2, startingFrame);
-;
 		}
 
 		// By default, animation's will continue cycling through the 
