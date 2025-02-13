@@ -14,7 +14,40 @@
 		<Frame position="(45, 23)" size="(23, 38)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
+	<Animation name="Walk" duration ="1.0" loop="true" animationOffset="(0, -1)">
+		<Frame position="(12, 148)" size="(28, 39)" perFrameOffset="(0, 0)"/>
+		<Frame position="(44, 148)" size="(30, 39)" perFrameOffset="(0, 0)"/>
+		<Frame position="(82, 148)" size="(29, 39)" perFrameOffset="(0, 0)"/>
+		<Frame position="(116, 148)" size="(24, 39)" perFrameOffset="(0, 0)"/>
+		<Frame position="(146, 148)" size="(28, 39)" perFrameOffset="(0, 0)"/>
+		<Frame position="(181, 148)" size="(30, 39)" perFrameOffset="(0, 0)"/>
+		<Frame position="(220, 148)" size="(28, 39)" perFrameOffset="(0, 0)"/>
+		<Frame position="(254, 148)" size="(24, 39)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
 	<Animation name="Run" duration ="1.0" loop="true" animationOffset="(0, -1)">
+		<Frame position="(12, 148)" size="(28, 39)" perFrameOffset="(2, 0)"/>
+		<Frame position="(44, 148)" size="(30, 39)" perFrameOffset="(0, 0)"/>
+		<Frame position="(82, 148)" size="(29, 39)" perFrameOffset="(1, 0)"/>
+		<Frame position="(116, 148)" size="(24, 39)" perFrameOffset="(6, 0)"/>
+		<Frame position="(146, 148)" size="(28, 39)" perFrameOffset="(2, 0)"/>
+		<Frame position="(181, 148)" size="(30, 39)" perFrameOffset="(0, 0)"/>
+		<Frame position="(220, 148)" size="(28, 39)" perFrameOffset="(2, 0)"/>
+		<Frame position="(254, 148)" size="(24, 39)" perFrameOffset="(6, 0)"/>
+	</Animation>
+
+	<Animation name="RunLeft" duration ="1.0" loop="true" animationOffset="(0, -1)">
+		<Frame position="(1064, 148)" size="(28, 39)" perFrameOffset="(0, 0)"/>
+		<Frame position="(1030, 148)" size="(30, 39)" perFrameOffset="(0, 0)"/>
+		<Frame position="(993, 148)" size="(29, 39)" perFrameOffset="(0, 0)"/>
+		<Frame position="(964, 148)" size="(24, 39)" perFrameOffset="(0, 0)"/>
+		<Frame position="(930, 148)" size="(28, 39)" perFrameOffset="(0, 0)"/>
+		<Frame position="(893, 148)" size="(30, 39)" perFrameOffset="(0, 0)"/>
+		<Frame position="(856, 148)" size="(28, 39)" perFrameOffset="(0, 0)"/>
+		<Frame position="(826, 148)" size="(24, 39)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+	<Animation name="Sprint" duration ="1.0" loop="true" animationOffset="(0, -1)">
 		<Frame position="(12, 148)" size="(28, 39)" perFrameOffset="(0, 0)"/>
 		<Frame position="(44, 148)" size="(30, 39)" perFrameOffset="(0, 0)"/>
 		<Frame position="(82, 148)" size="(29, 39)" perFrameOffset="(0, 0)"/>
@@ -63,4 +96,18 @@
 		<Frame position="(232, 303)" size="(26, 44)" perFrameOffset="(0, 0)"/>
 	</Animation>
 	
+	<Animation name="UpSpecial" duration ="1.0" loop="true" animationOffset="(0, -18)">
+		<Frame position="(11, 1261)" size="(33, 56)" perFrameOffset="(0, 0)"/>
+		<Frame position="(50, 1261)" size="(38, 56)" perFrameOffset="(0, 0)"/>
+		<Frame position="(94, 1261)" size="(32, 56)" perFrameOffset="(0, 0)"/>
+		<Frame position="(132, 1261)" size="(27, 56)" perFrameOffset="(0, 0)"/>
+		<Frame position="(165, 1261)" size="(23, 56)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+	<Animation name="UpSpecialFall" duration ="1.0" loop="true" animationOffset="(0, -18)">
+		<Frame position="(194, 1261)" size="(24, 56)" perFrameOffset="(-3, 0)"/>
+		<Frame position="(224, 1261)" size="(31, 56)" perFrameOffset="(-3, 0)"/>
+		<Frame position="(261, 1261)" size="(33, 56)" perFrameOffset="(-3, 0)"/>
+	</Animation>
+
 </Animations>
