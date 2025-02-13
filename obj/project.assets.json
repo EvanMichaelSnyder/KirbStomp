@@ -340,32 +340,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\snyde\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/kkankanits/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\KirbStomp.csproj",
+      "projectUniqueName": "/Users/kkankanits/Desktop/VSCode/KirbStompMyFork/KirbStomp.csproj",
       "projectName": "KirbStomp",
-      "projectPath": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\KirbStomp.csproj",
-      "packagesPath": "C:\\Users\\snyde\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\obj\\",
+      "projectPath": "/Users/kkankanits/Desktop/VSCode/KirbStompMyFork/KirbStomp.csproj",
+      "packagesPath": "/Users/kkankanits/.nuget/packages/",
+      "outputPath": "/Users/kkankanits/Desktop/VSCode/KirbStompMyFork/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\snyde\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/kkankanits/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -419,7 +411,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/9.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
