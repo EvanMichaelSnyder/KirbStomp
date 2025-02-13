@@ -16,7 +16,7 @@ namespace KirbStomp.Engine.ECSV2Test.EntityObjects
 		{
 			EntityManager manager = EntityManager.GetInstance();
 			Entity entity = manager.CreateEntity();
-			entity.SetPosition(400, 200);
+			entity.SetPosition(200, 200);
 			manager.AddComponent(entity, new SpriteComponent(default, new(), 100, 100, Color.White));
 			manager.AddComponent(entity, new AnimationComponent(( "PlatformBlocks", "Brick" )));
 			manager.AddComponent(entity, new RigidBody2DComponent(RigidBody2DComponent.BodyType.STATIC));
