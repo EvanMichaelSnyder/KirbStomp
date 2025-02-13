@@ -71,19 +71,19 @@
 	</Animation>
 
 	<Animation name="StartNeutralAttack" duration ="1.0" loop="true" animationOffset="(0, 4)">
-		<Frame position="(15, 84)" size="(36, 34)" perFrameOffset="(0, 0)"/>
-		<Frame position="(54, 84)" size="(48, 34)" perFrameOffset="(0, 0)"/>
-		<Frame position="(105, 84)" size="(44, 34)" perFrameOffset="(0, 0)"/>
-		<Frame position="(152, 84)" size="(34, 34)" perFrameOffset="(0, 0)"/>
-		<Frame position="(192, 84)" size="(34, 34)" perFrameOffset="(0, 0)"/>
+		<Frame position="(12,261)" size="(36, 34)" perFrameOffset="(0, 0)"/>
+		<Frame position="(54, 261)" size="(48, 34)" perFrameOffset="(0, 0)"/>
+		<Frame position="(105, 261)" size="(44, 34)" perFrameOffset="(0, 0)"/>
+		<Frame position="(152, 261)" size="(34, 34)" perFrameOffset="(0, 0)"/>
+		<Frame position="(192,261)" size="(34, 34)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
 	<Animation name="MiddleNeutralAttack" duration ="1.0" loop="true" animationOffset="(0, 4)">
-		<Frame position="(233, 84)" size="(36, 34)" perFrameOffset="(0, 0)"/>
-		<Frame position="(270, 84)" size="(48, 34)" perFrameOffset="(0, 0)"/>
-		<Frame position="(307, 84)" size="(44, 34)" perFrameOffset="(0, 0)"/>
-		<Frame position="(356, 84)" size="(34, 34)" perFrameOffset="(0, 0)"/>
-		<Frame position="(400, 84)" size="(34, 34)" perFrameOffset="(0, 0)"/>
+		<Frame position="(233, 261)" size="(36, 34)" perFrameOffset="(0, 0)"/>
+		<Frame position="(270, 261)" size="(48, 34)" perFrameOffset="(0, 0)"/>
+		<Frame position="(307, 261)" size="(44, 34)" perFrameOffset="(0, 0)"/>
+		<Frame position="(356, 261)" size="(34, 34)" perFrameOffset="(0, 0)"/>
+		<Frame position="(400, 261)" size="(34, 34)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
 	<Animation name="EndNeutralAttack" duration ="1.0" loop="true" animationOffset="(0, -6)">

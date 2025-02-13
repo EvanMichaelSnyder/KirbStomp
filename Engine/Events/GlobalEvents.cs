@@ -30,12 +30,17 @@ namespace KirbStomp.Engine.Events
 
 			};
 			inputs = GlobalInputs.GetInstance();
+			inputs.ResetAllCallBacks();
         }
         public static GlobalEvents GetInstance()
         {
             if (instance == null) instance = new GlobalEvents();
             return instance;
         }
+		public static void ResetInstance()
+		{
+			instance = new GlobalEvents();
+		}
 
         public void SubscribeToKeyEvents(Entity entity, Keys key, InputStatus status, EntitysKeyCallBackFN callbackFN)
         {
@@ -46,14 +51,14 @@ namespace KirbStomp.Engine.Events
 		public void UnsubscribeToKeyEvents(Entity entity, Keys key, InputStatus status, EntitysKeyCallBackFN callbackFN)
 		{
 			InputsCallBackToEntities command = dict[status];
-			command.RemoveEntityKeyCallBackFn(key, callbackFN);
+			command.RemoveKeyCallBackFn(entity, key, callbackFN);
 			inputs.RemoveCommandToKeyStatus(key, command, status);
 		}
 		public void UnsubscriptAllEntityEvents(Entity entity)
 		{
-			inputPressedCallBacks.RemoveAlLEntitiesCallBacks(entity);
-			inputJustPressedCallBacks.RemoveAlLEntitiesCallBacks(entity);
-			inputJustReleasedCallBacks.RemoveAlLEntitiesCallBacks(entity);
+			inputPressedCallBacks.RemoveAllEntitysCallBacks(entity);
+			inputJustPressedCallBacks.RemoveAllEntitysCallBacks(entity);
+			inputJustReleasedCallBacks.RemoveAllEntitysCallBacks(entity);
 		}
 
 

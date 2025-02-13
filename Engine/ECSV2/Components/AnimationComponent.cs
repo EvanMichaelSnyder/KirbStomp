@@ -28,6 +28,7 @@ namespace KirbStomp.Engine.ECSV2.Components
 		{
 			fullAnimationName = (character, animation);
 			currentFrame = startingFrame;
+			nextAnimationData = (fullAnimationName.Item1, fullAnimationName.Item2, 0);
 		}
 
 		public void ChangeNextAnimationData(string characterName, string animationName, int startingFrame = 0)

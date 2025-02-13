@@ -53,6 +53,13 @@ namespace KirbStomp.Engine.ECSV2.Systems.SystemsManagement
                 ((ILoadableSystem)system).Load(content);
             }
         }
+		public void ResetAllSystems()
+		{
+            updatableSystems = new();
+            loadableSystems = new();
+            drawableSystems = new();
+            SystemsLoader.LoadAllSystem(this);
+		}
 
 
     }

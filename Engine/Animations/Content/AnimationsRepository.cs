@@ -1,4 +1,5 @@
 ﻿using KirbStomp.Engine.Animations;
+using KirbStomp.Engine.ECSV2;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

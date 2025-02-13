@@ -19,15 +19,16 @@ namespace KirbStomp.Engine.ECSV2.Systems
 {
     internal class AnimationSystem : IUpdatableSystem, ILoadableSystem
     {
-        private static readonly EntityManager manager = EntityManager.GetInstance();
-        private AnimationsRepository animationsRepository;
+		private readonly EntityManager manager;
+		private AnimationsRepository animationsRepository;
 
 		private static Dictionary<uint, (string, string, int)> entitiesToChangeCurrentFrame = new();
 		private static Dictionary<uint, (string, string, int)> entitiesToChangeNextFrame = new();
 
         public AnimationSystem()
 		{
-			animationsRepository = new AnimationsRepository(new() { "mario", "Items", "Link", "MegaMan", "NewMario"});
+			manager = EntityManager.GetInstance();
+			animationsRepository = new AnimationsRepository(new() { "mario", "Items", "Link", "NewMario", "PlatformBlocks", "MegaMan"});
 			animationsRepository.InitializeAnimations();
         }
 
@@ -65,7 +66,6 @@ namespace KirbStomp.Engine.ECSV2.Systems
                         animationComponent.CycleAnimation();
                     }
                 }
-
 				UpdateSpriteFromAnimation(sprite, animation, animationComponent.GetCurrentFrame());
 
 
@@ -81,6 +81,7 @@ namespace KirbStomp.Engine.ECSV2.Systems
         }
 		private void ChangeCurrentAnimation(AnimationComponent animation, string character, string name, int startingFrame)
 		{
+			Logger.Log(animation.GetFullAnimationName().ToString());
 			animation.ChangeCurrentAnimationData(character, name, startingFrame);
 		}
 		private void ChangeNextAnimation(AnimationComponent animation, string character, string name, int startingFrame)
@@ -96,7 +97,7 @@ namespace KirbStomp.Engine.ECSV2.Systems
 
 		public static bool ChangeEntitysCurrentAnimation(Entity entity, (string, string) textureAndAnimation, int startingFrame = 0)
 		{
-			return entitiesToChangeNextFrame.TryAdd(entity.GetID(), (textureAndAnimation.Item1, textureAndAnimation.Item2, startingFrame));
+			return entitiesToChangeCurrentFrame.TryAdd(entity.GetID(), (textureAndAnimation.Item1, textureAndAnimation.Item2, startingFrame));
 		}
 		public static bool ChangeEntitysNextAnimation(Entity entity, (string, string) textureAndAnimation, int startingFrame = 0)
 		{

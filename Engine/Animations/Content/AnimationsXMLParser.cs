@@ -103,6 +103,7 @@ namespace KirbStomp.Engine.Animations.Content
 			position = ParseIntoPoint(GetValueOrDefault(Frame, "position", "(0, 0)"));
 			size = ParseIntoPoint(GetValueOrDefault(Frame, "size", "(50, 50)"));
 			offset = ParseIntoPoint(GetValueOrDefault(Frame, "perFrameOffset", "(0, 0)"));
+			//offset = new Point(0, 0);
 		}
 		private static (string, float, bool, Point) AnimationAttributesToData(XElement animationElement)
 		{

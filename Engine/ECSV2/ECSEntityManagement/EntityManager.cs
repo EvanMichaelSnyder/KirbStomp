@@ -32,6 +32,10 @@ namespace KirbStomp.Engine.ECSV2.EntityManagement
 			this.entities.Add(entity);
 			return entity;
 		}
+		public static void ResetEntityManager()
+		{
+			instance = new EntityManager();
+		}
 
 		// T is an implementation of type IECSComponent, therefore for each unique IECSComponent type added to a component,
 		// therefore for each implementation of IECSComponent we have, we have a component pool of each instance added to the pool
