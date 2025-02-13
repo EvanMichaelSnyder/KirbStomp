@@ -346,11 +346,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\KirbStomp.csproj",
+      "projectUniqueName": "C:\\Users\\snyde\\source\\repos\\KirbStomp\\KirbStomp.csproj",
       "projectName": "KirbStomp",
-      "projectPath": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\KirbStomp.csproj",
+      "projectPath": "C:\\Users\\snyde\\source\\repos\\KirbStomp\\KirbStomp.csproj",
       "packagesPath": "C:\\Users\\snyde\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\snyde\\source\\repos\\SnyderOSU\\KirbStomp\\obj\\",
+      "outputPath": "C:\\Users\\snyde\\source\\repos\\KirbStomp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
