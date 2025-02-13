@@ -24,15 +24,16 @@ namespace KirbStomp.Engine.ECSV2.Systems
         }
         public void Update(float deltaTime)
         {
-            foreach (var (entity, playerControls, playerState) in manager.GetEntitiesWithComponents<PlayerControlsComponent, ExamplePlayerState>())
-            {
-                playerState.normalMovementDirection.X = Convert.ToInt32(inputs.IsInputPressed(playerControls.moveRightKey)) - Convert.ToInt32(inputs.IsInputPressed(playerControls.moveLeftKey));
-                playerState.isWalking = playerState.normalMovementDirection.X != 0;
-                playerState.isFalling = manager.GetComponent<RigidBody2DComponent>(entity).GetYVelocity() != 0;
-                playerState.jumped = inputs.IsInputJustPressed(playerControls.jumpKey) && !playerState.isFalling;
-                if (playerState.jumped) Debug.WriteLine("Jumped!");
-                if (playerState.isWalking) Debug.WriteLine("WALKING, AND I SET THE STATE OF PlayerState Component");
-            }
+			int movingLeft, movingRight;
+			bool jumped;
+			foreach (var (entity, playerControls, playerState) in manager.GetEntitiesWithComponents<PlayerControlsComponent, ExamplePlayerState>())
+			{
+				movingLeft = Convert.ToInt32(inputs.IsInputPressed(playerControls.moveLeftKey));
+				movingRight = Convert.ToInt32(inputs.IsInputPressed(playerControls.moveRightKey));
+				jumped = inputs.IsInputJustPressed(playerControls.jumpKey);
+				playerState.SetWalkingDirection(new Vector2(movingRight - movingLeft, 0.0f));
+				//playerState.SetJumpState(jumped);
+			}
         }
     }
 }

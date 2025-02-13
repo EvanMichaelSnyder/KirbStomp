@@ -29,6 +29,9 @@ namespace KirbStomp.Engine.ECSV2Test.EntityObjects
 			manager.AddComponent(entity, new RigidBody2DComponent(RigidBody2DComponent.BodyType.DYNAMIC));
 			manager.AddComponent(entity, new ExamplePlayerState("Player 1"));
             manager.AddComponent<PlayerControlsComponent>(entity, new());
+
+
+
 			List<(float, Vector2)> path = new()
 			{
 				(1.0f, new Vector2(500, 0))

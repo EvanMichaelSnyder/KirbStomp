@@ -66,6 +66,8 @@ namespace KirbStomp.Engine.ECSV2.Systems
                         animationComponent.CycleAnimation();
                     }
                 }
+
+				Logger.Log(animationComponent.GetFullAnimationName().ToString() + ", " + animation.sourceFrames[animationComponent.GetCurrentFrame()].ToString());
 				UpdateSpriteFromAnimation(sprite, animation, animationComponent.GetCurrentFrame());
 
 
