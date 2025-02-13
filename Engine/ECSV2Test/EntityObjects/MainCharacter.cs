@@ -17,7 +17,10 @@ namespace KirbStomp.Engine.ECSV2Test.EntityObjects
         {
             EntityManager manager = EntityManager.GetInstance();
             Entity entity = manager.CreateEntity();
-			manager.AddComponent(entity, new SpriteComponent());
+			SpriteComponent sprite = new SpriteComponent();
+			sprite.SetZIndex(1000);
+
+            manager.AddComponent(entity, sprite);
 			manager.AddComponent(entity, new AnimationComponent(("MarioTransparentSpriteSheet", "Idle")));	
 
 			(string, string)[] animations = { ( "MarioTransparentSpriteSheet", "Idle" ), 
