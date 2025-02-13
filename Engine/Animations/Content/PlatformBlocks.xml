@@ -6,18 +6,18 @@
 	</Animation>
 
 	<Animation name="Steel" duration="1.0" loop="true" animationOffset="(0, 0)">
-		<Frame position="(72, 0)" size="(72, 80)" perFrameOffset="(0, 0)" />
+		<Frame position="(74, 0)" size="(72, 80)" perFrameOffset="(0, 0)" />
 	</Animation>
 
 	<Animation name="Wood" duration="1.0" loop="true" animationOffset="(0, 0)" >
-		<Frame position="(144, 0)" size="(72, 80)" perFrameOffset="(0, 0)" />
+		<Frame position="(146, 0)" size="(72, 80)" perFrameOffset="(0, 0)" />
 	</Animation>
 
 	<Animation name="Pipes" duration="1.0" loop="true" animationOffset="(0, 0)">
-		<Frame position="(216, 0)" size="(72, 80)" perFrameOffset="(0, 0)" />
+		<Frame position="(220, 0)" size="(72, 80)" perFrameOffset="(0, 0)" />
 	</Animation>
 
 	<Animation name="Dirt" duration="1.0" loop="true" animationOffset="(0, 0)">
-		<Frame position="(290, 0)" size="(72, 80)" perFrameOffset="(0, 0)" />
+		<Frame position="(294, 0)" size="(72, 80)" perFrameOffset="(0, 0)" />
 	</Animation>
 </Animations>
