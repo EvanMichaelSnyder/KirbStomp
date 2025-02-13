@@ -32,6 +32,10 @@ namespace KirbStomp.Engine.ECSV2.Systems
 				{
 					AnimationSystem.ChangeEntitysCurrentAnimation(entity, newAnimationName);
 				}
+				if(playerState.GetPlayerJumped())
+				{
+					rigidBody.SetYVelocity(playerState.GetJumpVelocity());
+				}
 			}
 		}
 	}

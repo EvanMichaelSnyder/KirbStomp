@@ -21,11 +21,11 @@ namespace KirbStomp.Engine.ECSV2.Systems.SystemsManagement
 			manager.AddSystem(new GlobalMovementSystem());
             manager.AddSystem(new AnimationSystem());
             manager.AddSystem(new ExamplePlayerPhysicsSystem());
-            manager.AddSystem(new PlayerMovementSystem());
             manager.AddSystem(new DrawSpriteSystem()); ;
-            manager.AddSystem(new PlayerStateMachineSystem());
 			manager.AddSystem(new SetPathSystem());
 			manager.AddSystem(new BasicProjectileSystem());
+            manager.AddSystem(new PlayerMovementSystem());
+            manager.AddSystem(new PlayerStateMachineSystem());
         }
     }
 }

@@ -18,7 +18,6 @@ namespace KirbStomp.Engine.ECSV2.Components
 		private int playerHealth;
 		
 		private float playerJumpVelocity;
-		private bool playerJumped;
 		private bool playerDoubleJumped;
 
 		private Vector2 walkingDirection;
@@ -26,7 +25,9 @@ namespace KirbStomp.Engine.ECSV2.Components
 
 		private int maxArialJumpCount;
 		private int jumpsRemaining;
+		private bool tryToJump;
 		private bool isInAir;
+		private bool playerJumped;
 
 
 		private bool startedWalkingRight;
@@ -46,7 +47,7 @@ namespace KirbStomp.Engine.ECSV2.Components
 			this.name = name;
 			this.playerMaxHealth = 100;
 			this.playerHealth = 100;
-			this.playerJumpVelocity = 250;
+			this.playerJumpVelocity = -480;
 			this.movementVelocity = 200;
 			this.maxArialJumpCount = 2;
 			this.jumpsRemaining = 0;
@@ -132,7 +133,14 @@ namespace KirbStomp.Engine.ECSV2.Components
 		{
 			this.movementVelocity += vel;
 		}
-
+		public void TryToJump(bool jump)
+		{
+			this.tryToJump = jump;
+		}
+		public bool GetPlayerJumped()
+		{
+			return this.playerJumped;
+		}
 		public float GetJumpVelocity()
 		{
 			return this.playerJumpVelocity;
@@ -177,21 +185,27 @@ namespace KirbStomp.Engine.ECSV2.Components
 		{
 			return this.stoppedWalking;
 		}
-
+		
 		public void UpdateMovementState()
 		{
+			// Hard coded movement stats, to be changed
 			bool wasWalking = this.isWalking;
 			this.isWalking = this.tryingToWalkLeft ^ this.tryingToWalkRight;
-			if (this.stoppedWalking)
-			{
-				this.stoppedWalking = false;
-			}
+			// Reset variables that are true for an instnace
+			if (this.stoppedWalking) this.stoppedWalking = false;
+			if (this.playerJumped) this.playerJumped = false;
 			if (this.startedWalking) this.startedWalking = false;
+
 			SetWalkingDirection(new Vector2(Convert.ToInt32(this.tryingToWalkRight) - Convert.ToInt32(this.tryingToWalkLeft), 0));
 			if(wasWalking ^ isWalking)
 			{
 				this.startedWalking = isWalking;
 				this.stoppedWalking = !isWalking;
+			}
+			// Hard coded jump stats
+			if(this.tryToJump && (!this.isInAir || this.jumpsRemaining > 0))
+			{
+				playerJumped = true;
 			}
 
 		}

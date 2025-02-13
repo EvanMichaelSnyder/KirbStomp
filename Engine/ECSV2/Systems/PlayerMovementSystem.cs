@@ -28,6 +28,7 @@ namespace KirbStomp.Engine.ECSV2.Systems
 			{
 				playerState.TryToMoveLeft(inputs.IsInputPressed(playerControls.moveLeftKey));
 				playerState.TryToMoveRight(inputs.IsInputPressed(playerControls.moveRightKey));
+				playerState.TryToJump(inputs.IsInputJustPressed(playerControls.jumpKey));
 				playerState.UpdateMovementState();
 			}
         }
