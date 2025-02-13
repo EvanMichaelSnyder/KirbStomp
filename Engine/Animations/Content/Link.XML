@@ -48,7 +48,7 @@
 		<Frame position="(410, 1074)" size="(51, 77)" perFrameOffset="(-15, 0)"/>
 		<Frame position="(479, 1074)" size="(60, 77)" perFrameOffset="(-20, 0)"/>
 		<Frame position="(550, 1074)" size="(87, 77)" perFrameOffset="(0, 0)"/>
-		<Frame position="(645, 1074)" size="(56, 77)" perFrameOffset="(0, 0)"/>
+		<Frame position="(645, 1074)" size="(86, 77)" perFrameOffset="(0, 0)"/>
 		<Frame position="(739, 1074)" size="(74, 77)" perFrameOffset="(0, 0)"/>
 	</Animation>
 

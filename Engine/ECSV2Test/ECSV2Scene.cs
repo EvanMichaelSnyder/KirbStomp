@@ -2,6 +2,7 @@
 using KirbStomp.Engine.ECSV2.EntityManagement;
 using KirbStomp.Engine.ECSV2.Systems.SystemsManagement;
 using KirbStomp.Engine.ECSV2Test.EntityObjects;
+using KirbStomp.Engine.Events;
 using KirbStomp.Engine.Inputs;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,8 +23,8 @@ namespace KirbStomp.Engine.ECSV2Test
 			allEntities = new()
 			{
 				Block.CreateEntity(),
-				ExMarioCharacter.CreateExampleMarioCharacter(game),
-				SwappingItems.CreateSwappingItemsEntity()
+				Items.CreateEntity(),
+				MainCharacter.CreateEntity()
 			};
             systemManager = new SystemsManager();
         }
@@ -46,5 +47,21 @@ namespace KirbStomp.Engine.ECSV2Test
         {
             systemManager.DrawAllSystem(spriteBatch);
         }
+
+		public void ResetAll(ContentManager content)
+		{
+			allEntities.Clear();
+			EntityManager.ResetEntityManager();
+			systemManager.ResetAllSystems();
+			GlobalEvents.ResetInstance();
+			allEntities = new()
+			{
+				Block.CreateEntity(),
+				Items.CreateEntity(),
+				MainCharacter.CreateEntity()
+			};
+			LoadAll(content);
+		}
+
     }
 }

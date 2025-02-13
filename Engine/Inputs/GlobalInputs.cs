@@ -56,7 +56,13 @@ namespace KirbStomp.Engine.Inputs
             if (instance == null) instance = new GlobalInputs();
             return instance;
         }
-
+		public void ResetAllCallBacks()
+		{
+			keyPressedCBFN.Clear();
+			keyJustPressedCBFN.Clear();
+			keyJustReleasedCBFN.Clear();
+			mouseMovedCBFNDictionary.Clear();
+		}
         public void UpdateAllControllers()
         {
             keyboard.Update();

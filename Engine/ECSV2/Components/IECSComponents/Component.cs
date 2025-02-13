@@ -32,5 +32,9 @@ namespace KirbStomp.Engine.ECSV2.Components.IComponents
                 this.entity = entity;
             }
         }
+		public Entity GetEntity()
+		{
+			return this.entity;
+		}
     }
 }

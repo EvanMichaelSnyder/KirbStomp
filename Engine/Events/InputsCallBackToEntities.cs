@@ -1,4 +1,5 @@
-﻿using KirbStomp.Engine.ECSV2.EntityManagement;
+﻿using KirbStomp.Engine.ECSV2;
+using KirbStomp.Engine.ECSV2.EntityManagement;
 using KirbStomp.Engine.Events.Commands;
 using KirbStomp.Engine.Inputs;
 using Microsoft.Xna.Framework.Input;
@@ -13,67 +14,128 @@ namespace KirbStomp.Engine.Events
 {
     internal class InputsCallBackToEntities : IKeyCommands
     {
-        private Dictionary<EntitysKeyCallBackFN, Entity> fnEntityDictionary;
-		private Dictionary<EntitysKeyCallBackFN, Keys> callBackToKeyDictionary;
-        private Dictionary<Keys, List<EntitysKeyCallBackFN>> keyEntityFNCallbacks;
+        private Dictionary<(Entity, Keys), List<EntitysKeyCallBackFN>> keyEntityFNCallbacks;
+		private Dictionary<Keys, List<Entity>> keysEntitiesDictionary;
 
+		private int executionDepth;
+		private Queue<(Entity, Keys, EntitysKeyCallBackFN)> queueToAddCBFN;
+		private Queue<(Entity, Keys, EntitysKeyCallBackFN)> queueToRemoveCBFN;
         public InputsCallBackToEntities()
         {
-			fnEntityDictionary = new();
-			callBackToKeyDictionary = new();
 			keyEntityFNCallbacks = new();
+			keysEntitiesDictionary = new();
+			executionDepth = 0;
+			queueToAddCBFN = new();
+			queueToRemoveCBFN = new();
         }
 
-        public void Execute(Keys key)
+		// Since this execution may occur mid execution, we must have some method of tracking execution depth
+		// This is done through member variable executionDepth which will be non 0 during execution
+		public void Execute(Keys key)
         {
-            Entity entity;
-            if (keyEntityFNCallbacks.TryGetValue(key, out List<EntitysKeyCallBackFN> CBFNList))
-            {
-                foreach (EntitysKeyCallBackFN fn in CBFNList)
-                {
-                    entity = fnEntityDictionary[fn];
-                    fn(entity);
-                }
-            }
-        }
+			List<Entity> entities;
+			List<EntitysKeyCallBackFN> callBackFunctions;
+			this.executionDepth++;
+			if (!keysEntitiesDictionary.TryGetValue(key, out entities)) return; 
+			
+			foreach(Entity entity in entities)
+			{
+				if (!keyEntityFNCallbacks.TryGetValue((entity, key), out callBackFunctions)) continue;
 
-		public bool AddEntityKeyCallBack(Entity entity, Keys key, EntitysKeyCallBackFN fn)
-		{
-			if (fnEntityDictionary.ContainsKey(fn)) return false;
-			fnEntityDictionary.Add(fn, entity);
-			callBackToKeyDictionary.Add(fn, key);
-			if (!keyEntityFNCallbacks.ContainsKey(key)) keyEntityFNCallbacks.Add(key, new());
-			keyEntityFNCallbacks[key].Add(fn);
-
-			return true;
-		}
-
-		public bool RemoveEntityKeyCallBackFn(Keys key, EntitysKeyCallBackFN fn)
-		{
-			Keys dictKey = callBackToKeyDictionary[fn];
-			fnEntityDictionary.Remove(fn);
-			callBackToKeyDictionary.Remove(fn);
-			keyEntityFNCallbacks[dictKey].Remove(fn);
-			return false;
-		}
+				foreach(EntitysKeyCallBackFN fn in callBackFunctions)
+				{
+					fn(entity);
+				}
 		
-		public bool RemoveAlLEntitiesCallBacks(Entity entity)
-		{
-			List<EntitysKeyCallBackFN> list = new();
-			foreach(var pair in fnEntityDictionary)
-			{
-				if ((pair.Value).GetID() == entity.GetID()) list.Add(pair.Key);
 			}
-			Keys key;
-			EntitysKeyCallBackFN fn;
-			while(list.Count > 0)
+			if(--this.executionDepth == 0) ProcessMidExecuteChanges(); 		
+		}
+		private void ProcessMidExecuteChanges()
+		{
+			foreach (var (entity, key, fn) in queueToAddCBFN)
 			{
-				fn = list.Last();
-				key = callBackToKeyDictionary[fn];
-				RemoveEntityKeyCallBackFn(key, fn);
-				list.RemoveAt(list.Count()- 1);
+				AddToDictionaries(entity, key, fn);
+			}
+			queueToAddCBFN.Clear();
+			foreach(var (entity, key, fn) in queueToRemoveCBFN)
+			{
+				RemoveFromDictionaries(entity, key, fn);
+			}
+			queueToRemoveCBFN.Clear();
+
+		}
+
+		public void AddEntityKeyCallBack(Entity entity, Keys key, EntitysKeyCallBackFN fn)
+		{
+			if(executionDepth == 0)
+			{
+				AddToDictionaries(entity, key, fn);
+			} else
+			{
+				queueToAddCBFN.Enqueue((entity, key, fn));
+			}
+		}
+
+		public bool RemoveKeyCallBackFn(Entity entity, Keys key, EntitysKeyCallBackFN fn)
+		{
+			if(executionDepth == 0)
+			{
+				RemoveFromDictionaries(entity, key, fn);
+			}
+			else
+			{
+				queueToRemoveCBFN.Enqueue((entity, key, fn));
 			}
 			return true;
+		}
+
+		
+		public int RemoveAllEntitysCallBacks(Entity entity)
+		{
+			int count = 0;
+			List<(Entity, Keys, EntitysKeyCallBackFN)> thingsToRemove = new();
+			foreach (var (entityInDictionary, keyInDictionary) in keyEntityFNCallbacks.Keys)
+			{
+				if (!entityInDictionary.Equals(entity)) continue;
+				foreach (EntitysKeyCallBackFN fn in keyEntityFNCallbacks[(entityInDictionary, keyInDictionary)])
+				{
+					thingsToRemove.Add((entityInDictionary, keyInDictionary, fn));
+				}
+			}
+			if(executionDepth == 0)
+			{
+				foreach (var removeData in thingsToRemove)
+				{
+					RemoveFromDictionaries(removeData.Item1, removeData.Item2, removeData.Item3);
+					count++;
+				}
+			} else
+			{
+				foreach (var removeData in thingsToRemove)
+				{
+					queueToRemoveCBFN.Enqueue((removeData.Item1, removeData.Item2, removeData.Item3));
+					count++;
+				}
+			}
+			return count;
+		}
+		private void AddToDictionaries(Entity entity, Keys key, EntitysKeyCallBackFN fn)
+		{
+			if (!keyEntityFNCallbacks.ContainsKey((entity, key))) keyEntityFNCallbacks.Add((entity, key), new());
+			keyEntityFNCallbacks[(entity, key)].Add(fn);
+			if (!keysEntitiesDictionary.ContainsKey(key)) keysEntitiesDictionary.Add(key, new());
+			keysEntitiesDictionary[key].Add(entity);
+		}
+		private void RemoveFromDictionaries(Entity entity, Keys key, EntitysKeyCallBackFN fn)
+		{			
+			if(keyEntityFNCallbacks.ContainsKey((entity, key)))
+			{
+				Logger.Log($"No Callback functions under the entity: {entity.GetID()} and key: {key.ToString()} to remove!");
+				return;
+			}
+			keyEntityFNCallbacks[(entity, key)].Remove(fn);
+			if (keyEntityFNCallbacks[(entity, key)].Count() == 0) keysEntitiesDictionary[key].Remove(entity);
+			if (keysEntitiesDictionary[key].Count() == 0) keysEntitiesDictionary.Remove(key);
 		}
     }
 }
