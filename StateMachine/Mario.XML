@@ -111,7 +111,7 @@
 		<Frame position="(46, 999)" size="(45, 36)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
-	<Animation name="AttackUp" duration ="0.5" loop="false" animationOffset="(0, 0)">
+	<Animation name="AttackUp" duration ="0.5" loop="false" animationOffset="(0, -15)">
 		<Frame position="(14, 540)" size="(35, 48)" perFrameOffset="(0, 5)"/>
 		<Frame position="(54, 540)" size="(34, 48)" perFrameOffset="(0, 5)"/>
 		<Frame position="(96, 535)" size="(22, 53)" perFrameOffset="(0, 0)"/>
@@ -120,7 +120,7 @@
 		<Frame position="(182, 535)" size="(22, 53)" perFrameOffset="(1, 0)"/>
 	</Animation>
 
-	<Animation name="AttackDown" duration ="0.5" loop="false" animationOffset="(0, 0)">
+	<Animation name="AttackDown" duration ="0.5" loop="false" animationOffset="(0, 4)">
 		<Frame position="(14, 788)" size="(25, 35)" perFrameOffset="(0, 0)"/>
 		<Frame position="(43, 788)" size="(52, 35)" perFrameOffset="(0, 0)"/>
 		<Frame position="(99, 788)" size="(35, 35)" perFrameOffset="(0, 0)"/>
