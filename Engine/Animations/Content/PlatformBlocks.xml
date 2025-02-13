@@ -18,6 +18,6 @@
 	</Animation>
 
 	<Animation name="Dirt" duration="1.0" loop="true" animationOffset="(0, 0)">
-		<Frame position="(288, 0)" size="(72, 80)" perFrameOffset="(0, 0)" />
+		<Frame position="(290, 0)" size="(72, 80)" perFrameOffset="(0, 0)" />
 	</Animation>
 </Animations>

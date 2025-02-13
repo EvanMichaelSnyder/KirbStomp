@@ -13,11 +13,11 @@ using KirbStomp.Engine.ECSV2.EntityManagement;
 
 namespace KirbStomp.Engine.ECSV2.Systems
 {
-    internal class PlayerMovementSystem : IUpdatableSystem
+    internal class PlayerControlSystem : IUpdatableSystem
     {
         private EntityManager manager;
         private GlobalInputs inputs;
-        public PlayerMovementSystem()
+        public PlayerControlSystem()
         {
             manager = EntityManager.GetInstance();
             inputs = GlobalInputs.GetInstance();
@@ -29,6 +29,9 @@ namespace KirbStomp.Engine.ECSV2.Systems
 				playerState.TryToMoveLeft(inputs.IsInputPressed(playerControls.moveLeftKey));
 				playerState.TryToMoveRight(inputs.IsInputPressed(playerControls.moveRightKey));
 				playerState.TryToJump(inputs.IsInputJustPressed(playerControls.jumpKey));
+				playerState.TryToAttack(1, inputs.IsInputJustPressed(playerControls.attack1Key));
+				playerState.TryToAttack(2, inputs.IsInputJustPressed(playerControls.attack2Key));
+				playerState.TryDamagePlayer(10, inputs.IsInputJustPressed(playerControls.selfDamageKey));
 				playerState.UpdateMovementState();
 			}
         }

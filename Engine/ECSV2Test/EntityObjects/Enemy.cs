@@ -27,7 +27,7 @@ namespace KirbStomp.Engine.ECSV2Test.EntityObjects
 				("LinkTransparentSpriteSheet", "Land"),
 				("LinkTransparentSpriteSheet", "StartNeutralAttack")
 			};
-			manager.AddComponent(entity, new CycleAnimationsComponent(entity, animations, animations.Count(), Keys.G, Keys.H));
+			manager.AddComponent(entity, new CycleAnimationsComponent(entity, animations, animations.Count(), Keys.P, Keys.O));
 			List<(int, float, Vector2)> path = new()
 			{
 				(0, 200, new(0, 1)),

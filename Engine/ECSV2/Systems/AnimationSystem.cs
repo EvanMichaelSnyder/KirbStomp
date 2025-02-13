@@ -67,7 +67,7 @@ namespace KirbStomp.Engine.ECSV2.Systems
                     }
                 }
 
-				Logger.Log(animationComponent.GetFullAnimationName().ToString() + ", " + animation.sourceFrames[animationComponent.GetCurrentFrame()].ToString());
+				//Logger.Log(animationComponent.GetFullAnimationName().ToString() + ", " + animation.sourceFrames[animationComponent.GetCurrentFrame()].ToString());
 				UpdateSpriteFromAnimation(sprite, animation, animationComponent.GetCurrentFrame());
 
 
@@ -83,7 +83,7 @@ namespace KirbStomp.Engine.ECSV2.Systems
         }
 		private void ChangeCurrentAnimation(AnimationComponent animation, string character, string name, int startingFrame)
 		{
-			Logger.Log(animation.GetFullAnimationName().ToString());
+			//Logger.Log(animation.GetFullAnimationName().ToString());
 			animation.ChangeCurrentAnimationData(character, name, startingFrame);
 		}
 		private void ChangeNextAnimation(AnimationComponent animation, string character, string name, int startingFrame)

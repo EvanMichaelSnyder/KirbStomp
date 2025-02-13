@@ -89,8 +89,8 @@ public class Game1 : Game
 		float dT = (gameTime.ElapsedGameTime.Milliseconds) / 1000.0f;
 		inputs.UpdateAllControllers();
 		// THIS CAN BE MOVED INTO A CLASS
-		if (inputs.IsInputJustPressed(Keys.Escape) || inputs.IsInputJustReleased(MouseButtons.RightMouseButton))
-			Exit();
+		if (inputs.IsInputJustPressed(Keys.Q))
+			sceneV2.Quit(Exit);
 		if (inputs.IsInputJustPressed(Keys.R))
 			sceneV2.ResetAll(Content);
 		// TODO: Add your update logic here

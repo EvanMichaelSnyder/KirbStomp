@@ -46,7 +46,7 @@ namespace KirbStomp.Engine.ECSV2.Components
 		private void EndOfProjectile(Entity entity)
 		{
 			manager.RemoveEntity(entity);
-			Logger.Log("Projectile entity removed");
+			//Logger.Log("Projectile entity removed");
 		}
 		public void Dispose()
 		{
