@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using KirbStomp;
 using Microsoft.Xna.Framework.Input;
-using KirbStomp;
 
 
 internal class KeyboardController : IController

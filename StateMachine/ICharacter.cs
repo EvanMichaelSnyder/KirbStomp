@@ -2,7 +2,7 @@
 {
     internal interface ICharacter
     {
-        public void updateState();
+        public void UpdateState();
         public void doBehavior();
     }
 }

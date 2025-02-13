@@ -9,7 +9,6 @@ using KirbStomp;
 using KirbStomp.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using KirbStomp;
 
 namespace KirbStomp
 {
@@ -20,16 +19,19 @@ namespace KirbStomp
         private ActionList actionList;
         private Vector2 position, velocity;
         public ISpriteComplete sprite;
+        private string _spriteSheetName;
 
-        public Mario(Texture2D spriteSheet)
+        public Mario(Texture2D spriteSheet, string spriteSheetName)
         {
+
             velocity = Vector2.Zero;
             position.X = 200;
-            position.Y = 200;
+            position.Y = 100;
             stateMachine = new StateMachine();
             buttonDataManager = new ButtonDataManager();
             actionList = new ActionList();
-            sprite = new AllPurposeSprite(spriteSheet, MarioSpriteSheetMapping.convertToMarioState[stateMachine.State.CurrentState]);
+            _spriteSheetName = spriteSheetName;
+            sprite = new AllPurposeSprite(spriteSheet);
         }
         public ButtonDataManager GetButtonDataManager
         {
@@ -38,28 +40,64 @@ namespace KirbStomp
         public void doBehavior()
         {
             stateMachine.performBehavior();
-            actionList.resetList();
-            if (stateMachine.State.AnimationFrame >= 1000)
+            if (stateMachine.State.getElapsedTime() >= 1000)
             {
                 actionList.addAction(GameButtons.End);
             }
         }
 
+        public void Animate(GameTime gameTime)
+        {
+            var animationData = AnimationSystem.GetAnimationData(_spriteSheetName, stateMachine.State.CurrentState);
+
+            if (animationData == null || animationData.Frames.Count == 0)
+                throw new Exception("major error in frame grabbing");
+
+            // Calculate time per frame based on animation duration
+            float frameDuration = animationData.Duration / animationData.Frames.Count;
+
+            // Accumulate elapsed time
+            stateMachine.State.addToElapsedTime((float)gameTime.ElapsedGameTime.TotalSeconds);
+
+            // Advance frames as needed
+            if (stateMachine.State.getElapsedTime() >= frameDuration)
+            {
+                stateMachine.State.incrementFrameIndex();
+                stateMachine.State.resetElapsedTime();
+                // Handle frame overflow
+                if (stateMachine.State.getFrameIndex() >= animationData.Frames.Count)
+                {
+                    if (animationData.Loop)
+                    {
+                        stateMachine.State.resetFrameIndex();
+                    }
+                    else
+                    {
+                        actionList.addAction((GameButtons)GameButtons.End);
+                    }
+                }
+            }
+        }
         public void debugState()
         {
-            Debug.WriteLine("State: " + stateMachine.State.CurrentState + " Frame: " + stateMachine.State.AnimationFrame);
+            Debug.WriteLine("State: " + stateMachine.State.CurrentState + " Frame: " + stateMachine.State.getFrameIndex()+ "\nFacing: "+  stateMachine.State.FacingDirection + " Moving: "+ stateMachine.State.MovementDirection);
         }
 
-        public void draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public void draw(SpriteBatch spriteBatch)
         {
-            sprite.Draw(spriteBatch, position, gameTime);
+            sprite.Draw(spriteBatch, position, stateMachine.State.FacingDirection, stateMachine.State.CurrentState, stateMachine.State.getFrameIndex(), _spriteSheetName);
         }
-            //just pass current facing direction current state enum and current frame
-            //stateMachine.State.CurrentState();
+        //just pass current facing direction current state enum and current frame
+        //stateMachine.State.CurrentState();
 
+        public void UpdateState()
+        {
+            HandleStates();
+            actionList.resetList();
+        }
         internal void HandleStates()
         {
-            foreach (var input in actionList.actions.Where(i => IsDirection(i)))
+            foreach (GameButtons input in actionList.actions.Where(i => IsDirection(i)))
             {
                 switch (input)
                 {
@@ -124,19 +162,8 @@ namespace KirbStomp
                 }
             }
         }
-        public void updateState()
-        {
-            HandleStates();
-            if (MarioSpriteSheetMapping.isFinalFrame.ContainsKey(sprite.GetAnimation()))
-                {
-                if (MarioSpriteSheetMapping.isFinalFrame[sprite.GetAnimation()])
-                {
-                    sprite.ChangeAnimation(MarioSpriteSheetMapping.convertToMarioState[this.stateMachine.State.CurrentState]);
-                }
-            }   
-            }
 
-            static bool IsDirection(GameButtons input)
+        static bool IsDirection(GameButtons input)
         {
             return input == GameButtons.Left || input == GameButtons.Right
                 || input == GameButtons.Up || input == GameButtons.Down;

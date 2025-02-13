@@ -10,9 +10,6 @@ namespace KirbStomp.Interfaces
 {
     internal interface ISpriteComplete
     {
-        void Draw(SpriteBatch spriteBatch, Vector2 location, GameTime gametime);
-
-        void ChangeAnimation(MarioState newState);
-        MarioState GetAnimation();
+        void Draw(SpriteBatch spriteBatch, Vector2 location, DirectionEnum direction, StateEnum state, int frame, string name);
     }
 }

@@ -1,5 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Diagnostics;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Xml.Linq;
 using KirbStomp;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,8 +18,8 @@ namespace KirbStomp
         Mario mario;
         IController controller;
         int numFrames = 0;
-        internal static double globalScaleX = 1.0;
-        internal static double globalScaleY = 1.0;
+        internal static double globalScaleX = 2.0;
+        internal static double globalScaleY = 2.0;
 
         public Game1()
         {
@@ -28,14 +32,20 @@ namespace KirbStomp
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-            Texture2D marioSheet = Content.Load<Texture2D>("MarioTransparentSpriteSheet");
-            mario = new Mario(marioSheet);
+            // TODO: Add your initialization logic
+            string MarioSpriteSheetName = "MarioTransparentSpriteSheet";
+            Texture2D marioSheet = Content.Load<Texture2D>(MarioSpriteSheetName);
+            mario = new Mario(marioSheet, MarioSpriteSheetName);
             controller = new KeyboardController(mario.GetButtonDataManager);
-
-
-
+            string xmlPath = GetRelativeFilePath("Mario.XML");
+            AnimationSystem.LoadAnimationsFromXml(xmlPath);
             base.Initialize();
+        }
+
+        private string GetRelativeFilePath(string file, [CallerFilePath] string currentPath = "")
+        {
+            string dir = Path.GetDirectoryName(currentPath);
+            return Path.Combine(dir, file);
         }
 
         protected override void LoadContent()
@@ -52,14 +62,49 @@ namespace KirbStomp
                 Exit();
             */
 
+            //order of events
+
+            //update key registers
+            //turn key registers into stateChangingEvents
+            //doSCE
+            //alter movement based off of state behavior
+            //do movement
+            //check ground collision
+            //doSCE
+            //check hit collision
+            //doSCE
+            //do Behavior special (spawn fireball)
+            //draw
+            //current frame increment and if endOfState add it to the events
+            //do ECS
+
             // TODO: Add your update logic here
 
-            controller.Update();
-            mario.ProcessButtons();
-            mario.updateState();
-            mario.doBehavior();
-            mario.debugState();
-            numFrames++;
+            controller.Update(); //new keyboard inputs are taken
+
+            mario.ProcessButtons(); //action list includes new events
+
+            mario.UpdateState(); //State is actually changed
+
+            //mario.ApplyMovementBehavior
+            //mario.move
+            //mario.checkGroundCollision right now this is actually called under process buttons
+            //mario.UpdateState(); //State is actually changed
+            //mario.checkHitCollision
+            //mario.UpdateState(); //State is actually changed
+            //mario.doSpecialBehaviors
+
+            mario.doBehavior(); //is every action commented out above
+
+            //mario.draw(_spriteBatch);
+            mario.debugState(); //effectively also draw
+
+            numFrames++;//nothing to do with mario
+
+            mario.Animate(gameTime);
+
+            mario.UpdateState(); //if animate ends the current frame the event endOfState was added
+
             //System.Threading.Thread.Sleep(50);
 
 
@@ -76,7 +121,7 @@ namespace KirbStomp
             _spriteBatch.Begin();
 
 
-             mario.draw(_spriteBatch, gameTime);
+             mario.draw(_spriteBatch);
             //    _spriteBatch.DrawString(_font, "Lots of Marios!!", new Vector2(400, 850), Color.White);
 
             _spriteBatch.End();

@@ -1,0 +1,14 @@
+﻿        public Rectangle ToRectangle()
+        {
+            return new Rectangle((int)Position.X, (int)Position.Y, (int)Size.X, (int)Size.Y);
+
+        }
+        public Rectangle ToRectanglePretty(DirectionEnum direction, float boundX)
+        {
+            if(direction == DirectionEnum.Left)
+            {
+                return new Rectangle((int)(Position.X - boundX - Size.X - 1), (int)Position.Y - 1, (int)Size.X + 2, (int)Size.Y + 2);
+            }
+            return new Rectangle((int)Position.X-1, (int)Position.Y-1, (int)Size.X+2, (int)Size.Y+2);
+
+        }

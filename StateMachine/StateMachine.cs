@@ -10,21 +10,12 @@ public class CharacterState
 {
     private StateEnum _currentState = StateEnum.Idle;
     private int _animationFrame = 0;
+    private float _elapsedTime = 0;
     private DirectionEnum _facingDirection = DirectionEnum.Right;
     private DirectionEnum _movementDirection = DirectionEnum.Right;
     private bool _isGrounded = true;
-    private bool _changeDirectionPermission = true;
     private int _jumpsLeft = 2;
-    /*
-    private AccelEnum _accel = AccelEnum.Same;
     
-    public AccelEnum Acceleration
-    {
-        get => _accel;
-        internal set => _accel = value;
-    }
-    */
-    // Public properties with controlled access
     public StateEnum CurrentState
     {
         get => _currentState;
@@ -37,11 +28,31 @@ public class CharacterState
             }
         }
     }
-
-    public int AnimationFrame
+    public int getFrameIndex()
     {
-        get => _animationFrame;
-        internal set => _animationFrame++;
+        return _animationFrame;
+    }
+    public void resetFrameIndex()
+    {
+        _animationFrame = 0;
+    }
+    public void incrementFrameIndex()
+    {
+        _animationFrame++;
+    }
+
+
+    public float getElapsedTime()
+    {
+        return _elapsedTime;
+    }
+    public void resetElapsedTime()
+    {
+        _elapsedTime = 0;
+    }
+    public void addToElapsedTime(float time)
+    {
+        _elapsedTime += time;
     }
 
     public DirectionEnum FacingDirection
@@ -49,7 +60,6 @@ public class CharacterState
         get => _facingDirection;
         set
         {
-            if (_changeDirectionPermission)
                 _facingDirection = value;
         }
     }
@@ -64,12 +74,6 @@ public class CharacterState
     {
         get => _isGrounded;
         internal set => _isGrounded = value;
-    }
-
-    public bool ChangeDirectionPermission
-    {
-        get => _changeDirectionPermission;
-        set => _changeDirectionPermission = value;
     }
 
     public int JumpsLeft
@@ -154,8 +158,7 @@ public class StateMachine
 
     public void performBehavior()
     {
-        State.AnimationFrame++;
-        Console.WriteLine("Performing Behavior of State: " + State.CurrentState + " on Frame: " + State.AnimationFrame + "\n");
+        Console.WriteLine("Performing Behavior of State: " + State.CurrentState + " on Frame: " + State.getFrameIndex() + "\n");
     }
 
     /*  Template Include all Events and what the expected result is
@@ -330,9 +333,17 @@ public class StateMachine
 
     private void ApplyHitGround()
     {
-        State.IsGrounded = true;
-        State.ResetJumps();
-        Console.WriteLine("EventHitGround: This may not necessarily result in a new Enum State");
+        if (State.CurrentState != StateEnum.SpecialUp && State.CurrentState != StateEnum.Jump)//this is so that early frames of jump where you are still on the ground dont reset jumps
+        {
+            State.IsGrounded = true;
+            State.ResetJumps();
+            Console.WriteLine("EventHitGround: This may not necessarily result in a new Enum State");
+        }
+        else
+        {
+            Console.WriteLine("EventHitGround: Effects not applied because you are in odd state for this event");
+        }
+
     }
     private void ApplyEndOfState()
     {
@@ -341,11 +352,6 @@ public class StateMachine
 
     public void HandleEvent(EventType eventType)
     {
-        // Handle non-permissive events first
-        if (eventType == EventType.EndOfState) { ApplyEndOfState(); }//possibly unused but you never know
-        if (eventType == EventType.HitGround) { ApplyHitGround(); }//basic collision snapping
-
-
         var key = (State.CurrentState, eventType);
         if (transitions.TryGetValue(key, out var handler))
         {
@@ -355,6 +361,9 @@ public class StateMachine
         {
             Console.WriteLine("\n Could not find suitable mapping for " + key + "\n");
         }
+        // Handle non-permissive events last this way
+        if (eventType == EventType.EndOfState) { ApplyEndOfState(); }//possibly unused but you never know
+        if (eventType == EventType.HitGround) { ApplyHitGround(); }//basic collision snapping
     }
 
     #region Transition Handlers
@@ -480,7 +489,7 @@ public class StateMachine
     private void EnterFalling(CharacterState current)
     {
         //the specificity of this transition means we should check it
-        if (current.CurrentState == SpecialUp !&& current.IsGrounded)
+        if (current.CurrentState == SpecialUp)
         {
             current.CurrentState =FreeFall;
         }
@@ -499,7 +508,7 @@ public class StateMachine
         //should only be called on basic
         if (!current.IsGrounded)
         {
-            if (!(current.ConvertToRelativeMovementDirection(current.DesiredMovementDirection) == Forward))
+            if (current.ConvertToRelativeMovementDirection(current.DesiredMovementDirection) != Forward)
             {
                 current.MovementDirection = current.DesiredMovementDirection;
             }
@@ -507,10 +516,12 @@ public class StateMachine
         }
         else if (current.IsGrounded)
         {
-            if (!(current.ConvertToRelativeMovementDirection(current.DesiredMovementDirection) == Forward))
+            if (current.ConvertToRelativeMovementDirection(current.DesiredMovementDirection) != Forward)
             {
                 current.MovementDirection = current.DesiredMovementDirection;
+                current.FacingDirection = current.DesiredMovementDirection;
             }
+            current.MovementDirection = current.DesiredMovementDirection;
             current.CurrentState = Walk;
         }
         else
@@ -569,7 +580,7 @@ public class StateMachine
                     else
                     {
                         current.CurrentState = SlideTurn;
-                        current.MovementDirection = current.DesiredMovementDirection;
+                        current.MovementDirection = None;
                         current.FacingDirection = current.DesiredMovementDirection;
                     }
                     break;
