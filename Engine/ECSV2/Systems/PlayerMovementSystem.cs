@@ -26,11 +26,9 @@ namespace KirbStomp.Engine.ECSV2.Systems
         {
 			foreach (var (entity, playerControls, playerState) in manager.GetEntitiesWithComponents<PlayerControlsComponent, ExamplePlayerState>())
 			{
-				playerState.SetStartedWalkingLeftState(inputs.IsInputJustPressed(playerControls.moveLeftKey));
-				playerState.SetStartedWalkingRightState(inputs.IsInputJustPressed(playerControls.moveRightKey));
-				playerState.SetStoppedWalkingState(!inputs.IsInputPressed(playerControls.moveLeftKey) && !inputs.IsInputPressed(playerControls.moveRightKey));
+				playerState.TryToMoveLeft(inputs.IsInputPressed(playerControls.moveLeftKey));
+				playerState.TryToMoveRight(inputs.IsInputPressed(playerControls.moveRightKey));
 				playerState.UpdateMovementState();
-							//playerState.SetJumpState(jumped);
 			}
         }
     }

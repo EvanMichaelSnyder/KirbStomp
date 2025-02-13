@@ -32,8 +32,15 @@ namespace KirbStomp.Engine.ECSV2.Components
 		private bool startedWalkingRight;
 		private bool startedWalkingLeft;
 		private bool startedWalking;
+		private bool stoppedWalkingRight;
+		private bool stoppedWalkingLeft;
 		private bool stoppedWalking;
-		private bool justStoppedWalking;
+
+		private bool tryingToWalkLeft;
+		private bool tryingToWalkRight;
+		private bool walkingLeft;
+		private bool walkingRight;
+		private bool isWalking;
 		public ExamplePlayerState(string name)
 		{
 			this.name = name;
@@ -44,11 +51,22 @@ namespace KirbStomp.Engine.ECSV2.Components
 			this.maxArialJumpCount = 2;
 			this.jumpsRemaining = 0;
 			this.isInAir = false;
+
+			this.startedWalkingRight = false;
+			this.startedWalkingLeft = false;			
+			this.startedWalking = false;
+			this.stoppedWalkingRight = false;
+			this.stoppedWalkingLeft = false;
+			this.stoppedWalking = false;
+			this.tryingToWalkLeft = false;
+			this.tryingToWalkRight = false;
+			this.walkingLeft = false;
+			this.walkingRight = false;
 		}
 		public string GetWalkingAnimation()
 		{
-			if (startedWalkingLeft) return "RunLeft";
-			if (startedWalkingRight) return "Run";
+			if (walkingDirection.X < 0 ) return "RunLeft";
+			if (walkingDirection.X > 0) return "Run";
 			return "Idle";
 		}
 
@@ -141,33 +159,46 @@ namespace KirbStomp.Engine.ECSV2.Components
 				
 			}
 		}
-
-		public void SetStartedWalkingLeftState(bool state)
+		
+		public void TryToMoveLeft(bool movingLeft)
 		{
-			this.startedWalkingLeft = state;
+			this.tryingToWalkLeft = movingLeft;
 		}
-		public void SetStartedWalkingRightState(bool state)
+		public void TryToMoveRight(bool movingRight)
 		{
-			this.startedWalkingRight = state;
+			this.tryingToWalkRight = movingRight;
 		}
 
 		public bool GetStartedWalkingState()
 		{
-			return this.startedWalkingLeft ^ this.startedWalkingRight;
+			return this.startedWalking;
+		}
+		public bool GetStoppedWalkingState()
+		{
+			return this.stoppedWalking;
 		}
 
 		public void UpdateMovementState()
 		{
-			this.startedWalking = GetStartedWalkingState();
+			bool wasWalking = this.isWalking;
+			this.isWalking = this.tryingToWalkLeft ^ this.tryingToWalkRight;
+			if (this.stoppedWalking)
+			{
+				this.stoppedWalking = false;
+			}
+			if (this.startedWalking) this.startedWalking = false;
+			SetWalkingDirection(new Vector2(Convert.ToInt32(this.tryingToWalkRight) - Convert.ToInt32(this.tryingToWalkLeft), 0));
+			if(wasWalking ^ isWalking)
+			{
+				this.startedWalking = isWalking;
+				this.stoppedWalking = !isWalking;
+			}
+
 		}
 
 		public void SetStoppedWalkingState(bool state)
 		{
 			this.stoppedWalking = state;
-		}
-		public bool GetStoppedWalkingState()
-		{
-			return this.stoppedWalking;
 		}
 	}
 }
