@@ -1,6 +1,7 @@
 ﻿using KirbStomp.Engine.ECSV2.Components;
 using KirbStomp.Engine.ECSV2.EntityManagement;
 using KirbStomp.Engine.ECSV2.Systems.ISystems;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,23 @@ namespace KirbStomp.Engine.ECSV2.Systems
 		}
 		public void Update(float deltaTime)
 		{
+			Vector2 walkingDir;
+			AnimationComponent component;
+			(string, string) newAnimationName;
 			foreach (var (entity, playerState, rigidBody) in manager.GetEntitiesWithComponents<ExamplePlayerState, RigidBody2DComponent>())
 			{
-				rigidBody.SetVelocity(playerState.GetWalkingDirection() * playerState.GetMovementVelocity());
+				walkingDir = playerState.GetWalkingDirection();
+				rigidBody.SetXVelocity(walkingDir.X * playerState.GetMovementVelocity());
+				component = manager.GetComponent<AnimationComponent>(entity);
+				newAnimationName = ("MarioTransparentSpriteSheet", playerState.GetWalkingAnimation());
+				if(playerState.GetStartedWalkingState() || playerState.GetStoppedWalkingState())
+				{
+					AnimationSystem.ChangeEntitysCurrentAnimation(entity, newAnimationName);
+				}
+				if(playerState.GetPlayerJumped())
+				{
+					rigidBody.SetYVelocity(playerState.GetJumpVelocity());
+				}
 			}
 		}
 	}

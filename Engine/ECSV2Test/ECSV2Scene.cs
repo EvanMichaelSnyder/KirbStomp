@@ -60,6 +60,8 @@ namespace KirbStomp.Engine.ECSV2Test
 			{
 				Block.CreateEntity(),
 				Items.CreateEntity(),
+				SwappingItems.CreateSwappingItemsEntity(),
+				Enemy.CreateEnemyEntity(),
 				MainCharacter.CreateEntity()
 			};
 			LoadAll(content);

@@ -51,7 +51,7 @@ namespace KirbStomp.Engine.ECSV2Test.EntityObjects
 			List<Component> cyclingComponents = new()
 			{ 
 				new CreateProjectileComponent(entity, ("Items", "Hamburger"), path, Keys.D1) ,
-				new CreateProjectileComponent(entity, ("MarioTransparentSpriteSheet", "StartNeutralAttack"), path, Keys.D2),
+				new CreateProjectileComponent(entity, ("MarioTransparentSpriteSheet", "AttackNeutral1"), path, Keys.D2),
 				new CreateProjectileComponent(entity, ("Items", "Star"), path3, Keys.D3) ,
 			};
 

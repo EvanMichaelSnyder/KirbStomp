@@ -24,15 +24,12 @@ namespace KirbStomp.Engine.ECSV2.Systems
         }
         public void Update(float deltaTime)
         {
-			int movingLeft, movingRight;
-			bool jumped;
 			foreach (var (entity, playerControls, playerState) in manager.GetEntitiesWithComponents<PlayerControlsComponent, ExamplePlayerState>())
 			{
-				movingLeft = Convert.ToInt32(inputs.IsInputPressed(playerControls.moveLeftKey));
-				movingRight = Convert.ToInt32(inputs.IsInputPressed(playerControls.moveRightKey));
-				jumped = inputs.IsInputJustPressed(playerControls.jumpKey);
-				playerState.SetWalkingDirection(new Vector2(movingRight - movingLeft, 0.0f));
-				//playerState.SetJumpState(jumped);
+				playerState.TryToMoveLeft(inputs.IsInputPressed(playerControls.moveLeftKey));
+				playerState.TryToMoveRight(inputs.IsInputPressed(playerControls.moveRightKey));
+				playerState.TryToJump(inputs.IsInputJustPressed(playerControls.jumpKey));
+				playerState.UpdateMovementState();
 			}
         }
     }

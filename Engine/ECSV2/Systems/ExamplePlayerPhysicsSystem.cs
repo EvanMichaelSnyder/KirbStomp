@@ -28,7 +28,7 @@ namespace KirbStomp.Engine.ECSV2.Systems
                 // ALl the magic numbers should be somewhere else
                 if (entity.GetPosition().Y < 400)
                 {
-                    rigidBody.SetYAcceleration(500);
+                    rigidBody.SetYAcceleration(980);
                 }
                 if (entity.GetPosition().Y > 400)
                 {
