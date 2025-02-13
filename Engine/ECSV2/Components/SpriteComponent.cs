@@ -18,7 +18,7 @@ namespace KirbStomp.Engine.ECSV2.Components
 		private Color color;
 		private float scale;
 		private float rotation;
-		//priotiry of drawing lower goes first
+		//higher number z index draws on top.
 		private int zIndex;
 
 		private float Xoffset, Yoffset;
