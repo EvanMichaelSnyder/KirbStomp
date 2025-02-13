@@ -13,7 +13,7 @@ namespace KirbStomp.Engine.ECSV2.Components
 	internal class ExamplePlayerState : Component
 	{
 		private string name;
-
+		private string spriteSheetName;
 		private int playerMaxHealth;
 		private int playerHealth;
 		
@@ -27,12 +27,30 @@ namespace KirbStomp.Engine.ECSV2.Components
 		private int maxArialJumpCount;
 		private int jumpsRemaining;
 		private bool isInAir;
+
+
+		private bool startedWalkingRight;
+		private bool startedWalkingLeft;
+		private bool startedWalking;
+		private bool stoppedWalking;
+		private bool justStoppedWalking;
 		public ExamplePlayerState(string name)
 		{
 			this.name = name;
-				
+			this.playerMaxHealth = 100;
+			this.playerHealth = 100;
+			this.playerJumpVelocity = 250;
+			this.movementVelocity = 200;
+			this.maxArialJumpCount = 2;
+			this.jumpsRemaining = 0;
+			this.isInAir = false;
 		}
-
+		public string GetWalkingAnimation()
+		{
+			if (startedWalkingLeft) return "RunLeft";
+			if (startedWalkingRight) return "Run";
+			return "Idle";
+		}
 
 		public string GetPlayerName()
 		{
@@ -78,6 +96,7 @@ namespace KirbStomp.Engine.ECSV2.Components
 			this.walkingDirection = walkingDirection;
 			if(this.walkingDirection.Length() != 0)
 				this.walkingDirection.Normalize();
+
 		}
 		public Vector2 GetWalkingDirection()
 		{
@@ -121,7 +140,34 @@ namespace KirbStomp.Engine.ECSV2.Components
 			{
 				
 			}
+		}
 
+		public void SetStartedWalkingLeftState(bool state)
+		{
+			this.startedWalkingLeft = state;
+		}
+		public void SetStartedWalkingRightState(bool state)
+		{
+			this.startedWalkingRight = state;
+		}
+
+		public bool GetStartedWalkingState()
+		{
+			return this.startedWalkingLeft ^ this.startedWalkingRight;
+		}
+
+		public void UpdateMovementState()
+		{
+			this.startedWalking = GetStartedWalkingState();
+		}
+
+		public void SetStoppedWalkingState(bool state)
+		{
+			this.stoppedWalking = state;
+		}
+		public bool GetStoppedWalkingState()
+		{
+			return this.stoppedWalking;
 		}
 	}
 }
