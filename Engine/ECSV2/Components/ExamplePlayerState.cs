@@ -2,47 +2,124 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using KirbStomp.Engine.ECSV2.Components.IComponents;
+using Microsoft.Xna.Framework;
 
 
 namespace KirbStomp.Engine.ECSV2.Components
 {
-	internal class ExamplePlayerState : Component, IUpdate
+	internal class ExamplePlayerState : Component
 	{
-		public string name;
-		public int playerCondition;
-		public int playerHealth;
-		public bool exState1;
-		public bool exState2;
+		private string name;
 
-		public float movementVel;
-		public float jumpVelocity;
-		public Vector2 normalMovementDirection;
-		public bool isWalking;
-		public bool isFalling;
-		public bool jumped;
+		private int playerMaxHealth;
+		private int playerHealth;
+		
+		private float playerJumpVelocity;
+		private bool playerJumped;
+		private bool playerDoubleJumped;
 
-		public float spriteScale;
+		private Vector2 walkingDirection;
+		private float movementVelocity;
 
-
+		private int maxArialJumpCount;
+		private int jumpsRemaining;
+		private bool isInAir;
 		public ExamplePlayerState(string name)
 		{
 			this.name = name;
-			movementVel = 100;
-			jumpVelocity = 500;
-			normalMovementDirection = new();
-			spriteScale = 1.2f;
 		}
-		public void Update(float deltatTime)
+
+
+		public string GetPlayerName()
 		{
-			Debug.WriteLine("DEBUG: Player Name: {0}, exState1: {1}, exState2 {2}, playerHealth {3}, playerCondition {4}", name, exState1, exState2, playerHealth, playerCondition);
-			Console.WriteLine("CONSOLE: Player Name: {0}, exState1: {1}, exState2 {2}, playerHealth {3}, playerCondition {4}", name, exState1, exState2, playerHealth, playerCondition);
+			return this.name;
+		}
+		public void SetPlayerName(string name)
+		{
+			this.name = name;
+		}
+		public int GetPlayerHealth()
+		{
+			return this.playerHealth;
+		}
+		public void SetPlayerHealth(int newHealth)
+		{
+			this.playerHealth = newHealth;
+			if(playerHealth < 0)
+			{
+				playerHealth = 0;
+			}
+		}
+		public int DamagePlayer(int damageAmount)
+		{
+			int output = 0;
+			this.playerHealth -= damageAmount;
+			if(playerHealth < 0)
+			{
+				output = -1 * this.playerHealth;
+				this.playerHealth = 0;
+			}
+			return output;	
+		}
+		public int GetPlayerMaxHealth()
+		{
+			return this.playerMaxHealth;
+		}
+		public void SetPlayerMaxHealth(int maxHealth)
+		{
+			this.playerMaxHealth = maxHealth;
+		}
+		public void SetWalkingDirection(Vector2 walkingDirection)
+		{
+			this.walkingDirection = walkingDirection;
+			this.walkingDirection.Normalize();
+		}
+		public Vector2 GetWalkingDirection()
+		{
+			return new Vector2(this.walkingDirection.X, this.walkingDirection.Y);
+		}
+		public float GetMovementVelocity()
+		{
+			return this.movementVelocity;
+		}
+		public void SetMovemetnVelocity(float vel)
+		{
+			this.movementVelocity = vel;
+		}
+		public void AddMovementVelocity(float vel)
+		{
+			this.movementVelocity += vel;
 		}
 
+		public float GetJumpVelocity()
+		{
+			return this.playerJumpVelocity;
+		}
+		public void SetJumpVelocity(float newJumpVel)
+		{
+			this.playerJumpVelocity = newJumpVel;
+		}
 
+		public int SetRemainingArialJumps(int jumpsLeft)
+		{
+			this.jumpsRemaining = jumpsLeft;
+			return jumpsLeft > maxArialJumpCount ? jumpsLeft - maxArialJumpCount : 0;
+		}
+		public int GetRemainingArialJumps()
+		{
+			return this.jumpsRemaining;
+		}
+		public void UpdateJumpState(bool jumped, bool isOnGround)
+		{
+			if (isOnGround) this.jumpsRemaining = maxArialJumpCount;
+			if(jumped)
+			{
+				
+			}
 
+		}
 	}
 }

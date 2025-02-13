@@ -91,11 +91,8 @@ public class Game1 : Game
 		// THIS CAN BE MOVED INTO A CLASS
 		if (inputs.IsInputJustPressed(Keys.Escape) || inputs.IsInputJustReleased(MouseButtons.RightMouseButton))
 			Exit();
-		else if (inputs.IsInputJustPressed(Keys.T))
-		{
-
-		}
-
+		if (inputs.IsInputJustPressed(Keys.R))
+			sceneV2.ResetAll(Content);
 		// TODO: Add your update logic here
 
 		sceneV2.UpdateAll(dT);
