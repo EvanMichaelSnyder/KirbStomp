@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace KirbStomp.Engine.ECSV2Test
 {
+	delegate void QuitFN();
     internal class ECSV2Scene
     {
         private List<Entity> allEntities;
@@ -66,6 +67,9 @@ namespace KirbStomp.Engine.ECSV2Test
 			};
 			LoadAll(content);
 		}
-
+		public void Quit(QuitFN fn)
+		{
+			fn();
+		}
     }
 }

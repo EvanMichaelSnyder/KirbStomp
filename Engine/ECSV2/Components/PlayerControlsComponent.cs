@@ -12,10 +12,14 @@ namespace KirbStomp.Engine.ECSV2.Components
 {
 	internal class PlayerControlsComponent : Component, IUpdate
 	{
-		public Keys moveLeftKey;
-		public Keys moveRightKey;
-		public Keys jumpKey;
-		public Keys crouchKey;
+		// These should be set to private with get setters later
+		public Keys attack1Key { get; private set; }
+		public Keys attack2Key {get; private set;}
+		public Keys moveLeftKey {get; private set;}
+		public Keys moveRightKey {get; private set;}
+		public Keys jumpKey {get; private set;}
+		public Keys crouchKey {get; private set;}
+		public Keys selfDamageKey {get; private set;}
 
 
 		public PlayerControlsComponent(Keys defaultMoveLeftKey = Keys.A, Keys defaultMoveRightKey = Keys.D)
@@ -23,6 +27,9 @@ namespace KirbStomp.Engine.ECSV2.Components
 			moveLeftKey = defaultMoveLeftKey;
 			moveRightKey = defaultMoveRightKey;
 			jumpKey = Keys.Space;
+			attack1Key = Keys.Z;
+			attack2Key = Keys.N;
+			selfDamageKey = Keys.E;
 		}
 		public void Update(float deltaTime)
 		{

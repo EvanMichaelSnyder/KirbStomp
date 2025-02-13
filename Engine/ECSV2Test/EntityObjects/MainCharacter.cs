@@ -18,13 +18,13 @@ namespace KirbStomp.Engine.ECSV2Test.EntityObjects
             EntityManager manager = EntityManager.GetInstance();
             Entity entity = manager.CreateEntity();
 			manager.AddComponent(entity, new SpriteComponent());
-			manager.AddComponent(entity, new AnimationComponent(("mario", "Running")));	
+			manager.AddComponent(entity, new AnimationComponent(("MarioTransparentSpriteSheet", "Idle")));	
 
 			(string, string)[] animations = { ( "MarioTransparentSpriteSheet", "Idle" ), 
 				("MegaManTransparentSpriteSheet", "Idle"),
 				("mario", "Idle")
 			};
-			manager.AddComponent(entity, new CycleAnimationsComponent(entity, animations, animations.Count(), Keys.I, Keys.U));
+			//manager.AddComponent(entity, new CycleAnimationsComponent(entity, animations, animations.Count(), Keys.I, Keys.U));
 
 			manager.AddComponent(entity, new RigidBody2DComponent(RigidBody2DComponent.BodyType.DYNAMIC));
 			manager.AddComponent(entity, new ExamplePlayerState("Player 1"));
@@ -54,7 +54,7 @@ namespace KirbStomp.Engine.ECSV2Test.EntityObjects
 				new CreateProjectileComponent(entity, ("MarioTransparentSpriteSheet", "AttackNeutral1"), path, Keys.D2),
 				new CreateProjectileComponent(entity, ("Items", "Star"), path3, Keys.D3) ,
 			};
-
+			// This cycling components doesn't fully work, it can't activate and deactivate certain components at this moment
 			manager.AddComponent(entity, new CycleComponents(entity, cyclingComponents, Keys.D9, Keys.D0));
             return entity;
         }

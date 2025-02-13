@@ -42,6 +42,12 @@ namespace KirbStomp.Engine.ECSV2.Components
 		private bool walkingLeft;
 		private bool walkingRight;
 		private bool isWalking;
+
+		private List<string> attacks;
+		private Queue<string> attackQueue;
+		private bool tryingToAttack;
+		private bool justAttacked;
+		private int attackNum;
 		public ExamplePlayerState(string name)
 		{
 			this.name = name;
@@ -63,6 +69,15 @@ namespace KirbStomp.Engine.ECSV2.Components
 			this.tryingToWalkRight = false;
 			this.walkingLeft = false;
 			this.walkingRight = false;
+
+			this.attacks = new()
+			{
+				"AttackNeutral1", "AttackNeutral2", "AttackNeutral3"
+			};
+			this.tryingToAttack = false;
+			this.justAttacked = false;
+			this.attackQueue = new();
+			
 		}
 		public string GetWalkingAnimation()
 		{
@@ -70,26 +85,35 @@ namespace KirbStomp.Engine.ECSV2.Components
 			if (walkingDirection.X > 0) return "Run";
 			return "Idle";
 		}
-
-		public string GetPlayerName()
+		public string GetAttackAnimation()
 		{
-			return this.name;
-		}
-		public void SetPlayerName(string name)
-		{
-			this.name = name;
-		}
-		public int GetPlayerHealth()
-		{
-			return this.playerHealth;
-		}
-		public void SetPlayerHealth(int newHealth)
-		{
-			this.playerHealth = newHealth;
-			if(playerHealth < 0)
+			string output = "Idle";
+			if (attackQueue.Count > 0)
 			{
-				playerHealth = 0;
+				output = attackQueue.Dequeue();
+				attackQueue.Clear();
 			}
+			return output;
+		}
+		private string GetAttackFromNum(int num)
+		{
+			if(num >= attacks.Count())
+			{
+				num = num % attacks.Count();
+			}
+			return attacks[num];
+		}
+		public bool PlayerAttacks()
+		{
+			return this.justAttacked;
+		}
+		public int TryDamagePlayer(int damageAmount, bool damageSelf)
+		{
+			if (damageSelf)
+			{
+				return DamagePlayer(damageAmount);
+			}
+			return 0;
 		}
 		public int DamagePlayer(int damageAmount)
 		{
@@ -100,15 +124,19 @@ namespace KirbStomp.Engine.ECSV2.Components
 				output = -1 * this.playerHealth;
 				this.playerHealth = 0;
 			}
+
+			Logger.Log($"PlayerDamaged Healt {this.playerHealth}");
 			return output;	
 		}
-		public int GetPlayerMaxHealth()
+
+		public void TryToAttack(int attackNum, bool attacks)
 		{
-			return this.playerMaxHealth;
-		}
-		public void SetPlayerMaxHealth(int maxHealth)
-		{
-			this.playerMaxHealth = maxHealth;
+			if(attacks)
+			{
+				this.attackNum = attackNum;
+				attackQueue.Enqueue(GetAttackFromNum(attackNum));
+				this.tryingToAttack = true;
+			}
 		}
 		public void SetWalkingDirection(Vector2 walkingDirection)
 		{
@@ -124,14 +152,6 @@ namespace KirbStomp.Engine.ECSV2.Components
 		public float GetMovementVelocity()
 		{
 			return this.movementVelocity;
-		}
-		public void SetMovemetnVelocity(float vel)
-		{
-			this.movementVelocity = vel;
-		}
-		public void AddMovementVelocity(float vel)
-		{
-			this.movementVelocity += vel;
 		}
 		public void TryToJump(bool jump)
 		{
@@ -162,10 +182,6 @@ namespace KirbStomp.Engine.ECSV2.Components
 		public void UpdateJumpState(bool jumped, bool isOnGround)
 		{
 			if (isOnGround) this.jumpsRemaining = maxArialJumpCount;
-			if(jumped)
-			{
-				
-			}
 		}
 		
 		public void TryToMoveLeft(bool movingLeft)
@@ -192,10 +208,12 @@ namespace KirbStomp.Engine.ECSV2.Components
 			bool wasWalking = this.isWalking;
 			this.isWalking = this.tryingToWalkLeft ^ this.tryingToWalkRight;
 			// Reset variables that are true for an instnace
-			if (this.stoppedWalking) this.stoppedWalking = false;
-			if (this.playerJumped) this.playerJumped = false;
-			if (this.startedWalking) this.startedWalking = false;
+			this.stoppedWalking = false;
+			this.playerJumped = false;
+			this.startedWalking = false;
+			this.justAttacked = false;
 
+			
 			SetWalkingDirection(new Vector2(Convert.ToInt32(this.tryingToWalkRight) - Convert.ToInt32(this.tryingToWalkLeft), 0));
 			if(wasWalking ^ isWalking)
 			{
@@ -207,7 +225,12 @@ namespace KirbStomp.Engine.ECSV2.Components
 			{
 				playerJumped = true;
 			}
-
+			// Attacking
+			if(this.tryingToAttack)
+			{
+				this.justAttacked = true;
+				this.tryingToAttack = false;
+			}
 		}
 
 		public void SetStoppedWalkingState(bool state)

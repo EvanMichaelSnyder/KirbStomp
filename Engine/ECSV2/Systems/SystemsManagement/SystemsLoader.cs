@@ -24,7 +24,7 @@ namespace KirbStomp.Engine.ECSV2.Systems.SystemsManagement
             manager.AddSystem(new DrawSpriteSystem()); ;
 			manager.AddSystem(new SetPathSystem());
 			manager.AddSystem(new BasicProjectileSystem());
-            manager.AddSystem(new PlayerMovementSystem());
+            manager.AddSystem(new PlayerControlSystem());
             manager.AddSystem(new PlayerStateMachineSystem());
         }
     }
