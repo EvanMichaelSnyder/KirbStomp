@@ -36,11 +36,6 @@ namespace KirbStomp.Engine.ECSV2Test
         {
             systemManager.UpdateAllSystem(deltaTime);
 
-			// FORCING AN ENTITY REMOVAL FOR TESTING THIS SHOULD NOT BE HERE OTHERWISE
-			if(GlobalInputs.GetInstance().IsInputJustPressed(Microsoft.Xna.Framework.Input.Keys.L))
-			{
-				EntityManager.GetInstance().RemoveEntity(allEntities.Last());
-			}
         }
         public void LoadAll(ContentManager content)
         {
