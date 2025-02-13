@@ -211,7 +211,7 @@ namespace KirbStomp
                     if (stateMachine.State.getFrameIndex() == 0)
                     {
                         velocity.Y = -250;
-                        velocity.X = 160;
+                        velocity.X = 10;
                         if (stateMachine.State.MovementDirection == DirectionEnum.Left) { velocity.X *= -1; }
                         break;
                     }
@@ -244,7 +244,7 @@ namespace KirbStomp
 
         internal void gravity(GameTime gameTime)
         {
-            velocity.Y += 200 * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            velocity.Y += 500 * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
     }
 
