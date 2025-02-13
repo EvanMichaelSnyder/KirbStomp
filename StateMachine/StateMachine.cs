@@ -472,6 +472,7 @@ public class StateMachine
         else
         {
             current.CurrentState = Landing;
+            current.MovementDirection = None;
         }
 
         //the hitGround will reset our jumps

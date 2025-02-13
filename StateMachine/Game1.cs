@@ -86,10 +86,13 @@ namespace KirbStomp
 
             mario.UpdateState(); //State is actually changed
 
-            //mario.ApplyMovementBehavior
-            //mario.move
-            //mario.checkGroundCollision right now this is actually called under process buttons
-            //mario.UpdateState(); //State is actually changed
+            mario.ApplyMovementBehavior();
+            mario.gravity(gameTime);
+
+            mario.MoveCharacter(gameTime);
+
+            mario.checkGroundCollision(); //right now this is actually called under process buttons
+            mario.UpdateState(); //State is actually changed
             //mario.checkHitCollision
             //mario.UpdateState(); //State is actually changed
             //mario.doSpecialBehaviors

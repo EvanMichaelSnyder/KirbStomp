@@ -18,9 +18,10 @@ namespace KirbStomp
         private ButtonDataManager buttonDataManager;
         private ActionList actionList;
         private Vector2 position, velocity;
-        public ISpriteComplete sprite;
+        private ISpriteComplete sprite;
         private string _spriteSheetName;
 
+        
         public Mario(Texture2D spriteSheet, string spriteSheetName)
         {
 
@@ -176,6 +177,74 @@ namespace KirbStomp
                 actionList.processButton(buttonDataManager.buttonDataSheet[button],button);
             }
 
+        }
+
+        internal void ApplyMovementBehavior()
+        {
+            switch (stateMachine.State.CurrentState)
+            {
+                case (StateEnum.AirMove):
+                    velocity.X = 160;
+                    if (stateMachine.State.MovementDirection == DirectionEnum.Left) { velocity.X *= -1; }
+                    break;
+                case (StateEnum.Walk):
+                    velocity.X = 40;
+                    if (stateMachine.State.MovementDirection == DirectionEnum.Left) { velocity.X *= -1; }
+                    break;
+                case (StateEnum.Run):
+                    velocity.X = 80;
+                    if (stateMachine.State.MovementDirection == DirectionEnum.Left) { velocity.X *= -1; }
+                    break;
+                case (StateEnum.Sprint):
+                    velocity.X = 150;
+                    if (stateMachine.State.MovementDirection == DirectionEnum.Left) { velocity.X *= -1; }
+                    break;
+                case (StateEnum.SlideTurn):
+                    velocity.X = 10;
+                    if (stateMachine.State.FacingDirection == DirectionEnum.Left) { velocity.X *= -1; }
+                    break;
+                case (StateEnum.Idle):
+                    velocity.X = 0;
+                    if (stateMachine.State.MovementDirection == DirectionEnum.Left) { velocity.X *= 0; }
+                    break;
+                case (StateEnum.Jump):
+                    if (stateMachine.State.getFrameIndex() == 0)
+                    {
+                        velocity.Y = -250;
+                        velocity.X = 160;
+                        if (stateMachine.State.MovementDirection == DirectionEnum.Left) { velocity.X *= -1; }
+                        break;
+                    }
+                    break;
+
+            }
+
+        }
+        internal void MoveCharacter(GameTime gameTime)
+        {
+            position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+        }
+
+        internal void checkGroundCollision()
+        {
+            if (stateMachine.State.CurrentState != StateEnum.Jump)
+            {
+                if (position.Y >= 200)
+                {
+                    actionList.addAction(GameButtons.HitGround);
+                    velocity.Y = 0;
+                    velocity.X = 0;
+                    position.Y = 200;
+                    stateMachine.State.IsGrounded = true;
+                    stateMachine.State.ResetJumps();
+                    Console.WriteLine("EventHitGround: This may not necessarily result in a new Enum State");
+                }
+            }
+        }
+
+        internal void gravity(GameTime gameTime)
+        {
+            velocity.Y += 200 * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
     }
 

@@ -69,7 +69,7 @@
 		<Frame position="(78, 84)" size="(29, 42)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
-	<Animation name="Landing" duration ="0.5" loop="false" animationOffset="(0, -4)">
+	<Animation name="Landing" duration ="0.3" loop="false" animationOffset="(0, -4)">
 		<Frame position="(111, 84)" size="(29, 42)" perFrameOffset="(0, 0)"/>
 		<Frame position="(141, 84)" size="(29, 42)" perFrameOffset="(0, 0)"/>
 		<Frame position="(171, 84)" size="(29, 42)" perFrameOffset="(0, 0)"/>
@@ -138,6 +138,11 @@
 		<Frame position="(18, 23)" size="(23, 38)" perFrameOffset="(0, 0)"/>
 	</Animation>
 	-->
+
+	<Animation name="AerialNeutral" duration ="0.5" loop="false" animationOffset="(0, -2)">
+		<Frame position="(14, 1068)" size="(32, 40)" perFrameOffset="(0, 0)"/>
+		<Frame position="(52, 1068)" size="(32, 40)" perFrameOffset="(0, 0)"/>
+	</Animation>
 	
 	<Animation name="AerialForward" duration ="0.5" loop="false" animationOffset="(0, -2)">
 		<Frame position="(14, 1068)" size="(32, 40)" perFrameOffset="(0, 0)"/>
