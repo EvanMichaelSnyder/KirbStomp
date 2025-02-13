@@ -23,12 +23,12 @@
 
 	<Animation name="Jump" duration ="1.0" loop="true" animationOffset="(0, -11)">
 		<Frame position="(241, 456)" size="(37, 63)" perFrameOffset="(0, 0)"/>
-		<Frame position="(486, 456)" size="(37, 63)" perFrameOffset="(0, 0)"/>
+		<Frame position="(286, 456)" size="(37, 63)" perFrameOffset="(0, 0)"/>
 		<Frame position="(331, 456)" size="(46, 63)" perFrameOffset="(0, 0)"/>
 		<Frame position="(380, 456)" size="(46, 63)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
-	<Animation name="Land" duration ="1.0" loop="true" animationOffset="(0, 4)">
+	<Animation name="Landing" duration ="1.0" loop="true" animationOffset="(0, 4)">
 		<Frame position="(236, 522)" size="(56, 48)" perFrameOffset="(10, 0)"/>
 		<Frame position="(300, 522)" size="(56, 48)" perFrameOffset="(10, 0)"/>
 		<Frame position="(364, 522)" size="(57, 48)" perFrameOffset="(10, 0)"/>
@@ -36,7 +36,7 @@
 		<Frame position="(492, 522)" size="(56, 48)" perFrameOffset="(10, 0)"/>
 	</Animation>
 
-	<Animation name="StartNeutralAttack" duration ="1.0" loop="true" animationOffset="(0, 0)">
+	<Animation name="AttackNeutral1" duration ="1.0" loop="true" animationOffset="(0, 0)">
 		<Frame position="(20, 1099)" size="(46, 52)" perFrameOffset="(-13, 0)"/>
 		<Frame position="(73, 1099)" size="(73, 52)" perFrameOffset="(0, 0)"/>
 		<Frame position="(154, 1099)" size="(101, 52)" perFrameOffset="(-30, 0)"/>
@@ -44,7 +44,7 @@
 		<Frame position="(340, 1099)" size="(67, 52)" perFrameOffset="(-35, 0)"/>
 	</Animation>
 	
-	<Animation name="MiddleNeutralAttack" duration ="1.0" loop="true" animationOffset="(0, -25)">
+	<Animation name="AttackNeutral2" duration ="1.0" loop="true" animationOffset="(0, -25)">
 		<Frame position="(410, 1074)" size="(51, 77)" perFrameOffset="(-15, 0)"/>
 		<Frame position="(479, 1074)" size="(60, 77)" perFrameOffset="(-20, 0)"/>
 		<Frame position="(550, 1074)" size="(87, 77)" perFrameOffset="(0, 0)"/>
@@ -52,7 +52,7 @@
 		<Frame position="(739, 1074)" size="(74, 77)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
-	<Animation name="EndNeutralAttack" duration ="1.0" loop="true" animationOffset="(0, 1)">
+	<Animation name="AttackNeutral3" duration ="1.0" loop="true" animationOffset="(0, 1)">
 		<Frame position="(29, 1163)" size="(42, 51)" perFrameOffset="(0, 0)"/>
 		<Frame position="(79, 1163)" size="(44, 51)" perFrameOffset="(-5, 0)"/>
 		<Frame position="(131, 1163)" size="(44, 51)" perFrameOffset="(-8, 0)"/>

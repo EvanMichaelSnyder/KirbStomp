@@ -19,13 +19,15 @@ namespace KirbStomp.Engine.ECSV2Test.EntityObjects
 			Entity entity = manager.CreateEntity();
 			entity.SetPosition(600, 300);
 			manager.AddComponent(entity, new SpriteComponent(default, new(), 100, 100, Color.White));
-			manager.AddComponent(entity, new AnimationComponent(("LinkTransparentSpriteSheet", "StartNeutralAttack")));
+			manager.AddComponent(entity, new AnimationComponent(("LinkTransparentSpriteSheet", "Idle")));
 			manager.AddComponent(entity, new RigidBody2DComponent(RigidBody2DComponent.BodyType.DYNAMIC));
 			(string, string)[] animations = { ( "LinkTransparentSpriteSheet", "Idle" ), 
 				("LinkTransparentSpriteSheet", "Run"),
 				("LinkTransparentSpriteSheet", "Jump"),
-				("LinkTransparentSpriteSheet", "Land"),
-				("LinkTransparentSpriteSheet", "StartNeutralAttack")
+				("LinkTransparentSpriteSheet", "Landing"),
+				("LinkTransparentSpriteSheet", "AttackNeutral1"),
+				("LinkTransparentSpriteSheet", "AttackNeutral2"),
+				("LinkTransparentSpriteSheet", "AttackNeutral3")
 			};
 			manager.AddComponent(entity, new CycleAnimationsComponent(entity, animations, animations.Count(), Keys.P, Keys.O));
 			List<(int, float, Vector2)> path = new()
