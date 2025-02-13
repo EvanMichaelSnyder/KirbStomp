@@ -31,6 +31,10 @@ namespace KirbStomp.Engine.ECSV2.Systems
 				movingLeft = Convert.ToInt32(inputs.IsInputPressed(playerControls.moveLeftKey));
 				movingRight = Convert.ToInt32(inputs.IsInputPressed(playerControls.moveRightKey));
 				jumped = inputs.IsInputJustPressed(playerControls.jumpKey);
+				if(movingLeft - movingRight > 0)
+				{
+					Logger.Log("WALKING");
+				}
 				playerState.SetWalkingDirection(new Vector2(movingRight - movingLeft, 0.0f));
 				//playerState.SetJumpState(jumped);
 			}

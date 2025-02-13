@@ -20,7 +20,7 @@ namespace KirbStomp.Engine.ECSV2.Systems
 		{
 			foreach (var (entity, playerState, rigidBody) in manager.GetEntitiesWithComponents<ExamplePlayerState, RigidBody2DComponent>())
 			{
-				rigidBody.SetVelocity(playerState.GetWalkingDirection() * playerState.GetMovementVelocity());
+				rigidBody.SetXVelocity(playerState.GetWalkingDirection().X * playerState.GetMovementVelocity());
 			}
 		}
 	}

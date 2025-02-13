@@ -30,6 +30,7 @@ namespace KirbStomp.Engine.ECSV2.Components
 		public ExamplePlayerState(string name)
 		{
 			this.name = name;
+				
 		}
 
 
@@ -75,7 +76,8 @@ namespace KirbStomp.Engine.ECSV2.Components
 		public void SetWalkingDirection(Vector2 walkingDirection)
 		{
 			this.walkingDirection = walkingDirection;
-			this.walkingDirection.Normalize();
+			if(this.walkingDirection.Length() != 0)
+				this.walkingDirection.Normalize();
 		}
 		public Vector2 GetWalkingDirection()
 		{
