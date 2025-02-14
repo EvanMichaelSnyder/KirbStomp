@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     "net8.0": {
+      "Contentless/4.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/_._": {}
+        },
+        "runtime": {
+          "lib/net8.0/_._": {}
+        },
+        "build": {
+          "build/Contentless.targets": {}
+        }
+      },
       "MonoGame.Content.Builder.Task/3.8.2.1105": {
         "type": "package",
         "build": {
@@ -102,6 +114,95 @@
     }
   },
   "libraries": {
+    "Contentless/4.0.0": {
+      "sha512": "kmybgQ8xnfej1gE1YHLTSUk64CuI/Ec1eebNwZqyhtbHkpv9jqV4yy/ur/1tvKr0ODxtEnzEhY9Hn8V5BV3GwQ==",
+      "type": "package",
+      "path": "contentless/4.0.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Logo.png",
+        "README.md",
+        "build/Contentless.targets",
+        "contentless.4.0.0.nupkg.sha512",
+        "contentless.nuspec",
+        "lib/net8.0/_._",
+        "tools/ATI.TextureConverter.dll",
+        "tools/AssimpNet.dll",
+        "tools/Contentless.deps.json",
+        "tools/Contentless.dll",
+        "tools/Contentless.exe",
+        "tools/Contentless.pdb",
+        "tools/Contentless.runtimeconfig.json",
+        "tools/CppNet.dll",
+        "tools/Microsoft.Build.Framework.dll",
+        "tools/Microsoft.Build.dll",
+        "tools/Microsoft.NET.StringTools.dll",
+        "tools/Microsoft.Win32.SystemEvents.dll",
+        "tools/MonoGame.Framework.Content.Pipeline.dll",
+        "tools/MonoGame.Framework.dll",
+        "tools/Newtonsoft.Json.dll",
+        "tools/NuGet.Common.dll",
+        "tools/NuGet.Configuration.dll",
+        "tools/NuGet.Frameworks.dll",
+        "tools/Nvidia.TextureTools.dll",
+        "tools/PVRTexLibNET.dll",
+        "tools/SharpDX.D3DCompiler.dll",
+        "tools/SharpDX.dll",
+        "tools/SharpFont.dll",
+        "tools/System.Configuration.ConfigurationManager.dll",
+        "tools/System.Drawing.Common.dll",
+        "tools/System.Reflection.MetadataLoadContext.dll",
+        "tools/System.Security.Cryptography.ProtectedData.dll",
+        "tools/System.Security.Permissions.dll",
+        "tools/System.Windows.Extensions.dll",
+        "tools/runtimes/linux-x64/native/libFreeImage.so",
+        "tools/runtimes/linux-x64/native/libPVRTexLibWrapper.so",
+        "tools/runtimes/linux-x64/native/libSDL2-2.0.so.0",
+        "tools/runtimes/linux-x64/native/libassimp.so",
+        "tools/runtimes/linux-x64/native/libfreetype6.so",
+        "tools/runtimes/linux-x64/native/libnvcore.so",
+        "tools/runtimes/linux-x64/native/libnvimage.so",
+        "tools/runtimes/linux-x64/native/libnvmath.so",
+        "tools/runtimes/linux-x64/native/libnvtt.so",
+        "tools/runtimes/linux-x64/native/libopenal.so.1",
+        "tools/runtimes/linux-x64/native/libpng16.so.16",
+        "tools/runtimes/linux-x64/native/linux/ffmpeg",
+        "tools/runtimes/linux-x64/native/linux/ffprobe",
+        "tools/runtimes/osx-x64/native/libassimp.dylib",
+        "tools/runtimes/osx/native/libFreeImage.dylib",
+        "tools/runtimes/osx/native/libPVRTexLibWrapper.dylib",
+        "tools/runtimes/osx/native/libSDL2.dylib",
+        "tools/runtimes/osx/native/libfreetype6.dylib",
+        "tools/runtimes/osx/native/libnvcore.dylib",
+        "tools/runtimes/osx/native/libnvimage.dylib",
+        "tools/runtimes/osx/native/libnvmath.dylib",
+        "tools/runtimes/osx/native/libnvtt.dylib",
+        "tools/runtimes/osx/native/libopenal.1.dylib",
+        "tools/runtimes/osx/native/libpng16.16.dylib",
+        "tools/runtimes/osx/native/osx/ffmpeg",
+        "tools/runtimes/osx/native/osx/ffprobe",
+        "tools/runtimes/unix/lib/net6.0/System.Drawing.Common.dll",
+        "tools/runtimes/win-x64/native/FreeImage.dll",
+        "tools/runtimes/win-x64/native/PVRTexLibWrapper.dll",
+        "tools/runtimes/win-x64/native/SDL2.dll",
+        "tools/runtimes/win-x64/native/assimp.dll",
+        "tools/runtimes/win-x64/native/ffmpeg.exe",
+        "tools/runtimes/win-x64/native/ffprobe.exe",
+        "tools/runtimes/win-x64/native/freetype6.dll",
+        "tools/runtimes/win-x64/native/libmojoshader_64.dll",
+        "tools/runtimes/win-x64/native/nvtt.dll",
+        "tools/runtimes/win-x64/native/soft_oal.dll",
+        "tools/runtimes/win-x86/native/SDL2.dll",
+        "tools/runtimes/win-x86/native/assimp.dll",
+        "tools/runtimes/win-x86/native/soft_oal.dll",
+        "tools/runtimes/win/lib/net6.0/Microsoft.Win32.SystemEvents.dll",
+        "tools/runtimes/win/lib/net6.0/System.Drawing.Common.dll",
+        "tools/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll",
+        "tools/runtimes/win/lib/net6.0/System.Windows.Extensions.dll"
+      ]
+    },
     "MonoGame.Content.Builder.Task/3.8.2.1105": {
       "sha512": "wNlkLaITOqMs9MmCYLp3Qc7QfFng3FhIq/b+njdYV3cTVpLYgs/i56FYtJjm8jLoUA/2sJ36Qo/uqWpgW+jBuQ==",
       "type": "package",
@@ -233,24 +334,25 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "Contentless >= 4.0.0",
       "MonoGame.Content.Builder.Task >= 3.8.2.1105",
       "MonoGame.Framework.DesktopGL >= 3.8.2.1105"
     ]
   },
   "packageFolders": {
-    "/Users/leocheng/.nuget/packages/": {}
+    "/Users/kkankanits/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/leocheng/Documents/Github/KirbStomp/KirbStomp.csproj",
+      "projectUniqueName": "/Users/kkankanits/Desktop/VSCode/KirbStompMyFork/KirbStomp.csproj",
       "projectName": "KirbStomp",
-      "projectPath": "/Users/leocheng/Documents/Github/KirbStomp/KirbStomp.csproj",
-      "packagesPath": "/Users/leocheng/.nuget/packages/",
-      "outputPath": "/Users/leocheng/Documents/Github/KirbStomp/obj/",
+      "projectPath": "/Users/kkankanits/Desktop/VSCode/KirbStompMyFork/KirbStomp.csproj",
+      "packagesPath": "/Users/kkankanits/.nuget/packages/",
+      "outputPath": "/Users/kkankanits/Desktop/VSCode/KirbStompMyFork/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/leocheng/.nuget/NuGet/NuGet.Config"
+        "/Users/kkankanits/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -273,12 +375,17 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "Contentless": {
+            "target": "Package",
+            "version": "[4.0.0, )"
+          },
           "MonoGame.Content.Builder.Task": {
             "target": "Package",
             "version": "[3.8.2.1105, )"
@@ -304,7 +411,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/9.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

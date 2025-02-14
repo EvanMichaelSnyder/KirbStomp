@@ -13,3 +13,52 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin mario.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:mario.png
+
+#begin Smile.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Smile.png
+
+#begin Items.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Items.png
+
+#begin LinkTransparentSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:LinkTransparentSpriteSheet.png
+
+#begin MarioTransparentSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:MarioTransparentSpriteSheet.png
+
+#begin MegaManTransparentSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:MegaManTransparentSpriteSheet.png
+
+#begin PlatformBlocks.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:PlatformBlocks.png
+

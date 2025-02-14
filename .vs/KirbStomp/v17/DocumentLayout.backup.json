@@ -1,0 +1,190 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\conno\\source\\repos\\KirbStomp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2test\\entityobjects\\maincharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:engine\\ecsv2test\\entityobjects\\maincharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2\\components\\spritecomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:engine\\ecsv2\\components\\spritecomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2\\systems\\drawspritesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:engine\\ecsv2\\systems\\drawspritesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2test\\entityobjects\\exmariocharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:engine\\ecsv2test\\entityobjects\\exmariocharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2test\\entityobjects\\items.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:engine\\ecsv2test\\entityobjects\\items.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2test\\entityobjects\\prebuiltentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:engine\\ecsv2test\\entityobjects\\prebuiltentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2test\\entityobjects\\swappingitems.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:engine\\ecsv2test\\entityobjects\\swappingitems.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2\\systems\\itemcyclesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:engine\\ecsv2\\systems\\itemcyclesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\conno\\source\\repos\\kirbstomp\\engine\\ecsv2\\systems\\playerstatemachinesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:engine\\ecsv2\\systems\\playerstatemachinesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SpriteComponent.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Components\\SpriteComponent.cs",
+              "RelativeDocumentMoniker": "Engine\\ECSV2\\Components\\SpriteComponent.cs",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Components\\SpriteComponent.cs",
+              "RelativeToolTip": "Engine\\ECSV2\\Components\\SpriteComponent.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAgwBQAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-13T23:33:07.476Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ExMarioCharacter.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2Test\\EntityObjects\\ExMarioCharacter.cs",
+              "RelativeDocumentMoniker": "Engine\\ECSV2Test\\EntityObjects\\ExMarioCharacter.cs",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2Test\\EntityObjects\\ExMarioCharacter.cs",
+              "RelativeToolTip": "Engine\\ECSV2Test\\EntityObjects\\ExMarioCharacter.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAA1wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-13T23:28:43.078Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Items.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2Test\\EntityObjects\\Items.cs",
+              "RelativeDocumentMoniker": "Engine\\ECSV2Test\\EntityObjects\\Items.cs",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2Test\\EntityObjects\\Items.cs",
+              "RelativeToolTip": "Engine\\ECSV2Test\\EntityObjects\\Items.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-13T23:28:36.216Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainCharacter.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2Test\\EntityObjects\\MainCharacter.cs",
+              "RelativeDocumentMoniker": "Engine\\ECSV2Test\\EntityObjects\\MainCharacter.cs",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2Test\\EntityObjects\\MainCharacter.cs*",
+              "RelativeToolTip": "Engine\\ECSV2Test\\EntityObjects\\MainCharacter.cs*",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAYwBQAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-13T23:28:22.519Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PreBuiltEntity.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2Test\\EntityObjects\\PreBuiltEntity.cs",
+              "RelativeDocumentMoniker": "Engine\\ECSV2Test\\EntityObjects\\PreBuiltEntity.cs",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2Test\\EntityObjects\\PreBuiltEntity.cs",
+              "RelativeToolTip": "Engine\\ECSV2Test\\EntityObjects\\PreBuiltEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-13T23:03:29.842Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DrawSpriteSystem.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Systems\\DrawSpriteSystem.cs",
+              "RelativeDocumentMoniker": "Engine\\ECSV2\\Systems\\DrawSpriteSystem.cs",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Systems\\DrawSpriteSystem.cs",
+              "RelativeToolTip": "Engine\\ECSV2\\Systems\\DrawSpriteSystem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAABbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-13T22:30:04.151Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SwappingItems.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2Test\\EntityObjects\\SwappingItems.cs",
+              "RelativeDocumentMoniker": "Engine\\ECSV2Test\\EntityObjects\\SwappingItems.cs",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2Test\\EntityObjects\\SwappingItems.cs",
+              "RelativeToolTip": "Engine\\ECSV2Test\\EntityObjects\\SwappingItems.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-13T22:39:55.72Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Game1.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Game1.cs",
+              "RelativeDocumentMoniker": "Game1.cs",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Game1.cs",
+              "RelativeToolTip": "Game1.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAA9wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-13T22:40:40.628Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ItemCycleSystem.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Systems\\ItemCycleSystem.cs",
+              "RelativeDocumentMoniker": "Engine\\ECSV2\\Systems\\ItemCycleSystem.cs",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Systems\\ItemCycleSystem.cs",
+              "RelativeToolTip": "Engine\\ECSV2\\Systems\\ItemCycleSystem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-13T22:38:00.042Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PlayerStateMachineSystem.cs",
+              "DocumentMoniker": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Systems\\PlayerStateMachineSystem.cs",
+              "RelativeDocumentMoniker": "Engine\\ECSV2\\Systems\\PlayerStateMachineSystem.cs",
+              "ToolTip": "C:\\Users\\conno\\source\\repos\\KirbStomp\\Engine\\ECSV2\\Systems\\PlayerStateMachineSystem.cs",
+              "RelativeToolTip": "Engine\\ECSV2\\Systems\\PlayerStateMachineSystem.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-13T22:35:16.982Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

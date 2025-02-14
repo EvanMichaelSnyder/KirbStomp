@@ -1,2 +1,4 @@
-﻿using var game = new KirbStomp.Game1();
+﻿using KirbStomp;
+
+using var game = Game1.get();
 game.Run();

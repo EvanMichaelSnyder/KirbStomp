@@ -1,0 +1,12 @@
+﻿<Animations>
+	<Texture spriteSheet="mario" scale="1.4"/>
+	<Animation name="Running" duration ="1.0" loop="true" animationOffset="(0, 0)">
+		<Frame position="(145, 48)" size="(29, 35)" perFrameOffset="(0, 0)"/>
+		<Frame position="(116, 48)" size="(29, 35)" perFrameOffset="(0, 0)"/>
+		<Frame position="(87 , 48)" size="(29, 35)" perFrameOffset="(0, 0)"/>
+	</Animation>
+	
+	<Animation name="Idle" duration ="1.0" loop="true" animationOffset="(0, 0)" isDefault ="true">
+		<Frame position="(174, 48)" size="(29, 35)" perFrameOffset="(0, 0)"/>
+	</Animation>
+</Animations>

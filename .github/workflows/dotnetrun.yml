@@ -1,0 +1,50 @@
+name: Dotnet Run
+
+on:
+  pull_request_target:
+    types: [opened, synchronize]
+
+jobs:
+  build-check:
+    name: ${{ matrix.os-version }}-build-check
+    strategy:
+      fail-fast: false
+      matrix:
+        os-version: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os-version }}
+
+    steps:
+    - name: Checkout the repo
+      uses: actions/checkout@v2
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '3.1.x'
+    - name: Install MCGB
+      run: dotnet tool install dotnet-mgcb
+      shell: bash
+    - name: Install FreeImage on macOS
+      if: runner.os == 'macOS'
+      run: |
+        if ! command -v brew &>/dev/null; then
+          echo "Installing Homebrew..."
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        fi
+        echo "Installing FreeImage..."
+        brew install freeimage
+
+        echo "Finding FreeImage installation path..."
+        FREEIMAGE_PATH=$(brew --prefix freeimage)
+
+        echo "Creating local library directory..."
+        mkdir -p $HOME/.local/lib
+
+        echo "Copying FreeImage libraries..."
+        cp -R $FREEIMAGE_PATH/lib/* $HOME/.local/lib/
+
+        echo "Updating library path..."
+        echo "DYLD_LIBRARY_PATH=$HOME/.local/lib:\$DYLD_LIBRARY_PATH" >> $GITHUB_ENV
+      shell: bash
+    - name: Build Kirbstomp 
+      run: dotnet build
+

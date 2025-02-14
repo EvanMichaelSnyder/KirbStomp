@@ -1,0 +1,4 @@
+bin/*
+Content/obj/*
+obj/*
+.vs/*
