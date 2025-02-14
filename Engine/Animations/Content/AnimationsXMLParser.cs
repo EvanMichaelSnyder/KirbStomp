@@ -96,7 +96,7 @@ namespace KirbStomp.Engine.Animations.Content
 				sourceFrames.Add(new Rectangle(position, size));
 				frameOffsets.Add(perFrameOffset);
 			}
-			return (name, new Animation(name, textureName, sourceFrames, duration / sourceFrames.Count, doesLoop, frameOffsets));
+			return (name, new Animation(name, textureName, sourceFrames, duration / sourceFrames.Count, doesLoop, frameOffsets, animationOffset));
 		}
 		private static void FrameAttributesToData(XElement Frame, out Point position, out Point size, out Point offset)
 		{

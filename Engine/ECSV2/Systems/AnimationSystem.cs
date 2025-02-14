@@ -116,6 +116,8 @@ namespace KirbStomp.Engine.ECSV2.Systems
 			sprite.SetSpriteWidth(frame.Width);
 			sprite.SetSpriteHeight(frame.Height);
 			sprite.SetScale(scale);
+			sprite.SetFrameOffset(new Vector2(perFrameOffset.X, perFrameOffset.Y));
+			sprite.SetAnimationOffset(new Vector2(animation.animationOffset.X, animation.animationOffset.Y));
 
         }
     }

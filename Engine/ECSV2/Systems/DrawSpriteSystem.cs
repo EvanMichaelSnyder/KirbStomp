@@ -33,12 +33,12 @@ namespace KirbStomp.Engine.ECSV2.Systems
                 {
                     //alr checked if entity had spriteComponent
                     SpriteComponent sprite = manager.GetComponent<SpriteComponent>(entity);
-                    float tempOffsetX = sprite.GetOffSet().X;
-                    float tempOffsetY = sprite.GetOffSet().Y;
+                    Vector2 frameOffset = sprite.GetFrameOffset();
+                    Vector2 animationOffset = sprite.GetAnimationOffset();
                     pointPos = entity.GetPosition().ToPoint();
                     scale = sprite.GetScale();
-                    xPos = (int)(scaleX * (pointPos.X + (tempOffsetX) * scale));
-                    yPos = (int)(scaleY * (pointPos.Y + (tempOffsetY) * scale));
+                    xPos = (int)(scaleX * (pointPos.X + (frameOffset.X + animationOffset.X) * scale));
+                    yPos = (int)(scaleY * (pointPos.Y + (frameOffset.Y + animationOffset.Y) * scale));
                     width = (int)(scaleX * (sprite.GetSpriteWidth() * scale));
                     height = (int)(scaleY * (sprite.GetSpriteHeight() * scale));
 

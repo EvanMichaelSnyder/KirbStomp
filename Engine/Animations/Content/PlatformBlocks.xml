@@ -1,5 +1,5 @@
 ﻿<Animations>
-	<Texture spriteSheet="PlatformBlocks" scale="1.0" />
+	<Texture spriteSheet="PlatformBlocks" scale=".7" />
 			 
 	<Animation name="Brick" duration="1.0" loop="true" animationOffset="(0, 0)" isDefault="true">
 		<Frame position="(0, 0)" size="(72, 80)" perFrameOffset="(0, 0)" />

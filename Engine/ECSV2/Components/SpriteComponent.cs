@@ -20,8 +20,8 @@ namespace KirbStomp.Engine.ECSV2.Components
 		private float rotation;
 		//higher number z index draws on top.
 		private int zIndex;
-
-		private float Xoffset, Yoffset;
+		private float frameoffSetX, frameOffsetY;
+		private float animationOffsetX, animationOffsetY;
 		public SpriteComponent()
 		{	
 			spriteSheet = default;
@@ -33,9 +33,10 @@ namespace KirbStomp.Engine.ECSV2.Components
 			this.zIndex = 0;
 			//TODO implement rotation if wanted
 			rotation = 0;
-			Xoffset = 0;
-			Yoffset = 0;
-
+			frameoffSetX = 0;
+			frameOffsetY = 0;
+			animationOffsetX = 0;
+			animationOffsetY = 0;
 		}
 		public SpriteComponent(Texture2D texture, Rectangle source, float width, float height, Color color, int zIndex = 100, float scale = 1.0f)
 		{
@@ -48,18 +49,30 @@ namespace KirbStomp.Engine.ECSV2.Components
 			this.zIndex = zIndex;
 			//TODO implement rotation if wanted
 			rotation = 0;
-			Xoffset = 0;
-			Yoffset = 0;
+			frameoffSetX = 0;
+			frameOffsetY = 0;
+			animationOffsetX = 0;
+			animationOffsetY = 0;
 		}
 
-		public void SetOffSet(Vector2 offset)
+		public void SetFrameOffset(Vector2 frameOffset)
 		{
-			Xoffset = offset.X;
-			Yoffset = offset.Y;
+			frameoffSetX = frameOffset.X;
+			frameOffsetY = frameOffset.Y;
 		}
-		public Vector2 GetOffSet()
+		public Vector2 GetFrameOffset()
 		{
-			return new Vector2(Xoffset, Yoffset);
+			return new Vector2(frameoffSetX, frameOffsetY);
+		}
+
+		public void SetAnimationOffset(Vector2 animationOffset)
+		{
+			animationOffsetX = animationOffset.X;
+			animationOffsetY = animationOffset.Y;
+		}
+		public Vector2 GetAnimationOffset()
+		{
+			return new Vector2(animationOffsetX, animationOffsetY);
 		}
 
 		public void SetRotation(float rotation)

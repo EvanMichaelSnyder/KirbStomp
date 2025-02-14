@@ -15,12 +15,13 @@ namespace KirbStomp.Engine.Animations
         public Texture2D spriteSheet { get; private set; }
         public List<Rectangle> sourceFrames { get; set; }
 		public List<Point> perFrameOffset { get; set; }
+        public Point animationOffset { get; set; }
         public int numberOfFrames { get; set; }
         public float frameDuration { get; set; }
         public bool loop { get; set; }
 
         public Animation() { }
-        public Animation(string name, string texture, List<Rectangle> frames, float perFrameDuration, bool loops, List<Point> perFrameOffset)
+        public Animation(string name, string texture, List<Rectangle> frames, float perFrameDuration, bool loops, List<Point> perFrameOffset, Point animationOffset)
         {
             animationName = name;
             textureName = texture;
@@ -29,6 +30,7 @@ namespace KirbStomp.Engine.Animations
             loop = loops;
             numberOfFrames = sourceFrames.Count;
 			this.perFrameOffset = perFrameOffset;
+            this.animationOffset = animationOffset;
         }
 
         public void Load(ContentManager content)
