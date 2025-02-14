@@ -105,7 +105,7 @@
 		<Frame position="(13, 924)" size="(24, 44)" perFrameOffset="(0, 0)"/>
 		<Frame position="(43, 924)" size="(27, 44)" perFrameOffset="(0, 0)"/>
 	</Animation>
-
+`
 	<Animation name="AttackForward" duration ="0.5" loop="false" animationOffset="(0, 2)">
 		<Frame position="(14, 999)" size="(26, 36)" perFrameOffset="(0, 0)"/>
 		<Frame position="(46, 999)" size="(45, 36)" perFrameOffset="(0, 0)"/>

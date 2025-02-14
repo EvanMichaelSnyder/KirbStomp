@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using KirbStomp;
 using KirbStomp.Interfaces;
+using KirbStomp.StateMachine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -14,7 +15,7 @@ namespace KirbStomp
 {
     internal class Mario : ICharacter
     {
-        private StateMachine stateMachine;
+        private CharacterStateMachine stateMachine;
         private ButtonDataManager buttonDataManager;
         private ActionList actionList;
         private Vector2 position, velocity;
@@ -28,7 +29,7 @@ namespace KirbStomp
             velocity = Vector2.Zero;
             position.X = 200;
             position.Y = 100;
-            stateMachine = new StateMachine();
+            stateMachine = new CharacterStateMachine();
             buttonDataManager = new ButtonDataManager();
             actionList = new ActionList();
             _spriteSheetName = spriteSheetName;
@@ -184,7 +185,7 @@ namespace KirbStomp
             switch (stateMachine.State.CurrentState)
             {
                 case (StateEnum.AirMove):
-                    velocity.X = 160;
+                    velocity.X = 150;
                     if (stateMachine.State.MovementDirection == DirectionEnum.Left) { velocity.X *= -1; }
                     break;
                 case (StateEnum.Walk):
@@ -207,12 +208,17 @@ namespace KirbStomp
                     velocity.X = 0;
                     if (stateMachine.State.MovementDirection == DirectionEnum.Left) { velocity.X *= 0; }
                     break;
+                case (StateEnum.Landing):
+                    velocity.X = 0;
+                    if (stateMachine.State.MovementDirection == DirectionEnum.Left) { velocity.X *= 0; }
+                    break;
+                case (StateEnum.SpecialUp):
+                    velocity.Y = -150;
+                    break;
                 case (StateEnum.Jump):
                     if (stateMachine.State.getFrameIndex() == 0)
                     {
                         velocity.Y = -250;
-                        velocity.X = 10;
-                        if (stateMachine.State.MovementDirection == DirectionEnum.Left) { velocity.X *= -1; }
                         break;
                     }
                     break;

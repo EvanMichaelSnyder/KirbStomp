@@ -10,9 +10,7 @@ using KirbStomp;
 
     internal class AllPurposeSprite : ISpriteComplete
     {
-        private Texture2D _spriteSheet;
-
-
+    private Texture2D _spriteSheet;
 
     public AllPurposeSprite(Texture2D spriteSheet)
         {
