@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KirbStomp.MainLine;
 
 namespace KirbStomp
 {
@@ -115,48 +116,5 @@ namespace KirbStomp
     }
 
 
-
-
-
-
-
-
-
-    internal class ButtonData
-    {
-        private ButtonState _state = ButtonState.Inactive;
-        private int framesPressed = 0;
-        public int getFramesPressed() { return framesPressed; }
-        public ButtonState getButtonState() { return _state; }
-
-        public ButtonData() { }
-        public void FrameUpdate(KeyState keyState)
-        {
-            if (keyState == KeyState.Inactive)
-            {
-                if (_state == ButtonState.Pressed || _state == ButtonState.Held)
-                {
-                    framesPressed = 0;
-                    _state = ButtonState.Released;   //button just released
-                }
-                else
-                {
-                    _state = ButtonState.Inactive;   //fully inactive
-                }
-            }
-            else
-            {
-                framesPressed++;
-                if (/*State == ButtonState.Released ||*/ _state == ButtonState.Inactive)
-                {
-                    _state = ButtonState.Pressed;
-                }
-                else
-                {
-                    _state = ButtonState.Held;
-                }
-            }
-        }
-    }
 
 }
