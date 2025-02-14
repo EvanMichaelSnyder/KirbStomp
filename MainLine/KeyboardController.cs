@@ -39,9 +39,6 @@ internal class KeyboardController : IController
             RegisterCommand(Keys.G, new UpdateButtonCommand(buttons.buttonDataSheet[KirbStomp.GameButtons.Attack]));
             RegisterCommand(Keys.H, new UpdateButtonCommand(buttons.buttonDataSheet[KirbStomp.GameButtons.Special]));
             RegisterCommand(Keys.J, new UpdateButtonCommand(buttons.buttonDataSheet[KirbStomp.GameButtons.Jump]));
-            RegisterCommand(Keys.F, new UpdateButtonCommand(buttons.buttonDataSheet[KirbStomp.GameButtons.End]));
-            //RegisterCommand(Keys.Y, new UpdateButtonCommand(buttons.buttonDataSheet[KirbStomp.GameButtons.Special]));
-            RegisterCommand(Keys.V, new UpdateButtonCommand(buttons.buttonDataSheet[KirbStomp.GameButtons.HitGround]));
 
     }
         public void Update()

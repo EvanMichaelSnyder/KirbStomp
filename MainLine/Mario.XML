@@ -1,5 +1,5 @@
 ﻿<Animations>
-	<Texture spriteSheet="MarioTransparentSpriteSheet" scale="1.0" boundX="1104" offsetDirectional = "30" />
+	<Texture spriteSheet="MarioTransparentSpriteSheet" scale="2.0" boundX="1104" offsetDirectional = "-30" />
 
 	<Animation name="Idle" duration ="0.5" loop="true" animationOffset="(0, 0)" isDefault ="true">
 		<Frame position="(18, 23)" size="(23, 38)" perFrameOffset="(0, 0)"/>
@@ -47,7 +47,7 @@
 		<Frame position="(254, 148)" size="(24, 39)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
-	<Animation name="SlideTurn" duration ="0.4" loop="false" animationOffset="(2, 2)">
+	<Animation name="SlideTurn" duration ="0.4" loop="false" animationOffset="(0, 2)">
 		<Frame position="(311, 175)" size="(23, 36)" perFrameOffset="(0, 0)"/>
 	</Animation>
 

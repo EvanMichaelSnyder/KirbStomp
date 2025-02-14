@@ -18,8 +18,8 @@ namespace KirbStomp
         Mario mario;
         IController controller;
         int numFrames = 0;
-        internal static double globalScaleX = 2.0;
-        internal static double globalScaleY = 2.0;
+        internal static double globalScaleX = 1.0;
+        internal static double globalScaleY = 1.0;
 
         public Game1()
         {
@@ -34,10 +34,14 @@ namespace KirbStomp
         {
             // TODO: Add your initialization logic
             string MarioSpriteSheetName = "MarioTransparentSpriteSheet";
+            string LinkSpriteSheetName = "LinkTransparentSpriteSheet";
             Texture2D marioSheet = Content.Load<Texture2D>(MarioSpriteSheetName);
+            Texture2D linkSheet = Content.Load<Texture2D>(LinkSpriteSheetName);
+            //mario = new Mario(linkSheet, LinkSpriteSheetName);
             mario = new Mario(marioSheet, MarioSpriteSheetName);
             controller = new KeyboardController(mario.GetButtonDataManager);
             string xmlPath = GetRelativeFilePath("Mario.XML");
+            //string xmlPath = GetRelativeFilePath("Link.XML");
             AnimationSystem.LoadAnimationsFromXml(xmlPath);
             base.Initialize();
         }

@@ -27,8 +27,8 @@ namespace KirbStomp
         {
 
             velocity = Vector2.Zero;
-            position.X = 200;
-            position.Y = 100;
+            position.X = 0;
+            position.Y = 0;
             stateMachine = new CharacterStateMachine();
             buttonDataManager = new ButtonDataManager();
             actionList = new ActionList();
@@ -185,7 +185,7 @@ namespace KirbStomp
             switch (stateMachine.State.CurrentState)
             {
                 case (StateEnum.AirMove):
-                    velocity.X = 150;
+                    velocity.X = 300;
                     if (stateMachine.State.MovementDirection == DirectionEnum.Left) { velocity.X *= -1; }
                     break;
                 case (StateEnum.Walk):
@@ -197,7 +197,7 @@ namespace KirbStomp
                     if (stateMachine.State.MovementDirection == DirectionEnum.Left) { velocity.X *= -1; }
                     break;
                 case (StateEnum.Sprint):
-                    velocity.X = 150;
+                    velocity.X = 300;
                     if (stateMachine.State.MovementDirection == DirectionEnum.Left) { velocity.X *= -1; }
                     break;
                 case (StateEnum.SlideTurn):
@@ -218,7 +218,7 @@ namespace KirbStomp
                 case (StateEnum.Jump):
                     if (stateMachine.State.getFrameIndex() == 0)
                     {
-                        velocity.Y = -250;
+                        velocity.Y = -550;
                         break;
                     }
                     break;
@@ -235,12 +235,12 @@ namespace KirbStomp
         {
             if (stateMachine.State.CurrentState != StateEnum.Jump)
             {
-                if (position.Y >= 200)
+                if (position.Y >= 400)
                 {
                     actionList.addAction(GameButtons.HitGround);
                     velocity.Y = 0;
-                    velocity.X = 0;
-                    position.Y = 200;
+                    //velocity.X = 0;
+                    position.Y = 400;
                     stateMachine.State.IsGrounded = true;
                     stateMachine.State.ResetJumps();
                     Console.WriteLine("EventHitGround: This may not necessarily result in a new Enum State");
@@ -250,7 +250,7 @@ namespace KirbStomp
 
         internal void gravity(GameTime gameTime)
         {
-            velocity.Y += 500 * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            velocity.Y += 1000 * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
     }
 
