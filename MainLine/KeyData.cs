@@ -83,6 +83,7 @@ namespace KirbStomp
         {
             var directionalButtons = new List<GameButtons>
             {
+                GameButtons.None,
                 GameButtons.Up,
                 GameButtons.Down,
                 GameButtons.Left,
@@ -100,6 +101,7 @@ namespace KirbStomp
         {
             var directionalButtons = new List<GameButtons>
             {
+                GameButtons.None,
                 GameButtons.Left,
                 GameButtons.Right
             };

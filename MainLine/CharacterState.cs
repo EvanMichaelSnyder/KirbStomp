@@ -16,9 +16,14 @@ namespace KirbStomp.StateMachine
         private int _animationFrame = 0;
         private float _elapsedTime = 0;
         private DirectionEnum _facingDirection = DirectionEnum.Right;
-        private DirectionEnum _movementDirection = DirectionEnum.Right;
+        private DirectionEnum _movementDirection = DirectionEnum.None;
         private bool _isGrounded = true;
         private int _jumpsLeft = 2;
+        private DirectionEnum _desiredAttackDirection = DirectionEnum.None;
+        private DirectionEnum _desiredMovementDirection = DirectionEnum.None;
+
+        public DirectionEnum DesiredMovementDirection { get; set; }
+        public DirectionEnum DesiredAttackDirection { get; set; }
 
         public StateEnum CurrentState
         {
@@ -88,19 +93,6 @@ namespace KirbStomp.StateMachine
         internal void DecrementJumps() { JumpsLeft--; }
 
         // Intents (publicly settable but validated)
-        private DirectionEnum _desiredAttackDirection = DirectionEnum.Right;
-        public DirectionEnum DesiredAttackDirection
-        {
-            get => _desiredAttackDirection;
-            set => _desiredAttackDirection = value;
-        }
-
-        private DirectionEnum _desiredMovementDirection = DirectionEnum.Right;
-        public DirectionEnum DesiredMovementDirection
-        {
-            get => _desiredMovementDirection;
-            set => _desiredMovementDirection = value;
-        }
 
         public void ResetJumps() => JumpsLeft = 2;
 
@@ -144,6 +136,8 @@ namespace KirbStomp.StateMachine
 
 
         }
+
+
         #region Transition Handlers
         public static void EnterAttack(CharacterState current)
         {

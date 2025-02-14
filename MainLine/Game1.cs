@@ -15,11 +15,18 @@ namespace KirbStomp
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        Mario mario;
-        IController controller;
-        int numFrames = 0;
+        private Mario mario;
+        private IController controller;
+
+
+
+        int numFrames = 0;//just for debugging
+
+        internal static double globalXBoundMax = 800;
+        internal static double globalYBoundMax = 480;
         internal static double globalScaleX = 1.0;
         internal static double globalScaleY = 1.0;
+        internal static double globalAspectRatio = 5 / 3.0;
 
         public Game1()
         {
@@ -30,18 +37,48 @@ namespace KirbStomp
 
         }
 
+        public static (int width, int height) GetAdjustedWindowSize()
+        {
+            // Get screen dimensions
+            int screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            int screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+
+            // Calculate 5:3 window size
+            double maxWidth = screenWidth * 0.80; // 80% of screen width
+            double maxHeight = screenHeight * 0.80; // 80% of screen height
+
+            double windowWidth = maxWidth;
+            double windowHeight = maxWidth / globalAspectRatio;
+
+            // Return the calculated width and height as integers
+            return ((int)windowWidth, (int)windowHeight);
+        }
+
         protected override void Initialize()
         {
             // TODO: Add your initialization logic
+
+
+            //graphics
+            var (width, height) = GetAdjustedWindowSize();
+            //width = 1600;
+            //height = 900;
+            globalScaleX = width / globalXBoundMax;
+            globalScaleY = height / globalYBoundMax;
+            _graphics.PreferredBackBufferWidth = width;
+            _graphics.PreferredBackBufferHeight = height;
+            //Custom Graphics Settings
+            _graphics.ApplyChanges();
+            //
             string MarioSpriteSheetName = "MarioTransparentSpriteSheet";
             string LinkSpriteSheetName = "LinkTransparentSpriteSheet";
             Texture2D marioSheet = Content.Load<Texture2D>(MarioSpriteSheetName);
             Texture2D linkSheet = Content.Load<Texture2D>(LinkSpriteSheetName);
-            //mario = new Mario(linkSheet, LinkSpriteSheetName);
             mario = new Mario(marioSheet, MarioSpriteSheetName);
+            //rio = new Mario(marioSheet, MarioSpriteSheetName);
             controller = new KeyboardController(mario.GetButtonDataManager);
-            string xmlPath = GetRelativeFilePath("Mario.XML");
             //string xmlPath = GetRelativeFilePath("Link.XML");
+            string xmlPath = GetRelativeFilePath("Mario.XML");
             AnimationSystem.LoadAnimationsFromXml(xmlPath);
             base.Initialize();
         }

@@ -245,6 +245,14 @@ namespace KirbStomp
                     stateMachine.State.ResetJumps();
                     Console.WriteLine("EventHitGround: This may not necessarily result in a new Enum State");
                 }
+                if (stateMachine.State.CurrentState == StateEnum.SpecialBack
+                    || stateMachine.State.CurrentState == StateEnum.SpecialDown
+                    || stateMachine.State.CurrentState == StateEnum.SpecialForward
+                    || stateMachine.State.CurrentState == StateEnum.SpecialNeutral
+                    || stateMachine.State.CurrentState == StateEnum.SpecialUp)
+                {
+                    velocity.X = 0;
+                }
             }
         }
 
