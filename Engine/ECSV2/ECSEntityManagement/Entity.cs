@@ -47,7 +47,5 @@ namespace KirbStomp.Engine.ECSV2.EntityManagement
             //return copy of pos,forces classes to use function to adjust pos
             return new Vector2(this.pos.X, this.pos.Y);
         }
-
-
     }
 }

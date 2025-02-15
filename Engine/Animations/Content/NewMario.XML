@@ -1,5 +1,5 @@
 ﻿<Animations>
-	<Texture spriteSheet="MarioTransparentSpriteSheet" scale="1.0"/>
+	<Texture spriteSheet="MarioTransparentSpriteSheet" scale="1.4"/>
 
 	<Animation name="Idle" duration ="1.0" loop="true" animationOffset="(0, 0)" isDefault ="true">
 		<Frame position="(18, 23)" size="(23, 38)" perFrameOffset="(0, 0)"/>

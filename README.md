@@ -6,10 +6,13 @@ All our project documentation can be found on our team Notion Webpage. This incl
 ### Project Documentation:
 Notion Documentation and Task management: [KirbStomp Super Smash Notion](https://www.notion.so/Temp-Smash-Name-18b0992c88eb80bf8935dc57b3a3be01)
 
+Note: All tasks are listed in Task Universe page
+
 All Documentation files listed below are in the Documentation folder:
-- Planned Sprint Requirement: KirbStomp Sprint Requirements.pdf
-- Sprint2 Planning: KirbStomp Sprint 2 Planning.pdf
-- Code Analysis using Code Metrics tool on Visual Studio: KirbStomp Code Analysis.pdf
+* KirbStomp Sprint Requirements.pdf - this list all the our game plan to meet each sprint requirement
+* KirbStomp Sprint 2 Planning.pdf - this lists our Sprint2 initial task planning
+* KirbStomp Code Analysis.pdf - this contains our code metrics data obtained from Visual Studio code analysis tool
+* KirbStomp Sprint2 Reflection.pdf - this documents our team sprint2 overall progress reflection
 
 ### Actions during runtime
 * A and D - directional movement
@@ -20,9 +23,8 @@ All Documentation files listed below are in the Documentation folder:
 * T and Y - toggle through blocks
 * P and O - toggle through different temporary enemy (Link) animation (bottom-right of the screen)
 * J and K - toggle through different mario animation (top-left of the screen)
-* L - removing character from scene
-* Q - Quit the program
 * R - resets scene 
+* Q - quit the program
 
 ### Known bugs
 
