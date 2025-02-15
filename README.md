@@ -29,3 +29,8 @@ All Documentation files listed below are in the Documentation folder:
 ### Known bugs
 
 * Sometimes directional input doesn't sync with what the sprite should be
+
+### Code Reviews
+
+* The code reviews are commented under a pull request
+* Pull requests with code review is tagged CR in the closed pull request (Go to Pull request tabs -> select closed pull requests -> select CR label)
