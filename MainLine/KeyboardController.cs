@@ -40,6 +40,8 @@ internal class KeyboardController : IController
             RegisterCommand(Keys.H, new UpdateButtonCommand(buttons.buttonDataSheet[KirbStomp.GameButtons.Special]));
             RegisterCommand(Keys.J, new UpdateButtonCommand(buttons.buttonDataSheet[KirbStomp.GameButtons.Jump]));
 
+
+
     }
         public void Update()
         {

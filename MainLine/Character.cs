@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace KirbStomp
 {
-    internal class Mario : ICharacter
+    internal class Character : ICharacter
     {
         private CharacterStateMachine stateMachine;
         private ButtonDataManager buttonDataManager;
@@ -21,13 +21,15 @@ namespace KirbStomp
         private Vector2 position, velocity;
         private ISpriteComplete sprite;
         private string _spriteSheetName;
-
+        private static int xLocaleSpawn = 0;
+        //locale spawn is not used later
         
-        public Mario(Texture2D spriteSheet, string spriteSheetName)
+        public Character(Texture2D spriteSheet, string spriteSheetName)
         {
 
             velocity = Vector2.Zero;
-            position.X = 0;
+            position.X = xLocaleSpawn;
+            xLocaleSpawn += 50;
             position.Y = 0;
             stateMachine = new CharacterStateMachine();
             buttonDataManager = new ButtonDataManager();
@@ -171,7 +173,7 @@ namespace KirbStomp
                 || input == GameButtons.Up || input == GameButtons.Down;
         }
 
-        internal void ProcessButtons()
+        public  void ProcessButtons()
         {
             foreach (var button in buttonDataManager.buttonDataSheet.Keys)
             {
@@ -180,7 +182,7 @@ namespace KirbStomp
 
         }
 
-        internal void ApplyMovementBehavior()
+        public void ApplyMovementBehavior()
         {
             switch (stateMachine.State.CurrentState)
             {
@@ -226,12 +228,13 @@ namespace KirbStomp
             }
 
         }
-        internal void MoveCharacter(GameTime gameTime)
+
+        public void MoveCharacter(GameTime gameTime) //this may be permanent but should in the future maybe include acceleration
         {
             position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
-        internal void checkGroundCollision()
+        public void checkGroundCollision() //temporary
         {
             if (stateMachine.State.CurrentState != StateEnum.Jump)
             {
@@ -256,7 +259,7 @@ namespace KirbStomp
             }
         }
 
-        internal void gravity(GameTime gameTime)
+        public void gravity(GameTime gameTime) //this is temporary
         {
             velocity.Y += 1000 * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }

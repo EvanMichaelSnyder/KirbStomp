@@ -15,8 +15,10 @@ namespace KirbStomp
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private Mario mario;
-        private IController controller;
+        //private Mario mario;
+        private ArrayList _characterList;
+        private ArrayList _controllerList;
+        //private IController controller;
 
 
 
@@ -27,6 +29,11 @@ namespace KirbStomp
         internal static double globalScaleX = 1.0;
         internal static double globalScaleY = 1.0;
         internal static double globalAspectRatio = 5 / 3.0;
+
+        //fps stuff
+        private float _fps;
+        private int _framesRendered;
+        private DateTime _lastTime;
 
         public Game1()
         {
@@ -70,16 +77,35 @@ namespace KirbStomp
             //Custom Graphics Settings
             _graphics.ApplyChanges();
             //
+
+            //much of this should be moved to load content 
             string MarioSpriteSheetName = "MarioTransparentSpriteSheet";
             string LinkSpriteSheetName = "LinkTransparentSpriteSheet";
             Texture2D marioSheet = Content.Load<Texture2D>(MarioSpriteSheetName);
             Texture2D linkSheet = Content.Load<Texture2D>(LinkSpriteSheetName);
-            mario = new Mario(marioSheet, MarioSpriteSheetName);
-            //rio = new Mario(marioSheet, MarioSpriteSheetName);
-            controller = new KeyboardController(mario.GetButtonDataManager);
-            //string xmlPath = GetRelativeFilePath("Link.XML");
-            string xmlPath = GetRelativeFilePath("Mario.XML");
-            AnimationSystem.LoadAnimationsFromXml(xmlPath);
+
+            ICharacter mario = new Character(marioSheet, MarioSpriteSheetName);
+            IController controllerMario = new KeyboardController(mario.GetButtonDataManager);
+            ICharacter mario2 = new Character(marioSheet, MarioSpriteSheetName);
+            IController controllerMario2 = new KeyboardController(mario2.GetButtonDataManager);
+            ICharacter mario3 = new Character(marioSheet, MarioSpriteSheetName);
+            IController controllerMario3 = new KeyboardController(mario3.GetButtonDataManager);
+            //ICharacter link = new Character(linkSheet, LinkSpriteSheetName);
+            //IController controllerLink = new KeyboardController(link.GetButtonDataManager);
+
+            _characterList = new ArrayList();
+            _characterList.Add(mario);
+            _characterList.Add(mario2);
+            _characterList.Add(new Character(linkSheet, LinkSpriteSheetName));
+
+            _controllerList = new ArrayList();
+            _controllerList.Add(controllerMario);
+            _controllerList.Add(controllerMario2);
+
+            string xmlPathLink = GetRelativeFilePath("Link.XML");
+            string xmlPathMario = GetRelativeFilePath("Mario.XML");
+            AnimationSystem.LoadAnimationsFromXml(xmlPathMario);
+            AnimationSystem.LoadAnimationsFromXml(xmlPathLink);
             base.Initialize();
         }
 
@@ -121,33 +147,51 @@ namespace KirbStomp
 
             // TODO: Add your update logic here
 
-            controller.Update(); //new keyboard inputs are taken
+            //fps
+            numFrames++;
+            _framesRendered++;
+            if ((DateTime.Now - _lastTime).TotalSeconds >= 1)
+            {
+                // one second has elapsed 
 
-            mario.ProcessButtons(); //action list includes new events
+                _fps = _framesRendered;
+                _framesRendered = 0;
+                _lastTime = DateTime.Now;
+            }
+            Debug.WriteLine(numFrames + " FPS: " + _fps);
 
-            mario.UpdateState(); //State is actually changed
 
-            mario.ApplyMovementBehavior();
-            mario.gravity(gameTime);
 
-            mario.MoveCharacter(gameTime);
+            foreach (IController controller in _controllerList)
+            {
+                controller.Update();
+            } //new keyboard inputs are taken
 
-            mario.checkGroundCollision(); //right now this is actually called under process buttons
-            mario.UpdateState(); //State is actually changed
+            foreach (ICharacter chara in _characterList) { chara.ProcessButtons(); } //action list includes new events
+
+            foreach (ICharacter chara in _characterList) { chara.UpdateState(); } //State is actually changed
+
+            foreach (ICharacter chara in _characterList) { chara.ApplyMovementBehavior(); }
+            foreach (ICharacter chara in _characterList) { chara.gravity(gameTime); }
+
+            foreach (ICharacter chara in _characterList) { chara.MoveCharacter(gameTime); }
+
+            foreach (ICharacter chara in _characterList) { chara.checkGroundCollision(); } //right now this is actually called under process buttons
+            foreach (ICharacter chara in _characterList) { chara.UpdateState(); } //State is actually changed
             //mario.checkHitCollision
             //mario.UpdateState(); //State is actually changed
             //mario.doSpecialBehaviors
 
-            mario.doBehavior(); //is every action commented out above
+            foreach (ICharacter chara in _characterList) { chara.doBehavior(); } //is every action commented out above
 
             //mario.draw(_spriteBatch);
-            mario.debugState(); //effectively also draw
+            //foreach (ICharacter chara in _characterList) { chara.debugState(); } //effectively also draw
 
             numFrames++;//nothing to do with mario
 
-            mario.Animate(gameTime);
+            foreach (ICharacter chara in _characterList) {chara.Animate(gameTime);}
 
-            mario.UpdateState(); //if animate ends the current frame the event endOfState was added
+            foreach (ICharacter chara in _characterList) {chara.UpdateState();} //if animate ends the current frame the event endOfState was added
 
             //System.Threading.Thread.Sleep(50);
 
@@ -164,8 +208,10 @@ namespace KirbStomp
             //Texture2D luigi = this.Content.Load<Texture2D>("luigi");
             _spriteBatch.Begin();
 
-
-             mario.draw(_spriteBatch);
+            foreach (ICharacter chara in _characterList)
+            {
+                chara.draw(_spriteBatch);
+            }
             //    _spriteBatch.DrawString(_font, "Lots of Marios!!", new Vector2(400, 850), Color.White);
 
             _spriteBatch.End();
