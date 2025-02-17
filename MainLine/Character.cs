@@ -22,15 +22,17 @@ namespace KirbStomp
         private ISpriteComplete sprite;
         private string _spriteSheetName;
         private static int xLocaleSpawn = 0;
+        private static int yLocaleSpawn = 0;
         //locale spawn is not used later
-        
+
         public Character(Texture2D spriteSheet, string spriteSheetName)
         {
 
             velocity = Vector2.Zero;
             position.X = xLocaleSpawn;
             xLocaleSpawn += 50;
-            position.Y = 0;
+            position.Y = yLocaleSpawn;
+            yLocaleSpawn += 50;
             stateMachine = new CharacterStateMachine();
             buttonDataManager = new ButtonDataManager();
             actionList = new ActionList();

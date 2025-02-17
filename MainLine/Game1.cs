@@ -90,17 +90,31 @@ namespace KirbStomp
             IController controllerMario2 = new KeyboardController(mario2.GetButtonDataManager);
             ICharacter mario3 = new Character(marioSheet, MarioSpriteSheetName);
             IController controllerMario3 = new KeyboardController(mario3.GetButtonDataManager);
+            ICharacter mario4 = new Character(marioSheet, MarioSpriteSheetName);
+            IController controllerMario4 = new KeyboardController(mario4.GetButtonDataManager);
+            ICharacter mario5 = new Character(marioSheet, MarioSpriteSheetName);
+            IController controllerMario5 = new KeyboardController(mario5.GetButtonDataManager);
+            ICharacter mario6 = new Character(marioSheet, MarioSpriteSheetName);
+            IController controllerMario6 = new KeyboardController(mario6.GetButtonDataManager);
             //ICharacter link = new Character(linkSheet, LinkSpriteSheetName);
             //IController controllerLink = new KeyboardController(link.GetButtonDataManager);
 
             _characterList = new ArrayList();
             _characterList.Add(mario);
             _characterList.Add(mario2);
+            _characterList.Add(mario3);
+            _characterList.Add(mario4);
+            _characterList.Add(mario5);
+            _characterList.Add(mario6);
             _characterList.Add(new Character(linkSheet, LinkSpriteSheetName));
 
             _controllerList = new ArrayList();
             _controllerList.Add(controllerMario);
             _controllerList.Add(controllerMario2);
+            _controllerList.Add(controllerMario3);
+            _controllerList.Add(controllerMario4);
+            _controllerList.Add(controllerMario5);
+            _controllerList.Add(controllerMario6);
 
             string xmlPathLink = GetRelativeFilePath("Link.XML");
             string xmlPathMario = GetRelativeFilePath("Mario.XML");
