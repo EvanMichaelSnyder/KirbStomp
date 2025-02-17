@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\snyde\\source\\repos\\KirbStomp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\snyde\\source\\repos\\kirbstomp\\mainline\\updatebuttoncommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:mainline\\updatebuttoncommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\snyde\\source\\repos\\kirbstomp\\mainline\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:mainline\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -53,10 +57,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\snyde\\source\\repos\\kirbstomp\\mainline\\stateenums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:mainline\\stateenums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\snyde\\source\\repos\\kirbstomp\\mainline\\updatebuttoncommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|solutionrelative:mainline\\updatebuttoncommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{87D5E100-F6C5-D28A-8524-BD36F146E656}|KirbStomp.csproj|c:\\users\\snyde\\source\\repos\\kirbstomp\\mainline\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -201,7 +201,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 416,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -213,7 +213,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "CharacterState.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\KirbStomp\\MainLine\\CharacterState.cs",
               "RelativeDocumentMoniker": "MainLine\\CharacterState.cs",
@@ -226,7 +226,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "KeyData.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\KirbStomp\\MainLine\\KeyData.cs",
               "RelativeDocumentMoniker": "MainLine\\KeyData.cs",
@@ -239,19 +239,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 0,
               "Title": "UpdateButtonCommand.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\KirbStomp\\MainLine\\UpdateButtonCommand.cs",
               "RelativeDocumentMoniker": "MainLine\\UpdateButtonCommand.cs",
               "ToolTip": "C:\\Users\\snyde\\source\\repos\\KirbStomp\\MainLine\\UpdateButtonCommand.cs",
               "RelativeToolTip": "MainLine\\UpdateButtonCommand.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAACAZmZmZiYrwAYAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T05:01:46.211Z"
+              "WhenOpened": "2025-02-14T05:01:46.211Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ICharacter.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\KirbStomp\\MainLine\\ICharacter.cs",
               "RelativeDocumentMoniker": "MainLine\\ICharacter.cs",
@@ -264,20 +265,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Game1.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\KirbStomp\\MainLine\\Game1.cs",
               "RelativeDocumentMoniker": "MainLine\\Game1.cs",
               "ToolTip": "C:\\Users\\snyde\\source\\repos\\KirbStomp\\MainLine\\Game1.cs",
               "RelativeToolTip": "MainLine\\Game1.cs",
-              "ViewState": "AgIAAEoAAAAAAAAAAAAhwGIAAAA8AAAAAAAAAA==",
+              "ViewState": "AgIAAJsAAAAAAAAAAAAhwGIAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-13T22:22:32.186Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "KeyboardController.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\KirbStomp\\MainLine\\KeyboardController.cs",
               "RelativeDocumentMoniker": "MainLine\\KeyboardController.cs",
@@ -290,7 +291,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "IController.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\KirbStomp\\MainLine\\IController.cs",
               "RelativeDocumentMoniker": "MainLine\\IController.cs",
@@ -303,7 +304,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "StateEnums.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\KirbStomp\\MainLine\\StateEnums.cs",
               "RelativeDocumentMoniker": "MainLine\\StateEnums.cs",
@@ -315,7 +316,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "ICommand.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\KirbStomp\\MainLine\\ICommand.cs",
               "RelativeDocumentMoniker": "MainLine\\ICommand.cs",
@@ -328,7 +329,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Character.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\Source\\Repos\\KirbStomp\\MainLine\\Character.cs",
               "RelativeDocumentMoniker": "MainLine\\Character.cs",
@@ -341,7 +342,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Mario.XML",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\KirbStomp\\MainLine\\Mario.XML",
               "RelativeDocumentMoniker": "MainLine\\Mario.XML",
@@ -354,7 +355,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "ActionList.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\KirbStomp\\MainLine\\ActionList.cs",
               "RelativeDocumentMoniker": "MainLine\\ActionList.cs",
@@ -366,7 +367,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "ButtonData.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\KirbStomp\\MainLine\\ButtonData.cs",
               "RelativeDocumentMoniker": "MainLine\\ButtonData.cs",
@@ -378,7 +379,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "StateMachine.cs",
               "DocumentMoniker": "C:\\Users\\snyde\\source\\repos\\KirbStomp\\MainLine\\StateMachine.cs",
               "RelativeDocumentMoniker": "MainLine\\StateMachine.cs",
