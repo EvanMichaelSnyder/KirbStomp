@@ -2,3 +2,8 @@ bin/*
 Content/obj/*
 obj/*
 .vs/*
+obj/KirbStomp.csproj.nuget.dgspec.json
+obj/KirbStomp.csproj.nuget.g.props
+obj/KirbStomp.csproj.nuget.g.targets
+obj/project.assets.json
+obj/project.nuget.cache
