@@ -17,7 +17,7 @@ namespace KirbStomp
         private SpriteBatch _spriteBatch;
         private ArrayList _characterList;
         private ArrayList _controllerList;        
-        int numFrames = 0; //just for debugging
+        
 
         internal static double globalXBoundMax = 800;
         internal static double globalYBoundMax = 480;
@@ -26,6 +26,7 @@ namespace KirbStomp
         internal static double globalAspectRatio = 5 / 3.0;
 
         //fps stuff
+        int _numFrames = 0; //just for debugging
         private float _fps;
         private int _framesRendered;
         private DateTime _lastTime;
@@ -35,7 +36,7 @@ namespace KirbStomp
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            numFrames = 0;
+            _numFrames = 0;
 
         }
 
@@ -133,7 +134,7 @@ namespace KirbStomp
             do ECS
             */
             
-            DebugFPS();
+            // DebugFPS();
             
 
             //new keyboard inputs are taken
@@ -163,11 +164,8 @@ namespace KirbStomp
             // is every action commented out above
             foreach (ICharacter chara in _characterList) { chara.doBehavior(); } 
 
-            //mario.draw(_spriteBatch);
-            //foreach (ICharacter chara in _characterList) { chara.debugState(); } //effectively also draw
-
             //nothing to do with mario, DEBUGGING 
-            numFrames++;
+            _numFrames++;
 
             foreach (ICharacter chara in _characterList) {chara.Animate(gameTime);}
             
@@ -192,7 +190,7 @@ namespace KirbStomp
 
         private void DebugFPS() {
             //fps
-            numFrames++;
+            _numFrames++;
             _framesRendered++;
             if ((DateTime.Now - _lastTime).TotalSeconds >= 1)
             {
@@ -201,7 +199,7 @@ namespace KirbStomp
                 _framesRendered = 0;
                 _lastTime = DateTime.Now;
             }
-            Debug.WriteLine(numFrames + " FPS: " + _fps);
+            Console.WriteLine(_numFrames + " FPS: " + _fps);
         }
     }
 }
