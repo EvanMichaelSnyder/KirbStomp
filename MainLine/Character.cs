@@ -30,6 +30,7 @@ namespace KirbStomp
 
             velocity = Vector2.Zero;
             position.X = xLocaleSpawn;
+            //Magic numbers 50
             xLocaleSpawn += 50;
             position.Y = yLocaleSpawn;
             yLocaleSpawn += 50;
@@ -45,7 +46,7 @@ namespace KirbStomp
         }
         public void doBehavior()
         {
-            stateMachine.performBehavior();
+            // stateMachine.performBehavior();
             if (stateMachine.State.getElapsedTime() >= 1000)
             {
                 actionList.addAction(GameButtons.End);
@@ -248,7 +249,7 @@ namespace KirbStomp
                     position.Y = 400;
                     stateMachine.State.IsGrounded = true;
                     stateMachine.State.ResetJumps();
-                    Console.WriteLine("EventHitGround: This may not necessarily result in a new Enum State");
+                    // Console.WriteLine("EventHitGround: This may not necessarily result in a new Enum State");
                 }
                 if (stateMachine.State.CurrentState == StateEnum.SpecialBack
                     || stateMachine.State.CurrentState == StateEnum.SpecialDown

@@ -14,6 +14,7 @@ internal class KeyboardController : IController
         public KeyboardController(ButtonDataManager buttons)
         {
             _commands = new Dictionary<Keys, ICommand>();
+            
             DefaultKeyAssignments(buttons);
 
         }
@@ -39,10 +40,7 @@ internal class KeyboardController : IController
             RegisterCommand(Keys.G, new UpdateButtonCommand(buttons.buttonDataSheet[KirbStomp.GameButtons.Attack]));
             RegisterCommand(Keys.H, new UpdateButtonCommand(buttons.buttonDataSheet[KirbStomp.GameButtons.Special]));
             RegisterCommand(Keys.J, new UpdateButtonCommand(buttons.buttonDataSheet[KirbStomp.GameButtons.Jump]));
-
-
-
-    }
+        }
         public void Update()
         {
             var state = Keyboard.GetState();

@@ -202,17 +202,17 @@ public class CharacterStateMachine
         {
             State.IsGrounded = true;
             State.ResetJumps();
-            Console.WriteLine("EventHitGround: This may not necessarily result in a new Enum State");
+            // Console.WriteLine("EventHitGround: This may not necessarily result in a new Enum State");
         }
         else
         {
-            Console.WriteLine("EventHitGround: Effects not applied because you are in odd state for this event");
+            // Console.WriteLine("EventHitGround: Effects not applied because you are in odd state for this event");
         }
 
     }
     private void ApplyEndOfState()
     {
-        Console.WriteLine("EventEndOfState: This may not necessarily result in a new Enum State but it really should");
+        // Console.WriteLine("EventEndOfState: This may not necessarily result in a new Enum State but it really should");
     }
 
     public void HandleEvent(EventType eventType)
@@ -224,7 +224,7 @@ public class CharacterStateMachine
         }
         else
         {
-            Console.WriteLine("\n Could not find suitable mapping for " + key + "\n");
+            // Console.WriteLine("\n Could not find suitable mapping for " + key + "\n");
         }
         // Handle non-permissive events last this way
         if (eventType == EventType.EndOfState) { ApplyEndOfState(); }//possibly unused but you never know
