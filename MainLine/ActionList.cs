@@ -18,28 +18,28 @@ namespace KirbStomp
         {
             actions = new List<GameButtons>();
         }
-        public void resetList()
+        public void ResetList()
         {
             actions.Clear();
         }
-        public void addAction(GameButtons buttonType)
+        public void AddAction(GameButtons buttonType)
         {
             actions.Add(buttonType);
         }
 
-        public void processButton(ButtonData button, GameButtons buttonType)
+        public void ProcessButton(ButtonData button, GameButtons buttonType)
         {
             if (IsDirection(buttonType))
             {
-                if (button.getButtonState() == ButtonState.Pressed ||
-                    button.getButtonState() == ButtonState.Held)
+                if (button.GetButtonState() == ButtonState.Pressed ||
+                    button.GetButtonState() == ButtonState.Held)
                 {
-                    addAction(buttonType);
+                    AddAction(buttonType);
                 }
             }
-            else if (button.getButtonState() == ButtonState.Pressed)
+            else if (button.GetButtonState() == ButtonState.Pressed)
             {
-                addAction(buttonType);
+                AddAction(buttonType);
             }
 
         }

@@ -37,15 +37,15 @@ namespace KirbStomp.StateMachine
                 }
             }
         }
-        public int getFrameIndex()
+        public int GetFrameIndex()
         {
             return _animationFrame;
         }
-        public void resetFrameIndex()
+        public void ResetFrameIndex()
         {
             _animationFrame = 0;
         }
-        public void incrementFrameIndex()
+        public void IncrementFrameIndex()
         {
             _animationFrame++;
         }

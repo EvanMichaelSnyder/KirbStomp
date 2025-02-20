@@ -129,7 +129,7 @@ namespace KirbStomp
             check hit collision
             doSCE
             do Behavior special (spawn fireball)
-            draw
+            Draw
             current frame increment and if endOfState add it to the events
             do ECS
             */
@@ -147,12 +147,12 @@ namespace KirbStomp
             foreach (ICharacter chara in _characterList) { chara.UpdateState(); } 
 
             foreach (ICharacter chara in _characterList) { chara.ApplyMovementBehavior(); }
-            foreach (ICharacter chara in _characterList) { chara.gravity(gameTime); }
+            foreach (ICharacter chara in _characterList) { chara.Gravity(gameTime); }
 
             foreach (ICharacter chara in _characterList) { chara.MoveCharacter(gameTime); }
             
             //right now this is actually called under process buttons
-            foreach (ICharacter chara in _characterList) { chara.checkGroundCollision(); } 
+            foreach (ICharacter chara in _characterList) { chara.CheckGroundCollision(); } 
             
             //State is actually changed
             foreach (ICharacter chara in _characterList) { chara.UpdateState(); } 
@@ -162,7 +162,7 @@ namespace KirbStomp
             //mario.doSpecialBehaviors
 
             // is every action commented out above
-            foreach (ICharacter chara in _characterList) { chara.doBehavior(); } 
+            foreach (ICharacter chara in _characterList) { chara.DoBehavior(); } 
 
             //nothing to do with mario, DEBUGGING 
             _numFrames++;
@@ -181,7 +181,7 @@ namespace KirbStomp
             _spriteBatch.Begin();
             foreach (ICharacter chara in _characterList)
             {
-                chara.draw(_spriteBatch);
+                chara.Draw(_spriteBatch);
             }
             _spriteBatch.End();
 
