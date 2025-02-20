@@ -10,7 +10,7 @@ using KirbStomp.StateMachine;
 
 public class CharacterStateMachine
 {
-    private Dictionary<(StateEnum, EventType), Action<CharacterState>> transitions =
+    private Dictionary<(StateEnum, EventType), Action<CharacterState>> _transitions =
         new Dictionary<(StateEnum, EventType), Action<CharacterState>>();
 
     public CharacterState State = new CharacterState();
@@ -21,9 +21,9 @@ public class CharacterStateMachine
         State.CurrentState = StateEnum.Idle; // Initial state
     }
 
-    public void performBehavior()
+    public void PerformBehavior()
     {
-        Console.WriteLine("Performing Behavior of State: " + State.CurrentState + " on Frame: " + State.getFrameIndex() + "\n");
+        Console.WriteLine("Performing Behavior of State: " + State.CurrentState + " on Frame: " + State.GetFrameIndex() + "\n");
     }
 
     /*  Template Include all Events and what the expected result is
@@ -193,7 +193,7 @@ public class CharacterStateMachine
 
     private void AddTransition(StateEnum from, EventType eventType, Action<CharacterState> handler)
     {
-        transitions[(from, eventType)] = handler;
+        _transitions[(from, eventType)] = handler;
     }
 
     private void ApplyHitGround()
@@ -202,29 +202,29 @@ public class CharacterStateMachine
         {
             State.IsGrounded = true;
             State.ResetJumps();
-            Console.WriteLine("EventHitGround: This may not necessarily result in a new Enum State");
+            // Console.WriteLine("EventHitGround: This may not necessarily result in a new Enum State");
         }
         else
         {
-            Console.WriteLine("EventHitGround: Effects not applied because you are in odd state for this event");
+            // Console.WriteLine("EventHitGround: Effects not applied because you are in odd state for this event");
         }
 
     }
     private void ApplyEndOfState()
     {
-        Console.WriteLine("EventEndOfState: This may not necessarily result in a new Enum State but it really should");
+        // Console.WriteLine("EventEndOfState: This may not necessarily result in a new Enum State but it really should");
     }
 
     public void HandleEvent(EventType eventType)
     {
         var key = (State.CurrentState, eventType);
-        if (transitions.TryGetValue(key, out var handler))
+        if (_transitions.TryGetValue(key, out var handler))
         {
             handler(State);
         }
         else
         {
-            Console.WriteLine("\n Could not find suitable mapping for " + key + "\n");
+            // Console.WriteLine("\n Could not find suitable mapping for " + key + "\n");
         }
         // Handle non-permissive events last this way
         if (eventType == EventType.EndOfState) { ApplyEndOfState(); }//possibly unused but you never know

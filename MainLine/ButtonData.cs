@@ -9,9 +9,9 @@ namespace KirbStomp.MainLine
     internal class ButtonData
     {
         private ButtonState _state = ButtonState.Inactive;
-        private int framesPressed = 0;
-        public int getFramesPressed() { return framesPressed; }
-        public ButtonState getButtonState() { return _state; }
+        private int _framesPressed = 0;
+        public int GetFramesPressed() { return _framesPressed; }
+        public ButtonState GetButtonState() { return _state; }
 
         public ButtonData() { }
         public void FrameUpdate(KeyState keyState)
@@ -20,7 +20,7 @@ namespace KirbStomp.MainLine
             {
                 if (_state == ButtonState.Pressed || _state == ButtonState.Held)
                 {
-                    framesPressed = 0;
+                    _framesPressed = 0;
                     _state = ButtonState.Released;   //button just released
                 }
                 else
@@ -30,7 +30,7 @@ namespace KirbStomp.MainLine
             }
             else
             {
-                framesPressed++;
+                _framesPressed++;
                 if (/*State == ButtonState.Released ||*/ _state == ButtonState.Inactive)
                 {
                     _state = ButtonState.Pressed;

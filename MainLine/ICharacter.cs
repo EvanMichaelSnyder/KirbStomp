@@ -6,15 +6,15 @@ namespace KirbStomp
     internal interface ICharacter
     {
         public void UpdateState();
-        public void doBehavior();
+        public void DoBehavior();
         ButtonDataManager GetButtonDataManager { get; }
         public void Animate(GameTime gameTime);
-        public void debugState();
-        public void draw(SpriteBatch spriteBatch);
+        public void DebugState();
+        public void Draw(SpriteBatch spriteBatch);
         public void ProcessButtons();
         public void ApplyMovementBehavior();
-        public void gravity(GameTime gameTime);
+        public void Gravity(GameTime gameTime);
         public void MoveCharacter(GameTime gameTime);
-        public void checkGroundCollision();
+        public void CheckGroundCollision();
     }
 }

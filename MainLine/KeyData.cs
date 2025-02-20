@@ -36,11 +36,11 @@ namespace KirbStomp
 
     internal class ButtonDataManager
     {
-        public Dictionary<GameButtons, ButtonData> buttonDataSheet;  //only public for prototype
+        public Dictionary<GameButtons, ButtonData> ButtonDataSheet;  //only public for prototype
 
         public ButtonDataManager()
         {
-            buttonDataSheet = new Dictionary<GameButtons, ButtonData>()
+            ButtonDataSheet = new Dictionary<GameButtons, ButtonData>()
             {
                 { GameButtons.Up,new ButtonData()},
                 { GameButtons.Down,new ButtonData()},
@@ -57,29 +57,29 @@ namespace KirbStomp
             };
         }
 
-        public bool checkPressed(GameButtons button)
+        public bool CheckPressed(GameButtons button)
         {
-            return (buttonDataSheet[button].getButtonState() == ButtonState.Pressed);
+            return (ButtonDataSheet[button].GetButtonState() == ButtonState.Pressed);
         }
-        public bool checkHeld(GameButtons button)
+        public bool CheckHeld(GameButtons button)
         {
-            return (buttonDataSheet[button].getButtonState() == ButtonState.Held);
+            return (ButtonDataSheet[button].GetButtonState() == ButtonState.Held);
         }
-        public bool checkReleased(GameButtons button)
+        public bool CheckReleased(GameButtons button)
         {
-            return (buttonDataSheet[button].getButtonState() == ButtonState.Released);
+            return (ButtonDataSheet[button].GetButtonState() == ButtonState.Released);
         }
-        public bool checkInactive(GameButtons button)
+        public bool CheckInactive(GameButtons button)
         {
-            return (buttonDataSheet[button].getButtonState() == ButtonState.Inactive);
+            return (ButtonDataSheet[button].GetButtonState() == ButtonState.Inactive);
         }
-        public int checkFramesPressed(GameButtons button)
+        public int CheckFramesPressed(GameButtons button)
         {
-            return buttonDataSheet[button].getFramesPressed();
+            return ButtonDataSheet[button].GetFramesPressed();
         }
 
 
-        public GameButtons directionalPriority()
+        public GameButtons DirectionalPriority()
         {
             var directionalButtons = new List<GameButtons>
             {
@@ -92,12 +92,12 @@ namespace KirbStomp
 
             // Find the directional button with the smallest number of frames pressed
             GameButtons buttonWithSmallestFrames = directionalButtons
-                .OrderBy(button => buttonDataSheet[button].getFramesPressed()) // Order by frames pressed (ascending)
+                .OrderBy(button => ButtonDataSheet[button].GetFramesPressed()) // Order by frames pressed (ascending)
                 .FirstOrDefault(); // Take the first one (the one with smallest frames pressed)
 
             return buttonWithSmallestFrames;
         }
-        public GameButtons movementPriority()
+        public GameButtons MovementPriority()
         {
             var directionalButtons = new List<GameButtons>
             {
@@ -108,7 +108,7 @@ namespace KirbStomp
 
             // Find the directional button with the smallest number of frames pressed
             GameButtons buttonWithSmallestFrames = directionalButtons
-                .OrderBy(button => buttonDataSheet[button].getFramesPressed()) // Order by frames pressed (ascending)
+                .OrderBy(button => ButtonDataSheet[button].GetFramesPressed()) // Order by frames pressed (ascending)
                 .FirstOrDefault(); // Take the first one (the one with smallest frames pressed)
 
             return buttonWithSmallestFrames;
