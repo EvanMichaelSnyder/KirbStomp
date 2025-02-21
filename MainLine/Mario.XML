@@ -76,7 +76,7 @@
 	</Animation>
 
 	<Animation name="AttackNeutral" duration ="0.5" loop="false" animationOffset="(0, 4)">
-		<Frame position="(15, 261)" size="(36, 34)" perFrameOffset="(0, 0)"/>
+		<Frame position="(12, 261)" size="(36, 34)" perFrameOffset="(0, 0)"/>
 		<Frame position="(54, 261)" size="(48, 34)" perFrameOffset="(0, 0)"/>
 		<Frame position="(105, 261)" size="(44, 34)" perFrameOffset="(0, 0)"/>
 		<Frame position="(152, 261)" size="(34, 34)" perFrameOffset="(0, 0)"/>
@@ -84,11 +84,11 @@
 	</Animation>
 
 	<Animation name="AttackNeutral2" duration ="0.5" loop="false" animationOffset="(0, 4)">
-		<Frame position="(233, 261)" size="(36, 34)" perFrameOffset="(0, 0)"/>
-		<Frame position="(270, 261)" size="(48, 34)" perFrameOffset="(0, 0)"/>
+		<Frame position="(233, 261)" size="(31, 34)" perFrameOffset="(0, 0)"/>
+		<Frame position="(270, 261)" size="(31, 34)" perFrameOffset="(0, 0)"/>
 		<Frame position="(307, 261)" size="(44, 34)" perFrameOffset="(0, 0)"/>
-		<Frame position="(356, 261)" size="(34, 34)" perFrameOffset="(0, 0)"/>
-		<Frame position="(400, 261)" size="(34, 34)" perFrameOffset="(0, 0)"/>
+		<Frame position="(356, 261)" size="(40, 34)" perFrameOffset="(0, 0)"/>
+		<Frame position="(400, 261)" size="(35, 34)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
 	<Animation name="AttackNeutral3" duration ="0.5" loop="false" animationOffset="(0, -6)">
@@ -144,7 +144,7 @@
 		<Frame position="(323, 719)" size="(26, 40)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
-	<Animation name="AttackDash" duration ="0.5" loop="false" animationOffset="(0, 4)">
+	<Animation name="AttackDash" duration ="0.5" loop="false" animationOffset="(0, 3)">
 		<Frame position="(14, 788)" size="(25, 35)" perFrameOffset="(0, 0)"/>
 		<Frame position="(43, 788)" size="(52, 35)" perFrameOffset="(0, 0)"/>
 		<Frame position="(99, 788)" size="(35, 35)" perFrameOffset="(0, 0)"/>
