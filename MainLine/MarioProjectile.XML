@@ -1,0 +1,25 @@
+﻿<Animations>
+	<Texture spriteSheet="MarioProjectileTransparentSpriteSheet" scale="2.0" boundX="1104" offsetDirectional = "-30" />
+
+	<Animation name="FireballSpawned" duration ="1.0" loop="false" animationOffset="(0, 0)" isDefault ="true">
+		<Frame position="(412, 1447)" size="(16, 14)" perFrameOffset="(0, 0)"/>
+		<Frame position="(432, 1446)" size="(15, 15)" perFrameOffset="(0, 0)"/>
+		<Frame position="(142, 1466)" size="(16, 14)" perFrameOffset="(0, 0)"/>
+		<Frame position="(432, 1465)" size="(15, 15)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+	<Animation name="FireballReleased" duration ="1.0" loop="true" animationOffset="(0, -1)">
+		<Frame position="(412, 1447)" size="(16, 14)" perFrameOffset="(0, 0)"/>
+		<Frame position="(432, 1446)" size="(15, 15)" perFrameOffset="(0, 0)"/>
+		<Frame position="(142, 1466)" size="(16, 14)" perFrameOffset="(0, 0)"/>
+		<Frame position="(432, 1465)" size="(15, 15)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+	<Animation name="FireballDeath" duration ="1.0" loop="false" animationOffset="(0, -1)">
+		<Frame position="(412, 1447)" size="(16, 14)" perFrameOffset="(0, 0)"/>
+		<Frame position="(432, 1446)" size="(15, 15)" perFrameOffset="(0, 0)"/>
+		<Frame position="(142, 1466)" size="(16, 14)" perFrameOffset="(0, 0)"/>
+		<Frame position="(432, 1465)" size="(15, 15)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+</Animations>
