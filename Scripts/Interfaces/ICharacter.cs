@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace KirbStomp
+namespace KirbStomp.Interfaces
 {
     internal interface ICharacter
     {

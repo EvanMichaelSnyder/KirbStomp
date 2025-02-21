@@ -5,6 +5,7 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 using KirbStomp;
+using KirbStomp.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -105,8 +106,8 @@ namespace KirbStomp
 
         private string GetRelativeFilePath(string file, [CallerFilePath] string currentPath = "")
         {
-            string dir = Path.GetDirectoryName(currentPath);
-            return Path.Combine(dir, file);
+            string filename = Path.Combine("Data", "CharacterData", file);
+            return Path.GetFullPath(filename);
         }
 
         protected override void LoadContent()
