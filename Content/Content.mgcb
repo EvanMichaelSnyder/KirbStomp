@@ -25,6 +25,18 @@
 /processorParam:TextureFormat=Color
 /build:LinkTransparentSpriteSheet.png
 
+#begin MarioProjectileTransparentSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:MarioProjectileTransparentSpriteSheet.png
+
 #begin MarioTransparentSpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -37,13 +49,27 @@
 /processorParam:TextureFormat=Color
 /build:MarioTransparentSpriteSheet.png
 
-#begin MarioProjectileTransparentSpriteSheet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/build:MarioProjectileTransparentSpriteSheet.png
-
 #begin MegaManTransparentSpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
 /build:MegaManTransparentSpriteSheet.png
+
+#begin Platforms.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Platforms.png
 

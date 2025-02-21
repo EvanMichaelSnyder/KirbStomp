@@ -1,27 +1,27 @@
 ﻿<Animations>
-	<Texture spriteSheet="Platforms" scale="1.0" boundX="0" offsetDirectional="0" />
+	<Texture spriteSheet="Platforms" scale="1.0" boundX="576" offsetDirectional="0" />
 
 	<Animation name="MainDirtPlatform" duration="0" loop="true" animationOffset="(0, 0)" isDefault="true">
 		<Frame position="(4, 4)" size="(300, 140)" perFrameOffset="(0, 0)"/>
 	</Animation>
 	
-	<Animation name="SideDirtPlatform" duration="0" loop="true" animationOffset="(0, 0)" isDefault="true">
+	<Animation name="SideDirtPlatform" duration="0" loop="true" animationOffset="(0, 0)">
 		<Frame position="(16, 184)" size="(128, 32)" perFrameOffset="(0, 0)"/>
 	</Animation>
 	
-	<Animation name="MainRockPlatform" duration="0" loop="true" animationOffset="(0, 0)" isDefault="true">
+	<Animation name="MainRockPlatform" duration="0" loop="true" animationOffset="(0, 0)">
 		<Frame position="(308, 12)" size="(300, 140)" perFrameOffset="(0, 0)"/>
 	</Animation>
 	
-	<Animation name="SideRockPlatform" duration="0" loop="true" animationOffset="(0, 0)" isDefault="true">
+	<Animation name="SideRockPlatform" duration="0" loop="true" animationOffset="(0, 0)">
 		<Frame position="(160, 46)" size="(128, 32)" perFrameOffset="(0, 0)"/>
 	</Animation>
 	
-	<Animation name="MainIcePlatform" duration="0" loop="true" animationOffset="(0, 0)" isDefault="true">
+	<Animation name="MainIcePlatform" duration="0" loop="true" animationOffset="(0, 0)">
 		<Frame position="(308, 160)" size="(300, 140)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
-	<Animation name="SideIcePlatform" duration="0" loop="true" animationOffset="(0, 0)" isDefault="true">
+	<Animation name="SideIcePlatform" duration="0" loop="true" animationOffset="(0, 0)">
 		<Frame position="(92, 260)" size="(128, 32)" perFrameOffset="(0, 0)"/>
 	</Animation>
 	
