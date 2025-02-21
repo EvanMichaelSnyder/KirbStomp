@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using KirbStomp;
 using KirbStomp.MainLine;
 using Microsoft.Xna.Framework;
-
+using KirbStomp.Interfaces;
 
     internal class UpdateButtonCommand : ICommand
     {

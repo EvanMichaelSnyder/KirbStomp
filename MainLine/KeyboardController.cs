@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using KirbStomp;
+using KirbStomp.Interfaces;
 using Microsoft.Xna.Framework.Input;
 
 
@@ -16,7 +17,6 @@ internal class KeyboardController : IController
             _commands = new Dictionary<Keys, ICommand>();
             
             DefaultKeyAssignments(buttons);
-
         }
 
         //Attempts to register command returns 0 if successful, -1 if not
@@ -26,7 +26,6 @@ internal class KeyboardController : IController
             if (_commands.ContainsKey(key)) return -1;
             _commands[key] = command;    
             return 0;
-
         }
 
         //Defaults the key assignments can also be called mid game to reset the key assignments if changed

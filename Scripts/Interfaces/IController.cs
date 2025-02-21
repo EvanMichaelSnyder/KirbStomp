@@ -1,6 +1,6 @@
 ﻿using KirbStomp;
 
-namespace KirbStomp
+namespace KirbStomp.Interfaces
 {
     internal interface IController
     {
