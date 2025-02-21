@@ -1,0 +1,25 @@
+﻿<Animations>
+	<Texture spriteSheet="MarioProjectileTransparentSpriteSheet" scale="2.0" boundX="1104" offsetDirectional = "-30" />
+
+	<Animation name="Fireball Entry" duration ="2.0" loop="true" animationOffset="(0, 0)" isDefault ="true">
+		<Frame position="(18, 23)" size="(23, 38)" perFrameOffset="(0, 0)"/>
+		<Frame position="(45, 23)" size="(23, 38)" perFrameOffset="(0, 0)"/>
+		<Frame position="(72, 23)" size="(23, 38)" perFrameOffset="(0, 0)"/>
+		<Frame position="(99, 23)" size="(24, 38)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+	<Animation name="Fireball Normal" duration ="2.0" loop="true" animationOffset="(0, -1)">
+		<Frame position="(12, 148)" size="(28, 39)" perFrameOffset="(0, 0)"/>
+		<Frame position="(44, 148)" size="(30, 39)" perFrameOffset="(0, 0)"/>
+		<Frame position="(82, 148)" size="(29, 39)" perFrameOffset="(0, 0)"/>
+		<Frame position="(116, 148)" size="(24, 39)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+	<Animation name="Fireball End" duration ="2.0" loop="true" animationOffset="(0, -1)">
+		<Frame position="(12, 148)" size="(28, 39)" perFrameOffset="(2, 0)"/>
+		<Frame position="(44, 148)" size="(30, 39)" perFrameOffset="(0, 0)"/>
+		<Frame position="(82, 148)" size="(29, 39)" perFrameOffset="(1, 0)"/>
+		<Frame position="(116, 148)" size="(24, 39)" perFrameOffset="(6, 0)"/>
+	</Animation>
+
+</Animations>

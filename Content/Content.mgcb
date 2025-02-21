@@ -37,3 +37,13 @@
 /processorParam:TextureFormat=Color
 /build:MarioTransparentSpriteSheet.png
 
+#begin MarioProjectileTransparentSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:MarioProjectileTransparentSpriteSheet.png
+
+#begin MegaManTransparentSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:MegaManTransparentSpriteSheet.png
+
