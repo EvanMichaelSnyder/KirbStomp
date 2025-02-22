@@ -73,3 +73,13 @@
 /processorParam:TextureFormat=Color
 /build:Platforms.png
 
+#begin File.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:File.xml
+
+#begin MarioHitBoxSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:MarioHitBoxSpriteSheet.png
+

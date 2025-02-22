@@ -1,5 +1,5 @@
 ﻿<Animations>
-	<Texture character = "Link" spriteSheet="LinkTransparentSpriteSheet" scale="2.0" boundX="2280" offsetDirectional = "30" />
+	<Texture spriteSheet="LinkTransparentSpriteSheet" scale="2.0" boundX="2280" offsetDirectional = "30" />
 
 	<Animation name="Idle" duration ="1.0" loop="true" animationOffset="(0, 0)" isDefault ="true">
 		<Frame position="(272, 1006)" size="(42, 52)" perFrameOffset="(0, 0)"/>
