@@ -10,6 +10,7 @@ using KirbStomp.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using KirbStomp.Data;
 
 namespace KirbStomp
 {
@@ -37,6 +38,7 @@ namespace KirbStomp
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+			
             IsMouseVisible = true;
             _numFrames = 0;
 
@@ -118,11 +120,10 @@ namespace KirbStomp
             AnimationSystem.LoadAnimationsFromXml(xmlPathLink);
             base.Initialize();
         }
-
-        private string GetRelativeFilePath(string file, [CallerFilePath] string currentPath = "")
-        {
-            string filename = Path.Combine("Data", "CharacterData", file);
-            return Path.GetFullPath(filename);
+		
+        private string GetRelativeFilePath(string file)
+		{
+            return Path.Combine(XMLData.GetDataFolder(), "CharacterData", file);
         }
 
         protected override void LoadContent()
@@ -172,7 +173,7 @@ namespace KirbStomp
             
             //State is actually changed
             foreach (ICharacter chara in _characterList) { chara.UpdateState(); } 
-            
+		
             //mario.checkHitCollision
             //mario.UpdateState(); //State is actually changed
             //mario.doSpecialBehaviors
