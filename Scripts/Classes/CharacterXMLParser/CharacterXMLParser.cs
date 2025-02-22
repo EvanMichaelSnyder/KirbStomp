@@ -11,27 +11,55 @@ using System.Xml.Linq;
 
 namespace KirbStomp
 {
+
+	// Intermediary for character stats and character
+	struct TempCharacterStats
+	{
+		string Name;
+		float Health;
+		MovementStats characterMovementStats;
+		PhysicsStats characterPhysicsStats;
+		public TempCharacterStats()
+		{
+			Name = "defaul";
+			Health = 300.0f;
+			characterMovementStats = new();
+			characterPhysicsStats = new();
+		}
+		public TempCharacterStats(string name, float health, MovementStats movementStats, PhysicsStats physicsStats)
+		{
+			Name = name;
+			Health = health;
+			characterMovementStats = movementStats;
+			characterPhysicsStats = physicsStats;
+		}
+	}
 	internal class CharacterXMLParser
 	{
-		private static Dictionary<string, Character> characters;
+		private static Dictionary<string, TempCharacterStats> characters = new();
 		
 
-
+	
 		public static void LoadCharacter(string name)
 		{
-			ParseCharacterXML("Mario");
-			// Get all info from XML
-				// What do I need to get? 
-				
-			// Load All Necessary stuff
-
-			// Make character out of parsed datas
-
+			if(!characters.TryAdd(name, ParseCharacterXML(name)))
+			{
+				throw new Exception($"Already added character {name}");
+			}
+			
 		}
 	
+		private static TempCharacterStats GetCharacterStats(string name)
+		{
+			TempCharacterStats stats;
+			if(characters.TryGetValue(name, out stats))
+			{
+				return stats;
+			}
+			return default;
+		}
 
-
-		private static void ParseCharacterXML(string fileName)
+		private static TempCharacterStats ParseCharacterXML(string fileName)
 		{
 			XElement characterElement = GetCharacterStatsXElement(fileName);
 
@@ -39,13 +67,7 @@ namespace KirbStomp
 			float characterHealth = float.Parse(GetXElementOrAssert("Health", characterElement).Value);
 			MovementStats movementStats = GetMovementStatsFromCharacter(characterElement);
 			PhysicsStats physicsStats = GetPhysicsStatsFromCharacter(characterElement);
-
-			// Not implemented yet, TODO
-			// as of now, all characters have defualt attacks
-			//XElement attacksElement = GetXElementOrAssert("Attacks", characterElement);
-
-
-			// Get Attack Available
+			return new TempCharacterStats(characterName, characterHealth, movementStats, physicsStats);
 		}
 		
 		private static XElement GetCharacterStatsXElement(string name)

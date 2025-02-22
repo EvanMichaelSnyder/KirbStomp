@@ -20,6 +20,15 @@ namespace KirbStomp
 			RunningAcceleration = runningAccel;
 			InAirAcceleration = inAirAccel;
 		}
+		public MovementStats()
+		{
+			BaseWalkSpeed = 40.0f;
+			BaseRunSpeed = 200.0f;
+			MaxRunSpeed = 400.0f;
+			WalkingAcceleration = 50.0f;
+			RunningAcceleration = 50.0f;
+			InAirAcceleration = 50.0f;
+		}
 	}
 	struct PhysicsStats
 	{
@@ -31,6 +40,12 @@ namespace KirbStomp
 			KnockBackScalar = knockBackScale;
 			Gravity = gravity;
 			SpeedDecay = speedDecay;
+		}
+		public PhysicsStats()
+		{
+			KnockBackScalar = 1.0f;
+			Gravity = 1.0f;
+			SpeedDecay = 0.8f;
 		}
 	}
 
