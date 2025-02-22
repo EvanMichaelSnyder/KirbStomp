@@ -11,212 +11,214 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using KirbStomp.Data;
+using KirbStomp.Scripts.Classes.CharacterXMLParser;
 
 namespace KirbStomp
 {
-    public class Game1 : Game
-    {
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
-        private ArrayList _characterList;
-        private ArrayList _controllerList;        
-        
-
-        internal static double globalXBoundMax = 800;
-        internal static double globalYBoundMax = 480;
-        internal static double globalScaleX = 1.0;
-        internal static double globalScaleY = 1.0;
-        internal static double globalAspectRatio = 5 / 3.0;
-
-        //fps stuff
-        int _numFrames = 0; //just for debugging
-        private float _fps;
-        private int _framesRendered;
-        private DateTime _lastTime;
-
-        public Game1()
-        {
-            _graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
-			
-            IsMouseVisible = true;
-            _numFrames = 0;
-
-        }
-
-        public static (int width, int height) GetAdjustedWindowSize()
-        {
-            // Get screen dimensions
-            int screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-            int screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-
-            // Calculate 5:3 window size
-            double maxWidth = screenWidth * 0.80; // 80% of screen width
-            double maxHeight = screenHeight * 0.80; // 80% of screen height
-
-            double windowWidth = maxWidth;
-            double windowHeight = maxWidth / globalAspectRatio;
-
-            // Return the calculated width and height as integers
-            return ((int)windowWidth, (int)windowHeight);
-        }
-
-        protected override void Initialize()
-        {
-            //graphics
-            var (width, height) = GetAdjustedWindowSize();
-            globalScaleX = width / globalXBoundMax;
-            globalScaleY = height / globalYBoundMax;
-            _graphics.PreferredBackBufferWidth = width;
-            _graphics.PreferredBackBufferHeight = height;
-            //Custom Graphics Settings
-            _graphics.ApplyChanges();
-
-            //much of this should be moved to load content 
-            string marioSpriteSheetName = "MarioTransparentSpriteSheet";
-            string linkSpriteSheetName = "LinkTransparentSpriteSheet";
-            Texture2D marioSheet = Content.Load<Texture2D>(marioSpriteSheetName);
-            Texture2D linkSheet = Content.Load<Texture2D>(linkSpriteSheetName);
-
-
-            ICharacter mario = new Character(marioSheet, marioSpriteSheetName);
-            IController controllerMario = new KeyboardController(mario.GetButtonDataManager, new Dictionary<Keys, ICommand>()
-            {
-                {Keys.W, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Up])},
-                {Keys.A, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Left])},
-                {Keys.S, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Down])},
-                {Keys.D, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Right])},
-                {Keys.Y, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Attack])},
-                {Keys.T, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Special])},
-                {Keys.Space, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Jump])}
-            });
-            ICharacter mario2 = new Character(marioSheet, marioSpriteSheetName);
-            IController controllerMario2 = new KeyboardController(mario2.GetButtonDataManager, new Dictionary<Keys, ICommand>()
-            {
-                {Keys.P, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Up])},
-                {Keys.L, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Left])},
-                {Keys.OemSemicolon, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Down])},
-                {Keys.OemQuotes, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Right])},
-                {Keys.Down, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Attack])},
-                {Keys.Left, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Special])},
-                {Keys.RightShift, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Jump])}
-            });
-            //ICharacter link = new Character(linkSheet, LinkSpriteSheetName);
-            //IController controllerLink = new KeyboardController(link.GetButtonDataManager);
-
-            _characterList = new ArrayList();
-            _characterList.Add(mario);
-            _characterList.Add(mario2);
-            _characterList.Add(new Character(linkSheet, linkSpriteSheetName));
-
-            _controllerList = new ArrayList();
-            _controllerList.Add(controllerMario);
-            _controllerList.Add(controllerMario2);
-
-
-            string xmlPathLink = GetRelativeFilePath("Link.XML");
-            string xmlPathMario = GetRelativeFilePath("Mario.XML");
-            AnimationSystem.LoadAnimationsFromXml(xmlPathMario);
-            AnimationSystem.LoadAnimationsFromXml(xmlPathLink);
-            base.Initialize();
-        }
+	public class Game1 : Game
+	{
+		private GraphicsDeviceManager _graphics;
+		private SpriteBatch _spriteBatch;
+		private ArrayList _characterList;
+		private ArrayList _controllerList;		
 		
-        private string GetRelativeFilePath(string file)
+
+		internal static double globalXBoundMax = 800;
+		internal static double globalYBoundMax = 480;
+		internal static double globalScaleX = 1.0;
+		internal static double globalScaleY = 1.0;
+		internal static double globalAspectRatio = 5 / 3.0;
+
+		//fps stuff
+		int _numFrames = 0; //just for debugging
+		private float _fps;
+		private int _framesRendered;
+		private DateTime _lastTime;
+
+		public Game1()
 		{
-            return Path.Combine(XMLData.GetDataFolder(), "CharacterData", file);
-        }
+			_graphics = new GraphicsDeviceManager(this);
+			Content.RootDirectory = "Content";
+			
+			IsMouseVisible = true;
+			_numFrames = 0;
 
-        protected override void LoadContent()
-        {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-        }
+		}
 
-        protected override void Update(GameTime gameTime)
-        {
-            /*
-            order of events
+		public static (int width, int height) GetAdjustedWindowSize()
+		{
+			// Get screen dimensions
+			int screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+			int screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
 
-            update key registers
-            turn key registers into stateChangingEvents
-            doSCE
-            alter movement based off of state behavior
-            do movement
-            check ground collision
-            doSCE
-            check hit collision
-            doSCE
-            do Behavior special (spawn fireball)
-            Draw
-            current frame increment and if endOfState add it to the events
-            do ECS
-            */
-            
-            // DebugFPS();
-            
+			// Calculate 5:3 window size
+			double maxWidth = screenWidth * 0.80; // 80% of screen width
+			double maxHeight = screenHeight * 0.80; // 80% of screen height
 
-            //new keyboard inputs are taken
-            foreach (IController controller in _controllerList) { controller.Update();} 
+			double windowWidth = maxWidth;
+			double windowHeight = maxWidth / globalAspectRatio;
 
-            //action list includes new events
-            foreach (ICharacter chara in _characterList) { chara.ProcessButtons(); } 
+			// Return the calculated width and height as integers
+			return ((int)windowWidth, (int)windowHeight);
+		}
 
-            //State is actually changed
-            foreach (ICharacter chara in _characterList) { chara.UpdateState(); } 
+		protected override void Initialize()
+		{
+			//graphics
+			var (width, height) = GetAdjustedWindowSize();
+			globalScaleX = width / globalXBoundMax;
+			globalScaleY = height / globalYBoundMax;
+			_graphics.PreferredBackBufferWidth = width;
+			_graphics.PreferredBackBufferHeight = height;
+			//Custom Graphics Settings
+			_graphics.ApplyChanges();
 
-            foreach (ICharacter chara in _characterList) { chara.ApplyMovementBehavior(); }
-            foreach (ICharacter chara in _characterList) { chara.Gravity(gameTime); }
+			//much of this should be moved to load content 
+			string marioSpriteSheetName = "MarioTransparentSpriteSheet";
+			string linkSpriteSheetName = "LinkTransparentSpriteSheet";
+			Texture2D marioSheet = Content.Load<Texture2D>(marioSpriteSheetName);
+			Texture2D linkSheet = Content.Load<Texture2D>(linkSpriteSheetName);
 
-            foreach (ICharacter chara in _characterList) { chara.MoveCharacter(gameTime); }
-            
-            //right now this is actually called under process buttons
-            foreach (ICharacter chara in _characterList) { chara.CheckGroundCollision(); } 
-            
-            //State is actually changed
-            foreach (ICharacter chara in _characterList) { chara.UpdateState(); } 
+
+			ICharacter mario = new Character(marioSheet, marioSpriteSheetName);
+			IController controllerMario = new KeyboardController(mario.GetButtonDataManager, new Dictionary<Keys, ICommand>()
+			{
+				{Keys.W, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Up])},
+				{Keys.A, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Left])},
+				{Keys.S, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Down])},
+				{Keys.D, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Right])},
+				{Keys.Y, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Attack])},
+				{Keys.T, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Special])},
+				{Keys.Space, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Jump])}
+			});
+			ICharacter mario2 = new Character(marioSheet, marioSpriteSheetName);
+			IController controllerMario2 = new KeyboardController(mario2.GetButtonDataManager, new Dictionary<Keys, ICommand>()
+			{
+				{Keys.P, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Up])},
+				{Keys.L, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Left])},
+				{Keys.OemSemicolon, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Down])},
+				{Keys.OemQuotes, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Right])},
+				{Keys.Down, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Attack])},
+				{Keys.Left, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Special])},
+				{Keys.RightShift, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Jump])}
+			});
+			//ICharacter link = new Character(linkSheet, LinkSpriteSheetName);
+			//IController controllerLink = new KeyboardController(link.GetButtonDataManager);
+
+			_characterList = new ArrayList();
+			_characterList.Add(mario);
+			_characterList.Add(mario2);
+			_characterList.Add(new Character(linkSheet, linkSpriteSheetName));
+
+			_controllerList = new ArrayList();
+			_controllerList.Add(controllerMario);
+			_controllerList.Add(controllerMario2);
+
+			CharacterXMLParser.LoadCharacter("Mario");
+
+			string xmlPathLink = GetRelativeFilePath("Link.XML");
+			string xmlPathMario = GetRelativeFilePath("Mario.XML");
+			AnimationSystem.LoadAnimationsFromXml(xmlPathMario);
+			AnimationSystem.LoadAnimationsFromXml(xmlPathLink);
+			base.Initialize();
+		}
 		
-            //mario.checkHitCollision
-            //mario.UpdateState(); //State is actually changed
-            //mario.doSpecialBehaviors
+		private string GetRelativeFilePath(string file)
+		{
+			return Path.Combine(XMLData.GetDataFolder(), "CharacterData", file);
+		}
 
-            // is every action commented out above
-            foreach (ICharacter chara in _characterList) { chara.DoBehavior(); } 
+		protected override void LoadContent()
+		{
+			_spriteBatch = new SpriteBatch(GraphicsDevice);
+		}
 
-            //nothing to do with mario, DEBUGGING 
-            _numFrames++;
+		protected override void Update(GameTime gameTime)
+		{
+			/*
+			order of events
 
-            foreach (ICharacter chara in _characterList) {chara.Animate(gameTime);}
-            
-            //if animate ends the current frame the event endOfState was added
-            foreach (ICharacter chara in _characterList) {chara.UpdateState();} 
+			update key registers
+			turn key registers into stateChangingEvents
+			doSCE
+			alter movement based off of state behavior
+			do movement
+			check ground collision
+			doSCE
+			check hit collision
+			doSCE
+			do Behavior special (spawn fireball)
+			Draw
+			current frame increment and if endOfState add it to the events
+			do ECS
+			*/
+			
+			// DebugFPS();
+			
 
-            base.Update(gameTime);
-        }
+			//new keyboard inputs are taken
+			foreach (IController controller in _controllerList) { controller.Update();} 
 
-        protected override void Draw(GameTime gameTime)
-        {
-            GraphicsDevice.Clear(Color.Black);
-            _spriteBatch.Begin();
-            foreach (ICharacter chara in _characterList)
-            {
-                chara.Draw(_spriteBatch);
-            }
-            _spriteBatch.End();
+			//action list includes new events
+			foreach (ICharacter chara in _characterList) { chara.ProcessButtons(); } 
 
-            base.Draw(gameTime);
-        }
+			//State is actually changed
+			foreach (ICharacter chara in _characterList) { chara.UpdateState(); } 
 
-        private void DebugFPS() {
-            //fps
-            _numFrames++;
-            _framesRendered++;
-            if ((DateTime.Now - _lastTime).TotalSeconds >= 1)
-            {
-                // one second has elapsed 
-                _fps = _framesRendered;
-                _framesRendered = 0;
-                _lastTime = DateTime.Now;
-            }
-            Console.WriteLine(_numFrames + " FPS: " + _fps);
-        }
-    }
+			foreach (ICharacter chara in _characterList) { chara.ApplyMovementBehavior(); }
+			foreach (ICharacter chara in _characterList) { chara.Gravity(gameTime); }
+
+			foreach (ICharacter chara in _characterList) { chara.MoveCharacter(gameTime); }
+			
+			//right now this is actually called under process buttons
+			foreach (ICharacter chara in _characterList) { chara.CheckGroundCollision(); } 
+			
+			//State is actually changed
+			foreach (ICharacter chara in _characterList) { chara.UpdateState(); } 
+		
+			//mario.checkHitCollision
+			//mario.UpdateState(); //State is actually changed
+			//mario.doSpecialBehaviors
+
+			// is every action commented out above
+			foreach (ICharacter chara in _characterList) { chara.DoBehavior(); } 
+
+			//nothing to do with mario, DEBUGGING 
+			_numFrames++;
+
+			foreach (ICharacter chara in _characterList) {chara.Animate(gameTime);}
+			
+			//if animate ends the current frame the event endOfState was added
+			foreach (ICharacter chara in _characterList) {chara.UpdateState();} 
+
+			base.Update(gameTime);
+		}
+
+		protected override void Draw(GameTime gameTime)
+		{
+			GraphicsDevice.Clear(Color.Black);
+			_spriteBatch.Begin();
+			foreach (ICharacter chara in _characterList)
+			{
+				chara.Draw(_spriteBatch);
+			}
+			_spriteBatch.End();
+
+			base.Draw(gameTime);
+		}
+
+		private void DebugFPS() {
+			//fps
+			_numFrames++;
+			_framesRendered++;
+			if ((DateTime.Now - _lastTime).TotalSeconds >= 1)
+			{
+				// one second has elapsed 
+				_fps = _framesRendered;
+				_framesRendered = 0;
+				_lastTime = DateTime.Now;
+			}
+			Console.WriteLine(_numFrames + " FPS: " + _fps);
+		}
+	}
 }

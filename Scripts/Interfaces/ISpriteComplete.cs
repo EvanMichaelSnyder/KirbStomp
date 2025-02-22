@@ -8,8 +8,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace KirbStomp.Interfaces
 {
-    internal interface ISpriteComplete
-    {
-        void Draw(SpriteBatch spriteBatch, Vector2 location, DirectionEnum direction, StateEnum state, int frame, string name);
-    }
+	internal interface ISpriteComplete
+	{
+		void Draw(SpriteBatch spriteBatch, Vector2 location, DirectionEnum direction, StateEnum state, int frame, string name);
+	}
 }

@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using KirbStomp;
 namespace KirbStomp.Interfaces {
-    internal interface ICommand
-    {
-        void Execute(KeyState state);
-    }
+	internal interface ICommand
+	{
+		void Execute(KeyState state);
+	}
 }
-    
+	
