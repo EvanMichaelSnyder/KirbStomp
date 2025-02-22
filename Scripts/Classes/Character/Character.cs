@@ -15,6 +15,7 @@ namespace KirbStomp
 {
     internal class Character : ICharacter
     {
+        private string _name;
         private CharacterStateMachine _stateMachine;
         private ButtonDataManager _buttonDataManager;
         private ActionList _actionList;
@@ -25,9 +26,9 @@ namespace KirbStomp
         private static int yLocaleSpawn = 0;
         //locale spawn is not used later
 
-        public Character(Texture2D spriteSheet, string spriteSheetName)
+        public Character(string name, Texture2D spriteSheet, string spriteSheetName)
         {
-
+            _name = name;
             _velocity = Vector2.Zero;
             _position.X = xLocaleSpawn;
             //Magic numbers 50
@@ -55,7 +56,7 @@ namespace KirbStomp
 
         public void Animate(GameTime gameTime)
         {
-            var animationData = AnimationSystem.GetAnimationData(_spriteSheetName, _stateMachine.State.CurrentState);
+            var animationData = AnimationRepository.GetAnimationData(_name, _stateMachine.State.CurrentState);
 
             if (animationData == null || animationData.Frames.Count == 0)
                 throw new Exception("major error in frame grabbing");
@@ -93,7 +94,7 @@ namespace KirbStomp
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            _sprite.Draw(spriteBatch, _position, _stateMachine.State.FacingDirection, _stateMachine.State.CurrentState, _stateMachine.State.GetFrameIndex(), _spriteSheetName);
+            _sprite.Draw(spriteBatch, _position, _stateMachine.State.FacingDirection, _stateMachine.State.CurrentState, _stateMachine.State.GetFrameIndex(), _name);
         }
         //just pass current facing direction current state enum and current frame
         //_stateMachine.State.CurrentState();

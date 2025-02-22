@@ -6,7 +6,7 @@ using System.Xml.Linq;
 using KirbStomp;
 using Microsoft.Xna.Framework;
 
-public static class AnimationSystem
+public static class AnimationRepository
 {
     #region Data Structures
     public class FrameData
@@ -47,6 +47,7 @@ public static class AnimationSystem
 
     public class SpriteSheetData
     {
+        public string SpriteSheet;
         public float Scale;
         public float BoundX;
         public float OffsetDirectional;
@@ -66,10 +67,10 @@ public static class AnimationSystem
             float.Parse(parts[1].Trim())
         );
     }
-    public static AnimationData GetAnimationData(string spriteSheet, StateEnum animationName)
+    public static AnimationData GetAnimationData(string name, StateEnum animationName)
     {
         string animationNameString = animationName.ToString();
-        if (!_animationDatabase.TryGetValue(spriteSheet, out SpriteSheetData sheetData))
+        if (!_animationDatabase.TryGetValue(name, out SpriteSheetData sheetData))
             return null;
 
         if (!sheetData.Animations.TryGetValue(animationNameString, out AnimationData animData))
@@ -89,21 +90,23 @@ public static class AnimationSystem
 
         // Parse Texture element
         XElement texture = root.Element("Texture");
+        string name = texture.Attribute("character").Value;
         string sheetName = texture.Attribute("spriteSheet").Value;
         float scale = float.Parse(texture.Attribute("scale").Value);
         float boundX = float.Parse(texture.Attribute("boundX").Value);
         float offsetDirectional = float.Parse(texture.Attribute("offsetDirectional").Value);
 
         // Get or create sprite sheet entry
-        if (!_animationDatabase.TryGetValue(sheetName, out SpriteSheetData sheetData))
+        if (!_animationDatabase.TryGetValue(name, out SpriteSheetData sheetData))
         {
             sheetData = new SpriteSheetData
             {
+                SpriteSheet = sheetName,
                 Scale = scale,
                 BoundX = boundX,
                 OffsetDirectional = offsetDirectional
             };
-            _animationDatabase[sheetName] = sheetData;
+            _animationDatabase[name] = sheetData;
         }
 
         // Parse Animation elements
@@ -134,17 +137,17 @@ public static class AnimationSystem
         }
     }
 
-    public static (FrameData frame, Vector2 totalOffset, float scale, float boundX, float offSetDirectional) GetFrameData(
-        string spriteSheet,
+    public static (FrameData frame, Vector2 totalOffset,string sourceSheet, float scale, float boundX, float offSetDirectional) GetFrameData(
+        string name,
         StateEnum animationName,
         int frameIndex)
     {
         string animationNameString = animationName.ToString();
-        if (!_animationDatabase.TryGetValue(spriteSheet, out SpriteSheetData sheetData))
-            throw new ArgumentException($"Sprite sheet '{spriteSheet}' not found");
+        if (!_animationDatabase.TryGetValue(name, out SpriteSheetData sheetData))
+            throw new ArgumentException($"Character '{name}' not found");
 
         if (!sheetData.Animations.TryGetValue(animationNameString, out AnimationData animData))
-            throw new ArgumentException($"Animation '{animationNameString}' not found in {spriteSheet}");
+            throw new ArgumentException($"Animation '{animationNameString}' not found in {name}");
 
         if (frameIndex < 0 || frameIndex >= animData.Frames.Count)
             throw new IndexOutOfRangeException($"Invalid frame index {frameIndex} for {animationNameString}");
@@ -152,7 +155,7 @@ public static class AnimationSystem
         var frame = animData.Frames[frameIndex];
         Vector2 totalOffset = animData.AnimationOffset + frame.PerFrameOffset;
 
-        return (frame, totalOffset, sheetData.Scale, sheetData.BoundX, sheetData.OffsetDirectional);
+        return (frame, totalOffset, sheetData.SpriteSheet, sheetData.Scale, sheetData.BoundX, sheetData.OffsetDirectional);
     }
 
     #endregion

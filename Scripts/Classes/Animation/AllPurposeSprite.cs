@@ -23,7 +23,7 @@ using KirbStomp;
             Rectangle destinationRectangle;
 
         //grab entry from dictionary
-            var entry = AnimationSystem.GetFrameData(name, state, frame);
+            var entry = AnimationRepository.GetFrameData(name, state, frame);
             sourceRectangle = entry.frame.ToRectanglePretty(direction,entry.boundX);
             
             //the great equation
