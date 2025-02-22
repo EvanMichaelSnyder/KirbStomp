@@ -18,6 +18,15 @@ internal class KeyboardController : IController
             
             DefaultKeyAssignments(buttons);
         }
+        public KeyboardController(ButtonDataManager buttons, Dictionary<Keys, ICommand> commands)
+        {
+            _commands = new Dictionary<Keys, ICommand>();
+            
+            foreach (var (key, value) in commands)
+            {
+                RegisterCommand(key, value);
+            }
+        }
 
         //Attempts to register command returns 0 if successful, -1 if not
         public int RegisterCommand(Keys key, ICommand command)
