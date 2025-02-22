@@ -22,19 +22,19 @@ using KirbStomp;
 			Rectangle sourceRectangle;
 			Rectangle destinationRectangle;
 
-        //grab entry from dictionary
-            var entry = AnimationRepository.GetFrameData(name, state, frame);
-            sourceRectangle = entry.frame.ToRectanglePretty(direction,entry.boundX);
-            
-            //the great equation
-            int xCoord = (int)(Game1.globalScaleX * (location.X + (entry.totalOffset.X * entry.scale)));
-            if (direction == DirectionEnum.Left)
-            {
-                xCoord = (int)(Game1.globalScaleX * (location.X - (entry.frame.Size.X + entry.totalOffset.X + entry.offSetDirectional) * entry.scale));
-            }
-            int yCoord = (int)(Game1.globalScaleY * (location.Y + (entry.totalOffset.Y * entry.scale)));
-            int Width =(int)(Game1.globalScaleX * (entry.frame.Size.X * entry.scale));
-            int Height=(int)(Game1.globalScaleY * (entry.frame.Size.Y * entry.scale));
+		//grab entry from dictionary
+			var entry = AnimationRepository.GetFrameData(name, state, frame);
+			sourceRectangle = entry.frame.ToRectanglePretty(direction,entry.boundX);
+			
+			//the great equation
+			int xCoord = (int)(Game1.globalScaleX * (location.X + (entry.totalOffset.X * entry.scale)));
+			if (direction == DirectionEnum.Left)
+			{
+				xCoord = (int)(Game1.globalScaleX * (location.X - (entry.frame.Size.X + entry.totalOffset.X + entry.offSetDirectional) * entry.scale));
+			}
+			int yCoord = (int)(Game1.globalScaleY * (location.Y + (entry.totalOffset.Y * entry.scale)));
+			int Width =(int)(Game1.globalScaleX * (entry.frame.Size.X * entry.scale));
+			int Height=(int)(Game1.globalScaleY * (entry.frame.Size.Y * entry.scale));
 
 
 			destinationRectangle = new Rectangle(xCoord,yCoord,Width,Height);

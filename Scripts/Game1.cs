@@ -11,22 +11,21 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using KirbStomp.Data;
-using KirbStomp.Scripts.Classes.CharacterXMLParser;
 
 namespace KirbStomp
 {
-    public class Game1 : Game
-    {
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
-        private ArrayList _characterList;
-        private ArrayList _controllerList;
-        
-        internal static double globalXBoundMax = 800;
-        internal static double globalYBoundMax = 480;
-        internal static double globalScaleX = 1.0;
-        internal static double globalScaleY = 1.0;
-        internal static double globalAspectRatio = 5 / 3.0;
+	public class Game1 : Game
+	{
+		private GraphicsDeviceManager _graphics;
+		private SpriteBatch _spriteBatch;
+		private ArrayList _characterList;
+		private ArrayList _controllerList;
+		
+		internal static double globalXBoundMax = 800;
+		internal static double globalYBoundMax = 480;
+		internal static double globalScaleX = 1.0;
+		internal static double globalScaleY = 1.0;
+		internal static double globalAspectRatio = 5 / 3.0;
 
 		//fps stuff
 		int _numFrames = 0; //just for debugging
@@ -79,35 +78,35 @@ namespace KirbStomp
 			Texture2D linkSheet = Content.Load<Texture2D>(linkSpriteSheetName);
 
 
-            ICharacter mario = new Character("Mario", marioSheet, marioSpriteSheetName);
-            IController controllerMario = new KeyboardController(mario.GetButtonDataManager, new Dictionary<Keys, ICommand>()
-            {
-                {Keys.W, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Up])},
-                {Keys.A, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Left])},
-                {Keys.S, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Down])},
-                {Keys.D, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Right])},
-                {Keys.Y, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Attack])},
-                {Keys.T, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Special])},
-                {Keys.Space, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Jump])}
-            });
-            ICharacter mario2 = new Character("Mario", marioSheet, marioSpriteSheetName);
-            IController controllerMario2 = new KeyboardController(mario2.GetButtonDataManager, new Dictionary<Keys, ICommand>()
-            {
-                {Keys.P, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Up])},
-                {Keys.L, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Left])},
-                {Keys.OemSemicolon, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Down])},
-                {Keys.OemQuotes, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Right])},
-                {Keys.Down, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Attack])},
-                {Keys.Left, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Special])},
-                {Keys.RightShift, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Jump])}
-            });
-            //ICharacter link = new Character(linkSheet, LinkSpriteSheetName);
-            //IController controllerLink = new KeyboardController(link.GetButtonDataManager);
+			ICharacter mario = new Character("Mario", marioSheet, marioSpriteSheetName);
+			IController controllerMario = new KeyboardController(mario.GetButtonDataManager, new Dictionary<Keys, ICommand>()
+			{
+				{Keys.W, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Up])},
+				{Keys.A, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Left])},
+				{Keys.S, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Down])},
+				{Keys.D, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Right])},
+				{Keys.Y, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Attack])},
+				{Keys.T, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Special])},
+				{Keys.Space, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Jump])}
+			});
+			ICharacter mario2 = new Character("Mario", marioSheet, marioSpriteSheetName);
+			IController controllerMario2 = new KeyboardController(mario2.GetButtonDataManager, new Dictionary<Keys, ICommand>()
+			{
+				{Keys.P, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Up])},
+				{Keys.L, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Left])},
+				{Keys.OemSemicolon, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Down])},
+				{Keys.OemQuotes, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Right])},
+				{Keys.Down, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Attack])},
+				{Keys.Left, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Special])},
+				{Keys.RightShift, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Jump])}
+			});
+			//ICharacter link = new Character(linkSheet, LinkSpriteSheetName);
+			//IController controllerLink = new KeyboardController(link.GetButtonDataManager);
 
-            _characterList = new ArrayList();
-            _characterList.Add(mario);
-            _characterList.Add(mario2);
-            _characterList.Add(new Character("Link", linkSheet, linkSpriteSheetName));
+			_characterList = new ArrayList();
+			_characterList.Add(mario);
+			_characterList.Add(mario2);
+			_characterList.Add(new Character("Link", linkSheet, linkSpriteSheetName));
 
 			_controllerList = new ArrayList();
 			_controllerList.Add(controllerMario);
@@ -115,12 +114,12 @@ namespace KirbStomp
 
 			CharacterXMLParser.LoadCharacter("Mario");
 
-            string xmlPathLink = GetRelativeFilePath("Link.XML");
-            string xmlPathMario = GetRelativeFilePath("Mario.XML");
-            AnimationRepository.LoadAnimationsFromXml(xmlPathMario);
-            AnimationRepository.LoadAnimationsFromXml(xmlPathLink);
-            base.Initialize();
-        }
+			string xmlPathLink = GetRelativeFilePath("Link.XML");
+			string xmlPathMario = GetRelativeFilePath("Mario.XML");
+			AnimationRepository.LoadAnimationsFromXml(xmlPathMario);
+			AnimationRepository.LoadAnimationsFromXml(xmlPathLink);
+			base.Initialize();
+		}
 		
 		private string GetRelativeFilePath(string file)
 		{

@@ -13,50 +13,50 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace KirbStomp
 {
-    internal class Character : ICharacter
-    {
-        private string _name;
-        private CharacterStateMachine _stateMachine;
-        private ButtonDataManager _buttonDataManager;
-        private ActionList _actionList;
-        private Vector2 _position, _velocity;
-        private ISpriteComplete _sprite;
-        private string _spriteSheetName;
-        private static int xLocaleSpawn = 0;
-        private static int yLocaleSpawn = 0;
-        //locale spawn is not used later
+	internal class Character : ICharacter
+	{
+		private string _name;
+		private CharacterStateMachine _stateMachine;
+		private ButtonDataManager _buttonDataManager;
+		private ActionList _actionList;
+		private Vector2 _position, _velocity;
+		private ISpriteComplete _sprite;
+		private string _spriteSheetName;
+		private static int xLocaleSpawn = 0;
+		private static int yLocaleSpawn = 0;
+		//locale spawn is not used later
 
-        public Character(string name, Texture2D spriteSheet, string spriteSheetName)
-        {
-            _name = name;
-            _velocity = Vector2.Zero;
-            _position.X = xLocaleSpawn;
-            //Magic numbers 50
-            xLocaleSpawn += 50;
-            _position.Y = yLocaleSpawn;
-            yLocaleSpawn += 50;
-            _stateMachine = new CharacterStateMachine();
-            _buttonDataManager = new ButtonDataManager();
-            _actionList = new ActionList();
-            _spriteSheetName = spriteSheetName;
-            _sprite = new AllPurposeSprite(spriteSheet);
-        }
-        public ButtonDataManager GetButtonDataManager
-        {
-            get => _buttonDataManager;
-        }
-        public void DoBehavior()
-        {
-            // _stateMachine.PerformBehavior();
-            if (_stateMachine.State.getElapsedTime() >= 1000)
-            {
-                _actionList.AddAction(GameButtons.End);
-            }
-        }
+		public Character(string name, Texture2D spriteSheet, string spriteSheetName)
+		{
+			_name = name;
+			_velocity = Vector2.Zero;
+			_position.X = xLocaleSpawn;
+			//Magic numbers 50
+			xLocaleSpawn += 50;
+			_position.Y = yLocaleSpawn;
+			yLocaleSpawn += 50;
+			_stateMachine = new CharacterStateMachine();
+			_buttonDataManager = new ButtonDataManager();
+			_actionList = new ActionList();
+			_spriteSheetName = spriteSheetName;
+			_sprite = new AllPurposeSprite(spriteSheet);
+		}
+		public ButtonDataManager GetButtonDataManager
+		{
+			get => _buttonDataManager;
+		}
+		public void DoBehavior()
+		{
+			// _stateMachine.PerformBehavior();
+			if (_stateMachine.State.getElapsedTime() >= 1000)
+			{
+				_actionList.AddAction(GameButtons.End);
+			}
+		}
 
-        public void Animate(GameTime gameTime)
-        {
-            var animationData = AnimationRepository.GetAnimationData(_name, _stateMachine.State.CurrentState);
+		public void Animate(GameTime gameTime)
+		{
+			var animationData = AnimationRepository.GetAnimationData(_name, _stateMachine.State.CurrentState);
 
 			if (animationData == null || animationData.Frames.Count == 0)
 				throw new Exception("major error in frame grabbing");
@@ -92,12 +92,12 @@ namespace KirbStomp
 			Debug.WriteLine("State: " + _stateMachine.State.CurrentState + " Frame: " + _stateMachine.State.GetFrameIndex()+ "\nFacing: "+  _stateMachine.State.FacingDirection + " Moving: "+ _stateMachine.State.MovementDirection);
 		}
 
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            _sprite.Draw(spriteBatch, _position, _stateMachine.State.FacingDirection, _stateMachine.State.CurrentState, _stateMachine.State.GetFrameIndex(), _name);
-        }
-        //just pass current facing direction current state enum and current frame
-        //_stateMachine.State.CurrentState();
+		public void Draw(SpriteBatch spriteBatch)
+		{
+			_sprite.Draw(spriteBatch, _position, _stateMachine.State.FacingDirection, _stateMachine.State.CurrentState, _stateMachine.State.GetFrameIndex(), _name);
+		}
+		//just pass current facing direction current state enum and current frame
+		//_stateMachine.State.CurrentState();
 
 		public void UpdateState()
 		{

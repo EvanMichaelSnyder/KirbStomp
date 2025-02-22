@@ -11,17 +11,6 @@ using System.Xml.Linq;
 
 namespace KirbStomp
 {
-
-	struct AvailableAttacks
-	{
-		bool GroundNeutral1, GroundNeutral2, GroundNeutral3;
-		bool GroundUp, GroundDown, GroundFront, GroundBack;
-		bool AerialNeutral;
-		bool AerialUp, AerialDown, AerialFront, AerialBack;
-		bool SpecialNeutral;
-		bool SpecialUp, SpecialDown, SpecialFront, SpecialBack;
-	}
-
 	internal class CharacterXMLParser
 	{
 		private static Dictionary<string, Character> characters;
@@ -86,10 +75,10 @@ namespace KirbStomp
 		{
 			XElement movementElement		=	GetXElementOrAssert("Movement", characterElement);
 			float baseWalkSpeed = float.Parse(GetXElementOrAssert("BaseWalkSpeed", movementElement).Value);
-			float baseRunSpeed = float.Parse(GetXElementOrAssert("BaseRunSpeend", movementElement).Value);
+			float baseRunSpeed = float.Parse(GetXElementOrAssert("BaseRunSpeed", movementElement).Value);
 			float maxRunSpeed = float.Parse(GetXElementOrAssert("MaxRunSpeed", movementElement).Value);
 
-			XElement accelerationElement	=	GetXElementOrAssert("Acceleration", movementElement);
+			XElement accelerationElement	=	GetXElementOrAssert("Accelerations", movementElement);
 			float walkingAcceleration = float.Parse(GetXElementOrAssert("Walk", accelerationElement).Value);
 			float runningAcceleration = float.Parse(GetXElementOrAssert("Run", accelerationElement).Value);
 			float inAirAcceleration = float.Parse(GetXElementOrAssert("Air", accelerationElement).Value);
