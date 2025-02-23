@@ -247,118 +247,122 @@ namespace KirbStomp.StateMachine
 				current.MovementDirection = None;
 			}
 
-			//the hitGround will reset our jumps
-		}
-		public static void EnterKnockedBack(CharacterState current)
-		{
-			throw new Exception("\n Knockback not implemented");
-		}
-		public static void EnterIdle(CharacterState current)
-		{
-			if (current.IsGrounded) { current.CurrentState = Idle; }
-			else if (!current.IsGrounded) { current.CurrentState = AirIdle; }
-			else { throw new Exception("WHAT HAVE YOU DONE"); }
-		}
-		public static void EnterFalling(CharacterState current)
-		{
-			//the specificity of this transition means we should check it
-			if (current.CurrentState == SpecialUp)
-			{
-				current.CurrentState = FreeFall;
-			}
-			else
-			{
-				//this can trigger in console state machine because during up special you could in theory hit the ground
-				Debug.WriteLine("You should not be entering Freefall avoid hitting the ground during upSpecial");
-			}
-		}
-		public static void EnterRecover(CharacterState current)
-		{
-			current.CurrentState = Recover;
-		}
-		public static void EnterMovement(CharacterState current)
-		{
-			//should only be called on basic
-			if (!current.IsGrounded)
-			{
-				if (current.ConvertToRelativeMovementDirection(current.DesiredMovementDirection) != Forward)
-				{
-					current.MovementDirection = current.DesiredMovementDirection;
-				}
-				current.CurrentState = AirMove;
-			}
-			else if (current.IsGrounded)
-			{
-				if (current.ConvertToRelativeMovementDirection(current.DesiredMovementDirection) != Forward)
-				{
-					current.MovementDirection = current.DesiredMovementDirection;
-					current.FacingDirection = current.DesiredMovementDirection;
-				}
-				current.MovementDirection = current.DesiredMovementDirection;
-				current.CurrentState = Walk;
-			}
-			else
-			{
-				throw new Exception("Enter Movement Not Implemented");
-			}
-		}
-		public static void AlterMovement(CharacterState current)
-		{
-			//This is very complicated but it is simpler to understand when you realize that we only change our facing direction or speedSetting
-			if (!current.IsGrounded)
-			{
-				if (!(current.ConvertToRelativeMovementDirection(current.DesiredMovementDirection) == Forward))
-				{
-					current.MovementDirection = current.DesiredMovementDirection;
-					// in air we only change movement direction
-				}
-			}
-			else if (current.IsGrounded)
-			{
-				switch (current.CurrentState)
-				{
-					case Walk:
-						if (current.ConvertToRelativeMovementDirection(current.DesiredMovementDirection) == Forward)
-						{
-							//will later check speed to see if we should increase for now we will assume
-							current.CurrentState = Run;
-						}
-						else
-						{
-							current.CurrentState = Run;
-							current.MovementDirection = current.DesiredMovementDirection;
-							current.FacingDirection = current.DesiredMovementDirection;
-						}
-						break;
-					case Run:
-						if (current.ConvertToRelativeMovementDirection(current.DesiredMovementDirection) == Forward)
-						{
-							//will later check speed to see if we should increase for now we will assume
-							current.CurrentState = Sprint;
-						}
-						else
-						{
-							current.CurrentState = Sprint;
-							current.MovementDirection = current.DesiredMovementDirection;
-							current.FacingDirection = current.DesiredMovementDirection;
-						}
-						break;
-					case Sprint:
-						if (current.ConvertToRelativeMovementDirection(current.DesiredMovementDirection) == Forward)
-						{
-							//will later check speed to see if we should increase for now we will assume
-							current.CurrentState = Sprint;
-							//no increase we are already sprinting
-						}
-						else
-						{
-							current.CurrentState = SlideTurn;
-							current.MovementDirection = None;
-							current.FacingDirection = current.DesiredMovementDirection;
-						}
-						break;
-				}
-			}
+            //the hitGround will reset our jumps
+        }
+        public static void EnterKnockedBack(CharacterState current)
+        {
+            throw new Exception("\n Knockback not implemented");
+        }
+        public static void EnterIdle(CharacterState current)
+        {
+            if (current.IsGrounded) { current.CurrentState = Idle; }
+            else if (!current.IsGrounded) { current.CurrentState = AirIdle; }
+            else { throw new Exception("WHAT HAVE YOU DONE"); }
+        }
+        public static void EnterFalling(CharacterState current)
+        {
+            //the specificity of this transition means we should check it
+            if (current.CurrentState == SpecialUp)
+            {
+                current.CurrentState = FreeFall;
+            }
+            else
+            {
+                //this can trigger in console state machine because during up special you could in theory hit the ground
+                Debug.WriteLine("You should not be entering Freefall avoid hitting the ground during upSpecial");
+            }
+        }
+        public static void EnterRecover(CharacterState current)
+        {
+            current.CurrentState = Recover;
+        }
+        public static void EnterMovement(CharacterState current)
+        {
+            //should only be called on basic
+            if (!current.IsGrounded)
+            {
+                if (current.ConvertToRelativeMovementDirection(current.DesiredMovementDirection) != Forward)
+                {
+                    current.MovementDirection = current.DesiredMovementDirection;
+                }
+                current.CurrentState = AirMove;
+            }
+            else if (current.IsGrounded)
+            {
+                if (current.ConvertToRelativeMovementDirection(current.DesiredMovementDirection) != Forward)
+                {
+                    current.MovementDirection = current.DesiredMovementDirection;
+                    current.FacingDirection = current.DesiredMovementDirection;
+                }
+                current.MovementDirection = current.DesiredMovementDirection;
+                current.CurrentState = Walk;
+            }
+            else
+            {
+                throw new Exception("Enter Movement Not Implemented");
+            }
+        }
+        public static void AlterMovement(CharacterState current)
+        {
+            //This is very complicated but it is simpler to understand when you realize that we only change our facing direction or speedSetting
+            if (!current.IsGrounded)
+            {
+                if (!(current.ConvertToRelativeMovementDirection(current.DesiredMovementDirection) == Forward))
+                {
+                    current.MovementDirection = current.DesiredMovementDirection;
+                    // in air we only change movement direction
+                    if(current.CurrentState==Idle||current.CurrentState == Walk || current.CurrentState == Run || current.CurrentState == Sprint)
+                    {
+                        current.CurrentState = StateEnum.AirMove;
+                    }
+                }
+            }
+            else if (current.IsGrounded)
+            {
+                switch (current.CurrentState)
+                {
+                    case Walk:
+                        if (current.ConvertToRelativeMovementDirection(current.DesiredMovementDirection) == Forward)
+                        {
+                            //will later check speed to see if we should increase for now we will assume
+                            current.CurrentState = Run;
+                        }
+                        else
+                        {
+                            current.CurrentState = Run;
+                            current.MovementDirection = current.DesiredMovementDirection;
+                            current.FacingDirection = current.DesiredMovementDirection;
+                        }
+                        break;
+                    case Run:
+                        if (current.ConvertToRelativeMovementDirection(current.DesiredMovementDirection) == Forward)
+                        {
+                            //will later check speed to see if we should increase for now we will assume
+                            current.CurrentState = Sprint;
+                        }
+                        else
+                        {
+                            current.CurrentState = Sprint;
+                            current.MovementDirection = current.DesiredMovementDirection;
+                            current.FacingDirection = current.DesiredMovementDirection;
+                        }
+                        break;
+                    case Sprint:
+                        if (current.ConvertToRelativeMovementDirection(current.DesiredMovementDirection) == Forward)
+                        {
+                            //will later check speed to see if we should increase for now we will assume
+                            current.CurrentState = Sprint;
+                            //no increase we are already sprinting
+                        }
+                        else
+                        {
+                            current.CurrentState = SlideTurn;
+                            current.MovementDirection = None;
+                            current.FacingDirection = current.DesiredMovementDirection;
+                        }
+                        break;
+                }
+            }
 
 		}
 

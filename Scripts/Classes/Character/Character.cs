@@ -36,9 +36,9 @@ namespace KirbStomp
             _velocity = Vector2.Zero;
             _position.X = xLocaleSpawn;
             //Magic numbers 50
-            xLocaleSpawn += 0;
+            xLocaleSpawn += 50;
             _position.Y = yLocaleSpawn;
-            yLocaleSpawn += 0;
+            yLocaleSpawn += 50;
             _stateMachine = new CharacterStateMachine();
             _buttonDataManager = new ButtonDataManager();
             _actionList = new ActionList();
@@ -115,7 +115,7 @@ namespace KirbStomp
         {
             if (hitboxDrawEnabled)
             {
-                if (_name == "Mario" && _stateMachine.State.CurrentState == StateEnum.Idle)
+                if (_name == "Mario")
                 {
                     _hitboxManager.Draw(spriteBatch);
                 }
@@ -126,7 +126,7 @@ namespace KirbStomp
         {
             HandleStates();
             _actionList.ResetList();
-            if (_stateMachine.State.CurrentState == StateEnum.Idle && _name == "Mario" && hitboxDrawEnabled)
+            if (_name == "Mario")
             {
                 _hitboxManager.UpdateHitboxList(_position, _stateMachine.State.FacingDirection, _name, _stateMachine.State.CurrentState, _stateMachine.State.GetFrameIndex());
             }
@@ -268,17 +268,45 @@ namespace KirbStomp
 
         public void CheckGroundCollision() //temporary
         {
+            if(hitboxDrawEnabled && _position.Y < 300)
+            {
+                Rectangle platform = new Rectangle(200, 200, 100, 20);
+                Rectangle approx = _hitboxManager.GetApproximation();
+                if (!approx.IsEmpty)
+                {
+                    Rectangle inter = Rectangle.Intersect(platform, approx);
+                    if (!inter.IsEmpty) {
+
+                        _position.Y -= (int)inter.Height-1;
+                        _position.Y = (int)_position.Y;
+                        Debug.WriteLine(_position.Y);
+
+                        _actionList.AddAction(GameButtons.HitGround);
+                        _velocity.Y = 0;
+                        _stateMachine.State.IsGrounded = true;
+                        _stateMachine.State.ResetJumps();
+                    }
+                                    else
+                {
+                    _stateMachine.State.IsGrounded = false;
+                }
+                }
+            }
             if (_stateMachine.State.CurrentState != StateEnum.Jump)
             {
-                if (_position.Y >= 200)
+                if (_position.Y >= 400)
                 {
                     _actionList.AddAction(GameButtons.HitGround);
                     _velocity.Y = 0;
                     //_velocity.X = 0;
-                    _position.Y = 200;
+                    _position.Y = 400;
                     _stateMachine.State.IsGrounded = true;
                     _stateMachine.State.ResetJumps();
                     // Console.WriteLine("EventHitGround: This may not necessarily result in a new Enum State");
+                }
+                else
+                {
+                    _stateMachine.State.IsGrounded = false;
                 }
                 if (_stateMachine.State.CurrentState == StateEnum.SpecialBack
                     || _stateMachine.State.CurrentState == StateEnum.SpecialDown
@@ -291,10 +319,14 @@ namespace KirbStomp
             }
         }
 
-		public void Gravity(GameTime gameTime) //this is temporary
-		{
-			_velocity.Y += 1000 * (float)gameTime.ElapsedGameTime.TotalSeconds;
-		}
-	}
+        public void Gravity(GameTime gameTime) //this is temporary
+        {
+            if (!_stateMachine.State.IsGrounded)
+            {
+                _velocity.Y += 1000 * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+            //_velocity = _velocity * .8f;
+        }
+    }
 
 }
