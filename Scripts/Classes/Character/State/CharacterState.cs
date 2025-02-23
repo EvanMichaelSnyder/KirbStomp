@@ -311,6 +311,10 @@ namespace KirbStomp.StateMachine
                 {
                     current.MovementDirection = current.DesiredMovementDirection;
                     // in air we only change movement direction
+                    if(current.CurrentState==Idle||current.CurrentState == Walk || current.CurrentState == Run || current.CurrentState == Sprint)
+                    {
+                        current.CurrentState = StateEnum.AirMove;
+                    }
                 }
             }
             else if (current.IsGrounded)

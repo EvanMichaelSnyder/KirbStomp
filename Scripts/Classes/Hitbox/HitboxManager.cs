@@ -29,13 +29,14 @@ namespace KirbStomp.Scripts.Classes.HitboxManager
         public HitboxManager(Texture2D spriteSheet)
         {
             _sprite = new AllPurposeSprite(spriteSheet);
+            _hitboxes = new List<Rectangle>();
         }
 
         public void UpdateHitboxList(Vector2 location, DirectionEnum direction, string name, StateEnum state, int currentFrame)
         {
             var animEntry = AnimationRepository.GetFrameData(name, state, currentFrame);
             var hitboxEntry = HitboxRepository.GetFrameData(name, state, currentFrame);
-            _hitboxes = new List<Rectangle>();
+            _hitboxes.Clear();
 
             //Finding sprite position in virtual space
             Vector2 spriteLocationVirtual;
@@ -78,6 +79,20 @@ namespace KirbStomp.Scripts.Classes.HitboxManager
            {
              _sprite.DrawHitbox(spriteBatch, hitBox);
            }
+        }
+
+        public Rectangle GetApproximation()
+        {
+            if (_hitboxes.Count == 0)
+            {
+                return Rectangle.Empty;
+            }
+            Rectangle approx = new Rectangle();
+            foreach (Rectangle rectangle in _hitboxes)
+            {
+                approx = Rectangle.Union(approx, rectangle);
+            }
+            return approx;
         }
 
     }

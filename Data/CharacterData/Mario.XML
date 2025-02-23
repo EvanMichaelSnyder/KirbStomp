@@ -2,49 +2,49 @@
 	<Texture character ="Mario" spriteSheet="MarioTransparentSpriteSheet" scale="2.0" boundX="1104" offsetDirectional = "-30" />
 
 	<Animation name="Idle" duration ="0.5" loop="true" animationOffset="(0, 0)" isDefault ="true">
-		<Frame position="(18, 23)" size="(23, 38)" perFrameOffset="(0, 0)"/>
-		<Frame position="(45, 23)" size="(23, 38)" perFrameOffset="(0, 0)"/>
+		<Frame position="(18, 25)" size="(23, 36)" perFrameOffset="(0, 2)"/>
+		<Frame position="(45, 24)" size="(23, 37)" perFrameOffset="(0, 1)"/>
 		<Frame position="(72, 23)" size="(23, 38)" perFrameOffset="(0, 0)"/>
 		<Frame position="(99, 23)" size="(24, 38)" perFrameOffset="(0, 0)"/>
-		<Frame position="(126, 23)" size="(25, 38)" perFrameOffset="(0, 0)"/>
-		<Frame position="(153, 23)" size="(25, 38)" perFrameOffset="(0, 0)"/>
-		<Frame position="(126, 23)" size="(25, 38)" perFrameOffset="(0, 0)"/>
+		<Frame position="(126, 24)" size="(25, 37)" perFrameOffset="(0, 1)"/>
+		<Frame position="(153, 25)" size="(25, 36)" perFrameOffset="(0, 2)"/>
+		<Frame position="(126, 24)" size="(25, 37)" perFrameOffset="(0, 1)"/>
 		<Frame position="(99, 23)" size="(24, 38)" perFrameOffset="(0, 0)"/>
 		<Frame position="(72, 23)" size="(23, 38)" perFrameOffset="(0, 0)"/>
-		<Frame position="(45, 23)" size="(23, 38)" perFrameOffset="(0, 0)"/>
+		<Frame position="(45, 24)" size="(23, 37)" perFrameOffset="(0, 1)"/>
 	</Animation>
 
-	<Animation name="Walk" duration ="0.5" loop="true" animationOffset="(0, -1)">
-		<Frame position="(12, 148)" size="(28, 39)" perFrameOffset="(0, 0)"/>
-		<Frame position="(44, 148)" size="(30, 39)" perFrameOffset="(0, 0)"/>
-		<Frame position="(82, 148)" size="(29, 39)" perFrameOffset="(0, 0)"/>
-		<Frame position="(116, 148)" size="(24, 39)" perFrameOffset="(0, 0)"/>
-		<Frame position="(146, 148)" size="(28, 39)" perFrameOffset="(0, 0)"/>
-		<Frame position="(181, 148)" size="(30, 39)" perFrameOffset="(0, 0)"/>
-		<Frame position="(220, 148)" size="(28, 39)" perFrameOffset="(0, 0)"/>
-		<Frame position="(254, 148)" size="(24, 39)" perFrameOffset="(0, 0)"/>
+	<Animation name="Walk" duration ="0.5" loop="true" animationOffset="(0, 2)">
+		<Frame position="(12,148)" size="(28,36)" perFrameOffset="(0, 0)"/>
+		<Frame position="(44,148)" size="(30,34)" perFrameOffset="(0, 2)"/>
+		<Frame position="(82,149)" size="(29,36)" perFrameOffset="(0, 0)"/>
+		<Frame position="(116,151)" size="(24,36)" perFrameOffset="(0, 0)"/>
+		<Frame position="(146,149)" size="(28,36)" perFrameOffset="(0, 0)"/>
+		<Frame position="(181,150)" size="(30,34)" perFrameOffset="(0, 2)"/>
+		<Frame position="(220,149)" size="(29,36)" perFrameOffset="(0, 0)"/>
+		<Frame position="(254,151)" size="(25,36)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
-	<Animation name="Run" duration ="0.5" loop="true" animationOffset="(0, -1)">
-		<Frame position="(12, 148)" size="(28, 39)" perFrameOffset="(2, 0)"/>
-		<Frame position="(44, 148)" size="(30, 39)" perFrameOffset="(0, 0)"/>
-		<Frame position="(82, 148)" size="(29, 39)" perFrameOffset="(1, 0)"/>
-		<Frame position="(116, 148)" size="(24, 39)" perFrameOffset="(6, 0)"/>
-		<Frame position="(146, 148)" size="(28, 39)" perFrameOffset="(2, 0)"/>
-		<Frame position="(181, 148)" size="(30, 39)" perFrameOffset="(0, 0)"/>
-		<Frame position="(220, 148)" size="(28, 39)" perFrameOffset="(2, 0)"/>
-		<Frame position="(254, 148)" size="(24, 39)" perFrameOffset="(6, 0)"/>
+	<Animation name="Run" duration ="0.5" loop="true" animationOffset="(0, 2)">
+		<Frame position="(11,203)" size="(26,36)" perFrameOffset="(0, 0)"/>
+		<Frame position="(44,203)" size="(27,34)" perFrameOffset="(0, 2)"/>
+		<Frame position="(82,204)" size="(25,36)" perFrameOffset="(0, 0)"/>
+		<Frame position="(115,206)" size="(25,36)" perFrameOffset="(0, 0)"/>
+		<Frame position="(145,204)" size="(26,36)" perFrameOffset="(0, 0)"/>
+		<Frame position="(181,205)" size="(27,34)" perFrameOffset="(0, 2)"/>
+		<Frame position="(220,204)" size="(26,36)" perFrameOffset="(0, 0)"/>
+		<Frame position="(253,206)" size="(26,36)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
-	<Animation name="Sprint" duration ="0.5" loop="true" animationOffset="(0, -1)">
-		<Frame position="(11, 203)" size="(26, 39)" perFrameOffset="(0, 0)"/>
-		<Frame position="(44, 203)" size="(27, 39)" perFrameOffset="(0, 0)"/>
-		<Frame position="(82, 203)" size="(25, 39)" perFrameOffset="(0, 0)"/>
-		<Frame position="(115, 203)" size="(25, 39)" perFrameOffset="(0, 0)"/>
-		<Frame position="(145, 203)" size="(26, 39)" perFrameOffset="(0, 0)"/>
-		<Frame position="(181, 203)" size="(27, 39)" perFrameOffset="(0, 0)"/>
-		<Frame position="(220, 203)" size="(26, 39)" perFrameOffset="(0, 0)"/>
-		<Frame position="(253, 203)" size="(26, 39)" perFrameOffset="(0, 0)"/>
+	<Animation name="Sprint" duration ="0.5" loop="true" animationOffset="(0, 2)">
+		<Frame position="(11,203)" size="(26,36)" perFrameOffset="(0, 0)"/>
+		<Frame position="(44,203)" size="(27,34)" perFrameOffset="(0, 2)"/>
+		<Frame position="(82,204)" size="(25,36)" perFrameOffset="(0, 0)"/>
+		<Frame position="(115,206)" size="(25,36)" perFrameOffset="(0, 0)"/>
+		<Frame position="(145,204)" size="(26,36)" perFrameOffset="(0, 0)"/>
+		<Frame position="(181,205)" size="(27,34)" perFrameOffset="(0, 2)"/>
+		<Frame position="(220,204)" size="(26,36)" perFrameOffset="(0, 0)"/>
+		<Frame position="(253,206)" size="(26,36)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
 	<Animation name="SlideTurn" duration ="0.4" loop="false" animationOffset="(0, 2)">
