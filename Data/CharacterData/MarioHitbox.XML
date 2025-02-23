@@ -1,0 +1,76 @@
+﻿<Animations>
+	<Texture character = "Mario" spriteSheet="MarioHitBoxSpriteSheet">
+		<Animation name="Idle">
+			<Frame>
+				<Hitbox position="(19,25 )" size="(18,17 )"/>
+				<Hitbox position="(18,42 )" size="(23,19 )"/>
+			</Frame>
+			<Frame>
+				<Hitbox position="(46,24 )" size="(18,17 )"/>
+				<Hitbox position="(45,41 )" size="(23,20 )"/>
+			</Frame>
+			<Frame>
+				<Hitbox position="(74,23 )" size="(17,18 )"/>
+				<Hitbox position="(72,41)" size="(23,20 )"/>
+			</Frame>
+			<Frame>
+				<Hitbox position="(102,23 )" size="(17,16 )"/>
+				<Hitbox position="(99,39 )" size="(24,22 )"/>
+			</Frame>
+			<Frame>
+				<Hitbox position="(130,24 )" size="(17,14 )"/>
+				<Hitbox position="(126,38 )" size="(25,23 )"/>
+			</Frame>
+			<Frame>
+				<Hitbox position="(157,25 )" size="(17,13 )"/>
+				<Hitbox position="(153,38 )" size="(25,23 )"/>
+			</Frame>
+			<Frame>
+				<Hitbox position="(130,24 )" size="(17,14 )"/>
+				<Hitbox position="(126,38 )" size="(25,23 )"/>
+			</Frame>
+			<Frame>
+				<Hitbox position="(102,23 )" size="(17,16 )"/>
+				<Hitbox position="(99,39 )" size="(24,22 )"/>
+			</Frame>
+			<Frame>
+				<Hitbox position="(74,23 )" size="(17,18 )"/>
+				<Hitbox position="(72,41)" size="(23,20 )"/>
+			</Frame>
+			<Frame>
+				<Hitbox position="(46,24 )" size="(18,17 )"/>
+				<Hitbox position="(45,41 )" size="(23,20 )"/>
+			</Frame>
+			<Frame>
+				<Hitbox position="(19,25 )" size="(18,17 )"/>
+				<Hitbox position="(18,42 )" size="(23,19 )"/>
+			</Frame>
+		</Animation>
+		<Animation name="Walking">
+			<Frame>
+				<Hitbox position="(19,25 )" size="(18,17 )"/>
+				<Hitbox position="(18,42 )" size="(23,19 )"/>
+			</Frame>
+			<Frame>
+				<Hitbox position="(46,24 )" size="(18,17 )"/>
+				<Hitbox position="(45,41 )" size="(23,20 )"/>
+			</Frame>
+			<Frame>
+				<Hitbox position="(74,23 )" size="(17,18 )"/>
+				<Hitbox position="(72,41)" size="(23,20 )"/>
+			</Frame>
+			<Frame>
+				<Hitbox position="(102,23 )" size="(17,16 )"/>
+				<Hitbox position="(99,39 )" size="(24,22 )"/>
+			</Frame>
+			<Frame>
+				<Hitbox position="(130,24 )" size="(17,14 )"/>
+				<Hitbox position="(126,38 )" size="(25,23 )"/>
+			</Frame>
+			<Frame>
+				<Hitbox position="(157,25 )" size="(17,13 )"/>
+				<Hitbox position="(153,38 )" size="(25,23 )"/>
+			</Frame>
+		</Animation>
+	</Texture>
+</Animations>

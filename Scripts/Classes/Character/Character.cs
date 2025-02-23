@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using KirbStomp;
 using KirbStomp.Interfaces;
+using KirbStomp.Scripts.Classes.HitboxManager;
 using KirbStomp.StateMachine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,15 +17,17 @@ namespace KirbStomp
     internal class Character : ICharacter
     {
         private string _name;
+        private HitboxManager _hitboxManager;
         private CharacterStateMachine _stateMachine;
         private ButtonDataManager _buttonDataManager;
         private ActionList _actionList;
         private Vector2 _position, _velocity;
         private ISpriteComplete _sprite;
-        private string _spriteSheetName;
         private static int xLocaleSpawn = 0;
         private static int yLocaleSpawn = 0;
         //locale spawn is not used later
+
+        private bool hitboxDrawEnabled;
 
         public Character(string name, Texture2D spriteSheet, string spriteSheetName)
         {
@@ -32,15 +35,23 @@ namespace KirbStomp
             _velocity = Vector2.Zero;
             _position.X = xLocaleSpawn;
             //Magic numbers 50
-            xLocaleSpawn += 50;
+            xLocaleSpawn += 0;
             _position.Y = yLocaleSpawn;
-            yLocaleSpawn += 50;
+            yLocaleSpawn += 0;
             _stateMachine = new CharacterStateMachine();
             _buttonDataManager = new ButtonDataManager();
             _actionList = new ActionList();
-            _spriteSheetName = spriteSheetName;
             _sprite = new AllPurposeSprite(spriteSheet);
+            _hitboxManager = new HitboxManager(spriteSheet);
+            hitboxDrawEnabled = false;
         }
+
+        public void AssignLegitimateHitboxSheet(Texture2D spriteSheet)
+        {
+            _hitboxManager = new HitboxManager(spriteSheet);
+            hitboxDrawEnabled = true;
+        }
+
         public ButtonDataManager GetButtonDataManager
         {
             get => _buttonDataManager;
@@ -99,10 +110,25 @@ namespace KirbStomp
         //just pass current facing direction current state enum and current frame
         //_stateMachine.State.CurrentState();
 
+        public void DrawHitbox(SpriteBatch spriteBatch)
+        {
+            if (hitboxDrawEnabled)
+            {
+                if (_name == "Mario" && _stateMachine.State.CurrentState == StateEnum.Idle)
+                {
+                    _hitboxManager.Draw(spriteBatch);
+                }
+            }
+        }
+
         public void UpdateState()
         {
             HandleStates();
             _actionList.ResetList();
+            if (_stateMachine.State.CurrentState == StateEnum.Idle && _name == "Mario" && hitboxDrawEnabled)
+            {
+                _hitboxManager.UpdateHitboxList(_position, _stateMachine.State.FacingDirection, _name, _stateMachine.State.CurrentState, _stateMachine.State.GetFrameIndex());
+            }
         }
         internal void HandleStates()
         {
@@ -243,12 +269,12 @@ namespace KirbStomp
         {
             if (_stateMachine.State.CurrentState != StateEnum.Jump)
             {
-                if (_position.Y >= 400)
+                if (_position.Y >= 200)
                 {
                     _actionList.AddAction(GameButtons.HitGround);
                     _velocity.Y = 0;
                     //_velocity.X = 0;
-                    _position.Y = 400;
+                    _position.Y = 200;
                     _stateMachine.State.IsGrounded = true;
                     _stateMachine.State.ResetJumps();
                     // Console.WriteLine("EventHitGround: This may not necessarily result in a new Enum State");

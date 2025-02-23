@@ -10,6 +10,7 @@ namespace KirbStomp.Interfaces
 {
     internal interface ISpriteComplete
     {
+        void DrawHitbox(SpriteBatch spriteBatch, Rectangle HitBox);
         void Draw(SpriteBatch spriteBatch, Vector2 location, DirectionEnum direction, StateEnum state, int frame, string name);
     }
 }

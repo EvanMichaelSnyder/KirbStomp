@@ -15,24 +15,36 @@ public static class AnimationRepository
         public Vector2 Size;
         public Vector2 PerFrameOffset;
 
-        public Rectangle ToRectangle()
+        public Rectangle ToRectangle(DirectionEnum direction, float boundX)
         {
-            return new Rectangle((int)Position.X, (int)Position.Y, (int)Size.X, (int)Size.Y);
+            if (direction == DirectionEnum.Left)
+            {
+                return new Rectangle((int)(boundX - Position.X - Size.X),
+                                     (int)Position.Y,
+                                     (int)Size.X,
+                                     (int)Size.Y);
+            }
+            return new Rectangle((int)Position.X,
+                                 (int)Position.Y,
+                                 (int)Size.X,
+                                 (int)Size.Y);
         }
+
 
         public Rectangle ToRectanglePretty(DirectionEnum direction, float boundX)
         {
+            throw new NotImplementedException();
             if (direction == DirectionEnum.Left)
             {
                 return new Rectangle((int)(boundX - Position.X - Size.X - 1),
                                      (int)Position.Y - 1,
-                                     (int)Size.X + 2,
-                                     (int)Size.Y + 2);
+                                     (int)Size.X + 1,
+                                     (int)Size.Y + 1);
             }
             return new Rectangle((int)Position.X - 1,
                                  (int)Position.Y - 1,
-                                 (int)Size.X + 2,
-                                 (int)Size.Y + 2);
+                                 (int)Size.X + 1,
+                                 (int)Size.Y + 1);
         }
     }
 

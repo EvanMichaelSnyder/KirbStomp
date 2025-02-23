@@ -20,7 +20,7 @@ namespace KirbStomp
         private SpriteBatch _spriteBatch;
         private ArrayList _characterList;
         private ArrayList _controllerList;
-        
+       
         internal static double globalXBoundMax = 800;
         internal static double globalYBoundMax = 480;
         internal static double globalScaleX = 1.0;
@@ -66,6 +66,7 @@ namespace KirbStomp
             var (width, height) = GetAdjustedWindowSize();
             globalScaleX = width / globalXBoundMax;
             globalScaleY = height / globalYBoundMax;
+            Debug.WriteLine("Scale X: " + globalScaleX + " Scale Y: " + globalScaleY);
             _graphics.PreferredBackBufferWidth = width;
             _graphics.PreferredBackBufferHeight = height;
             //Custom Graphics Settings
@@ -76,6 +77,8 @@ namespace KirbStomp
             string linkSpriteSheetName = "LinkTransparentSpriteSheet";
             Texture2D marioSheet = Content.Load<Texture2D>(marioSpriteSheetName);
             Texture2D linkSheet = Content.Load<Texture2D>(linkSpriteSheetName);
+            //Texture2D marioHitSheet = Content.Load<Texture2D>("MarioHitBoxSpriteSheet");
+            Texture2D boxSheet = Content.Load<Texture2D>("HitboxWire");
 
 
             ICharacter mario = new Character("Mario", marioSheet, marioSpriteSheetName);
@@ -103,6 +106,8 @@ namespace KirbStomp
             //ICharacter link = new Character(linkSheet, LinkSpriteSheetName);
             //IController controllerLink = new KeyboardController(link.GetButtonDataManager);
 
+            mario.AssignLegitimateHitboxSheet(boxSheet);
+
             _characterList = new ArrayList();
             _characterList.Add(mario);
             _characterList.Add(mario2);
@@ -113,10 +118,6 @@ namespace KirbStomp
             _controllerList.Add(controllerMario2);
 
 
-            string xmlPathLink = GetRelativeFilePath("Link.XML");
-            string xmlPathMario = GetRelativeFilePath("Mario.XML");
-            AnimationRepository.LoadAnimationsFromXml(xmlPathMario);
-            AnimationRepository.LoadAnimationsFromXml(xmlPathLink);
             base.Initialize();
         }
 		
@@ -128,6 +129,15 @@ namespace KirbStomp
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            string xmlPathLink = GetRelativeFilePath("Link.XML");
+            string xmlPathMario = GetRelativeFilePath("Mario.XML");
+            AnimationRepository.LoadAnimationsFromXml(xmlPathMario);
+            AnimationRepository.LoadAnimationsFromXml(xmlPathLink);
+
+            string xmlPathMarioHitbox = GetRelativeFilePath("MarioHitbox.XML");
+            HitboxRepository.LoadHitboxesFromXml(xmlPathMarioHitbox);
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -149,9 +159,16 @@ namespace KirbStomp
             current frame increment and if endOfState add it to the events
             do ECS
             */
-            
+
             // DebugFPS();
-            
+
+
+            //THESE FIRST TWO USED TO BE AT THE BOTTOM HOPE THIS DOESNT CAUSE ANY ISSUES
+            foreach (ICharacter chara in _characterList) { chara.Animate(gameTime); }
+
+            //if animate ends the current frame the event endOfState was added
+            foreach (ICharacter chara in _characterList) { chara.UpdateState(); }
+
 
             //new keyboard inputs are taken
             foreach (IController controller in _controllerList) { controller.Update();} 
@@ -183,11 +200,6 @@ namespace KirbStomp
             //nothing to do with mario, DEBUGGING 
             _numFrames++;
 
-            foreach (ICharacter chara in _characterList) {chara.Animate(gameTime);}
-            
-            //if animate ends the current frame the event endOfState was added
-            foreach (ICharacter chara in _characterList) {chara.UpdateState();} 
-
             base.Update(gameTime);
         }
 
@@ -198,6 +210,7 @@ namespace KirbStomp
             foreach (ICharacter chara in _characterList)
             {
                 chara.Draw(_spriteBatch);
+                chara.DrawHitbox(_spriteBatch);
             }
             _spriteBatch.End();
 
