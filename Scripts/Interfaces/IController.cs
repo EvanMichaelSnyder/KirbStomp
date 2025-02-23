@@ -2,8 +2,8 @@
 
 namespace KirbStomp.Interfaces
 {
-    internal interface IController
-    {
-        public void Update();
-    }
+	internal interface IController
+	{
+		public void Update();
+	}
 }

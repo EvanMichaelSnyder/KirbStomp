@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using KirbStomp.Interfaces;
 using KirbStomp;
 using System.Diagnostics;
+using System.Diagnostics;
 
 internal class AllPurposeSprite : ISpriteComplete
     {
@@ -29,10 +30,10 @@ internal class AllPurposeSprite : ISpriteComplete
         spriteBatch.Draw(_spriteSheet, scaledHitBox, color);
     }
 
-    public void Draw(SpriteBatch spriteBatch, Vector2 location, DirectionEnum direction, StateEnum state, int frame, string name)
-        {
-            Rectangle sourceRectangle;
-            Rectangle destinationRectangle;
+	public void Draw(SpriteBatch spriteBatch, Vector2 location, DirectionEnum direction, StateEnum state, int frame, string name)
+		{
+			Rectangle sourceRectangle;
+			Rectangle destinationRectangle;
 
             //grab entry from dictionary
             var entry = AnimationRepository.GetFrameData(name, state, frame);
@@ -50,11 +51,11 @@ internal class AllPurposeSprite : ISpriteComplete
 
 
 
-            destinationRectangle = new Rectangle(xCoord,yCoord,Width,Height);
+			destinationRectangle = new Rectangle(xCoord,yCoord,Width,Height);
 
-            spriteBatch.Draw(_spriteSheet, destinationRectangle, sourceRectangle, Color.White);
+			spriteBatch.Draw(_spriteSheet, destinationRectangle, sourceRectangle, Color.White);
 
-        }
+		}
 
 
-    }
+	}

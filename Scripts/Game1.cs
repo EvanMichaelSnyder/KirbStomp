@@ -27,38 +27,38 @@ namespace KirbStomp
         internal static double globalScaleY = 1.0;
         internal static double globalAspectRatio = 5 / 3.0;
 
-        //fps stuff
-        int _numFrames = 0; //just for debugging
-        private float _fps;
-        private int _framesRendered;
-        private DateTime _lastTime;
+		//fps stuff
+		int _numFrames = 0; //just for debugging
+		private float _fps;
+		private int _framesRendered;
+		private DateTime _lastTime;
 
-        public Game1()
-        {
-            _graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
+		public Game1()
+		{
+			_graphics = new GraphicsDeviceManager(this);
+			Content.RootDirectory = "Content";
 			
-            IsMouseVisible = true;
-            _numFrames = 0;
+			IsMouseVisible = true;
+			_numFrames = 0;
 
-        }
+		}
 
-        public static (int width, int height) GetAdjustedWindowSize()
-        {
-            // Get screen dimensions
-            int screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-            int screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+		public static (int width, int height) GetAdjustedWindowSize()
+		{
+			// Get screen dimensions
+			int screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+			int screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
 
-            // Calculate 5:3 window size
-            double maxWidth = screenWidth * 0.80; // 80% of screen width
-            double maxHeight = screenHeight * 0.80; // 80% of screen height
+			// Calculate 5:3 window size
+			double maxWidth = screenWidth * 0.80; // 80% of screen width
+			double maxHeight = screenHeight * 0.80; // 80% of screen height
 
-            double windowWidth = maxWidth;
-            double windowHeight = maxWidth / globalAspectRatio;
+			double windowWidth = maxWidth;
+			double windowHeight = maxWidth / globalAspectRatio;
 
-            // Return the calculated width and height as integers
-            return ((int)windowWidth, (int)windowHeight);
-        }
+			// Return the calculated width and height as integers
+			return ((int)windowWidth, (int)windowHeight);
+		}
 
         protected override void Initialize()
         {
@@ -108,23 +108,24 @@ namespace KirbStomp
 
             mario.AssignLegitimateHitboxSheet(boxSheet);
 
-            _characterList = new ArrayList();
-            _characterList.Add(mario);
-            _characterList.Add(mario2);
-            _characterList.Add(new Character("Link", linkSheet, linkSpriteSheetName));
+			_characterList = new ArrayList();
+			_characterList.Add(mario);
+			_characterList.Add(mario2);
+			_characterList.Add(new Character("Link", linkSheet, linkSpriteSheetName));
 
-            _controllerList = new ArrayList();
-            _controllerList.Add(controllerMario);
-            _controllerList.Add(controllerMario2);
+			_controllerList = new ArrayList();
+			_controllerList.Add(controllerMario);
+			_controllerList.Add(controllerMario2);
 
+			CharacterXMLParser.LoadCharacter("Mario");
 
             base.Initialize();
         }
 		
-        private string GetRelativeFilePath(string file)
+		private string GetRelativeFilePath(string file)
 		{
-            return Path.Combine(XMLData.GetDataFolder(), "CharacterData", file);
-        }
+			return Path.Combine(XMLData.GetDataFolder(), "CharacterData", file);
+		}
 
         protected override void LoadContent()
         {
@@ -140,10 +141,10 @@ namespace KirbStomp
 
         }
 
-        protected override void Update(GameTime gameTime)
-        {
-            /*
-            order of events
+		protected override void Update(GameTime gameTime)
+		{
+			/*
+			order of events
 
             update key registers
             turn key registers into stateChangingEvents
@@ -170,38 +171,38 @@ namespace KirbStomp
             foreach (ICharacter chara in _characterList) { chara.UpdateState(); }
 
 
-            //new keyboard inputs are taken
-            foreach (IController controller in _controllerList) { controller.Update();} 
+			//new keyboard inputs are taken
+			foreach (IController controller in _controllerList) { controller.Update();} 
 
-            //action list includes new events
-            foreach (ICharacter chara in _characterList) { chara.ProcessButtons(); } 
+			//action list includes new events
+			foreach (ICharacter chara in _characterList) { chara.ProcessButtons(); } 
 
-            //State is actually changed
-            foreach (ICharacter chara in _characterList) { chara.UpdateState(); } 
+			//State is actually changed
+			foreach (ICharacter chara in _characterList) { chara.UpdateState(); } 
 
-            foreach (ICharacter chara in _characterList) { chara.ApplyMovementBehavior(); }
-            foreach (ICharacter chara in _characterList) { chara.Gravity(gameTime); }
+			foreach (ICharacter chara in _characterList) { chara.ApplyMovementBehavior(); }
+			foreach (ICharacter chara in _characterList) { chara.Gravity(gameTime); }
 
-            foreach (ICharacter chara in _characterList) { chara.MoveCharacter(gameTime); }
-            
-            //right now this is actually called under process buttons
-            foreach (ICharacter chara in _characterList) { chara.CheckGroundCollision(); } 
-            
-            //State is actually changed
-            foreach (ICharacter chara in _characterList) { chara.UpdateState(); } 
+			foreach (ICharacter chara in _characterList) { chara.MoveCharacter(gameTime); }
+			
+			//right now this is actually called under process buttons
+			foreach (ICharacter chara in _characterList) { chara.CheckGroundCollision(); } 
+			
+			//State is actually changed
+			foreach (ICharacter chara in _characterList) { chara.UpdateState(); } 
 		
-            //mario.checkHitCollision
-            //mario.UpdateState(); //State is actually changed
-            //mario.doSpecialBehaviors
+			//mario.checkHitCollision
+			//mario.UpdateState(); //State is actually changed
+			//mario.doSpecialBehaviors
 
-            // is every action commented out above
-            foreach (ICharacter chara in _characterList) { chara.DoBehavior(); } 
+			// is every action commented out above
+			foreach (ICharacter chara in _characterList) { chara.DoBehavior(); } 
 
             //nothing to do with mario, DEBUGGING 
             _numFrames++;
 
-            base.Update(gameTime);
-        }
+			base.Update(gameTime);
+		}
 
         protected override void Draw(GameTime gameTime)
         {
@@ -214,21 +215,21 @@ namespace KirbStomp
             }
             _spriteBatch.End();
 
-            base.Draw(gameTime);
-        }
+			base.Draw(gameTime);
+		}
 
-        private void DebugFPS() {
-            //fps
-            _numFrames++;
-            _framesRendered++;
-            if ((DateTime.Now - _lastTime).TotalSeconds >= 1)
-            {
-                // one second has elapsed 
-                _fps = _framesRendered;
-                _framesRendered = 0;
-                _lastTime = DateTime.Now;
-            }
-            Console.WriteLine(_numFrames + " FPS: " + _fps);
-        }
-    }
+		private void DebugFPS() {
+			//fps
+			_numFrames++;
+			_framesRendered++;
+			if ((DateTime.Now - _lastTime).TotalSeconds >= 1)
+			{
+				// one second has elapsed 
+				_fps = _framesRendered;
+				_framesRendered = 0;
+				_lastTime = DateTime.Now;
+			}
+			Console.WriteLine(_numFrames + " FPS: " + _fps);
+		}
+	}
 }
