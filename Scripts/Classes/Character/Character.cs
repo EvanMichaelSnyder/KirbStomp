@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using KirbStomp;
 using KirbStomp.Interfaces;
+using KirbStomp.Scripts.Classes.HitboxManager;
 using KirbStomp.StateMachine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

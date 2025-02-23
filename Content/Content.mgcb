@@ -13,6 +13,35 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin File.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:File.xml
+
+#begin HitboxWire.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:HitboxWire.png
+
+#begin HitboxWire.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:HitboxWire.png
+
 #begin LinkTransparentSpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -72,11 +101,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Platforms.png
-
-#begin File.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:File.xml
 
 #begin MarioHitBoxSpriteSheet.png
 /importer:TextureImporter

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using KirbStomp.Interfaces;
 using KirbStomp;
+using System.Diagnostics;
 
 	internal class AllPurposeSprite : ISpriteComplete
 	{
