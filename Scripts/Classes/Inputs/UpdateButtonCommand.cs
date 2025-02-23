@@ -8,16 +8,16 @@ using KirbStomp.MainLine;
 using Microsoft.Xna.Framework;
 using KirbStomp.Interfaces;
 
-    internal class UpdateButtonCommand : ICommand
-    {
-        private ButtonData _button;
-        public UpdateButtonCommand(ButtonData button)
-        {
-            _button = button;
-        }
-        public void Execute(KeyState state)
-        {
-        _button.FrameUpdate(state);
-        }
+	internal class UpdateButtonCommand : ICommand
+	{
+		private ButtonData _button;
+		public UpdateButtonCommand(ButtonData button)
+		{
+			_button = button;
+		}
+		public void Execute(KeyState state)
+		{
+		_button.FrameUpdate(state);
+		}
 
-    }
+	}

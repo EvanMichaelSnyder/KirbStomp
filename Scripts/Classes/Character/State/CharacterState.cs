@@ -10,242 +10,242 @@ using System.Threading.Tasks;
 
 namespace KirbStomp.StateMachine
 {
-    public class CharacterState
-    {
-        private StateEnum _currentState = StateEnum.Idle;
-        private int _animationFrame = 0;
-        private float _elapsedTime = 0;
-        private DirectionEnum _facingDirection = DirectionEnum.Right;
-        private DirectionEnum _movementDirection = DirectionEnum.None;
-        private bool _isGrounded = true;
-        private int _jumpsLeft = 2;
-        private DirectionEnum _desiredAttackDirection = DirectionEnum.None;
-        private DirectionEnum _desiredMovementDirection = DirectionEnum.None;
+	public class CharacterState
+	{
+		private StateEnum _currentState = StateEnum.Idle;
+		private int _animationFrame = 0;
+		private float _elapsedTime = 0;
+		private DirectionEnum _facingDirection = DirectionEnum.Right;
+		private DirectionEnum _movementDirection = DirectionEnum.None;
+		private bool _isGrounded = true;
+		private int _jumpsLeft = 2;
+		private DirectionEnum _desiredAttackDirection = DirectionEnum.None;
+		private DirectionEnum _desiredMovementDirection = DirectionEnum.None;
 
-        public DirectionEnum DesiredMovementDirection { get; set; }
-        public DirectionEnum DesiredAttackDirection { get; set; }
+		public DirectionEnum DesiredMovementDirection { get; set; }
+		public DirectionEnum DesiredAttackDirection { get; set; }
 
-        public StateEnum CurrentState
-        {
-            get => _currentState;
-            internal set  // Only allow modification within state machine
-            {
-                if (_currentState != value)
-                {
-                    _animationFrame = 0;  // Reset frame on state change
-                    _currentState = value;
-                }
-            }
-        }
-        public int GetFrameIndex()
-        {
-            return _animationFrame;
-        }
-        public void ResetFrameIndex()
-        {
-            _animationFrame = 0;
-        }
-        public void IncrementFrameIndex()
-        {
-            _animationFrame++;
-        }
-
-
-        public float getElapsedTime()
-        {
-            return _elapsedTime;
-        }
-        public void resetElapsedTime()
-        {
-            _elapsedTime = 0;
-        }
-        public void addToElapsedTime(float time)
-        {
-            _elapsedTime += time;
-        }
-
-        public DirectionEnum FacingDirection
-        {
-            get => _facingDirection;
-            set
-            {
-                _facingDirection = value;
-            }
-        }
-
-        public DirectionEnum MovementDirection
-        {
-            get => _movementDirection;
-            internal set => _movementDirection = value;  // Only state machine controls this
-        }
-
-        public bool IsGrounded
-        {
-            get => _isGrounded;
-            internal set => _isGrounded = value;
-        }
-
-        public int JumpsLeft
-        {
-            get => _jumpsLeft;
-            private set => _jumpsLeft = Math.Max(0, value);  // Prevent negative jumps
-        }
-        internal void DecrementJumps() { JumpsLeft--; }
-
-        // Intents (publicly settable but validated)
-
-        public void ResetJumps() => JumpsLeft = 2;
-
-        public DirectionEnum ConvertToRelativeAttackDirection(DirectionEnum direction)
-        {
-            //takes an input direction like left or right and the current facing direction and tells you if it is forward or backward
-            if (direction == DirectionEnum.Right)
-            {
-                if (_facingDirection == direction) { return DirectionEnum.Forward; }
-                else { return DirectionEnum.Back; }
-            }
-            else if (direction == DirectionEnum.Left)
-            {
-                if (_facingDirection == direction) { return DirectionEnum.Forward; }
-                else { return DirectionEnum.Back; }
-            }
-            else
-            {
-                return direction;
-            }
+		public StateEnum CurrentState
+		{
+			get => _currentState;
+			internal set  // Only allow modification within state machine
+			{
+				if (_currentState != value)
+				{
+					_animationFrame = 0;  // Reset frame on state change
+					_currentState = value;
+				}
+			}
+		}
+		public int GetFrameIndex()
+		{
+			return _animationFrame;
+		}
+		public void ResetFrameIndex()
+		{
+			_animationFrame = 0;
+		}
+		public void IncrementFrameIndex()
+		{
+			_animationFrame++;
+		}
 
 
-        }
-        public DirectionEnum ConvertToRelativeMovementDirection(DirectionEnum direction)
-        {
-            //takes an input direction like left or right and the current movement direction and tells you if it is forward or backward
-            if (direction == DirectionEnum.Right)
-            {
-                if (_movementDirection == direction) { return DirectionEnum.Forward; }
-                else { return DirectionEnum.Back; }
-            }
-            else if (direction == DirectionEnum.Left)
-            {
-                if (_movementDirection == direction) { return DirectionEnum.Forward; }
-                else { return DirectionEnum.Back; }
-            }
-            else
-            {
-                return direction;
-            }
+		public float getElapsedTime()
+		{
+			return _elapsedTime;
+		}
+		public void resetElapsedTime()
+		{
+			_elapsedTime = 0;
+		}
+		public void addToElapsedTime(float time)
+		{
+			_elapsedTime += time;
+		}
+
+		public DirectionEnum FacingDirection
+		{
+			get => _facingDirection;
+			set
+			{
+				_facingDirection = value;
+			}
+		}
+
+		public DirectionEnum MovementDirection
+		{
+			get => _movementDirection;
+			internal set => _movementDirection = value;  // Only state machine controls this
+		}
+
+		public bool IsGrounded
+		{
+			get => _isGrounded;
+			internal set => _isGrounded = value;
+		}
+
+		public int JumpsLeft
+		{
+			get => _jumpsLeft;
+			private set => _jumpsLeft = Math.Max(0, value);  // Prevent negative jumps
+		}
+		internal void DecrementJumps() { JumpsLeft--; }
+
+		// Intents (publicly settable but validated)
+
+		public void ResetJumps() => JumpsLeft = 2;
+
+		public DirectionEnum ConvertToRelativeAttackDirection(DirectionEnum direction)
+		{
+			//takes an input direction like left or right and the current facing direction and tells you if it is forward or backward
+			if (direction == DirectionEnum.Right)
+			{
+				if (_facingDirection == direction) { return DirectionEnum.Forward; }
+				else { return DirectionEnum.Back; }
+			}
+			else if (direction == DirectionEnum.Left)
+			{
+				if (_facingDirection == direction) { return DirectionEnum.Forward; }
+				else { return DirectionEnum.Back; }
+			}
+			else
+			{
+				return direction;
+			}
 
 
-        }
+		}
+		public DirectionEnum ConvertToRelativeMovementDirection(DirectionEnum direction)
+		{
+			//takes an input direction like left or right and the current movement direction and tells you if it is forward or backward
+			if (direction == DirectionEnum.Right)
+			{
+				if (_movementDirection == direction) { return DirectionEnum.Forward; }
+				else { return DirectionEnum.Back; }
+			}
+			else if (direction == DirectionEnum.Left)
+			{
+				if (_movementDirection == direction) { return DirectionEnum.Forward; }
+				else { return DirectionEnum.Back; }
+			}
+			else
+			{
+				return direction;
+			}
 
 
-        #region Transition Handlers
-        public static void EnterAttack(CharacterState current)
-        {
-            if (current.IsGrounded)//on ground
-            {
-                //combo stuffs
-                if (current.CurrentState == Sprint || current.CurrentState == Run) { current.CurrentState = AttackDash; }
-                else if (current.CurrentState == AttackNeutral) { current.CurrentState = AttackNeutral2; }
-                else if (current.CurrentState == AttackNeutral2) { current.CurrentState = AttackNeutral3; }
-                else
-                {
-                    switch (current.ConvertToRelativeAttackDirection(current.DesiredAttackDirection))
-                    {
-                        case None:
-                            current.CurrentState = AttackNeutral;
-                            break;
-                        case Up:
-                            current.CurrentState = AttackUp;
-                            break;
-                        case Down:
-                            current.CurrentState = AttackDown;
-                            break;
-                        case Forward:
-                            current.CurrentState = AttackForward;
-                            break;
-                        case Back:
-                            current.CurrentState = AttackBack;
-                            break;
-                        default:
-                            throw new Exception("Attack Called without Direction");
-                    }
-                }
-            }
-            else if (!current.IsGrounded)//In Air
-            {
-                switch (current.ConvertToRelativeAttackDirection(current.DesiredAttackDirection))
-                {
-                    case None:
-                        current.CurrentState = AerialNeutral;
-                        break;
-                    case Up:
-                        current.CurrentState = AerialUp;
-                        break;
-                    case Down:
-                        current.CurrentState = AerialDown;
-                        break;
-                    case Forward:
-                        current.CurrentState = AerialForward;
-                        break;
-                    case Back:
-                        current.CurrentState = AerialBack;
-                        break;
-                    default:
-                        throw new Exception("Aerial Called without Direction");
-                }
-            }
-        }
+		}
 
-        public static void EnterSpecial(CharacterState current)
-        {
-            switch (current.ConvertToRelativeAttackDirection(current.DesiredAttackDirection))
-            {
-                case None:
-                    current.CurrentState = SpecialNeutral;
-                    break;
-                case Up:
-                    current.CurrentState = SpecialUp;
-                    break;
-                case Down:
-                    current.CurrentState = SpecialDown;
-                    break;
-                case Forward:
-                    current.CurrentState = SpecialForward;
-                    break;
-                case Back:
-                    current.CurrentState = SpecialBack;
-                    break;
-                default:
-                    throw new Exception("Special Called without Direction");
-            }
-        }
-        public static void EnterJump(CharacterState current)
-        {
-            //because the dictionary effectively makes a dictionary check we can assume at this point that jump is mandatory
-            if (!(current.JumpsLeft <= 0))
-            {
-                current.CurrentState = Jump;
-                current.DecrementJumps();
 
-                //for now I will personally set isGrounded false this should likely be done by something else later
-                current.IsGrounded = false;
-            }
-            else
-            {
-                Debug.WriteLine("you should not be doing such unregulated vaulting my good sir how darest you vault thyself when you are unable (you're out of jumps)");
-            }
-        }
-        public static void EnterLanding(CharacterState current)
-        {
-            if (current.CurrentState == FreeFall)
-            {
-                current.CurrentState = LayingDown;
-            }
-            else
-            {
-                current.CurrentState = Landing;
-                current.MovementDirection = None;
-            }
+		#region Transition Handlers
+		public static void EnterAttack(CharacterState current)
+		{
+			if (current.IsGrounded)//on ground
+			{
+				//combo stuffs
+				if (current.CurrentState == Sprint || current.CurrentState == Run) { current.CurrentState = AttackDash; }
+				else if (current.CurrentState == AttackNeutral) { current.CurrentState = AttackNeutral2; }
+				else if (current.CurrentState == AttackNeutral2) { current.CurrentState = AttackNeutral3; }
+				else
+				{
+					switch (current.ConvertToRelativeAttackDirection(current.DesiredAttackDirection))
+					{
+						case None:
+							current.CurrentState = AttackNeutral;
+							break;
+						case Up:
+							current.CurrentState = AttackUp;
+							break;
+						case Down:
+							current.CurrentState = AttackDown;
+							break;
+						case Forward:
+							current.CurrentState = AttackForward;
+							break;
+						case Back:
+							current.CurrentState = AttackBack;
+							break;
+						default:
+							throw new Exception("Attack Called without Direction");
+					}
+				}
+			}
+			else if (!current.IsGrounded)//In Air
+			{
+				switch (current.ConvertToRelativeAttackDirection(current.DesiredAttackDirection))
+				{
+					case None:
+						current.CurrentState = AerialNeutral;
+						break;
+					case Up:
+						current.CurrentState = AerialUp;
+						break;
+					case Down:
+						current.CurrentState = AerialDown;
+						break;
+					case Forward:
+						current.CurrentState = AerialForward;
+						break;
+					case Back:
+						current.CurrentState = AerialBack;
+						break;
+					default:
+						throw new Exception("Aerial Called without Direction");
+				}
+			}
+		}
+
+		public static void EnterSpecial(CharacterState current)
+		{
+			switch (current.ConvertToRelativeAttackDirection(current.DesiredAttackDirection))
+			{
+				case None:
+					current.CurrentState = SpecialNeutral;
+					break;
+				case Up:
+					current.CurrentState = SpecialUp;
+					break;
+				case Down:
+					current.CurrentState = SpecialDown;
+					break;
+				case Forward:
+					current.CurrentState = SpecialForward;
+					break;
+				case Back:
+					current.CurrentState = SpecialBack;
+					break;
+				default:
+					throw new Exception("Special Called without Direction");
+			}
+		}
+		public static void EnterJump(CharacterState current)
+		{
+			//because the dictionary effectively makes a dictionary check we can assume at this point that jump is mandatory
+			if (!(current.JumpsLeft <= 0))
+			{
+				current.CurrentState = Jump;
+				current.DecrementJumps();
+
+				//for now I will personally set isGrounded false this should likely be done by something else later
+				current.IsGrounded = false;
+			}
+			else
+			{
+				Debug.WriteLine("you should not be doing such unregulated vaulting my good sir how darest you vault thyself when you are unable (you're out of jumps)");
+			}
+		}
+		public static void EnterLanding(CharacterState current)
+		{
+			if (current.CurrentState == FreeFall)
+			{
+				current.CurrentState = LayingDown;
+			}
+			else
+			{
+				current.CurrentState = Landing;
+				current.MovementDirection = None;
+			}
 
             //the hitGround will reset our jumps
         }
@@ -364,9 +364,9 @@ namespace KirbStomp.StateMachine
                 }
             }
 
-        }
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 
 }
