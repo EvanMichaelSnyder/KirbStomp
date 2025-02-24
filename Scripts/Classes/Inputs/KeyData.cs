@@ -51,7 +51,8 @@ namespace KirbStomp
 				{ GameButtons.Special,new ButtonData()},
 
 				//debugging
-				{ GameButtons.HitGround,new ButtonData()},
+				{ GameButtons.GotHit,new ButtonData()},
+                { GameButtons.HitGround,new ButtonData()},
 				{ GameButtons.End,new ButtonData()},
 
 			};

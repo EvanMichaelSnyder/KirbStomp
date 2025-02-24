@@ -41,7 +41,7 @@ public enum StateEnum
 	SpecialDown,
 	//
 	KnockedBack,
-	Ragdolled,
+    Ragdolled,
 	LayingDown,
 	Recover,
 	FreeFall,

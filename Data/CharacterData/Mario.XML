@@ -283,9 +283,10 @@
 	</Animation>
 
 	<Animation name="KnockedBack" duration ="0.5" loop="false" animationOffset="(0, 2)">
-		<Frame position="(15, 1518)" size="(26, 36)" perFrameOffset="(-1, 0)"/>
-		<Frame position="(47, 1518)" size="(33, 36)" perFrameOffset="(-9, 0)"/>
-		<Frame position="(86, 1518)" size="(31, 36)" perFrameOffset="(-10, 0)"/>
+		<Frame position="(15, 1518)" size="(26, 36)" perFrameOffset="(0, 0)"/>
+		<Frame position="(47, 1518)" size="(33, 36)" perFrameOffset="(0, 0)"/>
+		<Frame position="(86, 1518)" size="(31, 36)" perFrameOffset="(0, 0)"/>
+		<Frame position="(123, 1518)" size="(36, 23)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
 	<Animation name="Ragdolled" duration ="0.5" loop="true" animationOffset="(0, 6)">
