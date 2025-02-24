@@ -251,11 +251,15 @@ namespace KirbStomp.StateMachine
         }
         public static void EnterKnockedBack(CharacterState current)
         {
-            throw new Exception("\n Knockback not implemented");
+			current.CurrentState = KnockedBack;
         }
         public static void EnterIdle(CharacterState current)
         {
-            if (current.IsGrounded) { current.CurrentState = Idle; }
+			if(current.CurrentState==KnockedBack)
+			{
+				current.CurrentState = Ragdolled;
+			}
+            else if (current.IsGrounded) { current.CurrentState = Idle; }
             else if (!current.IsGrounded) { current.CurrentState = AirIdle; }
             else { throw new Exception("WHAT HAVE YOU DONE"); }
         }

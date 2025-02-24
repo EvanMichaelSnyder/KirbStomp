@@ -270,7 +270,7 @@ namespace KirbStomp
         {
             if(hitboxDrawEnabled && _position.Y < 300)
             {
-                Rectangle platform = new Rectangle(200, 200, 100, 20);
+                Rectangle platform = new Rectangle(200, 200, 50, 20);
                 Rectangle approx = _hitboxManager.GetApproximation();
                 if (!approx.IsEmpty)
                 {

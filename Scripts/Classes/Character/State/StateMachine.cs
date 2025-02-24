@@ -163,17 +163,16 @@ public class CharacterStateMachine
 		#endregion
 
 		#region Hits
-		/*  This is def not done we need more details
+		//This is def not done we need more details
 		//CANNOT MOVE OR DO ANYTHING
-		AddTransition(Ragdolled, HitGround, EnterLanding);
-		AddTransition(Ragdolled, EndOfState, EnterKnockedBack);
-
-		AddTransition(KnockedBack, TryJump, EnterJump);
-		//AddTransition(KnockedBack, TryMove, EnterMovement);
-		AddTransition(KnockedBack, GotHit, EnterKnockedBack);
-		AddTransition(KnockedBack, HitGround, EnterLanding);
+		//AddTransition(KnockedBack, HitGround, EnterLanding);
 		AddTransition(KnockedBack, EndOfState, EnterIdle);
-		*/
+
+		AddTransition(Ragdolled, TryJump, EnterJump);
+		//AddTransition(KnockedBack, TryMove, EnterMovement);
+		AddTransition(Ragdolled, GotHit, EnterKnockedBack);
+		AddTransition(Ragdolled, HitGround, EnterLanding);
+		
 
 		AddTransition(LayingDown, TryAttack, EnterRecover);
 		AddTransition(LayingDown, TrySpecial, EnterRecover);
