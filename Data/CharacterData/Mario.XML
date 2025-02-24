@@ -192,7 +192,7 @@
 		<Frame position="(403, 1171)" size="(30, 42)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
-	<Animation name="AerialUp" duration ="1.0" loop="true" animationOffset="(0, -39)">
+	<Animation name="AerialUp" duration ="1.0" loop="false" animationOffset="(0, -39)">
 		<Frame position="(14, 612)" size="(37, 77)" perFrameOffset="(0, 0)"/>
 		<Frame position="(57, 612)" size="(50, 77)" perFrameOffset="(2, 0)"/>
 		<Frame position="(113, 612)" size="(37, 77)" perFrameOffset="(-1, 0)"/>
@@ -283,23 +283,23 @@
 	</Animation>
 
 	<Animation name="KnockedBack" duration ="0.5" loop="false" animationOffset="(0, 2)">
-		<Frame position="(15, 1518)" size="(26, 36)" perFrameOffset="(0, 0)"/>
-		<Frame position="(47, 1518)" size="(33, 36)" perFrameOffset="(0, 0)"/>
-		<Frame position="(86, 1518)" size="(31, 36)" perFrameOffset="(0, 0)"/>
+		<Frame position="(15, 1518)" size="(26, 36)" perFrameOffset="(-1, 0)"/>
+		<Frame position="(47, 1518)" size="(33, 36)" perFrameOffset="(-9, 0)"/>
+		<Frame position="(86, 1518)" size="(31, 36)" perFrameOffset="(-10, 0)"/>
 	</Animation>
 
-	<Animation name="Ragdolled" duration ="0.5" loop="true" animationOffset="(0, 15)">
-		<Frame position="(123, 1518)" size="(36, 23)" perFrameOffset="(0, 0)"/>
+	<Animation name="Ragdolled" duration ="0.5" loop="true" animationOffset="(0, 6)">
+		<Frame position="(123, 1518)" size="(36, 23)" perFrameOffset="(-10, 0)"/>
 	</Animation>
 
-	<Animation name="LayingDown" duration ="0.5" loop="true" animationOffset="(0, -1)">
-		<Frame position="(165, 1518)" size="(42, 39)" perFrameOffset="(-20, 0)"/>
+	<Animation name="LayingDown" duration ="0.5" loop="true" animationOffset="(0, 20)">
+		<Frame position="(165, 1518)" size="(42, 19)" perFrameOffset="(-20, 0)"/>
 	</Animation>
 
-	<Animation name="Recover" duration ="0.5" loop="false" animationOffset="(0, -1)">
-		<Frame position="(213, 1518)" size="(22, 39)" perFrameOffset="(0, 0)"/>
-		<Frame position="(241, 1518)" size="(24, 39)" perFrameOffset="(0, 0)"/>
-		<Frame position="(271, 1518)" size="(25, 39)" perFrameOffset="(0, 0)"/>
+	<Animation name="Recover" duration ="0.5" loop="false" animationOffset="(0, 4)">
+		<Frame position="(213, 1520)" size="(22, 39)" perFrameOffset="(0, 0)"/>
+		<Frame position="(241, 1520)" size="(24, 34)" perFrameOffset="(0, 0)"/>
+		<Frame position="(271, 1520)" size="(25, 34)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
 	<Animation name="FreeFall" duration ="0.5" loop="true" animationOffset="(0, 0)">
