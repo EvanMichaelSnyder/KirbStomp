@@ -1,25 +1,21 @@
 ﻿<Animations>
 	<Texture spriteSheet="MarioProjectileTransparentSpriteSheet" scale="2.0" boundX="1104" offsetDirectional = "-30" />
 
-	<Animation name="FireballSpawned" duration ="1.0" loop="false" animationOffset="(0, 0)" isDefault ="true">
+	<Animation name="FireballReleased" duration =".13" loop="true" animationOffset="(0, -1)">
 		<Frame position="(412, 1447)" size="(16, 14)" perFrameOffset="(0, 0)"/>
 		<Frame position="(432, 1446)" size="(15, 15)" perFrameOffset="(0, 0)"/>
-		<Frame position="(142, 1466)" size="(16, 14)" perFrameOffset="(0, 0)"/>
+		<Frame position="(412, 1466)" size="(16, 14)" perFrameOffset="(0, 0)"/>
 		<Frame position="(432, 1465)" size="(15, 15)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
-	<Animation name="FireballReleased" duration ="1.0" loop="true" animationOffset="(0, -1)">
-		<Frame position="(412, 1447)" size="(16, 14)" perFrameOffset="(0, 0)"/>
-		<Frame position="(432, 1446)" size="(15, 15)" perFrameOffset="(0, 0)"/>
-		<Frame position="(142, 1466)" size="(16, 14)" perFrameOffset="(0, 0)"/>
-		<Frame position="(432, 1465)" size="(15, 15)" perFrameOffset="(0, 0)"/>
-	</Animation>
-
-	<Animation name="FireballDeath" duration ="1.0" loop="false" animationOffset="(0, -1)">
-		<Frame position="(412, 1447)" size="(16, 14)" perFrameOffset="(0, 0)"/>
-		<Frame position="(432, 1446)" size="(15, 15)" perFrameOffset="(0, 0)"/>
-		<Frame position="(142, 1466)" size="(16, 14)" perFrameOffset="(0, 0)"/>
-		<Frame position="(432, 1465)" size="(15, 15)" perFrameOffset="(0, 0)"/>
+	<Animation name="FireballDeath" duration =".2" loop="false" animationOffset="(0, -1)">
+		<Frame position="(461, 1448)" size="(11, 11)" perFrameOffset="(0, 0)"/>
+		<Frame position="(476, 1448)" size="(11, 11)" perFrameOffset="(0, 0)"/>
+		<Frame position="(461, 1464)" size="(11, 11)" perFrameOffset="(0, 0)"/>
+		<Frame position="(476, 1464)" size="(11, 11)" perFrameOffset="(0, 0)"/>
+		<Frame position="(468, 1483)" size="(5, 5)" perFrameOffset="(0, 0)"/>
+		<Frame position="(475, 1483)" size="(4, 4)" perFrameOffset="(0, 0)"/>
+		<Frame position="(481, 1484)" size="(2, 2)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
 </Animations>

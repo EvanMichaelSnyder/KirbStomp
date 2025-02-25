@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using KirbStomp.Data;
+using KirbStomp.Scripts.Projectiles;
 
 namespace KirbStomp
 {
@@ -32,14 +33,30 @@ namespace KirbStomp
 		private float _fps;
 		private int _framesRendered;
 		private DateTime _lastTime;
+        //animation stuff
+        private ProjectileManager _projectileManager;
 
-		public Game1()
+        //singleton
+        private static Game1 inst;
+
+        public static Game1 Get()
+        {
+            if(inst == null)
+            {
+                inst = new Game1();
+            }
+            return inst;
+        }
+
+		private Game1()
 		{
 			_graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
 			
 			IsMouseVisible = true;
 			_numFrames = 0;
+
+            this._projectileManager = new ProjectileManager();
 
 		}
 
@@ -79,6 +96,11 @@ namespace KirbStomp
             Texture2D linkSheet = Content.Load<Texture2D>(linkSpriteSheetName);
             //Texture2D marioHitSheet = Content.Load<Texture2D>("MarioHitBoxSpriteSheet");
             Texture2D boxSheet = Content.Load<Texture2D>("HitboxWire");
+
+            //projectile stuff***
+            Texture2D marioFireBallSheet = Content.Load<Texture2D>("MarioProjectileTransparentSpriteSheet");
+            AssetPool.LoadTexture(marioSheet, "MarioProjectile");
+            AssetPool.LoadAnimationsFromXML(GetRelativeFilePathProjectile("MarioProjectile.XML"));
 
 
             ICharacter mario = new Character("Mario", marioSheet, marioSpriteSheetName);
@@ -128,6 +150,11 @@ namespace KirbStomp
 			return Path.Combine(XMLData.GetDataFolder(), "CharacterData", file);
 		}
 
+        private string GetRelativeFilePathProjectile(string file)
+        {
+            return Path.Combine(XMLData.GetDataFolder(), "Projectiles", file);
+        }
+
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -140,11 +167,12 @@ namespace KirbStomp
             string xmlPathMarioHitbox = GetRelativeFilePath("MarioHitbox.XML");
             HitboxRepository.LoadHitboxesFromXml(xmlPathMarioHitbox);
 
+
         }
 
 		protected override void Update(GameTime gameTime)
 		{
-			/*
+            /*
 			order of events
 
             update key registers
@@ -163,7 +191,13 @@ namespace KirbStomp
             */
 
             // DebugFPS();
+            //TODO REMOVE TEST
+            if (Keyboard.GetState().IsKeyDown(Keys.D0))
+            {
+                this._projectileManager.AddProjectile(new MarioFireBall(new Vector2(Mouse.GetState().X, Mouse.GetState().Y)));
+            }
 
+            this._projectileManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
 
             //THESE FIRST TWO USED TO BE AT THE BOTTOM HOPE THIS DOESNT CAUSE ANY ISSUES
             foreach (ICharacter chara in _characterList) { chara.Animate(gameTime); }
@@ -209,6 +243,8 @@ namespace KirbStomp
         {
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin();
+
+            this._projectileManager.Draw(_spriteBatch);
             foreach (ICharacter chara in _characterList)
             {
                 chara.Draw(_spriteBatch);
@@ -232,5 +268,7 @@ namespace KirbStomp
 			}
 			Console.WriteLine(_numFrames + " FPS: " + _fps);
 		}
+
+        public ProjectileManager GetProjectileManager() { return _projectileManager; }  
 	}
 }
