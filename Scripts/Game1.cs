@@ -22,12 +22,6 @@ namespace KirbStomp
         private ArrayList _characterList;
         private ArrayList _controllerList;
        
-        internal static double globalXBoundMax = 800;
-        internal static double globalYBoundMax = 480;
-        internal static double globalScaleX = 1.0;
-        internal static double globalScaleY = 1.0;
-        internal static double globalAspectRatio = 5 / 3.0;
-
 		//fps stuff
 		int _numFrames = 0; //just for debugging
 		private float _fps;
@@ -35,6 +29,8 @@ namespace KirbStomp
 		private DateTime _lastTime;
         //animation stuff
         private ProjectileManager _projectileManager;
+
+        private ScreenWindow _screenWindow;
 
         //singleton
         private static Game1 inst;
@@ -57,37 +53,13 @@ namespace KirbStomp
 			_numFrames = 0;
 
             this._projectileManager = new ProjectileManager();
-
-		}
-
-		public static (int width, int height) GetAdjustedWindowSize()
-		{
-			// Get screen dimensions
-			int screenWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-			int screenHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-
-			// Calculate 5:3 window size
-			double maxWidth = screenWidth * 0.80; // 80% of screen width
-			double maxHeight = screenHeight * 0.80; // 80% of screen height
-
-			double windowWidth = maxWidth;
-			double windowHeight = maxWidth / globalAspectRatio;
-
-			// Return the calculated width and height as integers
-			return ((int)windowWidth, (int)windowHeight);
+            this._screenWindow = new ScreenWindow(_graphics);
 		}
 
         protected override void Initialize()
         {
             //graphics
-            var (width, height) = GetAdjustedWindowSize();
-            globalScaleX = width / globalXBoundMax;
-            globalScaleY = height / globalYBoundMax;
-            Debug.WriteLine("Scale X: " + globalScaleX + " Scale Y: " + globalScaleY);
-            _graphics.PreferredBackBufferWidth = width;
-            _graphics.PreferredBackBufferHeight = height;
-            //Custom Graphics Settings
-            _graphics.ApplyChanges();
+            _screenWindow.UpdateWindowSize();
 
             //much of this should be moved to load content 
             string marioSpriteSheetName = "MarioTransparentSpriteSheet";
@@ -143,6 +115,7 @@ namespace KirbStomp
 			CharacterXMLParser.LoadCharacter("Mario");
 
             base.Initialize();
+            
         }
 		
 		private string GetRelativeFilePath(string file)
@@ -269,6 +242,9 @@ namespace KirbStomp
 			Console.WriteLine(_numFrames + " FPS: " + _fps);
 		}
 
-        public ProjectileManager GetProjectileManager() { return _projectileManager; }  
+        public ProjectileManager GetProjectileManager() { return _projectileManager; } 
+        public ScreenWindow GetScreenWindow() { return _screenWindow; }
+        // public GraphicsDeviceManager GetGraphicsDeviceManager() { return _graphics; }
+        // public void UpdateWindowSize(int width, int height) {}
 	}
 }

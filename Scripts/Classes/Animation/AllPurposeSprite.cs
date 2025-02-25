@@ -22,10 +22,14 @@ internal class AllPurposeSprite : ISpriteComplete
     {
         //hitboxes come already scaled
         Rectangle scaledHitBox = new Rectangle(
-            (int)(HitBox.X*Game1.globalScaleX),
-            (int)(HitBox.Y*Game1.globalScaleY),
-            (int)(HitBox.Width*Game1.globalScaleX),
-            (int)(HitBox.Height*Game1.globalScaleY));
+            // (int)(HitBox.X*Game1.globalScaleX),
+            // (int)(HitBox.Y*Game1.globalScaleY),
+            // (int)(HitBox.Width*Game1.globalScaleX),
+            // (int)(HitBox.Height*Game1.globalScaleY));
+            (int)(HitBox.X*Game1.Get().GetScreenWindow().globalScaleX),
+            (int)(HitBox.Y*Game1.Get().GetScreenWindow().globalScaleY),
+            (int)(HitBox.Width*Game1.Get().GetScreenWindow().globalScaleX),
+            (int)(HitBox.Height*Game1.Get().GetScreenWindow().globalScaleY));
         Color color = new Color(100,100,100,100);
         spriteBatch.Draw(_spriteSheet, scaledHitBox, color);
     }
@@ -40,14 +44,14 @@ internal class AllPurposeSprite : ISpriteComplete
             sourceRectangle = entry.frame.ToRectangle(direction,entry.boundX);
             
             //the great equation
-            int xCoord = (int)(Game1.globalScaleX * (location.X + (entry.totalOffset.X * entry.scale)));
+            int xCoord = (int)(Game1.Get().GetScreenWindow().globalScaleX * (location.X + (entry.totalOffset.X * entry.scale)));
             if (direction == DirectionEnum.Left)
             {
-                xCoord = (int)(Game1.globalScaleX * (location.X - (entry.frame.Size.X + entry.totalOffset.X + entry.offSetDirectional) * entry.scale));
+                xCoord = (int)(Game1.Get().GetScreenWindow().globalScaleX * (location.X - (entry.frame.Size.X + entry.totalOffset.X + entry.offSetDirectional) * entry.scale));
             }
-            int yCoord = (int)(Game1.globalScaleY * (location.Y + (entry.totalOffset.Y * entry.scale)));
-            int Width =(int)(Game1.globalScaleX * (entry.frame.Size.X * entry.scale));
-            int Height=(int)(Game1.globalScaleY * (entry.frame.Size.Y * entry.scale));
+            int yCoord = (int)(Game1.Get().GetScreenWindow().globalScaleY * (location.Y + (entry.totalOffset.Y * entry.scale)));
+            int Width =(int)(Game1.Get().GetScreenWindow().globalScaleX * (entry.frame.Size.X * entry.scale));
+            int Height=(int)(Game1.Get().GetScreenWindow().globalScaleY * (entry.frame.Size.Y * entry.scale));
 
 
 
