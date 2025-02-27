@@ -19,6 +19,6 @@ namespace KirbStomp.Interfaces
         public void CheckGroundCollision();
 
 
-        public void AssignLegitimateHitboxSheet(Texture2D spriteSheet);
+        //public void AssignLegitimateHitboxSheet(Texture2D spriteSheet);
     }
 }

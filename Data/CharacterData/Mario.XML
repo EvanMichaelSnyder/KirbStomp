@@ -286,15 +286,15 @@
 		<Frame position="(15, 1518)" size="(26, 36)" perFrameOffset="(0, 0)"/>
 		<Frame position="(47, 1518)" size="(33, 36)" perFrameOffset="(0, 0)"/>
 		<Frame position="(86, 1518)" size="(31, 36)" perFrameOffset="(0, 0)"/>
-		<Frame position="(123, 1518)" size="(36, 23)" perFrameOffset="(0, 0)"/>
+		<Frame position="(123, 1518)" size="(36, 23)" perFrameOffset="(-10, 0)"/>
 	</Animation>
 
 	<Animation name="Ragdolled" duration ="0.5" loop="true" animationOffset="(0, 6)">
 		<Frame position="(123, 1518)" size="(36, 23)" perFrameOffset="(-10, 0)"/>
 	</Animation>
 
-	<Animation name="LayingDown" duration ="0.5" loop="true" animationOffset="(0, 20)">
-		<Frame position="(165, 1518)" size="(42, 19)" perFrameOffset="(-20, 0)"/>
+	<Animation name="LayingDown" duration ="0.5" loop="true" animationOffset="(0, 19)">
+		<Frame position="(165, 1538)" size="(42, 19)" perFrameOffset="(-20, 0)"/>
 	</Animation>
 
 	<Animation name="Recover" duration ="0.5" loop="false" animationOffset="(0, 4)">

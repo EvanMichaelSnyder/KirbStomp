@@ -12,5 +12,6 @@ namespace KirbStomp.Interfaces
     {
         void DrawHitbox(SpriteBatch spriteBatch, Rectangle HitBox);
         void Draw(SpriteBatch spriteBatch, Vector2 location, DirectionEnum direction, StateEnum state, int frame, string name);
+        void DrawRectangle(SpriteBatch spriteBatch, Rectangle rectangle);
     }
 }

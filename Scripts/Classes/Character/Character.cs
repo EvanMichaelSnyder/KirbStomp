@@ -7,8 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using KirbStomp;
 using KirbStomp.Interfaces;
-using KirbStomp.Scripts.Classes.HitboxManager;
-using KirbStomp.Scripts.Classes.HitboxManager;
 using KirbStomp.StateMachine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,6 +15,8 @@ namespace KirbStomp
 {
     internal class Character : ICharacter
     {
+        private int _ID;
+
         private string _name;
         private HitboxManager _hitboxManager;
         private CharacterStateMachine _stateMachine;
@@ -32,6 +32,7 @@ namespace KirbStomp
 
         public Character(string name, Texture2D spriteSheet, string spriteSheetName)
         {
+            _ID = BattleScene.getNewID();
             _name = name;
             _velocity = Vector2.Zero;
             _position.X = xLocaleSpawn;
@@ -43,13 +44,9 @@ namespace KirbStomp
             _buttonDataManager = new ButtonDataManager();
             _actionList = new ActionList();
             _sprite = new AllPurposeSprite(spriteSheet);
-            _hitboxManager = new HitboxManager(spriteSheet);
-            hitboxDrawEnabled = false;
-        }
 
-        public void AssignLegitimateHitboxSheet(Texture2D spriteSheet)
-        {
-            _hitboxManager = new HitboxManager(spriteSheet);
+
+            _hitboxManager = new HitboxManager(BattleScene.boxSheet, HitboxTypeEnum.Character);
             hitboxDrawEnabled = true;
         }
 
@@ -117,7 +114,7 @@ namespace KirbStomp
             {
                 if (_name == "Mario")
                 {
-                    _hitboxManager.Draw(spriteBatch);
+                    _hitboxManager.DrawExtended(spriteBatch);
                 }
             }
         }
@@ -128,7 +125,7 @@ namespace KirbStomp
             _actionList.ResetList();
             if (_name == "Mario")
             {
-                _hitboxManager.UpdateHitboxList(_position, _stateMachine.State.FacingDirection, _name, _stateMachine.State.CurrentState, _stateMachine.State.GetFrameIndex());
+                // _hitboxManager.UpdateHitboxList(_position, _stateMachine.State.FacingDirection, _name, _stateMachine.State.CurrentState, _stateMachine.State.GetFrameIndex());
             }
         }
         internal void HandleStates()

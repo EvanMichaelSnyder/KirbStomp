@@ -290,7 +290,7 @@
 				<Hitbox position="(0,0)" size="(0,0)"/>
 			</Frame>
 		</Animation>
-		<Animation name="AttackDowm">
+		<Animation name="AttackDown">
 			<Frame>
 				<Hitbox position="(0,0)" size="(0,0)"/>
 			</Frame>
@@ -672,12 +672,12 @@
 		</Animation>
 		<Animation name="Ragdolled">
 			<Frame>
-				<Hitbox position="(0,0)" size="(0,0)"/>
+				<Hitbox position="(123,1518)" size="(36,23)"/>
 			</Frame>
 		</Animation>
 		<Animation name="LayingDown">
 			<Frame>
-				<Hitbox position="(0,0)" size="(0,0)"/>
+				<Hitbox position="(165,1538)" size="(42,19)"/>
 			</Frame>
 		</Animation>
 		<Animation name="Recover">

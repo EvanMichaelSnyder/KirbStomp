@@ -5,16 +5,23 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KirbStomp;
 using KirbStomp.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using static System.Formats.Asn1.AsnWriter;
 using static HitboxRepository;
 
-namespace KirbStomp.Scripts.Classes.HitboxManager
-{
+    public enum HitboxTypeEnum
+    {
+        None = 0,
+        Character,
+        Attack,
+        Platform,
+    }
     public class HitboxManager
     {
+        private int _parentID;
+        private HitboxTypeEnum _hitboxType;
         private ISpriteComplete _sprite;
         private List<Rectangle> _hitboxes;
 
@@ -26,8 +33,28 @@ namespace KirbStomp.Scripts.Classes.HitboxManager
             }
         }
 
-        public HitboxManager(Texture2D spriteSheet)
+        public int getID()
         {
+        return _parentID;
+        }
+        public HitboxTypeEnum GetHitboxTypeEnum()
+        {
+        return _hitboxType; 
+        }
+
+        public HitboxManager(Texture2D spriteSheet, HitboxTypeEnum type, int parentID)
+        {
+            _parentID = parentID;
+            _hitboxType = type;
+            _sprite = new AllPurposeSprite(spriteSheet);
+            _hitboxes = new List<Rectangle>();
+        }
+
+        //incase no parent ID is given
+        public HitboxManager(Texture2D spriteSheet, HitboxTypeEnum type)
+        {
+            _parentID = -1;
+            _hitboxType = type;
             _sprite = new AllPurposeSprite(spriteSheet);
             _hitboxes = new List<Rectangle>();
         }
@@ -80,6 +107,15 @@ namespace KirbStomp.Scripts.Classes.HitboxManager
              _sprite.DrawHitbox(spriteBatch, hitBox);
            }
         }
+        public void DrawExtended(SpriteBatch spriteBatch)
+        {
+            foreach (Rectangle hitBox in _hitboxes)
+            {
+                Rectangle extended = hitBox;
+                extended.Inflate(2, 2);
+                _sprite.DrawHitbox(spriteBatch, extended);
+            }
+        }
 
         public Rectangle GetApproximation()
         {
@@ -96,4 +132,3 @@ namespace KirbStomp.Scripts.Classes.HitboxManager
         }
 
     }
-}

@@ -14,6 +14,14 @@ using KirbStomp.Data;
 using KirbStomp.Scripts.Projectiles;
 public class BattleScene : IScene
 {
+    public static Texture2D boxSheet;
+
+    private static int entityID = 0;
+    public static int getNewID()
+    {
+        entityID++;
+        return entityID;
+    }
     //FPS Debugging
     int _numFrames = 0;
     private float _fps;
@@ -70,7 +78,7 @@ public class BattleScene : IScene
         //ICharacter link = new Character(linkSheet, LinkSpriteSheetName);
         //IController controllerLink = new KeyboardController(link.GetButtonDataManager);
 
-        mario.AssignLegitimateHitboxSheet(boxSheet);
+        // mario.AssignLegitimateHitboxSheet(boxSheet);
 
         _characterList = new ArrayList();
         _characterList.Add(mario);
@@ -179,7 +187,7 @@ public class BattleScene : IScene
         AnimationRepository.LoadAnimationsFromXml(xmlPathLink);
 
         string xmlPathMarioHitbox = GetRelativeFilePath("MarioHitbox.XML");
-        HitboxRepository.LoadHitboxesFromXml(xmlPathMarioHitbox);
+        // HitboxRepository.LoadHitboxesFromXml(xmlPathMarioHitbox);
     }
 
     private void DebugFPS() {
