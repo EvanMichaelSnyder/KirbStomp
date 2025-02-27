@@ -53,6 +53,7 @@ namespace KirbStomp
 
         protected override void LoadContent()
         {
+
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _battleScene.LoadContent();
         }
@@ -62,7 +63,6 @@ namespace KirbStomp
             _battleScene.Update(gameTime);
 			base.Update(gameTime);
 		}
-
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
