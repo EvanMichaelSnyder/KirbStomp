@@ -49,6 +49,21 @@ namespace KirbStomp
             _hitboxManager = new HitboxManager(BattleScene.boxSheet, HitboxTypeEnum.Character);
             hitboxDrawEnabled = true;
         }
+        public Character(string name, Texture2D spriteSheet, string spriteSheetName, Vector2 spawnLocation)
+        {
+            _ID = BattleScene.getNewID();
+            _name = name;
+            _velocity = Vector2.Zero;
+            _position = spawnLocation;
+            _stateMachine = new CharacterStateMachine();
+            _buttonDataManager = new ButtonDataManager();
+            _actionList = new ActionList();
+            _sprite = new AllPurposeSprite(spriteSheet);
+
+
+            _hitboxManager = new HitboxManager(BattleScene.boxSheet, HitboxTypeEnum.Character);
+            hitboxDrawEnabled = true;
+        }
 
         public ButtonDataManager GetButtonDataManager
         {

@@ -64,7 +64,7 @@ public class BattleScene : IScene
             {Keys.Space, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Jump])},
             {Keys.V, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.GotHit])}
         });
-        ICharacter mario2 = new Character("Mario", marioSheet, marioSpriteSheetName);
+        ICharacter mario2 = new Character("Mario", marioSheet, marioSpriteSheetName, new Vector2(300, 100));
         IController controllerMario2 = new KeyboardController(mario2.GetButtonDataManager, new Dictionary<Keys, ICommand>()
         {
             {Keys.P, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Up])},
@@ -83,7 +83,7 @@ public class BattleScene : IScene
         _characterList = new ArrayList();
         _characterList.Add(mario);
         _characterList.Add(mario2);
-        _characterList.Add(new Character("Link", linkSheet, linkSpriteSheetName));
+        _characterList.Add(new Character("Link", linkSheet, linkSpriteSheetName, new Vector2(600, 700)));
 
         _controllerList = new ArrayList();
         _controllerList.Add(controllerMario);
