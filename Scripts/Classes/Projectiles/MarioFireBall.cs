@@ -44,10 +44,6 @@ namespace KirbStomp.Scripts.Projectiles
             this._isDying = false;
             this._deathTimeLeft = .8f;
             this._lifeTime = 5;
-
-            
-            
-
         }
 
         public override void Update(float dt)
@@ -107,7 +103,7 @@ namespace KirbStomp.Scripts.Projectiles
 
         public void Destroy()
         {
-            Game1.Get().GetBattleScene().GetProjectileManager().RemoveProjectile(this);
+            Game1.Get().GetCurrentScene().GetProjectileManager().RemoveProjectile(this);
         }
     }
 }

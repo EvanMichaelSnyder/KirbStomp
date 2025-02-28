@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using KirbStomp.Scripts.Projectiles;
 
 namespace KirbStomp.Interfaces
 {
@@ -14,5 +15,6 @@ namespace KirbStomp.Interfaces
         public void Update(GameTime gameTime);
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch);
         public void LoadContent();
+        public ProjectileManager GetProjectileManager();
     }
 }

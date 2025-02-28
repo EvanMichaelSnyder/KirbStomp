@@ -20,7 +20,7 @@ namespace KirbStomp
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private ScreenWindow _screenWindow;
-        private BattleScene _battleScene;
+        private IScene _currentScene;
 
         //singleton
         private static Game1 inst;
@@ -42,12 +42,12 @@ namespace KirbStomp
 			IsMouseVisible = true;
             this._screenWindow = new ScreenWindow(_graphics);
             _screenWindow.UpdateWindowSize();
-            _battleScene = new BattleScene();
+            _currentScene = new BattleScene();
 		}
 
         protected override void Initialize()
         {
-            _battleScene.Initialize();
+            _currentScene.Initialize();
             base.Initialize();
         }
 
@@ -55,22 +55,22 @@ namespace KirbStomp
         {
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _battleScene.LoadContent();
+            _currentScene.LoadContent();
         }
 
 		protected override void Update(GameTime gameTime)
 		{
-            _battleScene.Update(gameTime);
+            _currentScene.Update(gameTime);
 			base.Update(gameTime);
 		}
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            _battleScene.Draw(gameTime, _spriteBatch);
+            _currentScene.Draw(gameTime, _spriteBatch);
 
 			base.Draw(gameTime);
 		}
         public ScreenWindow GetScreenWindow() { return _screenWindow; }
-        public BattleScene GetBattleScene() { return _battleScene; }
+        internal IScene GetCurrentScene() { return _currentScene; }
 	}
 }
