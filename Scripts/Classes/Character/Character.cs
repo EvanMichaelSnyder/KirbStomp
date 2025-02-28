@@ -140,7 +140,7 @@ namespace KirbStomp
             _actionList.ResetList();
             if (_name == "Mario")
             {
-                // _hitboxManager.UpdateHitboxList(_position, _stateMachine.State.FacingDirection, _name, _stateMachine.State.CurrentState, _stateMachine.State.GetFrameIndex());
+                _hitboxManager.UpdateHitboxList(_position, _stateMachine.State.FacingDirection, _name, _stateMachine.State.CurrentState, _stateMachine.State.GetFrameIndex());
             }
         }
         internal void HandleStates()

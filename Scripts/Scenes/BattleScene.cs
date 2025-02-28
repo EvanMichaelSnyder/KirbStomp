@@ -14,7 +14,7 @@ using KirbStomp.Data;
 using KirbStomp.Scripts.Projectiles;
 public class BattleScene : IScene
 {
-    public static Texture2D boxSheet;
+    public static Texture2D boxSheet = Game1.Get().Content.Load<Texture2D>("HitboxWire");
 
     private static int entityID = 0;
     public static int getNewID()
@@ -44,8 +44,9 @@ public class BattleScene : IScene
         Texture2D marioSheet = Game1.Get().Content.Load<Texture2D>(marioSpriteSheetName);
         Texture2D linkSheet = Game1.Get().Content.Load<Texture2D>(linkSpriteSheetName);
         //Texture2D marioHitSheet = Game1.Get().Content.Load<Texture2D>("MarioHitBoxSpriteSheet");
-        Texture2D boxSheet = Game1.Get().Content.Load<Texture2D>("HitboxWire");
-
+        // Console.WriteLine("Didn't load in wire yet");
+        // Texture2D boxSheet = Game1.Content.Load<Texture2D>("HitboxWire");
+        // Console.WriteLine("Yippe, didn't crash here");
         //projectile stuff***
         Texture2D marioFireBallSheet = Game1.Get().Content.Load<Texture2D>("MarioProjectileTransparentSpriteSheet");
         AssetPool.LoadTexture(marioSheet, "MarioProjectile");
@@ -187,7 +188,7 @@ public class BattleScene : IScene
         AnimationRepository.LoadAnimationsFromXml(xmlPathLink);
 
         string xmlPathMarioHitbox = GetRelativeFilePath("MarioHitbox.XML");
-        // HitboxRepository.LoadHitboxesFromXml(xmlPathMarioHitbox);
+        HitboxRepository.LoadHitboxesFromXml(xmlPathMarioHitbox);
     }
 
     private void DebugFPS() {
