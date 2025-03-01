@@ -20,6 +20,7 @@ namespace KirbStomp
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private ScreenWindow _screenWindow;
+        private DocumentationGenerator _docGen;
         private IScene _currentScene;
 
         //singleton
@@ -47,6 +48,13 @@ namespace KirbStomp
 
         protected override void Initialize()
         {
+            //graphics
+            _screenWindow.UpdateWindowSize();
+            
+            //MD Doc generation
+            _docGen = new DocumentationGenerator("MDDocs");
+            _docGen.GenerateAllDocumentation();
+
             _currentScene.Initialize();
             base.Initialize();
         }

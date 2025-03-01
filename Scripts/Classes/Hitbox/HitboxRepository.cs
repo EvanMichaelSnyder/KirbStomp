@@ -17,14 +17,14 @@ public static class HitboxRepository
             if (direction == DirectionEnum.Left)
             {
                 return new Rectangle((int)(boundX - Position.X - Size.X),
-                                     (int)Position.Y,
-                                     (int)Size.X,
-                                     (int)Size.Y);
+                                    (int)Position.Y,
+                                    (int)Size.X,
+                                    (int)Size.Y);
             }
             return new Rectangle((int)Position.X,
-                                 (int)Position.Y,
-                                 (int)Size.X,
-                                 (int)Size.Y);
+                                (int)Position.Y,
+                                (int)Size.X,
+                                (int)Size.Y);
         }
     }
 

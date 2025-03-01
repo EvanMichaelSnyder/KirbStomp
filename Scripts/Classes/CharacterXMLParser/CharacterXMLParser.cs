@@ -116,7 +116,5 @@ namespace KirbStomp
 			float speedDecay = float.Parse(GetXElementOrAssert("SpeedDecay", physicsElement).Value);
 			return new PhysicsStats(knockbackScale, gravity, speedDecay);
 		}
-
-		
 	}
 }

@@ -43,10 +43,6 @@ public class BattleScene : IScene
         string linkSpriteSheetName = "LinkTransparentSpriteSheet";
         Texture2D marioSheet = Game1.Get().Content.Load<Texture2D>(marioSpriteSheetName);
         Texture2D linkSheet = Game1.Get().Content.Load<Texture2D>(linkSpriteSheetName);
-        //Texture2D marioHitSheet = Game1.Get().Content.Load<Texture2D>("MarioHitBoxSpriteSheet");
-        // Console.WriteLine("Didn't load in wire yet");
-        // Texture2D boxSheet = Game1.Content.Load<Texture2D>("HitboxWire");
-        // Console.WriteLine("Yippe, didn't crash here");
         //projectile stuff***
         Texture2D marioFireBallSheet = Game1.Get().Content.Load<Texture2D>("MarioProjectileTransparentSpriteSheet");
         AssetPool.LoadTexture(marioSheet, "MarioProjectile");

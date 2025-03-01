@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using static HitboxRepository;
 
+namespace KirbStomp {
     public enum HitboxTypeEnum
     {
         None = 0,
@@ -70,7 +71,7 @@ using static HitboxRepository;
             spriteLocationVirtual.X = (int)((location.X + (animEntry.totalOffset.X * animEntry.scale)));
             if (direction == DirectionEnum.Left)
             {
-               spriteLocationVirtual.X = (int)((location.X - (animEntry.frame.Size.X + animEntry.totalOffset.X + animEntry.offSetDirectional) * animEntry.scale));
+                spriteLocationVirtual.X = (int)((location.X - (animEntry.frame.Size.X + animEntry.totalOffset.X + animEntry.offSetDirectional) * animEntry.scale));
             }
             spriteLocationVirtual.Y = (int)((location.Y + (animEntry.totalOffset.Y * animEntry.scale)));
 
@@ -102,10 +103,10 @@ using static HitboxRepository;
 
         public void Draw(SpriteBatch spriteBatch)
         {
-           foreach (Rectangle hitBox in _hitboxes)
-           {
-             _sprite.DrawHitbox(spriteBatch, hitBox);
-           }
+            foreach (Rectangle hitBox in _hitboxes)
+            {
+                _sprite.DrawHitbox(spriteBatch, hitBox);
+            }
         }
         public void DrawExtended(SpriteBatch spriteBatch)
         {
@@ -130,5 +131,5 @@ using static HitboxRepository;
             }
             return approx;
         }
-
     }
+}

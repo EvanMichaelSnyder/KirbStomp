@@ -8,7 +8,6 @@ using KirbStomp.MainLine;
 
 namespace KirbStomp
 {
-
 	internal class ActionList
 	{
 

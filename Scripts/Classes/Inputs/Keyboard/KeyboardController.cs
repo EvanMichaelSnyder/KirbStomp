@@ -7,26 +7,26 @@ using KirbStomp;
 using KirbStomp.Interfaces;
 using Microsoft.Xna.Framework.Input;
 
-
-internal class KeyboardController : IController
-{
-	//through here keys map to commands
-	private Dictionary<Keys, ICommand> _commands;
-	public KeyboardController(ButtonDataManager buttons)
+namespace KirbStomp {
+	internal class KeyboardController : IController
 	{
-		_commands = new Dictionary<Keys, ICommand>();
-
-		DefaultKeyAssignments(buttons);
-	}
-	public KeyboardController(ButtonDataManager buttons, Dictionary<Keys, ICommand> commands)
-	{
-		_commands = new Dictionary<Keys, ICommand>();
-
-		foreach (var (key, value) in commands)
+		//through here keys map to commands
+		private Dictionary<Keys, ICommand> _commands;
+		public KeyboardController(ButtonDataManager buttons)
 		{
-			RegisterCommand(key, value);
+			_commands = new Dictionary<Keys, ICommand>();
+
+			DefaultKeyAssignments(buttons);
 		}
-	}
+		public KeyboardController(ButtonDataManager buttons, Dictionary<Keys, ICommand> commands)
+		{
+			_commands = new Dictionary<Keys, ICommand>();
+
+			foreach (var (key, value) in commands)
+			{
+				RegisterCommand(key, value);
+			}
+		}
 
 		//Attempts to register command returns 0 if successful, -1 if not
 		public int RegisterCommand(Keys key, ICommand command)
@@ -64,9 +64,8 @@ internal class KeyboardController : IController
 				{
 					_commands[key].Execute(KirbStomp.KeyState.Inactive);
 				}
-			   
+			
 			}
 		}
-
-
 	}
+}

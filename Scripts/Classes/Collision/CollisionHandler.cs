@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static HitboxTypeEnum;
+using KirbStomp;
 namespace KirbStomp.Scripts.Classes.Collision
 {
     internal class CollisionHandler

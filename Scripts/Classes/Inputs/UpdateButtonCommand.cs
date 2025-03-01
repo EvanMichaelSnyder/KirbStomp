@@ -8,6 +8,7 @@ using KirbStomp.MainLine;
 using Microsoft.Xna.Framework;
 using KirbStomp.Interfaces;
 
+namespace KirbStomp {
 	internal class UpdateButtonCommand : ICommand
 	{
 		private ButtonData _button;
@@ -21,3 +22,4 @@ using KirbStomp.Interfaces;
 		}
 
 	}
+}

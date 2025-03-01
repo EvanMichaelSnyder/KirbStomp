@@ -9,51 +9,55 @@ using KirbStomp.Interfaces;
 using KirbStomp;
 using System.Diagnostics;
 using System.Diagnostics;
-
-internal class AllPurposeSprite : ISpriteComplete
+namespace KirbStomp
+{
+    internal class AllPurposeSprite : ISpriteComplete
     {
-    private Texture2D _spriteSheet;
+        private Texture2D _spriteSheet;
 
-    public AllPurposeSprite(Texture2D spriteSheet)
-        {
-            _spriteSheet = spriteSheet;
+        public AllPurposeSprite() {
+
         }
-    public void DrawHitbox(SpriteBatch spriteBatch, Rectangle HitBox)
-    {
-        //hitboxes come already scaled
-        Rectangle scaledHitBox = new Rectangle(
-            // (int)(HitBox.X*Game1.globalScaleX),
-            // (int)(HitBox.Y*Game1.globalScaleY),
-            // (int)(HitBox.Width*Game1.globalScaleX),
-            // (int)(HitBox.Height*Game1.globalScaleY));
-            (int)(HitBox.X*Game1.Get().GetScreenWindow().globalScaleX),
-            (int)(HitBox.Y*Game1.Get().GetScreenWindow().globalScaleY),
-            (int)(HitBox.Width*Game1.Get().GetScreenWindow().globalScaleX),
-            (int)(HitBox.Height*Game1.Get().GetScreenWindow().globalScaleY));
-        Color color = new Color(100,100,100,100);
-        spriteBatch.Draw(_spriteSheet, scaledHitBox, Color.White);
-    }
+        public AllPurposeSprite(Texture2D spriteSheet)
+            {
+                _spriteSheet = spriteSheet;
+            }
+        public void DrawHitbox(SpriteBatch spriteBatch, Rectangle HitBox)
+        {
+            //hitboxes come already scaled
+            Rectangle scaledHitBox = new Rectangle(
+                // (int)(HitBox.X*Game1.globalScaleX),
+                // (int)(HitBox.Y*Game1.globalScaleY),
+                // (int)(HitBox.Width*Game1.globalScaleX),
+                // (int)(HitBox.Height*Game1.globalScaleY));
+                (int)(HitBox.X*Game1.Get().GetScreenWindow().globalScaleX),
+                (int)(HitBox.Y*Game1.Get().GetScreenWindow().globalScaleY),
+                (int)(HitBox.Width*Game1.Get().GetScreenWindow().globalScaleX),
+                (int)(HitBox.Height*Game1.Get().GetScreenWindow().globalScaleY));
+            Color color = new Color(100,100,100,100);
+            spriteBatch.Draw(_spriteSheet, scaledHitBox, Color.White);
+        }
 
-    public void DrawRectangle(SpriteBatch spriteBatch, Rectangle rectangle)
-    {
-        Rectangle sourceRectangle;
-        sourceRectangle.X = 16;
-        sourceRectangle.Y = 184;
-        sourceRectangle.Width = 128;
-        sourceRectangle.Height = 32;
-        //hitboxes come already scaled
-        Rectangle scaledRectangle = new Rectangle(
-            (int)(rectangle.X * Game1.Get().GetScreenWindow().globalScaleX),
-            (int)(rectangle.Y * Game1.Get().GetScreenWindow().globalScaleY),
-            (int)(rectangle.Width * Game1.Get().GetScreenWindow().globalScaleX),
-            (int)(rectangle.Height * Game1.Get().GetScreenWindow().globalScaleY));
-        spriteBatch.Draw(_spriteSheet, scaledRectangle, sourceRectangle, Color.White);
-    }
+        public void DrawRectangle(SpriteBatch spriteBatch, Rectangle rectangle)
+        {
+            Rectangle sourceRectangle;
+            sourceRectangle.X = 16;
+            sourceRectangle.Y = 184;
+            sourceRectangle.Width = 128;
+            sourceRectangle.Height = 32;
+            //hitboxes come already scaled
+            Rectangle scaledRectangle = new Rectangle(
+                (int)(rectangle.X * Game1.Get().GetScreenWindow().globalScaleX),
+                (int)(rectangle.Y * Game1.Get().GetScreenWindow().globalScaleY),
+                (int)(rectangle.Width * Game1.Get().GetScreenWindow().globalScaleX),
+                (int)(rectangle.Height * Game1.Get().GetScreenWindow().globalScaleY));
+            spriteBatch.Draw(_spriteSheet, scaledRectangle, sourceRectangle, Color.White);
+        }
 
-    public void Draw(SpriteBatch spriteBatch, Vector2 location, DirectionEnum direction, StateEnum state, int frame, string name)
-		{
-			Rectangle sourceRectangle;
-			Rectangle destinationRectangle;
+        public void Draw(SpriteBatch spriteBatch, Vector2 location, DirectionEnum direction, StateEnum state, int frame, string name)
+        {
+            Rectangle sourceRectangle;
+            Rectangle destinationRectangle;
 
             //grab entry from dictionary
             var entry = AnimationRepository.GetFrameData(name, state, frame);
@@ -71,11 +75,10 @@ internal class AllPurposeSprite : ISpriteComplete
 
 
 
-			destinationRectangle = new Rectangle(xCoord,yCoord,Width,Height);
+            destinationRectangle = new Rectangle(xCoord,yCoord,Width,Height);
 
-			spriteBatch.Draw(_spriteSheet, destinationRectangle, sourceRectangle, Color.White);
+            spriteBatch.Draw(_spriteSheet, destinationRectangle, sourceRectangle, Color.White);
 
-		}
-
-
-	}
+        }
+    }
+}
