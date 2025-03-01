@@ -42,10 +42,14 @@ namespace KirbStomp
 	
 		public static void LoadCharacter(string name)
 		{
-			if(!characters.TryAdd(name, ParseCharacterXML(name)))
+			if(!characters.ContainsKey(name))
 			{
-				throw new Exception($"Already added character {name}");
+				characters.Add(name, ParseCharacterXML(name));
 			}
+			// if(!characters.TryAdd(name, ParseCharacterXML(name)))
+			// {
+			// 	throw new Exception($"Already added character {name}");
+			// }
 			
 		}
 	

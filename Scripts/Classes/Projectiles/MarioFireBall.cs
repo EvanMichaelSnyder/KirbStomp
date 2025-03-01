@@ -103,7 +103,7 @@ namespace KirbStomp.Scripts.Projectiles
 
         public void Destroy()
         {
-            Game1.Get().GetCurrentScene().GetProjectileManager().RemoveProjectile(this);
+            SceneManager.Get().GetCurrentScene().GetProjectileManager().RemoveProjectile(this);
         }
     }
 }

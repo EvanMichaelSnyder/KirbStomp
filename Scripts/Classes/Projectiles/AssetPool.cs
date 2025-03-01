@@ -81,13 +81,10 @@ namespace KirbStomp.Scripts.Projectiles
                 }
                 animations.Add(animName, animation);
             }
-
-            Animations.Add(sheetName, animations);
-
-
-        }
-
-
+            if(!Animations.ContainsKey(sheetName))
+            {
+                Animations.Add(sheetName, animations);
+            }        }
 
 
         //HELPERS

@@ -43,7 +43,9 @@ namespace KirbStomp
 			IsMouseVisible = true;
             this._screenWindow = new ScreenWindow(_graphics);
             _screenWindow.UpdateWindowSize();
-            _currentScene = new BattleScene();
+            
+            _battleScene = new BattleScene();
+            _testScene = new TestScene();
 		}
 
         protected override void Initialize()
@@ -61,24 +63,29 @@ namespace KirbStomp
 
         protected override void LoadContent()
         {
-
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _currentScene.LoadContent();
         }
 
 		protected override void Update(GameTime gameTime)
 		{
-            _currentScene.Update(gameTime);
+            SceneManager.Get().UpdateScene(gameTime);
+
+            if(Keyboard.GetState().IsKeyDown(Keys.D1))
+            {
+                SceneManager.Get().SwitchScene("TestScene");
+            }
+            else if(Keyboard.GetState().IsKeyDown(Keys.D2))
+            {
+                SceneManager.Get().SwitchScene("BattleScene");
+            }
 			base.Update(gameTime);
 		}
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            _currentScene.Draw(gameTime, _spriteBatch);
-
+            SceneManager.Get().DrawScene(gameTime, _spriteBatch);
 			base.Draw(gameTime);
 		}
         public ScreenWindow GetScreenWindow() { return _screenWindow; }
-        internal IScene GetCurrentScene() { return _currentScene; }
 	}
 }
