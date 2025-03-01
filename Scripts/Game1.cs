@@ -21,7 +21,6 @@ namespace KirbStomp
         private SpriteBatch _spriteBatch;
         private ScreenWindow _screenWindow;
         private DocumentationGenerator _docGen;
-        private IScene _currentScene;
 
         //singleton
         private static Game1 inst;
@@ -43,9 +42,6 @@ namespace KirbStomp
 			IsMouseVisible = true;
             this._screenWindow = new ScreenWindow(_graphics);
             _screenWindow.UpdateWindowSize();
-            
-            _battleScene = new BattleScene();
-            _testScene = new TestScene();
 		}
 
         protected override void Initialize()
@@ -57,7 +53,6 @@ namespace KirbStomp
             _docGen = new DocumentationGenerator("MDDocs");
             _docGen.GenerateAllDocumentation();
 
-            _currentScene.Initialize();
             base.Initialize();
         }
 

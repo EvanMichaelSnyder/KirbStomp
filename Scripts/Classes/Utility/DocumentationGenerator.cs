@@ -32,8 +32,8 @@ public class DocumentationGenerator
     public DocumentationGenerator(string outputDirectory)
     {
          string directoryPath = Path.Combine("bin", "Debug", "net8.0");
-         Console.WriteLine(directoryPath);
-         
+        //  Console.WriteLine(directoryPath);
+
         _typeMap = ClassExtractor.ExtractClassesFromDirectory(directoryPath);
         _typeMap.Add("HitboxRepository", typeof(HitboxRepository));
 
