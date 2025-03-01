@@ -107,3 +107,13 @@
 /processor:TextureProcessor
 /build:MarioHitBoxSpriteSheet.png
 
+#begin LinkProjectileSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:LinkProjectileSpriteSheet.png
+
+#begin MarioAttackHitboxSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:MarioAttackHitboxSpriteSheet.png
+

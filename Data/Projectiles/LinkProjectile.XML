@@ -1,0 +1,47 @@
+<Animations>
+	<Texture spriteSheet="LinkProjectileTransparentSpriteSheet" scale="2.0" boundX="2280" offsetDirectional = "30"/>
+
+	<Animation name="ArrowShoot" duration ="1.0" loop="true" animationOffset="(0, 0)">
+		<Frame position="(327, 2936)" size="(27, 9)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+	<Animation name="ArrowDown" duration =".2" loop="true" animationOffset="(0, 0)">
+		<Frame position="(329, 2956)" size="(27, 11)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+	<Animation name="ArrowDeath" duration =".2" loop="true" animationOffset="(0, 0)">
+		<Frame position="(329, 2974)" size="(25, 17)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+	<Animation name="BombShoot" duration ="0.5" loop="false" animationOffset="(0, 0)">
+		<Frame position="(390, 3273)" size="(18, 17)" perFrameOffset="(0, 0)"/>
+		<Frame position="(414, 3269)" size="(24, 21)" perFrameOffset="(-6, -4)"/>
+		<Frame position="(443, 3265)" size="(25, 25)" perFrameOffset="(-7, -8)"/>
+		<Frame position="(405, 3293)" size="(25, 31)" perFrameOffset="(-7, -14)"/>
+		<Frame position="(435, 3291)" size="(25, 33)" perFrameOffset="(-7, -16)"/>
+	</Animation>
+
+	<Animation name="BombAir" duration ="1.0" loop="true" animationOffset="(0, 0)">
+		<Frame position="(390, 3273)" size="(18, 17)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+	<Animation name="BombDeath" duration ="1.0" loop="false" animationOffset="(0, 0)">
+		<Frame position="(475, 3266)" size="(28, 26)" perFrameOffset="(0, 0)"/>
+		<Frame position="(507, 3262)" size="(39, 32)" perFrameOffset="(-5, -3)"/>
+		<Frame position="(551, 3251)" size="(44, 53)" perFrameOffset="(-8, -13)"/>
+		<Frame position="(494, 3298)" size="(40, 39)" perFrameOffset="(-6, -6)"/>
+		<Frame position="(538, 3313)" size="(30, 24)" perFrameOffset="(-1, 1)"/>
+	</Animation>
+
+	<Animation name="Boomerang" duration ="1.0" loop="true" animationOffset="(0, 0)">
+		<Frame position="(255, 3140)" size="(13, 11)" perFrameOffset="(0, 0)"/>
+		<Frame position="(271, 3140)" size="(11, 9)" perFrameOffset="(0, 0)"/>
+		<Frame position="(284, 3140)" size="(16, 7)" perFrameOffset="(0, 0)"/>
+		<Frame position="(302, 3140)" size="(11, 9)" perFrameOffset="(0, 0)"/>
+		<Frame position="(256, 3159)" size="(13, 11)" perFrameOffset="(0, 0)"/>
+		<Frame position="(271, 3160)" size="(11, 9)" perFrameOffset="(0, 0)"/>
+		<Frame position="(284, 3161)" size="(16, 7)" perFrameOffset="(0, 0)"/>
+		<Frame position="(302, 3160)" size="(11, 9)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+</Animations>
