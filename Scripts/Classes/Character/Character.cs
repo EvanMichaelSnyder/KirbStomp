@@ -26,6 +26,7 @@ namespace KirbStomp
         private ISpriteComplete _sprite;
         private static int xLocaleSpawn = 0;
         private static int yLocaleSpawn = 0;
+        private CharacterMovement _movementManager;
         //locale spawn is not used later
 
         private bool hitboxDrawEnabled;
