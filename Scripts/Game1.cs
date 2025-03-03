@@ -20,8 +20,7 @@ namespace KirbStomp
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private ScreenWindow _screenWindow;
-        private DocumentationGenerator _docGen;
-
+        
         //singleton
         private static Game1 inst;
 
@@ -48,10 +47,6 @@ namespace KirbStomp
         {
             //graphics
             _screenWindow.UpdateWindowSize();
-            
-            //MD Doc generation
-            _docGen = new DocumentationGenerator("MDDocs");
-            _docGen.GenerateAllDocumentation();
 
             base.Initialize();
         }
