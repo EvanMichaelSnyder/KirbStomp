@@ -1,4 +1,4 @@
-# Character
+# CollisionObject
 
 ## Quick Navigation
 - [Properties](#properties)
@@ -15,16 +15,12 @@
 ### Public Properties
 | Name | Type | Description |
 |------|------|-------------|
-| GetButtonDataManager | [`ButtonDataManager`](ButtonDataManager.md) | |
 | Physics | [`PhysicsComponent`](PhysicsComponent.md) | |
 | IsActive | `Boolean` | |
 | Carriers | List<[`Carrier`](Carrier.md)> | |
 
 ### Private Properties
-| Name | Type |
-|------|------|
-| StateMachine | [`CharacterStateMachine`](CharacterStateMachine.md) |
-| ActionList | [`ActionList`](ActionList.md) |
+*No private properties*
 
 <a id='static-properties'></a>
 ## Static Properties
@@ -39,17 +35,8 @@
 ### Public Methods
 | Name | Return Type | Parameters |
 |------|-------------|------------|
-| GetPosition | `Rectangle` |  |
-| DoBehavior | `Void` |  |
-| Animate | `Void` | `GameTime` gameTime |
-| DebugState | `Void` |  |
-| Draw | `Void` | `SpriteBatch` spriteBatch |
-| DrawHitbox | `Void` | `SpriteBatch` spriteBatch |
-| UpdateState | `Void` |  |
-| ProcessButtons | `Void` |  |
-| ApplyMovementBehavior | `Void` |  |
-| MoveCharacter | `Void` | `GameTime` gameTime |
-| Gravity | `Void` | `GameTime` gameTime |
+| RegisterCollisionResponse | `Void` | `HitboxTypeEnum` selfType, `HitboxTypeEnum` otherType, Action<[`CollisionObject`](CollisionObject.md), `CollisionContext`> handler |
+| HandleCollision | `Void` | `CollisionContext` context |
 
 <a id='static-methods'></a>
 ## Static Methods
@@ -57,28 +44,25 @@
 *No public static methods*
 
 ### Private Static Methods
-| Name | Return Type | Parameters |
-|------|-------------|------------|
-| IsDirection | `Boolean` | `GameButtons` input |
+*No private static methods*
 
 <a id='constructors'></a>
 ## Constructors
 | Constructor | Parameters |
 |------------|------------|
-| Character | `String` name, `Texture2D` spriteSheet, `String` spriteSheetName |
-| Character | `String` name, `Texture2D` spriteSheet, `String` spriteSheetName, `Vector2` spawnLocation |
+| CollisionObject |  |
 
 <a id='interfaces'></a>
 ## Implemented Interfaces
-- `ICharacter`
+*No implemented interfaces*
 
 <a id='inheritance'></a>
 ## Inheritance
-Inherits from: [`CollisionObject`](CollisionObject.md)
+Inherits from: [`PhysicsComponent`](PhysicsComponent.md)
 
 ### Inheritance Chain
 ```
-Character → CollisionObject → PhysicsComponent → Object
+CollisionObject → PhysicsComponent → Object
 ```
 <a id='static-fields'></a>
 ## Static Fields

@@ -13,7 +13,11 @@
 <a id='properties'></a>
 ## Properties
 ### Public Properties
-*No public properties*
+| Name | Type | Description |
+|------|------|-------------|
+| Physics | [`PhysicsComponent`](PhysicsComponent.md) | |
+| IsActive | `Boolean` | |
+| Carriers | List<[`Carrier`](Carrier.md)> | |
 
 ### Private Properties
 *No private properties*
@@ -31,7 +35,9 @@
 ### Public Methods
 | Name | Return Type | Parameters |
 |------|-------------|------------|
+| GetPosition | `Rectangle` |  |
 | Draw | `Void` | `SpriteBatch` spriteBatch |
+| DrawHitbox | `Void` | `SpriteBatch` spriteBatch |
 
 <a id='static-methods'></a>
 ## Static Methods
@@ -53,7 +59,12 @@
 
 <a id='inheritance'></a>
 ## Inheritance
-Inherits from: `Object`
+Inherits from: [`CollisionObject`](CollisionObject.md)
+
+### Inheritance Chain
+```
+Platform → CollisionObject → PhysicsComponent → Object
+```
 <a id='static-fields'></a>
 ## Static Fields
 *No public static fields*

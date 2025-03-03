@@ -1,4 +1,4 @@
-# HitboxManager
+# HitboxRegistry
 
 ## Quick Navigation
 - [Properties](#properties)
@@ -29,34 +29,23 @@
 <a id='methods'></a>
 ## Methods
 ### Public Methods
-| Name | Return Type | Parameters |
-|------|-------------|------------|
-| debugWriteBoxes | `Void` |  |
-| getRectangles | List<`Rectangle`> |  |
-| getID | `Int32` |  |
-| GetHitboxTypeEnum | `HitboxTypeEnum` |  |
-| basicUpdateHitbox | `Void` | `Rectangle` rectangle |
-| UpdateHitboxList | `Void` | `Vector2` location, `DirectionEnum` direction, `String` name, `StateEnum` state, `Int32` currentFrame |
-| Draw | `Void` | `SpriteBatch` spriteBatch |
-| DrawExtended | `Void` | `SpriteBatch` spriteBatch |
-| getCentralizedPosition | `Vector2` |  |
-| GetApproximation | `Rectangle` |  |
-| CheckAccurateCollision | `Rectangle` | [`HitboxManager`](HitboxManager.md) manager |
+*No public methods*
 
 <a id='static-methods'></a>
 ## Static Methods
 ### Public Static Methods
-*No public static methods*
+| Name | Return Type | Parameters |
+|------|-------------|------------|
+| Register | `Void` | [`HitboxManager`](HitboxManager.md) manager |
+| Unregister | `Void` | [`HitboxManager`](HitboxManager.md) manager |
+| GetHitboxManagersOfType | List<[`HitboxManager`](HitboxManager.md)> | `HitboxTypeEnum` type |
 
 ### Private Static Methods
 *No private static methods*
 
 <a id='constructors'></a>
 ## Constructors
-| Constructor | Parameters |
-|------------|------------|
-| HitboxManager | `Texture2D` spriteSheet, `HitboxTypeEnum` type, `Int32` parentID |
-| HitboxManager | `Texture2D` spriteSheet, `HitboxTypeEnum` type |
+*No explicit constructors*
 
 <a id='interfaces'></a>
 ## Implemented Interfaces

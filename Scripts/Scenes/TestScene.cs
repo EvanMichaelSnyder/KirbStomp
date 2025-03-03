@@ -116,7 +116,7 @@ public class TestScene : IScene
         foreach (ICharacter chara in _characterList) { chara.MoveCharacter(gameTime); }
         
         //right now this is actually called under process buttons
-        foreach (ICharacter chara in _characterList) { chara.CheckGroundCollision(); } 
+        //foreach (ICharacter chara in _characterList) { chara.CheckGroundCollision(); } 
         
         //State is actually changed
         foreach (ICharacter chara in _characterList) { chara.UpdateState(); } 

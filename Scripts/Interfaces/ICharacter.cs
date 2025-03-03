@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace KirbStomp.Interfaces
@@ -16,7 +17,8 @@ namespace KirbStomp.Interfaces
         public void ApplyMovementBehavior();
         public void Gravity(GameTime gameTime);
         public void MoveCharacter(GameTime gameTime);
-        public void CheckGroundCollision();
+        public Rectangle GetPosition();
+        //public void CheckGroundCollision();
 
 
         //public void AssignLegitimateHitboxSheet(Texture2D spriteSheet);

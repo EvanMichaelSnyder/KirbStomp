@@ -4,6 +4,8 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using KirbStomp.Scripts.Classes.Carriers;
+using KirbStomp.Scripts.Classes.Collision;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -14,14 +16,19 @@ namespace KirbStomp.Scripts.Classes.Platforms
         None,
         SideDirtPlatform
     }
-    internal class Platform
+    internal class Platform : CollisionObject
     {
         private Rectangle _platformDimensions;
         private AllPurposeSprite _sprite;
         private PlatformTypeEnum _platformType;
         private int _ID;
-        private HitboxManager _hitboxManager;
+        private PlatformCarrier PlatformCarrier;
 
+
+        public Rectangle GetPosition()
+        {
+            return PlatformCarrier.HitboxManager.GetApproximation();
+        }
 
         public Platform(PlatformTypeEnum type, Rectangle rectangle,Texture2D spriteSheet)
         {
@@ -29,7 +36,11 @@ namespace KirbStomp.Scripts.Classes.Platforms
             _platformDimensions = rectangle;
             _platformType = type;
             _sprite = new AllPurposeSprite(spriteSheet);
-            _hitboxManager = new HitboxManager(BattleScene.boxSheet, HitboxTypeEnum.Platform);
+
+            PlatformCarrier = new PlatformCarrier() { Parent = this };
+            Carriers.Add(PlatformCarrier);
+
+            PlatformCarrier.HitboxManager.basicUpdateHitbox(rectangle);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -37,5 +48,11 @@ namespace KirbStomp.Scripts.Classes.Platforms
         {
             _sprite.DrawRectangle(spriteBatch, _platformDimensions);
         }
+
+        public void DrawHitbox(SpriteBatch spriteBatch)
+        {
+            PlatformCarrier.HitboxManager.Draw(spriteBatch);
+        }
     }
+
 }

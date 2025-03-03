@@ -15,9 +15,10 @@ namespace KirbStomp {
     public enum HitboxTypeEnum
     {
         None = 0,
-        Character,
+        Body,
         Attack,
         Platform,
+        Item,
     }
     public class HitboxManager
     {
@@ -34,13 +35,18 @@ namespace KirbStomp {
             }
         }
 
+        public List<Rectangle> getRectangles()
+        {
+            return _hitboxes;
+        }
+
         public int getID()
         {
-        return _parentID;
+            return _parentID;
         }
         public HitboxTypeEnum GetHitboxTypeEnum()
         {
-        return _hitboxType; 
+            return _hitboxType;
         }
 
         public HitboxManager(Texture2D spriteSheet, HitboxTypeEnum type, int parentID)
@@ -60,6 +66,13 @@ namespace KirbStomp {
             _hitboxes = new List<Rectangle>();
         }
 
+
+        public void basicUpdateHitbox(Rectangle rectangle)
+        {
+            _hitboxes.Clear();
+            _hitboxes.Add(rectangle);
+        }
+
         public void UpdateHitboxList(Vector2 location, DirectionEnum direction, string name, StateEnum state, int currentFrame)
         {
             var animEntry = AnimationRepository.GetFrameData(name, state, currentFrame);
@@ -76,7 +89,7 @@ namespace KirbStomp {
             spriteLocationVirtual.Y = (int)((location.Y + (animEntry.totalOffset.Y * animEntry.scale)));
 
 
-            Rectangle animBoxSource =animEntry.frame.ToRectangle(direction, animEntry.boundX);
+            Rectangle animBoxSource = animEntry.frame.ToRectangle(direction, animEntry.boundX);
 
 
             foreach (HitboxData box in hitboxEntry.frame.Hitboxes)
@@ -87,9 +100,10 @@ namespace KirbStomp {
                 int xCoord = (int)(location.X + (animEntry.totalOffset.X + offsetToHitbox.X) * animEntry.scale);
                 if (direction == DirectionEnum.Left)
                 {
+                    spriteLocationVirtual.X = (int)((location.X - (animEntry.frame.Size.X + animEntry.totalOffset.X + animEntry.offSetDirectional) * animEntry.scale));
                     xCoord = (int)(location.X - (animEntry.frame.Size.X + animEntry.totalOffset.X + animEntry.offSetDirectional - offsetToHitbox.X) * animEntry.scale);
                 }
-                int yCoord = (int)(location.Y + (animEntry.totalOffset.Y + offsetToHitbox.Y)* animEntry.scale);
+                int yCoord = (int)(location.Y + (animEntry.totalOffset.Y + offsetToHitbox.Y) * animEntry.scale);
 
                 int Width = (int)(box.Size.X * animEntry.scale);
                 int Height = (int)(box.Size.Y * animEntry.scale);
@@ -118,18 +132,66 @@ namespace KirbStomp {
             }
         }
 
+        public Vector2 getCentralizedPosition()
+        {
+            float totalArea = 0;
+            float weightedX = 0;
+            float weightedY = 0;
+
+            foreach (var rect in _hitboxes)
+            {
+                // Calculate area of the current rectangle
+                float area = rect.Width * rect.Height;
+
+                // Calculate the center of the current rectangle
+                float centerX = rect.X + rect.Width / 2f;
+                float centerY = rect.Y + rect.Height / 2f;
+
+                // Weight the center by the area
+                weightedX += centerX * area;
+                weightedY += centerY * area;
+
+                // Add the area to the total area
+                totalArea += area;
+            }
+
+            // Return the weighted average center position (center of area)
+            if (totalArea == 0)
+            {
+                return Vector2.Zero; // Return (0,0) if there are no rectangles (empty hitbox manager)
+            }
+
+            return new Vector2(weightedX / totalArea, weightedY / totalArea);
+        }
+
         public Rectangle GetApproximation()
         {
-            if (_hitboxes.Count == 0)
+            if(_hitboxes.Count == 0)
             {
                 return Rectangle.Empty;
             }
-            Rectangle approx = new Rectangle();
-            foreach (Rectangle rectangle in _hitboxes)
+            Rectangle approx = _hitboxes.First();
+            foreach (var rect in _hitboxes.Skip(1))
             {
-                approx = Rectangle.Union(approx, rectangle);
+                approx = Rectangle.Union(approx, rect);
             }
             return approx;
+        }
+
+        public Rectangle CheckAccurateCollision(HitboxManager manager)
+        {
+            foreach (Rectangle rectA in _hitboxes)
+            {
+                foreach (Rectangle rectB in manager.getRectangles())
+                {
+                    Rectangle intersection = Rectangle.Intersect(rectA, rectB);
+                    if (!intersection.IsEmpty)
+                    {
+                        return intersection;
+                    }
+                }
+            }
+            return Rectangle.Empty;
         }
     }
 }

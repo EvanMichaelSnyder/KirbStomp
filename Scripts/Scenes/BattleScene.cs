@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using KirbStomp.Data;
 using KirbStomp.Scripts.Projectiles;
+using KirbStomp.Scripts.Classes.Platforms;
 public class BattleScene : IScene
 {
     public static Texture2D boxSheet = Game1.Get().Content.Load<Texture2D>("HitboxWire");
@@ -28,8 +29,10 @@ public class BattleScene : IScene
     private int _framesRendered;
     private DateTime _lastTime;
 
+    private CollisionSystem _collisionSystem = new CollisionSystem();
 
     private ArrayList _characterList;
+    private ArrayList _platformList;
     private ArrayList _controllerList;
     private ProjectileManager _projectileManager;
     public BattleScene() {
@@ -48,8 +51,10 @@ public class BattleScene : IScene
         AssetPool.LoadTexture(marioSheet, "MarioProjectile");
         AssetPool.LoadAnimationsFromXML(GetRelativeFilePathProjectile("MarioProjectile.XML"));
 
+        Texture2D PlatformSheet = Game1.Get().Content.Load<Texture2D>("Platforms");
 
-        ICharacter mario = new Character("Mario", marioSheet, marioSpriteSheetName);
+
+        Character mario = new Character("Mario", marioSheet, marioSpriteSheetName);
         IController controllerMario = new KeyboardController(mario.GetButtonDataManager, new Dictionary<Keys, ICommand>()
         {
             {Keys.W, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Up])},
@@ -61,7 +66,7 @@ public class BattleScene : IScene
             {Keys.Space, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Jump])},
             {Keys.V, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.GotHit])}
         });
-        ICharacter mario2 = new Character("Mario", marioSheet, marioSpriteSheetName, new Vector2(300, 100));
+        Character mario2 = new Character("Mario", marioSheet, marioSpriteSheetName, new Vector2(300, 100));
         IController controllerMario2 = new KeyboardController(mario2.GetButtonDataManager, new Dictionary<Keys, ICommand>()
         {
             {Keys.P, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Up])},
@@ -76,15 +81,27 @@ public class BattleScene : IScene
         //IController controllerLink = new KeyboardController(link.GetButtonDataManager);
 
         // mario.AssignLegitimateHitboxSheet(boxSheet);
+        Platform platform = new Platform(PlatformTypeEnum.SideDirtPlatform,new Rectangle(10,420,780,20),PlatformSheet);
+        Platform platform2 = new Platform(PlatformTypeEnum.SideDirtPlatform, new Rectangle(500, 250, 200, 20), PlatformSheet);
+        _platformList = new ArrayList();
+        _platformList.Add(platform);
+        _platformList.Add(platform2);
 
         _characterList = new ArrayList();
         _characterList.Add(mario);
         _characterList.Add(mario2);
-        _characterList.Add(new Character("Link", linkSheet, linkSpriteSheetName, new Vector2(600, 700)));
+       // _characterList.Add(new Character("Link", linkSheet, linkSpriteSheetName, new Vector2(600, 700)));
 
         _controllerList = new ArrayList();
         _controllerList.Add(controllerMario);
         _controllerList.Add(controllerMario2);
+
+        _collisionSystem = new CollisionSystem();
+        _collisionSystem.RegisterObject(mario);
+        _collisionSystem.RegisterObject(mario2);
+        _collisionSystem.RegisterObject(platform);
+        _collisionSystem.RegisterObject(platform2);
+
 
         CharacterXMLParser.LoadCharacter("Mario");
     }
@@ -109,7 +126,7 @@ public class BattleScene : IScene
         do ECS
         */
 
-        // DebugFPS();
+        DebugFPS();
         //TODO REMOVE TEST
         if (Keyboard.GetState().IsKeyDown(Keys.D0))
         {
@@ -138,10 +155,11 @@ public class BattleScene : IScene
         foreach (ICharacter chara in _characterList) { chara.Gravity(gameTime); }
 
         foreach (ICharacter chara in _characterList) { chara.MoveCharacter(gameTime); }
-        
+
         //right now this is actually called under process buttons
-        foreach (ICharacter chara in _characterList) { chara.CheckGroundCollision(); } 
-        
+        //foreach (ICharacter chara in _characterList) { chara.CheckGroundCollision(); } 
+        _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Body, HitboxTypeEnum.Platform);
+
         //State is actually changed
         foreach (ICharacter chara in _characterList) { chara.UpdateState(); } 
     
@@ -165,6 +183,12 @@ public class BattleScene : IScene
             chara.Draw(spriteBatch);
             chara.DrawHitbox(spriteBatch);
         }
+        foreach(Platform platform in _platformList)
+        {
+            platform.Draw(spriteBatch);
+            platform.DrawHitbox(spriteBatch);
+        }
+
         spriteBatch.End();
     }
     private string GetRelativeFilePath(string file)

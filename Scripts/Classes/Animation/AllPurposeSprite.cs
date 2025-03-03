@@ -38,21 +38,21 @@ namespace KirbStomp
             spriteBatch.Draw(_spriteSheet, scaledHitBox, Color.White);
         }
 
-        public void DrawRectangle(SpriteBatch spriteBatch, Rectangle rectangle)
-        {
-            Rectangle sourceRectangle;
-            sourceRectangle.X = 16;
-            sourceRectangle.Y = 184;
-            sourceRectangle.Width = 128;
-            sourceRectangle.Height = 32;
-            //hitboxes come already scaled
-            Rectangle scaledRectangle = new Rectangle(
-                (int)(rectangle.X * Game1.Get().GetScreenWindow().globalScaleX),
-                (int)(rectangle.Y * Game1.Get().GetScreenWindow().globalScaleY),
-                (int)(rectangle.Width * Game1.Get().GetScreenWindow().globalScaleX),
-                (int)(rectangle.Height * Game1.Get().GetScreenWindow().globalScaleY));
-            spriteBatch.Draw(_spriteSheet, scaledRectangle, sourceRectangle, Color.White);
-        }
+    public void DrawRectangle(SpriteBatch spriteBatch, Rectangle rectangle)
+    {
+        Rectangle sourceRectangle;
+        sourceRectangle.X = 153;
+        sourceRectangle.Y = 183;
+        sourceRectangle.Width = 133;
+        sourceRectangle.Height = 33;
+        //hitboxes come already scaled
+        Rectangle scaledRectangle = new Rectangle(
+            (int)(rectangle.X * Game1.Get().GetScreenWindow().globalScaleX),
+            (int)(rectangle.Y * Game1.Get().GetScreenWindow().globalScaleY),
+            (int)(rectangle.Width * Game1.Get().GetScreenWindow().globalScaleX),
+            (int)(rectangle.Height * Game1.Get().GetScreenWindow().globalScaleY));
+        spriteBatch.Draw(_spriteSheet, scaledRectangle, sourceRectangle, Color.White);
+    }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location, DirectionEnum direction, StateEnum state, int frame, string name)
         {

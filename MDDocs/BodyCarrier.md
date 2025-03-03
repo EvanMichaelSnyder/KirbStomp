@@ -1,4 +1,4 @@
-# HitboxManager
+# BodyCarrier
 
 ## Quick Navigation
 - [Properties](#properties)
@@ -13,7 +13,10 @@
 <a id='properties'></a>
 ## Properties
 ### Public Properties
-*No public properties*
+| Name | Type | Description |
+|------|------|-------------|
+| HitboxManager | [`HitboxManager`](HitboxManager.md) | |
+| Parent | [`CollisionObject`](CollisionObject.md) | |
 
 ### Private Properties
 *No private properties*
@@ -29,19 +32,7 @@
 <a id='methods'></a>
 ## Methods
 ### Public Methods
-| Name | Return Type | Parameters |
-|------|-------------|------------|
-| debugWriteBoxes | `Void` |  |
-| getRectangles | List<`Rectangle`> |  |
-| getID | `Int32` |  |
-| GetHitboxTypeEnum | `HitboxTypeEnum` |  |
-| basicUpdateHitbox | `Void` | `Rectangle` rectangle |
-| UpdateHitboxList | `Void` | `Vector2` location, `DirectionEnum` direction, `String` name, `StateEnum` state, `Int32` currentFrame |
-| Draw | `Void` | `SpriteBatch` spriteBatch |
-| DrawExtended | `Void` | `SpriteBatch` spriteBatch |
-| getCentralizedPosition | `Vector2` |  |
-| GetApproximation | `Rectangle` |  |
-| CheckAccurateCollision | `Rectangle` | [`HitboxManager`](HitboxManager.md) manager |
+*No public methods*
 
 <a id='static-methods'></a>
 ## Static Methods
@@ -55,8 +46,7 @@
 ## Constructors
 | Constructor | Parameters |
 |------------|------------|
-| HitboxManager | `Texture2D` spriteSheet, `HitboxTypeEnum` type, `Int32` parentID |
-| HitboxManager | `Texture2D` spriteSheet, `HitboxTypeEnum` type |
+| BodyCarrier |  |
 
 <a id='interfaces'></a>
 ## Implemented Interfaces
@@ -64,7 +54,12 @@
 
 <a id='inheritance'></a>
 ## Inheritance
-Inherits from: `Object`
+Inherits from: [`Carrier`](Carrier.md)
+
+### Inheritance Chain
+```
+BodyCarrier → Carrier → Object
+```
 <a id='static-fields'></a>
 ## Static Fields
 *No public static fields*
