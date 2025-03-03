@@ -40,10 +40,10 @@ public class DocumentationGenerator
         _typeMap.Remove("<>O");
         _typeMap.Remove("<>c");
 
-        foreach (var kvp in _typeMap)
-        {
-            Console.WriteLine("Key: " + kvp.Key + " Value: " + kvp.Value);
-        }
+        // foreach (var kvp in _typeMap)
+        // {
+        //     Console.WriteLine("Key: " + kvp.Key + " Value: " + kvp.Value);
+        // }
 
         _outputDirectory = outputDirectory;
         // Ensure output directory exists

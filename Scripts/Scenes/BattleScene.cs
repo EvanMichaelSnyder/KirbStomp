@@ -126,7 +126,7 @@ public class BattleScene : IScene
         do ECS
         */
 
-        DebugFPS();
+        // DebugFPS();
         //TODO REMOVE TEST
         if (Keyboard.GetState().IsKeyDown(Keys.D0))
         {
