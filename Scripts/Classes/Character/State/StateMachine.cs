@@ -7,6 +7,7 @@ using static KirbStomp.DirectionEnum;
 using static KirbStomp.StateMachine.CharacterState;
 using System.Diagnostics;
 using KirbStomp.StateMachine;
+
 namespace KirbStomp{
 	public class CharacterStateMachine
 	{

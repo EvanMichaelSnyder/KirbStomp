@@ -36,6 +36,14 @@ public class DocumentationGenerator
 
         _typeMap = ClassExtractor.ExtractClassesFromDirectory(directoryPath);
         _typeMap.Add("HitboxRepository", typeof(HitboxRepository));
+        _typeMap.Add("TransitionHandler", _typeMap["<>O"]);
+        _typeMap.Remove("<>O");
+        _typeMap.Remove("<>c");
+
+        foreach (var kvp in _typeMap)
+        {
+            Console.WriteLine("Key: " + kvp.Key + " Value: " + kvp.Value);
+        }
 
         _outputDirectory = outputDirectory;
         // Ensure output directory exists
