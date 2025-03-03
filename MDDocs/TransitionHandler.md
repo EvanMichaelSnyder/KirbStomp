@@ -1,4 +1,4 @@
-# <>O
+# TransitionHandler
 
 ## Quick Navigation
 - [Properties](#properties)

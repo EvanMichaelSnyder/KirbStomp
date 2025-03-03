@@ -1,4 +1,4 @@
-# ICharacter
+# SceneManager
 
 ## Quick Navigation
 - [Properties](#properties)
@@ -13,9 +13,7 @@
 <a id='properties'></a>
 ## Properties
 ### Public Properties
-| Name | Type | Description |
-|------|------|-------------|
-| GetButtonDataManager | [`ButtonDataManager`](ButtonDataManager.md) | |
+*No public properties*
 
 ### Private Properties
 *No private properties*
@@ -33,22 +31,16 @@
 ### Public Methods
 | Name | Return Type | Parameters |
 |------|-------------|------------|
-| UpdateState | `Void` |  |
-| DoBehavior | `Void` |  |
-| Animate | `Void` | `GameTime` gameTime |
-| DebugState | `Void` |  |
-| Draw | `Void` | `SpriteBatch` spriteBatch |
-| DrawHitbox | `Void` | `SpriteBatch` spriteBatch |
-| ProcessButtons | `Void` |  |
-| ApplyMovementBehavior | `Void` |  |
-| Gravity | `Void` | `GameTime` gameTime |
-| MoveCharacter | `Void` | `GameTime` gameTime |
-| CheckGroundCollision | `Void` |  |
+| SwitchScene | `Void` | `String` sceneName |
+| UpdateScene | `Void` | `GameTime` gameTime |
+| DrawScene | `Void` | `GameTime` gameTime, `SpriteBatch` spriteBatch |
 
 <a id='static-methods'></a>
 ## Static Methods
 ### Public Static Methods
-*No public static methods*
+| Name | Return Type | Parameters |
+|------|-------------|------------|
+| Get | [`SceneManager`](SceneManager.md) |  |
 
 ### Private Static Methods
 *No private static methods*

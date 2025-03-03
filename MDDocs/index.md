@@ -2,8 +2,6 @@
 
 ## Available Classes
 
-- [<>c](<>c.md)
-- [<>O](<>O.md)
 - [ActionList](ActionList.md)
 - [AllPurposeSprite](AllPurposeSprite.md)
 - [Animation](Animation.md)
@@ -31,8 +29,10 @@
 - [MarioFireBall](MarioFireBall.md)
 - [Platform](Platform.md)
 - [ProjectileManager](ProjectileManager.md)
+- [SceneManager](SceneManager.md)
 - [ScreenWindow](ScreenWindow.md)
 - [Sprite](Sprite.md)
 - [SpriteSheetData](SpriteSheetData.md)
+- [TransitionHandler](TransitionHandler.md)
 - [UpdateButtonCommand](UpdateButtonCommand.md)
 - [XMLData](XMLData.md)
