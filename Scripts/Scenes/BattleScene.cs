@@ -14,6 +14,8 @@ using KirbStomp.Data;
 using KirbStomp.Scripts.Projectiles;
 using KirbStomp.Scripts.Classes.Platforms;
 using KirbStomp.Scripts.Classes.GameObjects.Projectiles;
+using KirbStomp.Scripts.Classes.Projectiles;
+using KirbStomp.Scripts.Classes.GameObjects.Items;
 public class BattleScene : IScene
 {
     public static Texture2D boxSheet = Game1.Get().Content.Load<Texture2D>("HitboxWire");
@@ -36,6 +38,7 @@ public class BattleScene : IScene
     private ArrayList _platformList;
     private ArrayList _controllerList;
     private ProjectileManager _projectileManager;
+    private ItemManager _itemManager;
     public BattleScene() {
         
         _numFrames = 0;
@@ -85,6 +88,7 @@ public class BattleScene : IScene
         //IController controllerLink = new KeyboardController(link.GetButtonDataManager);
 
         // mario.AssignLegitimateHitboxSheet(boxSheet);
+        
         Platform platform = new Platform(PlatformTypeEnum.SideDirtPlatform,new Rectangle(10,420,780,20),PlatformSheet);
         Platform platform2 = new Platform(PlatformTypeEnum.SideDirtPlatform, new Rectangle(500, 250, 200, 20), PlatformSheet);
         _platformList = new ArrayList();
@@ -107,8 +111,10 @@ public class BattleScene : IScene
         _collisionSystem.RegisterObject(platform2);
 
         this._projectileManager = new ProjectileManager(_collisionSystem);
+        this._itemManager = new ItemManager(_collisionSystem);
 
-
+        this._itemManager.AddItem(new HamburgerItem(new Vector2(200, 200)));
+        this._itemManager.AddItem(new ArrowStormItem(new Vector2(200, 200)));
         CharacterXMLParser.LoadCharacter("Mario");
     }
 
@@ -145,7 +151,7 @@ public class BattleScene : IScene
         }
 
         this._projectileManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
-
+        this._itemManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
         //THESE FIRST TWO USED TO BE AT THE BOTTOM HOPE THIS DOESNT CAUSE ANY ISSUES
         foreach (ICharacter chara in _characterList) { chara.Animate(gameTime); }
 
@@ -170,7 +176,8 @@ public class BattleScene : IScene
         //right now this is actually called under process buttons
         //foreach (ICharacter chara in _characterList) { chara.CheckGroundCollision(); } 
         _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Body, HitboxTypeEnum.Platform);
-
+        _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Platform);
+        _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Body);
         //State is actually changed
         foreach (ICharacter chara in _characterList) { chara.UpdateState(); } 
     
@@ -189,6 +196,7 @@ public class BattleScene : IScene
         spriteBatch.Begin();
 
         this._projectileManager.Draw(spriteBatch);
+        this._itemManager.Draw(spriteBatch);
         foreach (ICharacter chara in _characterList)
         {
             chara.Draw(spriteBatch);

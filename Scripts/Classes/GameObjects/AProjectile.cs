@@ -24,9 +24,7 @@ namespace KirbStomp.Scripts.Projectiles
 
         public abstract void Draw(SpriteBatch spriteBatch);
 
-        
-
-        protected void provideCharacterCarriers()
+        public void ProvideProjectileCarriers()
         {
             _bodyCarrier = new BodyCarrier() { Parent = this };
             _attackCarrier = new AttackCarrier() { Parent = this };
@@ -65,13 +63,6 @@ namespace KirbStomp.Scripts.Projectiles
             this._dimension.Y = (int)this.Position.Y;
             this._bodyCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
             this._attackCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
-        }
-
-        public override void HandleCollision(CollisionContext context)
-        {
-            base.HandleCollision(context);
-            Debug.WriteLine("COLLIDED!!! PROJEctile");
-           
         }
 
         public abstract void RegisterCollider();

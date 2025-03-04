@@ -13,7 +13,8 @@ public class CollisionSystem
     {
         { HitboxTypeEnum.Body, new List<Carrier>() },
         { HitboxTypeEnum.Attack, new List<Carrier>() },
-        { HitboxTypeEnum.Platform, new List<Carrier>() }
+        { HitboxTypeEnum.Platform, new List<Carrier>() },
+        { HitboxTypeEnum.Item, new List<Carrier>() }
     };
 
     private List<CollisionObject> _allObjects = new List<CollisionObject>();
@@ -81,6 +82,7 @@ public class CollisionSystem
         {
             BodyCarrier _ => HitboxTypeEnum.Body,
             AttackCarrier _ => HitboxTypeEnum.Attack,
+            ItemCarrier _ => HitboxTypeEnum.Item,
             PlatformCarrier _ => HitboxTypeEnum.Platform,
             _ => HitboxTypeEnum.Body
         };

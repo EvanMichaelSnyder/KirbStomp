@@ -34,7 +34,7 @@ namespace KirbStomp
 		Active,
 	}
 
-	internal class ButtonDataManager
+	public class ButtonDataManager
 	{
 		public Dictionary<GameButtons, ButtonData> ButtonDataSheet;  //only public for prototype
 

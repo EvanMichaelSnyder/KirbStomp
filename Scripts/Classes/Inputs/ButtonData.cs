@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KirbStomp.MainLine
 {
-	internal class ButtonData
+	public class ButtonData
 	{
 		private ButtonState _state = ButtonState.Inactive;
 		private int _framesPressed = 0;

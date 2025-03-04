@@ -54,7 +54,7 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
 
         public override void RegisterCollider()
         {
-            this.provideCharacterCarriers();
+            // this.ProvideCharacterCarriers();
             this._bodyCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
 
             RegisterCollisionResponse(HitboxTypeEnum.Body,

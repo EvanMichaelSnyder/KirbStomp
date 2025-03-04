@@ -12,23 +12,29 @@ namespace KirbStomp.Scripts.Classes.Projectiles
     {
         private List<AItem> _items;
         private List<AItem> _removedPool;
+        private CollisionSystem _collisionSystem;
 
-        public ItemManager()
+
+        public ItemManager(CollisionSystem collisionSystem)
         {
             this._removedPool = new List<AItem>();
             this._items = new List<AItem>();
+            this._collisionSystem = collisionSystem;
         }
 
         public void Update(float dt)
         {
             foreach (AItem go in this._items)
             {
-                //go.Update(dt);
+                go.UpdateCollider();
+                go.Update(dt);
             }
 
             foreach (AItem go in this._removedPool)
             {
                 this._items.Remove(go);
+                this._collisionSystem.RemoveObject(go);
+
             }
             this._removedPool.Clear();
 
@@ -60,6 +66,10 @@ namespace KirbStomp.Scripts.Classes.Projectiles
 
             this._items.Add(item);
             item.SetItemManager(this);
+            
+            item.ProvideItemCarriers();
+            item.RegisterCollider();
+            this._collisionSystem.RegisterObject(item);
         }
     }
 }

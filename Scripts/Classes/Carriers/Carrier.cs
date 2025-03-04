@@ -40,4 +40,12 @@ namespace KirbStomp.Scripts.Classes.Carriers
             HitboxManager = new HitboxManager(BattleScene.boxSheet, HitboxTypeEnum.Platform);
         }
     }
+
+    public class ItemCarrier : Carrier
+    {
+        public ItemCarrier()
+        {
+            HitboxManager = new HitboxManager(BattleScene.boxSheet, HitboxTypeEnum.Item);
+        }
+    }
 }

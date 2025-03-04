@@ -9,11 +9,18 @@ namespace KirbStomp.Scripts.Classes.GameObjects.ItemAbillity
     public class HealItemAbillity : AItemAbillity
     {
         private Character _charecterToHeal;
+        private float _healAmount;
+
+        public HealItemAbillity(Character charecterToHeal, float healAmount)
+        {
+            this._charecterToHeal = charecterToHeal;
+            this._healAmount = healAmount;
+        }
 
         
         public override void ExectuteAbillity()
         {
-            throw new NotImplementedException();
+            this._charecterToHeal.AddHealth(this._healAmount);
         }
     }
 }

@@ -10,6 +10,7 @@ using KirbStomp.Interfaces;
 using KirbStomp.Scripts.Classes.Carriers;
 using KirbStomp.Scripts.Classes.Collision;
 using KirbStomp.Scripts.Classes.Collision.CollisionHandlers;
+using KirbStomp.Scripts.Classes.GameObjects.ItemAbillity;
 using KirbStomp.Scripts.Classes.Platforms;
 using KirbStomp.StateMachine;
 using Microsoft.Xna.Framework;
@@ -17,7 +18,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace KirbStomp
 {
-    internal class Character : CollisionObject, ICharacter
+    public class Character : CollisionObject, ICharacter
     {
         private int _ID;
 
@@ -34,6 +35,10 @@ namespace KirbStomp
 
         internal CharacterStateMachine StateMachine { get; set; }
         internal ActionList ActionList { get; set; }
+
+        private AItemAbillity _itemAbillity;
+
+        private float _health = 100;
 
 
         private bool hitboxDrawEnabled;
@@ -373,6 +378,20 @@ namespace KirbStomp
                 //Velocity = Velocity * .8f;
             }
             StateMachine.State.IsGrounded = false;
+        }
+
+        public void RecieveItemAbillity(AItemAbillity abillity)
+        {
+            this._itemAbillity = abillity;
+        }
+
+        public void AddHealth(float amt)
+        {
+            this._health += amt;
+            if(this._health > 100)
+            {
+                this._health = 100;
+            }
         }
     }
 

@@ -18,12 +18,12 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
         private Sprite _sprite;
         private AnimationSystem _animationSystem;
 
-        private float _elapsedTime;
-        private float _gravity;
-        private float _scale;
-        private bool _isDying;
-        private float _deathTimeLeft;
-        private float _lifeTime;
+        private float _elapsedTime = 0;
+        private float _gravity = 800;
+        private float _scale = 1f;
+        private bool _isDying = false;
+        private float _deathTimeLeft = .8f;
+        private float _lifeTime = 5;
 
         
 
@@ -49,12 +49,9 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
             {
                 Velocity.X *= -1;
             }
-            _gravity = 800;
-            _scale = 1f;
-            _elapsedTime = 0;
-            _isDying = false;
-            _deathTimeLeft = .8f;
-            _lifeTime = 5;
+           
+           
+            
             this._dimension = new Rectangle((int)this.Position.X, (int)this.Position.Y, 16, 16);
             
 
@@ -64,7 +61,9 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
 
         public override void RegisterCollider()
         {
-            this.provideCharacterCarriers();
+            // this.ProvideCharacterCarriers();
+            this._dimension.Height *= (int)this._scale;
+            this._dimension.Width *= (int)this._scale;
             this._bodyCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
 
             RegisterCollisionResponse(HitboxTypeEnum.Body,
@@ -80,8 +79,7 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
         public void Bounce(CollisionObject obj, CollisionContext context)
         {
             this.Velocity.Y *= -1;
-            //account for physics sys pos loss of 1
-            this.Position.Y += 1;
+            this.Position.Y -= 5 + context.Intersection.Height;
            // Debug.WriteLine("BALL BOUNCE");
         }
 
