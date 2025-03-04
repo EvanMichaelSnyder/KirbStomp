@@ -27,9 +27,7 @@ namespace KirbStomp {
             _battleScene = new BattleScene();
             _testScene = new TestScene();
             _battleScene.Initialize();
-            _battleScene.LoadContent();
             _testScene.Initialize();
-            _testScene.LoadContent();
 			_currentScene = _battleScene;
             
 		}
