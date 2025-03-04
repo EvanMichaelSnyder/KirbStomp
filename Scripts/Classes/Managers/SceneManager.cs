@@ -63,5 +63,10 @@ namespace KirbStomp {
         {
             return _currentScene;
         }
+
+        public void ResetCurrentScene()
+        {
+            _currentScene.ResetScene();
+        }
     }
 }

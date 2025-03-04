@@ -68,6 +68,10 @@ namespace KirbStomp
             {
                 SceneManager.Get().SwitchScene("BattleScene");
             }
+            else if(Keyboard.GetState().IsKeyDown(Keys.D3))
+            {
+                SceneManager.Get().ResetCurrentScene();
+            }
 			base.Update(gameTime);
 		}
         protected override void Draw(GameTime gameTime)

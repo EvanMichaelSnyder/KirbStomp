@@ -17,5 +17,6 @@ namespace KirbStomp.Interfaces
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch);
         public void LoadContent();
         public ProjectileManager GetProjectileManager();
+        public void ResetScene();
     }
 }
