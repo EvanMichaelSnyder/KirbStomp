@@ -24,6 +24,12 @@ namespace KirbStomp.Scripts.Projectiles
 
         public void AddAnimation(Animation animation)
         {
+            if (_currentAnimation == null)
+            {
+                this._currentAnimation = animation;
+            }
+
+
             if (this._animations.ContainsKey(animation.GetName()))
             {
                 this._animations[animation.GetName()] = animation;

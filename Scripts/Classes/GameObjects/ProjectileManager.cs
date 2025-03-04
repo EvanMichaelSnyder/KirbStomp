@@ -11,16 +11,21 @@ namespace KirbStomp.Scripts.Projectiles
     {
         private List<AProjectile> _projectiles;
         private List<AProjectile> _removedPool;
-        public ProjectileManager() 
+        private CollisionSystem _collisionSystem;
+        public ProjectileManager(CollisionSystem collisionSystem) 
         {
             this._projectiles = new List<AProjectile>();
             this._removedPool = new List<AProjectile>();
+            this._collisionSystem = collisionSystem;
         }
 
         public void AddProjectile(AProjectile projectile)
         {
 
             this._projectiles.Add(projectile);
+            projectile.SetProjectileManager(this);
+            projectile.RegisterCollider();
+            this._collisionSystem.RegisterObject(projectile);
         }
 
         public void RemoveProjectile(AProjectile projectile)
@@ -34,14 +39,19 @@ namespace KirbStomp.Scripts.Projectiles
 
         public void Update(float dt)
         {
+
+
             foreach (AProjectile go in this._projectiles)
             {
+                
                 go.Update(dt);
+                go.UpdateCollider();
             }
 
             foreach (AProjectile go in this._removedPool)
             {
                 this._projectiles.Remove(go);
+                this._collisionSystem.RemoveObject(go);
             }
             this._removedPool.Clear();
 

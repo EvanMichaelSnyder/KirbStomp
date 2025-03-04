@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using KirbStomp.Data;
 using KirbStomp.Scripts.Projectiles;
+using KirbStomp.Scripts.Classes.GameObjects.Projectiles;
 public class TestScene : IScene
 {
     public static Texture2D boxSheet = Game1.Get().Content.Load<Texture2D>("HitboxWire");
@@ -31,9 +32,9 @@ public class TestScene : IScene
 
     private ArrayList _characterList;
     private ArrayList _controllerList;
-    private ProjectileManager _projectileManager;
+   // private ProjectileManager _projectileManager;
     public TestScene() {
-        this._projectileManager = new ProjectileManager();
+        //this._projectileManager = new ProjectileManager(_coll);
         _numFrames = 0;
     }
     public void Initialize()
@@ -89,10 +90,10 @@ public class TestScene : IScene
         //TODO REMOVE TEST
         if (Keyboard.GetState().IsKeyDown(Keys.D0))
         {
-            this._projectileManager.AddProjectile(new MarioFireBall(new Vector2(Mouse.GetState().X, Mouse.GetState().Y)));
+           // this._projectileManager.AddProjectile(new MarioFireBall(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), true));
         }
 
-        this._projectileManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+       // this._projectileManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
 
         //THESE FIRST TWO USED TO BE AT THE BOTTOM HOPE THIS DOESNT CAUSE ANY ISSUES
         foreach (ICharacter chara in _characterList) { chara.Animate(gameTime); }
@@ -135,7 +136,7 @@ public class TestScene : IScene
     {
         spriteBatch.Begin();
 
-        this._projectileManager.Draw(spriteBatch);
+        //this._projectileManager.Draw(spriteBatch);
         foreach (ICharacter chara in _characterList)
         {
             chara.Draw(spriteBatch);
@@ -164,6 +165,7 @@ public class TestScene : IScene
     }
     public ProjectileManager GetProjectileManager()
     {
-        return this._projectileManager;
+        //return this._projectileManager;
+        return null;
     }
 }

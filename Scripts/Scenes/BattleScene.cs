@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Input;
 using KirbStomp.Data;
 using KirbStomp.Scripts.Projectiles;
 using KirbStomp.Scripts.Classes.Platforms;
+using KirbStomp.Scripts.Classes.GameObjects.Projectiles;
 public class BattleScene : IScene
 {
     public static Texture2D boxSheet = Game1.Get().Content.Load<Texture2D>("HitboxWire");
@@ -29,14 +30,14 @@ public class BattleScene : IScene
     private int _framesRendered;
     private DateTime _lastTime;
 
-    private CollisionSystem _collisionSystem = new CollisionSystem();
+    private CollisionSystem _collisionSystem;
 
     private ArrayList _characterList;
     private ArrayList _platformList;
     private ArrayList _controllerList;
     private ProjectileManager _projectileManager;
     public BattleScene() {
-        this._projectileManager = new ProjectileManager();
+        
         _numFrames = 0;
     }
     public void Initialize()
@@ -48,7 +49,10 @@ public class BattleScene : IScene
         Texture2D linkSheet = Game1.Get().Content.Load<Texture2D>(linkSpriteSheetName);
         //projectile stuff***
         Texture2D marioFireBallSheet = Game1.Get().Content.Load<Texture2D>("MarioProjectileTransparentSpriteSheet");
+        Texture2D linkProjectileSheet = Game1.Get().Content.Load<Texture2D>(linkSpriteSheetName);
         AssetPool.LoadTexture(marioSheet, "MarioProjectile");
+        AssetPool.LoadTexture(linkSheet, "LinkProjectile");
+        AssetPool.LoadAnimationsFromXML(GetRelativeFilePathProjectile("LinkProjectile.XML"));
         AssetPool.LoadAnimationsFromXML(GetRelativeFilePathProjectile("MarioProjectile.XML"));
 
         Texture2D PlatformSheet = Game1.Get().Content.Load<Texture2D>("Platforms");
@@ -102,6 +106,8 @@ public class BattleScene : IScene
         _collisionSystem.RegisterObject(platform);
         _collisionSystem.RegisterObject(platform2);
 
+        this._projectileManager = new ProjectileManager(_collisionSystem);
+
 
         CharacterXMLParser.LoadCharacter("Mario");
     }
@@ -130,7 +136,12 @@ public class BattleScene : IScene
         //TODO REMOVE TEST
         if (Keyboard.GetState().IsKeyDown(Keys.D0))
         {
-            this._projectileManager.AddProjectile(new MarioFireBall(new Vector2(Mouse.GetState().X, Mouse.GetState().Y)));
+            this._projectileManager.AddProjectile(new MarioFireBall(new Vector2(Mouse.GetState().X/(float)Game1.Get().GetScreenWindow().globalScaleX, Mouse.GetState().Y/ (float)Game1.Get().GetScreenWindow().globalScaleY), true));
+        }
+
+        if (Keyboard.GetState().IsKeyDown(Keys.D9))
+        {
+            this._projectileManager.AddProjectile(new LinkArrow(new Vector2(Mouse.GetState().X / (float)Game1.Get().GetScreenWindow().globalScaleX, Mouse.GetState().Y / (float)Game1.Get().GetScreenWindow().globalScaleY), false));
         }
 
         this._projectileManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
