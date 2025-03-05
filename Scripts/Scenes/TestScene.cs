@@ -42,6 +42,7 @@ public class TestScene : IScene
     private string marioSpriteSheetName = "MarioTransparentSpriteSheet";
     private string linkSpriteSheetName = "LinkTransparentSpriteSheet";
 
+    private Camera2D _camera;
     public TestScene() {
         //this._projectileManager = new ProjectileManager(_coll);
     }
@@ -87,15 +88,16 @@ public class TestScene : IScene
         //mario.doSpecialBehaviors
 
         // is every action commented out above
-        foreach (ICharacter chara in _characterList) { chara.DoBehavior(); } 
+        foreach (ICharacter chara in _characterList) { chara.DoBehavior(); }
 
+        _camera.Update(gameTime);
 
         //nothing to do with mario, DEBUGGING 
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        spriteBatch.Begin();
+        spriteBatch.Begin(transformMatrix: _camera.GetTranslationMatrix());
 
         foreach (ICharacter chara in _characterList)
         {
@@ -128,6 +130,9 @@ public class TestScene : IScene
         AssetPool.LoadTexture(_linkSheet, "LinkProjectile");
 
         _platformSheet = Game1.Get().Content.Load<Texture2D>("Platforms");
+        var windowSize = Game1.Get().GetScreenWindow().GetAdjustedWindowSize();
+        _camera = new Camera2D(Game1.Get().GraphicsDevice, new Point(windowSize.width, windowSize.height));
+
 
 
         string xmlPathLink = GetRelativeFilePath("Link.XML");
@@ -194,5 +199,11 @@ public class TestScene : IScene
         _collisionSystem.RegisterObject(platform2);
 
         CharacterXMLParser.LoadCharacter("Mario");
+
+
+        var windowSize = Game1.Get().GetScreenWindow().GetAdjustedWindowSize();
+        _camera = new Camera2D(Game1.Get().GraphicsDevice, new Point(windowSize.width, windowSize.height));
+
+
     }
 }

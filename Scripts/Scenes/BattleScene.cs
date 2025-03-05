@@ -47,6 +47,8 @@ public class BattleScene : IScene
     private Texture2D _linkArrowSheet;
     private string marioSpriteSheetName = "MarioTransparentSpriteSheet";
     private string linkSpriteSheetName = "LinkTransparentSpriteSheet";
+
+    private Camera2D _camera;
     public BattleScene() {
         
         _numFrames = 0;
@@ -125,14 +127,17 @@ public class BattleScene : IScene
         //mario.doSpecialBehaviors
 
         // is every action commented out above
-        foreach (ICharacter chara in _characterList) { chara.DoBehavior(); } 
+        foreach (ICharacter chara in _characterList) { chara.DoBehavior(); }
+
+        _camera.Update(gameTime);
+
 
         //nothing to do with mario, DEBUGGING 
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        spriteBatch.Begin();
+        spriteBatch.Begin(transformMatrix: _camera.GetTranslationMatrix());
 
         this._projectileManager.Draw(spriteBatch);
         this._itemManager.Draw(spriteBatch);
@@ -173,7 +178,8 @@ public class BattleScene : IScene
         AssetPool.LoadAnimationsFromXML(GetRelativeFilePathProjectile("MarioProjectile.XML"));
 
         _platformSheet = Game1.Get().Content.Load<Texture2D>("Platforms");
-
+        var windowSize = Game1.Get().GetScreenWindow().GetAdjustedWindowSize();
+        _camera = new Camera2D(Game1.Get().GraphicsDevice, new Point(windowSize.width, windowSize.height));
 
         string xmlPathLink = GetRelativeFilePath("Link.XML");
         string xmlPathMario = GetRelativeFilePath("Mario.XML");
@@ -253,6 +259,9 @@ public class BattleScene : IScene
 
         this._projectileManager = new ProjectileManager(_collisionSystem);
         this._itemManager = new ItemManager(_collisionSystem);
+
+        var windowSize = Game1.Get().GetScreenWindow().GetAdjustedWindowSize();
+        _camera = new Camera2D(Game1.Get().GraphicsDevice, new Point(windowSize.width, windowSize.height));
 
         this._itemManager.AddItem(new HamburgerItem(new Vector2(200, 200)));
         this._itemManager.AddItem(new ArrowStormItem(new Vector2(200, 200)));

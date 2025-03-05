@@ -45,6 +45,7 @@ namespace KirbStomp
 		}
 		public void Update(GameTime gameTime)
 		{
+			float zoom = 1.0f;
 			if(Keyboard.GetState().IsKeyDown(Keys.H)) // Left
 			{
 				position.X -= 1000 *(float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -66,17 +67,17 @@ namespace KirbStomp
 			{
 				position.X = 0.0f;
 				position.Y = 0.0f;
-				ZoomCamera(1.0f);
+				zoom = 1.0f;
 			}
 			if(Keyboard.GetState().IsKeyDown(Keys.OemPlus)) // Zoom out
 			{
-				ZoomCamera(2.0f);
+				zoom = 2.0f;
 			}
 			if(Keyboard.GetState().IsKeyDown(Keys.OemMinus)) // Zoom out
 			{
-				ZoomCamera(0.5f);
+				zoom = 0.2f;
 			}
-
+			ZoomCamera(zoom);
 		}
 
 		public void ZoomCamera(float scale)
