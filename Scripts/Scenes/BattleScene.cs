@@ -116,7 +116,6 @@ public class BattleScene : IScene
         foreach (ICharacter chara in _characterList) { chara.MoveCharacter(gameTime); }
 
         //right now this is actually called under process buttons
-        //foreach (ICharacter chara in _characterList) { chara.CheckGroundCollision(); } 
         _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Body, HitboxTypeEnum.Platform);
         _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Platform);
         _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Body);

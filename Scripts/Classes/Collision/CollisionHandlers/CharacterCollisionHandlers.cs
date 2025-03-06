@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KirbStomp.Scripts.Projectiles;
 
 namespace KirbStomp.Scripts.Classes.Collision.CollisionHandlers
 {
@@ -28,10 +30,12 @@ namespace KirbStomp.Scripts.Classes.Collision.CollisionHandlers
         //Body, Attack
         internal static void HandleAttackCollision(Character character, CollisionContext context)
         {
-            // Access via parameter
-            character.ActionList.AddAction(GameButtons.GotHit);
-            character.Velocity.Y = -500;
-            Debug.WriteLine("collision with" + context.Other + context.OtherType);
+            {
+                // Access via parameter
+                character.ActionList.AddAction(GameButtons.GotHit);
+                character.Velocity.Y = -500;
+                Debug.WriteLine(context.Self+" "+context.SelfType+" "+context.Other+" "+context.OtherType+" "+context.Intersection.ToString());
+            }
         }
 
 

@@ -136,21 +136,24 @@ namespace KirbStomp {
 
             foreach (AttackHitboxRepository.HitboxData box in hitboxEntry.frame.Hitboxes)
             {
-                Rectangle hitBoxSource = box.ToRectangle(direction, animEntry.boundX);
-                Vector2 offsetToHitbox = new Vector2(hitBoxSource.X - animBoxSource.X, hitBoxSource.Y - animBoxSource.Y);
-
-                int xCoord = (int)(location.X + (animEntry.totalOffset.X + offsetToHitbox.X) * animEntry.scale);
-                if (direction == DirectionEnum.Left)
+                if (box.Size.X != 0 && box.Size.Y!=0)
                 {
-                    spriteLocationVirtual.X = (int)((location.X - (animEntry.frame.Size.X + animEntry.totalOffset.X + animEntry.offSetDirectional) * animEntry.scale));
-                    xCoord = (int)(location.X - (animEntry.frame.Size.X + animEntry.totalOffset.X + animEntry.offSetDirectional - offsetToHitbox.X) * animEntry.scale);
+                    Rectangle hitBoxSource = box.ToRectangle(direction, animEntry.boundX);
+                    Vector2 offsetToHitbox = new Vector2(hitBoxSource.X - animBoxSource.X, hitBoxSource.Y - animBoxSource.Y);
+
+                    int xCoord = (int)(location.X + (animEntry.totalOffset.X + offsetToHitbox.X) * animEntry.scale);
+                    if (direction == DirectionEnum.Left)
+                    {
+                        spriteLocationVirtual.X = (int)((location.X - (animEntry.frame.Size.X + animEntry.totalOffset.X + animEntry.offSetDirectional) * animEntry.scale));
+                        xCoord = (int)(location.X - (animEntry.frame.Size.X + animEntry.totalOffset.X + animEntry.offSetDirectional - offsetToHitbox.X) * animEntry.scale);
+                    }
+                    int yCoord = (int)(location.Y + (animEntry.totalOffset.Y + offsetToHitbox.Y) * animEntry.scale);
+
+                    int Width = (int)(box.Size.X * animEntry.scale);
+                    int Height = (int)(box.Size.Y * animEntry.scale);
+
+                    _hitboxes.Add(new Rectangle(xCoord, yCoord, Width, Height));
                 }
-                int yCoord = (int)(location.Y + (animEntry.totalOffset.Y + offsetToHitbox.Y) * animEntry.scale);
-
-                int Width = (int)(box.Size.X * animEntry.scale);
-                int Height = (int)(box.Size.Y * animEntry.scale);
-
-                _hitboxes.Add(new Rectangle(xCoord, yCoord, Width, Height));
 
             }
 

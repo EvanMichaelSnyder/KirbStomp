@@ -58,7 +58,7 @@ public class CollisionSystem
             {
                 //Debug.WriteLine("Collision Occured");
                 if (carrierA.Parent == carrierB.Parent) continue;
-                  
+                
                 if (CheckCollisionApprox(carrierA.HitboxManager, carrierB.HitboxManager))
                 {
                     //Debug.WriteLine("Approx is Collide");
@@ -113,6 +113,7 @@ public class CollisionSystem
         Debug.WriteLine(b.GetApproximation().ToString());
         */
         //Debug.WriteLine("checking approx");
+
         return a.GetApproximation().Intersects(b.GetApproximation());
     }
 
