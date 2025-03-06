@@ -33,6 +33,8 @@ namespace KirbStomp.Scripts.Classes.Carriers
         internal bool CanFlipX = true;
         internal bool CanFlipY = true;
 
+        //then some special function
+
 
         public AttackCarrier()
         {
