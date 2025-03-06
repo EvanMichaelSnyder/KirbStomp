@@ -25,7 +25,15 @@ namespace KirbStomp.Scripts.Classes.Carriers
 
     public class AttackCarrier : Carrier
     {
-        public int Damage = 10;
+        internal float Damage = 10f;
+        internal float impulseX = 100f;
+        internal float impulseY = 100f;
+
+        //can flip is used for bidirectional attacks where the facing direction of the parent cannot be used to determine behavior
+        internal bool CanFlipX = true;
+        internal bool CanFlipY = true;
+
+
         public AttackCarrier()
         {
             HitboxManager = new HitboxManager(BattleScene.attackBoxSheet, HitboxTypeEnum.Attack);
