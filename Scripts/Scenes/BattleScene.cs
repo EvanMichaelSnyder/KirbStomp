@@ -19,6 +19,7 @@ using KirbStomp.Scripts.Classes.GameObjects.Items;
 public class BattleScene : IScene
 {
     public static Texture2D boxSheet = Game1.Get().Content.Load<Texture2D>("HitboxWire");
+    public static Texture2D attackBoxSheet = Game1.Get().Content.Load<Texture2D>("AttackWire");
 
     private static int entityID = 0;
     public static int getNewID()
@@ -120,10 +121,12 @@ public class BattleScene : IScene
         _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Platform);
         _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Body);
         //State is actually changed
-        foreach (ICharacter chara in _characterList) { chara.UpdateState(); } 
-    
+        foreach (ICharacter chara in _characterList) { chara.UpdateState(); }
+
         //mario.checkHitCollision
+        _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Body, HitboxTypeEnum.Attack);
         //mario.UpdateState(); //State is actually changed
+        foreach (ICharacter chara in _characterList) { chara.UpdateState(); }
         //mario.doSpecialBehaviors
 
         // is every action commented out above
@@ -188,6 +191,8 @@ public class BattleScene : IScene
 
         string xmlPathMarioHitbox = GetRelativeFilePath("MarioHitbox.XML");
         HitboxRepository.LoadHitboxesFromXml(xmlPathMarioHitbox);
+        string xmlPathMarioAttackHitbox = GetRelativeFilePath("MarioAttackHitbox.XML");
+        AttackHitboxRepository.LoadHitboxesFromXml(xmlPathMarioAttackHitbox);
     }
 
     private void DebugFPS() {

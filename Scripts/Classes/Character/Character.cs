@@ -100,6 +100,9 @@ namespace KirbStomp
             RegisterCollisionResponse(HitboxTypeEnum.Body,
                                     HitboxTypeEnum.Platform,
                                     (obj, ctx) => CharacterCollisionHandlers.HandlePlatformCollision(this, ctx));
+            RegisterCollisionResponse(HitboxTypeEnum.Body,
+                                    HitboxTypeEnum.Attack,
+                                    (obj, ctx) => CharacterCollisionHandlers.HandleAttackCollision(this, ctx));
 
         }
 
@@ -164,6 +167,7 @@ namespace KirbStomp
         public void DrawHitbox(SpriteBatch spriteBatch)
         {
             _bodyCarrier.HitboxManager.Draw(spriteBatch);
+            _attackCarrier.HitboxManager.Draw(spriteBatch);
         }
 
         public void UpdateState()
@@ -171,6 +175,7 @@ namespace KirbStomp
             HandleStates();
             ActionList.ResetList();
             _bodyCarrier.HitboxManager.UpdateHitboxList(Position, StateMachine.State.FacingDirection, _name, StateMachine.State.CurrentState, StateMachine.State.GetFrameIndex());
+            _attackCarrier.HitboxManager.UpdateAttackHitboxList(Position, StateMachine.State.FacingDirection, _name, StateMachine.State.CurrentState, StateMachine.State.GetFrameIndex());
         }
         internal void HandleStates()
         {
