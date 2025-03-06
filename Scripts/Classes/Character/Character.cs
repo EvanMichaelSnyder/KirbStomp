@@ -31,14 +31,14 @@ namespace KirbStomp
         //locale spawn is not used later
 
         internal BodyCarrier _bodyCarrier;
-        private AttackCarrier _attackCarrier;
+        internal AttackCarrier _attackCarrier;
 
         internal CharacterStateMachine StateMachine { get; set; }
         internal ActionList ActionList { get; set; }
 
         private AItemAbillity _itemAbillity;
 
-        private float _health = 100;
+        internal float _health = 100;
 
 
         private bool hitboxDrawEnabled;
@@ -392,11 +392,15 @@ namespace KirbStomp
 
         public void AddHealth(float amt)
         {
-            this._health += amt;
-            if(this._health > 100)
+            this._health -= amt;
+            if(this._health < 100)
             {
                 this._health = 100;
             }
+        }
+        public void TakeDamage(float amt)
+        {
+            this._health += amt;
         }
     }
 

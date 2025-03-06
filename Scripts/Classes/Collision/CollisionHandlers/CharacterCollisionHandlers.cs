@@ -33,8 +33,23 @@ namespace KirbStomp.Scripts.Classes.Collision.CollisionHandlers
             {
                 // Access via parameter
                 character.ActionList.AddAction(GameButtons.GotHit);
-                character.Velocity.Y = -500;
-                Debug.WriteLine(context.Self+" "+context.SelfType+" "+context.Other+" "+context.OtherType+" "+context.Intersection.ToString());
+
+                //other character relevant info
+                if (context.Other.GetType() == typeof(Character))
+                {
+
+                    Character otherCharacter = (Character)context.Other;
+
+                    character.TakeDamage(otherCharacter._attackCarrier.getDamage());
+
+                    character.Velocity.X = 200 * character._health / 100;
+                    if (otherCharacter.StateMachine.State.FacingDirection == DirectionEnum.Left)
+                    {
+                        character.Velocity.X *= -1;
+                    }
+                    character.Velocity.Y = -400;
+                    //Debug.WriteLine(context.Self + " " + context.SelfType + " " + context.Other + " " + context.OtherType + " " + context.Intersection.ToString());
+                }
             }
         }
 

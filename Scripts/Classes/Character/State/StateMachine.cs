@@ -164,7 +164,6 @@ namespace KirbStomp{
 			#endregion
 
 			#region Hits
-			//This is def not done we need more details
 			//CANNOT MOVE OR DO ANYTHING
 			//AddTransition(KnockedBack, HitGround, EnterLanding);
 			AddTransition(KnockedBack, EndOfState, EnterIdle);
