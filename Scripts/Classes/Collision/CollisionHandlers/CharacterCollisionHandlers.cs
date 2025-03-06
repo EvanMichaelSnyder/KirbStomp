@@ -16,7 +16,7 @@ namespace KirbStomp.Scripts.Classes.Collision.CollisionHandlers
             // Access via parameter
             if (context.Self.Velocity.Y >= 0)
             {
-                character.Position.Y -= context.Intersection.Height - 1;
+                character.Position.Y -= context.Intersection.Height - 2f;
                 character.ActionList.AddAction(GameButtons.HitGround);
                 character.Velocity.Y = 0;
                 character.StateMachine.State.IsGrounded = true;
@@ -29,6 +29,9 @@ namespace KirbStomp.Scripts.Classes.Collision.CollisionHandlers
         internal static void HandleAttackCollision(Character character, CollisionContext context)
         {
             // Access via parameter
+            character.ActionList.AddAction(GameButtons.GotHit);
+            character.Velocity.Y = -500;
+            Debug.WriteLine("collision with" + context.Other + context.OtherType);
         }
 
 

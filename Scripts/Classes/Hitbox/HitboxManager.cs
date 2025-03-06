@@ -9,7 +9,6 @@ using KirbStomp;
 using KirbStomp.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using static HitboxRepository;
 
 namespace KirbStomp {
     public enum HitboxTypeEnum
@@ -92,7 +91,50 @@ namespace KirbStomp {
             Rectangle animBoxSource = animEntry.frame.ToRectangle(direction, animEntry.boundX);
 
 
-            foreach (HitboxData box in hitboxEntry.frame.Hitboxes)
+            foreach (HitboxRepository.HitboxData box in hitboxEntry.frame.Hitboxes)
+            {
+                Rectangle hitBoxSource = box.ToRectangle(direction, animEntry.boundX);
+                Vector2 offsetToHitbox = new Vector2(hitBoxSource.X - animBoxSource.X, hitBoxSource.Y - animBoxSource.Y);
+
+                int xCoord = (int)(location.X + (animEntry.totalOffset.X + offsetToHitbox.X) * animEntry.scale);
+                if (direction == DirectionEnum.Left)
+                {
+                    spriteLocationVirtual.X = (int)((location.X - (animEntry.frame.Size.X + animEntry.totalOffset.X + animEntry.offSetDirectional) * animEntry.scale));
+                    xCoord = (int)(location.X - (animEntry.frame.Size.X + animEntry.totalOffset.X + animEntry.offSetDirectional - offsetToHitbox.X) * animEntry.scale);
+                }
+                int yCoord = (int)(location.Y + (animEntry.totalOffset.Y + offsetToHitbox.Y) * animEntry.scale);
+
+                int Width = (int)(box.Size.X * animEntry.scale);
+                int Height = (int)(box.Size.Y * animEntry.scale);
+
+                _hitboxes.Add(new Rectangle(xCoord, yCoord, Width, Height));
+
+            }
+
+
+        }
+
+        //this is duplicated code completely I have no excuse but my own mortality
+        public void UpdateAttackHitboxList(Vector2 location, DirectionEnum direction, string name, StateEnum state, int currentFrame)
+        {
+            var animEntry = AnimationRepository.GetFrameData(name, state, currentFrame);
+            var hitboxEntry = AttackHitboxRepository.GetFrameData(name, state, currentFrame);
+            _hitboxes.Clear();
+
+            //Finding sprite position in virtual space
+            Vector2 spriteLocationVirtual;
+            spriteLocationVirtual.X = (int)((location.X + (animEntry.totalOffset.X * animEntry.scale)));
+            if (direction == DirectionEnum.Left)
+            {
+                spriteLocationVirtual.X = (int)((location.X - (animEntry.frame.Size.X + animEntry.totalOffset.X + animEntry.offSetDirectional) * animEntry.scale));
+            }
+            spriteLocationVirtual.Y = (int)((location.Y + (animEntry.totalOffset.Y * animEntry.scale)));
+
+
+            Rectangle animBoxSource = animEntry.frame.ToRectangle(direction, animEntry.boundX);
+
+
+            foreach (AttackHitboxRepository.HitboxData box in hitboxEntry.frame.Hitboxes)
             {
                 Rectangle hitBoxSource = box.ToRectangle(direction, animEntry.boundX);
                 Vector2 offsetToHitbox = new Vector2(hitBoxSource.X - animBoxSource.X, hitBoxSource.Y - animBoxSource.Y);

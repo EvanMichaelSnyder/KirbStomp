@@ -185,15 +185,15 @@
 		</Animation>
 		<Animation name="Landing">
 			<Frame>
-				<Hitbox position="(111,92)" size="(26,34)"/>
-				<Hitbox position="(117,92)" size="(18,11)"/>
+				<Hitbox position="(111,103)" size="(26,21)"/>
+				<Hitbox position="(117,92)" size="(18,12)"/>
 			</Frame>
 			<Frame>
-				<Hitbox position="(141,105)" size="(26,21)"/>
+				<Hitbox position="(142,105)" size="(25,19)"/>
 				<Hitbox position="(146,93)" size="(19,12)"/>
 			</Frame>
 			<Frame>
-				<Hitbox position="(171,92)" size="(26,34)"/>
+				<Hitbox position="(172,104)" size="(26,21)"/>
 				<Hitbox position="(178,92)" size="(17,11)"/>
 			</Frame>
 		</Animation>

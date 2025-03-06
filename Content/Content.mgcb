@@ -122,3 +122,8 @@
 /processor:TextureProcessor
 /build:Items.png
 
+#begin AttackWire.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:AttackWire.png
+

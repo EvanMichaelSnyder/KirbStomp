@@ -28,7 +28,7 @@ namespace KirbStomp.Scripts.Classes.Carriers
         public int Damage = 10;
         public AttackCarrier()
         {
-            HitboxManager = new HitboxManager(BattleScene.boxSheet, HitboxTypeEnum.Attack);
+            HitboxManager = new HitboxManager(BattleScene.attackBoxSheet, HitboxTypeEnum.Attack);
         }
     }
 

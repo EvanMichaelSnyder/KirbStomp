@@ -158,7 +158,7 @@
 				<Hitbox position="(81,275)" size="(21,13)"/>
 			</Frame>
 			<Frame>
-                <Hitbox position="(333,275)" size="(18,12)"/>
+				<Hitbox position="(131,277)" size="(18,13)"/>
 			</Frame>
 			<Frame>
 				<Hitbox position="(0,0)" size="(0,0)"/>
@@ -175,10 +175,10 @@
 				<Hitbox position="(0,0)" size="(0,0)"/>
 			</Frame>
 			<Frame>
-                <Hitbox position="(131,277)" size="(18,13)"/>
+				<Hitbox position="(333,275)" size="(18,12)"/>
 			</Frame>
 			<Frame>
-                <Hitbox position="(381,277)" size="(15,8)"/>
+				<Hitbox position="(381,277)" size="(15,8)"/>
 			</Frame>
 			<Frame>
 				<Hitbox position="(0,0)" size="(0,0)"/>
@@ -665,12 +665,12 @@
 		</Animation>
 		<Animation name="Ragdolled" hasFrames="false">
 			<Frame>
-				<Hitbox position="(123,1518)" size="(36,23)"/>
+				<Hitbox position="(0,0)" size="(0,0)"/>
 			</Frame>
 		</Animation>
 		<Animation name="LayingDown" hasFrames="false">
 			<Frame>
-				<Hitbox position="(165,1538)" size="(42,19)"/>
+				<Hitbox position="(0,0)" size="(0,0)"/>
 			</Frame>
 		</Animation>
 		<Animation name="Recover" hasFrames="false">

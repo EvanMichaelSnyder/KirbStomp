@@ -57,7 +57,7 @@ public class CollisionSystem
             foreach (var carrierB in carriersB)
             {
                 //Debug.WriteLine("Collision Occured");
-                //if (carrierA.Parent == carrierB.Parent) continue;
+                if (carrierA.Parent == carrierB.Parent) continue;
                   
                 if (CheckCollisionApprox(carrierA.HitboxManager, carrierB.HitboxManager))
                 {
