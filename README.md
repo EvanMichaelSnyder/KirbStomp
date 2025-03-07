@@ -19,8 +19,13 @@ All Documentation files listed below are in the Documentation folder:
 ### Runtime Action
 * Character, platform block, items have collision with each other
 * Both Mario can attack each other and result in damage collision
-* Arrow and fireball hurt Mario 
-
+* Arrow and fireball hurt Mario
+* 
+### Scenes
+* D1 - Test Scene w/o items or attack collision but w/ platform collision
+* D2 - Battle Scene w/ all items and collision
+* D3 - Reset Current Scene to initial conditions
+  
 ### Controller
 Mario 1 Character:
 * WASD - up, left, down, right
