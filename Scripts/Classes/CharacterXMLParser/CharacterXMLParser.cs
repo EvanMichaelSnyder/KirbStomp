@@ -21,7 +21,7 @@ namespace KirbStomp
 		PhysicsStats characterPhysicsStats;
 		public TempCharacterStats()
 		{
-			Name = "defaul";
+			Name = "default";
 			Health = 300.0f;
 			characterMovementStats = new();
 			characterPhysicsStats = new();

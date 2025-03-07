@@ -20,13 +20,14 @@ namespace KirbStomp
 {
     public class Character : CollisionObject, ICharacter
     {
-        private int _ID;
-
-        private string _name;
-        private ButtonDataManager _buttonDataManager;
-        private ISpriteComplete _sprite;
         private static int xLocaleSpawn = 0;
         private static int yLocaleSpawn = 0;
+
+        private int _ID;
+        private string _name;
+
+        private ButtonDataManager _buttonDataManager;
+        private ISpriteComplete _sprite;
         private CharacterMovement _movementManager;
         //locale spawn is not used later
 

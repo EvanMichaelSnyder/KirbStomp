@@ -56,6 +56,10 @@ public class BattleScene : IScene
     }
     public void Initialize()
     {
+        _platformList = new();
+        _characterList = new();
+        _controllerList = new();
+
         LoadContent();
         ResetScene();
     }
@@ -169,11 +173,7 @@ public class BattleScene : IScene
     {
         //much of this should be moved to load content 
         
-        _marioSheet = Game1.Get().Content.Load<Texture2D>(marioSpriteSheetName);
-        _linkSheet = Game1.Get().Content.Load<Texture2D>(linkSpriteSheetName);
         //projectile stuff***
-        _marioFireBallSheet = Game1.Get().Content.Load<Texture2D>("MarioProjectileTransparentSpriteSheet");
-        _linkArrowSheet = Game1.Get().Content.Load<Texture2D>(linkSpriteSheetName);
         AssetPool.LoadTexture(_marioSheet, "MarioProjectile");
         AssetPool.LoadTexture(_linkSheet, "LinkProjectile");
         AssetPool.LoadAnimationsFromXML(GetRelativeFilePathProjectile("LinkProjectile.XML"));
@@ -211,7 +211,15 @@ public class BattleScene : IScene
     {
         return this._projectileManager;
     }
+
+
+
     public void ResetScene() {
+
+        _platformList.Clear();
+        _characterList.Clear();
+        _controllerList.Clear();
+
         Character mario = new Character("Mario", _marioSheet, marioSpriteSheetName, new Vector2(100, 100));
         IController controllerMario = new KeyboardController(mario.GetButtonDataManager, new Dictionary<Keys, ICommand>()
         {
@@ -224,6 +232,11 @@ public class BattleScene : IScene
             {Keys.Space, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Jump])},
             {Keys.V, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.GotHit])}
         });
+        _characterList.Add(mario);
+        _controllerList.Add(controllerMario);
+        _collisionSystem.RegisterObject(mario);
+
+
         Character mario2 = new Character("Mario", _marioSheet, marioSpriteSheetName, new Vector2(300, 100));
         IController controllerMario2 = new KeyboardController(mario2.GetButtonDataManager, new Dictionary<Keys, ICommand>()
         {
@@ -235,6 +248,10 @@ public class BattleScene : IScene
             {Keys.Left, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Special])},
             {Keys.RightShift, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Jump])}
         });
+        _characterList.Add(mario2);
+        _controllerList.Add(controllerMario2);
+        _collisionSystem.RegisterObject(mario2);
+
         //ICharacter link = new Character(linkSheet, LinkSpriteSheetName);
         //IController controllerLink = new KeyboardController(link.GetButtonDataManager);
 
@@ -242,22 +259,13 @@ public class BattleScene : IScene
         
         Platform platform = new Platform(PlatformTypeEnum.SideDirtPlatform,new Rectangle(10,420,780,20), _platformSheet);
         Platform platform2 = new Platform(PlatformTypeEnum.SideDirtPlatform, new Rectangle(500, 250, 200, 20), _platformSheet);
-        _platformList = new ArrayList();
         _platformList.Add(platform);
         _platformList.Add(platform2);
 
-        _characterList = new ArrayList();
-        _characterList.Add(mario);
-        _characterList.Add(mario2);
        // _characterList.Add(new Character("Link", linkSheet, linkSpriteSheetName, new Vector2(600, 700)));
 
-        _controllerList = new ArrayList();
-        _controllerList.Add(controllerMario);
-        _controllerList.Add(controllerMario2);
 
         _collisionSystem = new CollisionSystem();
-        _collisionSystem.RegisterObject(mario);
-        _collisionSystem.RegisterObject(mario2);
         _collisionSystem.RegisterObject(platform);
         _collisionSystem.RegisterObject(platform2);
 
