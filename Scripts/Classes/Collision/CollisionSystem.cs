@@ -58,6 +58,8 @@ public class CollisionSystem
             {
                 //Debug.WriteLine("Collision Occured");
                 if (carrierA.Parent == carrierB.Parent) continue;
+
+                if(carrierA.IsDisabled | carrierB.IsDisabled) continue;
                 
                 if (CheckCollisionApprox(carrierA.HitboxManager, carrierB.HitboxManager))
                 {

@@ -46,6 +46,10 @@ public class BattleScene : IScene
     private Texture2D _linkSheet;
     private Texture2D _marioFireBallSheet;
     private Texture2D _linkArrowSheet;
+
+    //debounce purely for demenstration
+    private float _debounce = 0f;
+
     private string marioSpriteSheetName = "MarioTransparentSpriteSheet";
     private string linkSpriteSheetName = "LinkTransparentSpriteSheet";
 
@@ -82,14 +86,19 @@ public class BattleScene : IScene
 
         // DebugFPS();
         //TODO REMOVE TEST
-        if (Keyboard.GetState().IsKeyDown(Keys.D0))
+        _debounce += (float)gameTime.ElapsedGameTime.TotalSeconds;
+        if(_debounce > .2f)
         {
-            this._projectileManager.AddProjectile(new MarioFireBall(new Vector2(Mouse.GetState().X/(float)Game1.Get().GetScreenWindow().globalScaleX, Mouse.GetState().Y/ (float)Game1.Get().GetScreenWindow().globalScaleY), true));
-        }
-
-        if (Keyboard.GetState().IsKeyDown(Keys.D9))
-        {
-            this._projectileManager.AddProjectile(new LinkArrow(new Vector2(Mouse.GetState().X / (float)Game1.Get().GetScreenWindow().globalScaleX, Mouse.GetState().Y / (float)Game1.Get().GetScreenWindow().globalScaleY), false));
+            if (Keyboard.GetState().IsKeyDown(Keys.D0))
+            {
+                this._projectileManager.AddProjectile(new MarioFireBall(new Vector2(Mouse.GetState().X / (float)Game1.Get().GetScreenWindow().globalScaleX, Mouse.GetState().Y / (float)Game1.Get().GetScreenWindow().globalScaleY), true));
+                _debounce = 0;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.D9))
+            {
+                this._projectileManager.AddProjectile(new LinkArrow(new Vector2(Mouse.GetState().X / (float)Game1.Get().GetScreenWindow().globalScaleX, Mouse.GetState().Y / (float)Game1.Get().GetScreenWindow().globalScaleY), false));
+                _debounce = 0;
+            }
         }
 
         this._projectileManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
@@ -174,6 +183,8 @@ public class BattleScene : IScene
         //projectile stuff***
         _marioFireBallSheet = Game1.Get().Content.Load<Texture2D>("MarioProjectileTransparentSpriteSheet");
         _linkArrowSheet = Game1.Get().Content.Load<Texture2D>(linkSpriteSheetName);
+        Texture2D itemSheet = Game1.Get().Content.Load<Texture2D>("Items");
+        AssetPool.LoadTexture(itemSheet, "Items");
         AssetPool.LoadTexture(_marioSheet, "MarioProjectile");
         AssetPool.LoadTexture(_linkSheet, "LinkProjectile");
         AssetPool.LoadAnimationsFromXML(GetRelativeFilePathProjectile("LinkProjectile.XML"));
@@ -267,7 +278,7 @@ public class BattleScene : IScene
         var windowSize = Game1.Get().GetScreenWindow().GetAdjustedWindowSize();
         _camera = new Camera2D(Game1.Get().GraphicsDevice, new Point(windowSize.width, windowSize.height));
 
-        this._itemManager.AddItem(new HamburgerItem(new Vector2(200, 200)));
+        this._itemManager.AddItem(new HamburgerItem(new Vector2(500, 200)));
         this._itemManager.AddItem(new ArrowStormItem(new Vector2(200, 200)));
         CharacterXMLParser.LoadCharacter("Mario");
     }

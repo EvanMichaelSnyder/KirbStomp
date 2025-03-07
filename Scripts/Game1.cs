@@ -20,6 +20,8 @@ namespace KirbStomp
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private ScreenWindow _screenWindow;
+
+        
         
         //singleton
         private static Game1 inst;
