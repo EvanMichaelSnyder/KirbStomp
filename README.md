@@ -41,7 +41,7 @@ Items:
 Camera:
 * UHJK - up, left, down, right
 * M - reset
-* -/+ - zoom in/out (hold) 
+* -/+ - zoom out/in (hold) 
 
 ### Code Reviews
 
