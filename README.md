@@ -48,3 +48,7 @@ Camera:
 * The code reviews are commented under a pull request
 * Pull requests with code review is tagged CR in the closed pull request (Go to Pull request tabs -> select closed pull requests -> select CR label)
 * NOTE: most code reviews for the team were done verbally when the team met, so the timestamp on the pull request comment may not accurately represent the date the CR was done. We will make sure to document them on the right date for the next sprint (based on the feedback we got back from Sprint 2).
+
+### Known Bugs
+* Attack hitboxes are too precise, so collision damage only occurs when characters are very close
+* Collision does not work if Key 1 is pressed
