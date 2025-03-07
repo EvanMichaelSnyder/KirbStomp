@@ -29,8 +29,8 @@ public class TestScene : IScene
 
     private CollisionSystem _collisionSystem;
 
-    private ArrayList _platformList;
     private ArrayList _characterList;
+    private ArrayList _platformList;
     private ArrayList _controllerList;
     private ProjectileManager _projectileManager;
     private ItemManager _itemManager;
@@ -48,15 +48,6 @@ public class TestScene : IScene
     }
     public void Initialize()
     {
-
-        _platformList = new();
-        _characterList = new();
-        _controllerList = new();
-
-        _collisionSystem = new CollisionSystem();
-
-        // Long term change this to
-        // Load content and done
         LoadContent();
         ResetScene();
     }
@@ -132,6 +123,8 @@ public class TestScene : IScene
     }
     public void LoadContent()
     {
+        _marioSheet = Game1.Get().Content.Load<Texture2D>(marioSpriteSheetName);
+        _linkSheet = Game1.Get().Content.Load<Texture2D>(linkSpriteSheetName);
         //projectile stuff***
         AssetPool.LoadTexture(_marioSheet, "MarioProjectile");
         AssetPool.LoadTexture(_linkSheet, "LinkProjectile");
@@ -141,18 +134,12 @@ public class TestScene : IScene
         _camera = new Camera2D(Game1.Get().GraphicsDevice, new Point(windowSize.width, windowSize.height));
 
 
-        // Camera being loaded here allows for the option in the future where there's multiple cameras and viewports
-        var windowSize = Game1.Get().GetScreenWindow().GetAdjustedWindowSize();
-        _camera = new Camera2D(Game1.Get().GraphicsDevice, new Point(windowSize.width, windowSize.height));
 
-
-        // TODO can be away to data, list of xmlPathsToCharacter, Get each file, and Load from animation repo
         string xmlPathLink = GetRelativeFilePath("Link.XML");
         string xmlPathMario = GetRelativeFilePath("Mario.XML");
         AnimationRepository.LoadAnimationsFromXml(xmlPathMario);
         AnimationRepository.LoadAnimationsFromXml(xmlPathLink);
-        
-        // TODO same for hitboxes as animations
+
         string xmlPathMarioHitbox = GetRelativeFilePath("MarioHitbox.XML");
         HitboxRepository.LoadHitboxesFromXml(xmlPathMarioHitbox);
     }
@@ -161,20 +148,8 @@ public class TestScene : IScene
         //return this._projectileManager;
         return null;
     }
-
-    // Eventually, the only thing ResetScene will do is call Initialize
-    // This  isn't just resetting, it's loading everything (WE SHOULD MOVE AWAY FROM THIS)
-    public void ResetScene() 
-    {
-        _platformList.Clear();
-        _characterList.Clear();
-        _controllerList.Clear();
-
+    public void ResetScene() {
         Character mario = new Character("Mario", _marioSheet, marioSpriteSheetName, new Vector2(100, 100));
-
-        // NOTE, this is hard coded for the moment, this will be moved to an XML
-
-        // Character 1
         IController controllerMario = new KeyboardController(mario.GetButtonDataManager, new Dictionary<Keys, ICommand>()
         {
             {Keys.W, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Up])},
@@ -186,11 +161,6 @@ public class TestScene : IScene
             {Keys.Space, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Jump])},
             {Keys.V, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.GotHit])}
         });
-        _characterList.Add(mario);
-        _controllerList.Add(controllerMario);
-        _collisionSystem.RegisterObject(mario);
-
-        // Character 2
         Character mario2 = new Character("Mario", _marioSheet, marioSpriteSheetName, new Vector2(300, 100));
         IController controllerMario2 = new KeyboardController(mario2.GetButtonDataManager, new Dictionary<Keys, ICommand>()
         {
@@ -202,34 +172,38 @@ public class TestScene : IScene
             {Keys.Left, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Special])},
             {Keys.RightShift, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Jump])}
         });
-        _characterList.Add(mario2);
-        _controllerList.Add(controllerMario2);
-        _collisionSystem.RegisterObject(mario2);
+        //ICharacter link = new Character(linkSheet, LinkSpriteSheetName);
+        //IController controllerLink = new KeyboardController(link.GetButtonDataManager);
 
-        // Should add the first instance
+        // mario.AssignLegitimateHitboxSheet(boxSheet);
+        
+        Platform platform = new Platform(PlatformTypeEnum.SideDirtPlatform,new Rectangle(10,420,780,20), _platformSheet);
+        Platform platform2 = new Platform(PlatformTypeEnum.SideDirtPlatform, new Rectangle(500, 250, 200, 20), _platformSheet);
+        _platformList = new ArrayList();
+        _platformList.Add(platform);
+        _platformList.Add(platform2);
+
+        _characterList = new ArrayList();
+        _characterList.Add(mario);
+        _characterList.Add(mario2);
+       // _characterList.Add(new Character("Link", linkSheet, linkSpriteSheetName, new Vector2(600, 700)));
+
+        _controllerList = new ArrayList();
+        _controllerList.Add(controllerMario);
+        _controllerList.Add(controllerMario2);
+
+        _collisionSystem = new CollisionSystem();
+        _collisionSystem.RegisterObject(mario);
+        _collisionSystem.RegisterObject(mario2);
+        _collisionSystem.RegisterObject(platform);
+        _collisionSystem.RegisterObject(platform2);
+
         CharacterXMLParser.LoadCharacter("Mario");
 
 
-
-
-
-        // Platforms
-        Platform platform = new Platform(PlatformTypeEnum.SideDirtPlatform,new Rectangle(10,420,780,20), _platformSheet);
-        _platformList.Add(platform);
-        _collisionSystem.RegisterObject(platform);
-        
-        Platform platform2 = new Platform(PlatformTypeEnum.SideDirtPlatform, new Rectangle(500, 250, 200, 20), _platformSheet);
-        _platformList.Add(platform2);
-        _collisionSystem.RegisterObject(platform2);
-
-       // _characterList.Add(new Character("Link", linkSheet, linkSpriteSheetName, new Vector2(600, 700)));
-
-
-
-        // Cameras
         var windowSize = Game1.Get().GetScreenWindow().GetAdjustedWindowSize();
         _camera = new Camera2D(Game1.Get().GraphicsDevice, new Point(windowSize.width, windowSize.height));
 
-        
+
     }
 }

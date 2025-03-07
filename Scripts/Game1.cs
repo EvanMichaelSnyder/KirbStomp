@@ -20,9 +20,7 @@ namespace KirbStomp
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private ScreenWindow _screenWindow;
-
-        private SceneManager _sceneManager;
-
+        
         //singleton
         private static Game1 inst;
 
@@ -43,8 +41,6 @@ namespace KirbStomp
 			IsMouseVisible = true;
             this._screenWindow = new ScreenWindow(_graphics);
             _screenWindow.UpdateWindowSize();
-
-            _sceneManager = SceneManager.Get();
 		}
 
         protected override void Initialize()
@@ -62,31 +58,26 @@ namespace KirbStomp
 
 		protected override void Update(GameTime gameTime)
 		{
-            _sceneManager.UpdateScene(gameTime);
+            SceneManager.Get().UpdateScene(gameTime);
 
-
-            // TODO MOVE THIS INTO SCENE MANAGER
             if(Keyboard.GetState().IsKeyDown(Keys.D1))
             {
-                _sceneManager.SwitchScene("TestScene");
+                SceneManager.Get().SwitchScene("TestScene");
             }
             else if(Keyboard.GetState().IsKeyDown(Keys.D2))
             {
-                _sceneManager.SwitchScene("BattleScene");
+                SceneManager.Get().SwitchScene("BattleScene");
             }
             else if(Keyboard.GetState().IsKeyDown(Keys.D3))
             {
-                _sceneManager.ResetCurrentScene();
+                SceneManager.Get().ResetCurrentScene();
             }
-
-
-
 			base.Update(gameTime);
 		}
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            _sceneManager.DrawScene(gameTime, _spriteBatch);
+            SceneManager.Get().DrawScene(gameTime, _spriteBatch);
 			base.Draw(gameTime);
 		}
         public ScreenWindow GetScreenWindow() { return _screenWindow; }
