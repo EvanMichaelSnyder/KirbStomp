@@ -21,9 +21,7 @@ namespace KirbStomp
 		private float currentWindowScale;
 
 		private Matrix translation;
-		private Matrix view;
 
-		private Rectangle cam;
 		public Camera2D(GraphicsDevice graphicsDevice, Point windowSize)
 		{
 			position.X = 0;
@@ -33,16 +31,10 @@ namespace KirbStomp
 			this.graphicsDevice = graphicsDevice;
 			this.currentWindowScale = 1.0f;
 			this.translation = Matrix.Identity;
-			this.view = Matrix.Identity;
-			cam = new Rectangle(0, 0, windowSize.X, windowSize.Y);
 		}
 
-		public Matrix GetSpriteTransformMatrix()
-		{
-			Matrix output = Matrix.CreateTranslation(position.X, position.Y, 0.0f);
-			
-			return default;
-		}
+
+		// These Key press stuff is tempoary
 		public void Update(GameTime gameTime)
 		{
 			float zoom = 1.0f;
@@ -87,17 +79,11 @@ namespace KirbStomp
 			translation = Matrix.Identity;
 			translation = Matrix.CreateTranslation(new Vector3(-0.5f * (position.X + offset.X), -0.5f * (position.Y + offset.Y), 0.0f));
 			translation *= Matrix.CreateScale(currentWindowScale);
-			Debug.WriteLine(position.ToString());
-			Debug.WriteLine(offset.ToString());
 			
 		}
 		public Vector3 GetPosition()
 		{
 			return new Vector3(position + offset, 0.0f);
-		}
-		public Matrix GetViewMatrix()
-		{
-			return default;
 		}
 		public Matrix GetTranslationMatrix()
 		{
