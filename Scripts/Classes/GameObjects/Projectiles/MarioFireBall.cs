@@ -22,7 +22,7 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
         private float _gravity = 800;
         private float _scale = 1f;
         private bool _isDying = false;
-        private float _deathTimeLeft = .8f;
+        private float _deathTimeLeft = 1f;
         private float _lifeTime = 5;
 
         
@@ -94,6 +94,8 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
             _animationSystem.SetAnimation("FireballDeath");
             Velocity = new Vector2();
             _gravity = 0;
+            this._attackCarrier.IsDisabled = true;
+            this._bodyCarrier.IsDisabled = true;
         }
 
         

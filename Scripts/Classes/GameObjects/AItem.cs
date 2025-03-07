@@ -48,7 +48,7 @@ namespace KirbStomp.Scripts.Classes.Projectiles
 
         public void Destroy()
         {
-            //TODO undo comment this._itemManager.RemoveProjectile(this);
+           this._itemManager.RemoveProjectile(this);
         }
 
 

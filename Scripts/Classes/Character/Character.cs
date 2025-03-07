@@ -38,7 +38,7 @@ namespace KirbStomp
 
         private AItemAbillity _itemAbillity;
 
-        internal float _health = 100;
+        internal float _health = 150;
 
 
         private bool hitboxDrawEnabled;
@@ -159,6 +159,8 @@ namespace KirbStomp
 
         public void Draw(SpriteBatch spriteBatch)
         {
+
+            
             _sprite.Draw(spriteBatch, Position, StateMachine.State.FacingDirection, StateMachine.State.CurrentState, StateMachine.State.GetFrameIndex(), _name);
         }
         //just pass current facing direction current state enum and current frame

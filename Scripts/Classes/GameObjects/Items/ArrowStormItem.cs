@@ -31,8 +31,8 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Items
 
         public override void RegisterCollider()
         {
-            this._dimension.Height *= (int)this._scale;
-            this._dimension.Width *= (int)this._scale;
+            this._dimension.Height = (int)(this._scale * this._dimension.Height);
+            this._dimension.Width = (int)(this._scale * this._dimension.Width);
             this._itemCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
 
             RegisterCollisionResponse(HitboxTypeEnum.Item,

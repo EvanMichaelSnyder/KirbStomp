@@ -14,6 +14,8 @@ namespace KirbStomp.Scripts.Classes.Carriers
     {
         public HitboxManager HitboxManager { get; protected set; }
         public CollisionObject Parent { get; set; }
+
+        public bool IsDisabled { get; set; } = false;
     }
 
     public class BodyCarrier : Carrier

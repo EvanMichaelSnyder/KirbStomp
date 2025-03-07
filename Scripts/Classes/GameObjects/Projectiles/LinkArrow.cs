@@ -19,6 +19,8 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
         private bool _isDead = false;
         private float _deathTimeLeft = 3f;
         private float _noHitTimeLeft = 4f;
+
+        
         
 
         public LinkArrow(Vector2 position, bool facingRight)
@@ -68,6 +70,7 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
         public void HitGround(CollisionObject obj, CollisionContext context)
         {
             this.BeginDeath();
+            
         }
 
         public void HitPlayer(CollisionObject obj, CollisionContext context)
@@ -108,6 +111,9 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
             this._isDead = true;
             this._animationSystem.SetAnimation("ArrowDeath");
             this.Velocity = Vector2.Zero;
+            this._gravity = 0;
+            this._attackCarrier.IsDisabled = true;
+            this._bodyCarrier.IsDisabled = true;
         }
     }
 }

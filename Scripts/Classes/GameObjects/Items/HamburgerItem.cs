@@ -15,15 +15,15 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Items
     public class HamburgerItem : AItem
     {
         private Sprite _sprite;
-        private Rectangle _spriteSrc = new Rectangle(412, 1447, 16, 16);
-        private float _scale = 3;
+        private Rectangle _spriteSrc = new Rectangle(452, 12, 128, 128);
+        private float _scale = .5f;
         private float _healAmount = 20;
         public HamburgerItem(Vector2 startPosition) 
         {
             this.Position = startPosition;
             this.Velocity = new Vector2(0, 150);
-            this._dimension = new Rectangle((int)startPosition.X, (int)startPosition.Y, 16, 16);
-            this._sprite = new Sprite(AssetPool.GetTexture("MarioProjectile"), this._spriteSrc, this._scale);     
+            this._dimension = new Rectangle((int)startPosition.X, (int)startPosition.Y, 128, 128);
+            this._sprite = new Sprite(AssetPool.GetTexture("Items"), this._spriteSrc, this._scale);     
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -33,8 +33,8 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Items
 
         public override void RegisterCollider()
         {
-            this._dimension.Height *= (int)this._scale;
-            this._dimension.Width *= (int)this._scale;
+            this._dimension.Height = (int)(this._scale * this._dimension.Height);
+            this._dimension.Width = (int)(this._scale * this._dimension.Width);
             this._itemCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
 
             RegisterCollisionResponse(HitboxTypeEnum.Item,
