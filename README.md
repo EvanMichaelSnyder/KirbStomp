@@ -23,6 +23,7 @@ All Documentation files listed below are in the Documentation folder:
 * Arrow and fireball hurt Mario
 * Hitting the arrow will sprawn arrows
 * Collision with hamburger will remove it from the screen
+* NOTE: our hitbox is set to be drawn (Checked with grader and they said this is fine)
 
 ### Scenes
 * D1 - Test Scene w/o items or attack collision but w/ platform collision
