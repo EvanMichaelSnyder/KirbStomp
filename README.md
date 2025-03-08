@@ -15,12 +15,15 @@ All Documentation files listed below are in the Documentation folder:
 * KirbStomp Sprint Requirements.pdf - this list all the our game plan to meet each sprint requirement
 * KirbStomp Sprint 3 Initial Planning.pdf - this lists our Sprint3 initial task planning. NOTE: this was done on time, but there was a merge issue that messed up our branch (Please check this [pull request](https://github.com/StaticYolt/KirbStomp/pull/86))
 * KirbStomp Code Analysis.pdf - this contains our code metrics data obtained from Visual Studio's code analysis tool
+* KirbStomp Sprint 3 Reflection.pdf - this documents our team sprint3 overall progress reflection
 
 ### Runtime Action
 * Character, platform block, items have collision with each other
 * Both Mario can attack each other and result in damage collision
 * Arrow and fireball hurt Mario
-* 
+* Hitting the arrow will sprawn arrows
+* Collision with hamburger will remove it from the screen
+
 ### Scenes
 * D1 - Test Scene w/o items or attack collision but w/ platform collision
 * D2 - Battle Scene w/ all items and collision
