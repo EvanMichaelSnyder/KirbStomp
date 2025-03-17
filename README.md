@@ -1,6 +1,6 @@
 # KirbStomp
 
-This is our working branch for Sprint 3 functionality. 
+This is our working branch for Sprint 4 functionality. 
 
 All our project documentation can be found on our team Notion Webpage. This include tasks, meeting notes, and other project notes. Other documentations are in the Documentation folder.
 
