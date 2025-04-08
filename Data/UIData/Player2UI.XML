@@ -1,0 +1,15 @@
+﻿<UI>
+	<Font> impact </Font>
+	<Position> 440 380</Position>
+	<PortraitBackground>
+		<SpriteSheet> BattleUISpriteSheet </SpriteSheet>
+		<Source> 515 0 508 339 </Source>
+		<Scale> 0.2 </Scale>
+	</PortraitBackground>
+	
+	<NameHolder>
+		<SpriteSheet> BattleUISpriteSheet </SpriteSheet>
+		<Source> 1 437 874 49 </Source>
+		<Scale> 0.2 </Scale>
+	</NameHolder>
+</UI>

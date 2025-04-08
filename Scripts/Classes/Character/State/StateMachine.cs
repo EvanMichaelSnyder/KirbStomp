@@ -49,29 +49,34 @@ namespace KirbStomp{
 			AddTransition(Walk, TryAttack, EnterAttack);
 			AddTransition(Walk, TrySpecial, EnterSpecial);
 			AddTransition(Walk, TryJump, EnterJump);
-			AddTransition(Walk, TryMove, AlterMovement);//goes up or down a move level/change direction
+			//AddTransition(Walk, TryMove, AlterMovement);//goes up or down a move level/change direction
 			AddTransition(Walk, GotHit, EnterKnockedBack);
 
 			AddTransition(Run, TryAttack, EnterAttack);
 			AddTransition(Run, TrySpecial, EnterSpecial);
 			AddTransition(Run, TryJump, EnterJump);
-			AddTransition(Run, TryMove, AlterMovement);//goes up a move level/change direction
+			//AddTransition(Run, TryMove, AlterMovement);//goes up a move level/change direction
 			AddTransition(Run, GotHit, EnterKnockedBack);
 
 			AddTransition(Sprint, TryAttack, EnterAttack);
 			AddTransition(Sprint, TrySpecial, EnterSpecial);
 			AddTransition(Sprint, TryJump, EnterJump);
-			AddTransition(Sprint, TryMove, AlterMovement);//only can be used for new direction but if buggy could try to go up a move level
+			//AddTransition(Sprint, TryMove, AlterMovement);//only can be used for new direction but if buggy could try to go up a move level
 			AddTransition(Sprint, GotHit, EnterKnockedBack);
 
 			AddTransition(SlideTurn, GotHit, EnterKnockedBack);
 			AddTransition(SlideTurn, EndOfState, EnterIdle);//This might need to change
+			//AddTransition(SlideTurn, TryMove, EnterMovement);
 
 			//No crouching
 
 			AddTransition(Jump, GotHit, EnterKnockedBack);
 			AddTransition(Jump, HitGround, EnterLanding);
 			AddTransition(Jump, EndOfState, EnterIdle); //this may seem confusing but if at the end of a frame we go from jump to idle while holding a direction on the next frame we immediately go into a movement
+			AddTransition(Jump, TryMove, EnterMovement);
+			AddTransition(Jump, TryAttack, EnterAttack);
+			AddTransition(Jump, TrySpecial, EnterSpecial);
+			AddTransition(Jump, TryJump, EnterJump);
 
 			AddTransition(AirIdle, TryAttack, EnterAttack);
 			AddTransition(AirIdle, TrySpecial, EnterSpecial);
@@ -89,13 +94,13 @@ namespace KirbStomp{
 
 			AddTransition(Landing, GotHit, EnterKnockedBack);
 			AddTransition(Landing, EndOfState, EnterIdle);
+            AddTransition(Landing, TryMove, EnterMovement);//for direction
 
+            #endregion
 
-			#endregion
-
-			#region Attack
-			//neutral
-			AddTransition(AttackNeutral, TryAttack, EnterAttack);
+            #region Attack
+            //neutral
+            AddTransition(AttackNeutral, TryAttack, EnterAttack);
 			AddTransition(AttackNeutral, GotHit, EnterKnockedBack);
 			AddTransition(AttackNeutral, EndOfState, EnterIdle);
 

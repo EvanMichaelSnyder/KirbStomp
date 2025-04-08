@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using KirbStomp;
+using KirbStomp.Data.AttackData;
 using KirbStomp.Interfaces;
 using KirbStomp.Scripts.Classes.Carriers;
 using KirbStomp.Scripts.Classes.Collision;
 using KirbStomp.Scripts.Classes.Collision.CollisionHandlers;
 using KirbStomp.Scripts.Classes.GameObjects.ItemAbillity;
 using KirbStomp.Scripts.Classes.Platforms;
+using KirbStomp.Scripts.Projectiles;
 using KirbStomp.StateMachine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -27,7 +30,7 @@ namespace KirbStomp
         private ISpriteComplete _sprite;
         private static int xLocaleSpawn = 0;
         private static int yLocaleSpawn = 0;
-        private CharacterMovement _movementManager;
+        //private CharacterMovement _movementManager;
         //locale spawn is not used later
 
         internal BodyCarrier _bodyCarrier;
@@ -38,34 +41,51 @@ namespace KirbStomp
 
         private AItemAbillity _itemAbillity;
 
-        internal float _health = 150;
+        internal float _health = 0;
 
+        private int _lives = 3;
+        private float minVelocity;
+        private float maxVelocity;
+        private const float capVelocity = 450;
+        private Vector2 acceleration = Vector2.Zero;
+        private bool snapVelocity = false;
+        private const float jumpVelocity = -600;
+        private const float specialUpVelocity = 150;
+        bool projSpawnedOnThisFrame = false;
 
         private bool hitboxDrawEnabled;
+        private CharacterUIData _characterUIData;
 
-        public Character(string name, Texture2D spriteSheet, string spriteSheetName)
+        public void Respawn()
         {
-            _ID = BattleScene.getNewID();
-            _name = name;
-            Velocity = Vector2.Zero;
-            Position.X = xLocaleSpawn;
-            //Magic numbers 50
-            xLocaleSpawn += 50;
-            Position.Y = yLocaleSpawn;
-            yLocaleSpawn += 50;
-            StateMachine = new CharacterStateMachine();
-            _buttonDataManager = new ButtonDataManager();
-            ActionList = new ActionList();
-            _sprite = new AllPurposeSprite(spriteSheet);
+            if (_lives==1)
+            {
+                _health = 100;
+                _lives--;
 
+                ActionList.ResetList();
+                StateMachine.State.CurrentState = StateEnum.Idle;
+                Velocity = Vector2.Zero;
+                acceleration = Vector2.Zero;
+                Vector2 respawnLocation = new Vector2(-100000, -100000);
+                Position = respawnLocation;
 
-            provideCharacterCarriers();
-            AssignCollisionData();
+                SceneManager.Get().SwitchScene("EndScreen");
+            }
+            else
+            {
+                _health = 100;
+                _lives--;
 
-
-            hitboxDrawEnabled = true;
+                ActionList.ResetList();
+                StateMachine.State.CurrentState = StateEnum.Idle;
+                Velocity = Vector2.Zero;
+                acceleration = Vector2.Zero;
+                Vector2 respawnLocation = new Vector2(380, 20);
+                Position = respawnLocation;
+            }
         }
-        public Character(string name, Texture2D spriteSheet, string spriteSheetName, Vector2 spawnLocation)
+        public Character(string name, Texture2D spriteSheet, Vector2 spawnLocation)
         {
             _ID = BattleScene.getNewID();
             _name = name;
@@ -81,19 +101,44 @@ namespace KirbStomp
 
             hitboxDrawEnabled = true;
         }
+        public Character(string name, Texture2D spriteSheet, Vector2 spawnLocation, CharacterUIData characterUIData)
+        {
+            _ID = BattleScene.getNewID();
+            _name = name;
+            Velocity = Vector2.Zero;
+            Position = spawnLocation;
+            StateMachine = new CharacterStateMachine();
+            _buttonDataManager = new ButtonDataManager();
+            ActionList = new ActionList();
+            _sprite = new AllPurposeSprite(spriteSheet);
+            _characterUIData = characterUIData;
 
+            if (name == "Link")
+            {
+                this.StateMachine.State.FacingDirection = DirectionEnum.Left;
+            }
+
+            provideCharacterCarriers();
+            AssignCollisionData();
+
+            hitboxDrawEnabled = true;
+        }
 
         public Rectangle GetPosition()
         {
             return _bodyCarrier.HitboxManager.GetApproximation();
         }
+        public CharacterUIData GetCharacterUIData()
+        {
+            return _characterUIData;
+        }
 
         private void provideCharacterCarriers()
         {
             _bodyCarrier = new BodyCarrier() { Parent = this };
-           _attackCarrier = new AttackCarrier() { Parent = this };
-            Carriers.Add( _bodyCarrier );
-            Carriers.Add(_attackCarrier );
+            _attackCarrier = new AttackCarrier() { Parent = this };
+            Carriers.Add(_bodyCarrier);
+            Carriers.Add(_attackCarrier);
         }
         private void AssignCollisionData()
         {
@@ -103,6 +148,9 @@ namespace KirbStomp
             RegisterCollisionResponse(HitboxTypeEnum.Body,
                                     HitboxTypeEnum.Attack,
                                     (obj, ctx) => CharacterCollisionHandlers.HandleAttackCollision(this, ctx));
+            RegisterCollisionResponse(HitboxTypeEnum.Body,
+                                    HitboxTypeEnum.Boundary,
+                                    (obj, ctx) => CharacterCollisionHandlers.HandleBoundaryCollision(this, ctx));
 
         }
 
@@ -112,55 +160,82 @@ namespace KirbStomp
         }
         public void DoBehavior()
         {
-            // StateMachine.PerformBehavior();
-            if (StateMachine.State.getElapsedTime() >= 1000)
+            if (projSpawnedOnThisFrame == false)
             {
-                ActionList.AddAction(GameButtons.End);
+                //StateMachine.PerformBehavior();
+                var data = ProjectileFrameSpawn.GetProjectileInfo(this._name, this.StateMachine.State.CurrentState, this.StateMachine.State.GetFrameIndex());
+                if (data.projectileName != "No Projectile")
+                {
+                    SceneManager sceneManage = SceneManager.Get();
+                    IScene currentScene = sceneManage.GetCurrentScene();
+                    ProjectileManager projManager = currentScene.GetProjectileManager();
+                    Vector2 positionProj = new Vector2();
+                    positionProj.X = this.GetPosition().X;
+                    positionProj.Y = this.GetPosition().Y;
+                    if (this.StateMachine.State.FacingDirection == DirectionEnum.Right)
+                    {
+                        positionProj.Y += data.offsets.Y;
+                        positionProj.X += data.offsets.X;
+                        projManager.SpawnProjectile(data.projectileName, positionProj, true, this);
+                    }
+                    else
+                    {
+                        positionProj.X += this.GetPosition().Width;
+                        positionProj.Y += data.offsets.Y;
+                        positionProj.X -= data.offsets.X;
+                        projManager.SpawnProjectile(data.projectileName, positionProj, false, this);
+                    }
+                    projSpawnedOnThisFrame = true;
+                }
+            }
+
+        }
+
+        public void Animate(GameTime gameTime)
+        {
+            var animationData = AnimationRepository.GetAnimationData(_name, StateMachine.State.CurrentState);
+
+            if (animationData == null || animationData.Frames.Count == 0)
+                throw new Exception("major error in frame grabbing");
+
+            // Calculate time per frame based on animation duration
+            float frameDuration = animationData.Duration / animationData.Frames.Count;
+
+            // Accumulate elapsed time
+            StateMachine.State.addToElapsedTime((float)gameTime.ElapsedGameTime.TotalSeconds);
+
+            // Advance frames as needed
+            if (StateMachine.State.getElapsedTime() >= frameDuration)
+            {
+                StateMachine.State.IncrementFrameIndex();
+                StateMachine.State.resetElapsedTime();
+                // Handle frame overflow
+                if (StateMachine.State.GetFrameIndex() >= animationData.Frames.Count)
+                {
+                    if (animationData.Loop)
+                    {
+                        projSpawnedOnThisFrame = false;
+                        StateMachine.State.ResetFrameIndex();
+                    }
+                    else
+                    {
+                        projSpawnedOnThisFrame = false;
+                        ActionList.AddAction((GameButtons)GameButtons.End);
+                    }
+                }
             }
         }
 
-		public void Animate(GameTime gameTime)
-		{
-			var animationData = AnimationRepository.GetAnimationData(_name, StateMachine.State.CurrentState);
+        public void DebugState()
+        {
+            Debug.WriteLine("State: " + StateMachine.State.CurrentState + " Frame: " + StateMachine.State.GetFrameIndex() + "\nFacing: " + StateMachine.State.FacingDirection + " Moving: " + StateMachine.State.MovementDirection);
+        }
 
-			if (animationData == null || animationData.Frames.Count == 0)
-				throw new Exception("major error in frame grabbing");
-
-			// Calculate time per frame based on animation duration
-			float frameDuration = animationData.Duration / animationData.Frames.Count;
-
-			// Accumulate elapsed time
-			StateMachine.State.addToElapsedTime((float)gameTime.ElapsedGameTime.TotalSeconds);
-
-			// Advance frames as needed
-			if (StateMachine.State.getElapsedTime() >= frameDuration)
-			{
-				StateMachine.State.IncrementFrameIndex();
-				StateMachine.State.resetElapsedTime();
-				// Handle frame overflow
-				if (StateMachine.State.GetFrameIndex() >= animationData.Frames.Count)
-				{
-					if (animationData.Loop)
-					{
-						StateMachine.State.ResetFrameIndex();
-					}
-					else
-					{
-						ActionList.AddAction((GameButtons)GameButtons.End);
-					}
-				}
-			}
-		}
-
-		public void DebugState()
-		{
-			Debug.WriteLine("State: " + StateMachine.State.CurrentState + " Frame: " + StateMachine.State.GetFrameIndex()+ "\nFacing: "+  StateMachine.State.FacingDirection + " Moving: "+ StateMachine.State.MovementDirection);
-		}
 
         public void Draw(SpriteBatch spriteBatch)
         {
 
-            
+
             _sprite.Draw(spriteBatch, Position, StateMachine.State.FacingDirection, StateMachine.State.CurrentState, StateMachine.State.GetFrameIndex(), _name);
         }
         //just pass current facing direction current state enum and current frame
@@ -186,15 +261,31 @@ namespace KirbStomp
                 switch (input)
                 {
                     case GameButtons.Left:
-                        StateMachine.State.DesiredMovementDirection = DirectionEnum.Left;
-                        StateMachine.State.DesiredAttackDirection = DirectionEnum.Left;
-                        StateMachine.HandleEvent(EventType.TryMove);
-                        //StateMachine.State.FacingDirection = DirectionEnum.Left;
+                        if (_buttonDataManager.ButtonDataSheet[GameButtons.Left].GetButtonState() == ButtonState.Released)
+                        {
+                            StateMachine.State.continueMoving = false;
+                        }
+                        else
+                        {
+                            StateMachine.State.continueMoving = true;
+                            StateMachine.State.DesiredMovementDirection = DirectionEnum.Left;
+                            StateMachine.State.DesiredAttackDirection = DirectionEnum.Left;
+                            StateMachine.HandleEvent(EventType.TryMove);
+                            //StateMachine.State.FacingDirection = DirectionEnum.Left;
+                        }
                         break;
                     case GameButtons.Right:
-                        StateMachine.State.DesiredMovementDirection = DirectionEnum.Right;
-                        StateMachine.State.DesiredAttackDirection = DirectionEnum.Right;
-                        StateMachine.HandleEvent(EventType.TryMove);
+                        if (_buttonDataManager.ButtonDataSheet[GameButtons.Right].GetButtonState() == ButtonState.Released)
+                        {
+                            StateMachine.State.continueMoving = false;
+                        }
+                        else
+                        {
+                            StateMachine.State.continueMoving = true;
+                            StateMachine.State.DesiredMovementDirection = DirectionEnum.Right;
+                            StateMachine.State.DesiredAttackDirection = DirectionEnum.Right;
+                            StateMachine.HandleEvent(EventType.TryMove);
+                        }
                         //StateMachine.State.FacingDirection = DirectionEnum.Right;
                         break;
                     case GameButtons.Up:
@@ -206,113 +297,346 @@ namespace KirbStomp
                 }
             }
 
-			// Then handle actions
-			foreach (var input in ActionList.actions.Where(i => !IsDirection(i)))
-			{
-				switch (input)
-				{
-					case GameButtons.Attack:
-						StateMachine.HandleEvent(EventType.TryAttack);
-						StateMachine.State.DesiredAttackDirection = DirectionEnum.None; // Clear after use
-						break;
+            // Then handle actions
+            foreach (var input in ActionList.actions.Where(i => !IsDirection(i)))
+            {
+                switch (input)
+                {
+                    case GameButtons.Attack:
+                        StateMachine.HandleEvent(EventType.TryAttack);
+                        StateMachine.State.DesiredAttackDirection = DirectionEnum.None; // Clear after use
+                        break;
 
-					case GameButtons.Special:
-						StateMachine.HandleEvent(EventType.TrySpecial);
-						StateMachine.State.DesiredAttackDirection = DirectionEnum.None;
-						break;
+                    case GameButtons.Special:
+                        StateMachine.HandleEvent(EventType.TrySpecial);
+                        StateMachine.State.DesiredAttackDirection = DirectionEnum.None;
+                        break;
 
-					case GameButtons.Jump:
-						StateMachine.HandleEvent(EventType.TryJump);
-						break;
+                    case GameButtons.Jump:
+                        StateMachine.HandleEvent(EventType.TryJump);
+                        break;
 
-					case GameButtons.GotHit:
-						StateMachine.HandleEvent(EventType.GotHit);
-						break;
+                    case GameButtons.GotHit:
+                        StateMachine.HandleEvent(EventType.GotHit);
+                        break;
 
-					case GameButtons.End:
-						StateMachine.HandleEvent(EventType.EndOfState);
-						break;
+                    case GameButtons.End:
+                        StateMachine.HandleEvent(EventType.EndOfState);
+                        break;
 
-					case GameButtons.HitGround:
-						StateMachine.HandleEvent(EventType.HitGround);
-						break;
+                    case GameButtons.HitGround:
+                        StateMachine.HandleEvent(EventType.HitGround);
+                        break;
 
-						/*
+
+                        /*
 						case GameInput.move:
 							StateMachine.HandleEvent(EventType.TryMove);
 							StateMachine.State.DesiredMovementDirection = DirectionEnum.None;
 							break;
 						*/
-				}
-			}
-		}
+                }
+            }
+        }
 
-		static bool IsDirection(GameButtons input)
-		{
-			return input == GameButtons.Left || input == GameButtons.Right
-				|| input == GameButtons.Up || input == GameButtons.Down;
-		}
+        static bool IsDirection(GameButtons input)
+        {
+            return input == GameButtons.Left || input == GameButtons.Right
+                || input == GameButtons.Up || input == GameButtons.Down;
+        }
 
-		public  void ProcessButtons()
-		{
-			foreach (var button in _buttonDataManager.ButtonDataSheet.Keys)
-			{
-				ActionList.ProcessButton(_buttonDataManager.ButtonDataSheet[button],button);
-			}
+        public void ProcessButtons()
+        {
+            foreach (var button in _buttonDataManager.ButtonDataSheet.Keys)
+            {
+                ActionList.ProcessButton(_buttonDataManager.ButtonDataSheet[button], button);
+            }
 
-		}
+        }
 
-		public void ApplyMovementBehavior()
-		{
-			switch (StateMachine.State.CurrentState)
-			{
-				case (StateEnum.AirMove):
-					Velocity.X = 300;
-					if (StateMachine.State.MovementDirection == DirectionEnum.Left) { Velocity.X *= -1; }
-					break;
-				case (StateEnum.Walk):
-					Velocity.X = 40;
-					if (StateMachine.State.MovementDirection == DirectionEnum.Left) { Velocity.X *= -1; }
-					break;
-				case (StateEnum.Run):
-					Velocity.X = 80;
-					if (StateMachine.State.MovementDirection == DirectionEnum.Left) { Velocity.X *= -1; }
-					break;
-				case (StateEnum.Sprint):
-					Velocity.X = 300;
-					if (StateMachine.State.MovementDirection == DirectionEnum.Left) { Velocity.X *= -1; }
-					break;
-				case (StateEnum.SlideTurn):
-					Velocity.X = 10;
-					if (StateMachine.State.FacingDirection == DirectionEnum.Left) { Velocity.X *= -1; }
-					break;
-				case (StateEnum.Idle):
-					Velocity.X = 0;
-					if (StateMachine.State.MovementDirection == DirectionEnum.Left) { Velocity.X *= 0; }
-					break;
-				case (StateEnum.Landing):
-					Velocity.X = 0;
-					if (StateMachine.State.MovementDirection == DirectionEnum.Left) { Velocity.X *= 0; }
-					break;
-				case (StateEnum.SpecialUp):
-					Velocity.Y = -150;
-					break;
-				case (StateEnum.Jump):
-					if (StateMachine.State.GetFrameIndex() == 0)
-					{
-						Velocity.Y = -550;
-						break;
-					}
-					break;
+        public void ApplyMovementBehavior()
+        {
+            Dictionary<StateEnum, Action> _movementBehaviors = new Dictionary<StateEnum, Action>
+            {
+                { StateEnum.AirMove, AirMove },
+                { StateEnum.Walk, Walk },
+                { StateEnum.Run, Run },
+                { StateEnum.Sprint, Sprint },
+                { StateEnum.SlideTurn, SlideTurn },
+                { StateEnum.Idle, Idle },
+                { StateEnum.Landing, Landing },
+                { StateEnum.SpecialUp, SpecialUp },
+                { StateEnum.Jump, Jump }
+            };
+            if (_movementBehaviors.TryGetValue(StateMachine.State.CurrentState, out Action behavior))
+            {
+                behavior.Invoke();
+            }
+        }
+        private void AirMove()
+        {
+            maxVelocity = 300;
+            acceleration.X = 10;
+            snapVelocity = true;
+        }
+        private void Idle()
+        {
+            minVelocity = 0;
+            maxVelocity = 1;
+            acceleration.X = 0;
+            snapVelocity = true;
+        }
+        private void Walk()
+        {
+            minVelocity = 1;
+            maxVelocity = 80;
+            acceleration.X = 200;
+            snapVelocity = false;
+        }
 
-			}
+        private void Run()
+        {
+            minVelocity = 80;
+            maxVelocity = 300;
+            acceleration.X = 500;
+            snapVelocity = false;
+        }
+        private void Sprint()
+        {
+            minVelocity = 300;
+            maxVelocity = 500;
+            acceleration.X = 600;
+            snapVelocity = false;
+        }
 
-		}
+        private void SlideTurn()
+        {
+            minVelocity = 0;
+            maxVelocity = 0;
+            acceleration.X = 100;
+            snapVelocity = true;
+        }
+        private void Landing()
+        {
+            minVelocity = 0;
+            maxVelocity = 0;
+            acceleration.X = 0;
+            snapVelocity = true;
+        }
+        private void SpecialUp()
+        {
+            Velocity.Y = specialUpVelocity;
+        }
+        private void Jump()
+        {
+            if (StateMachine.State.GetFrameIndex() == 0) 
+            { 
+                Velocity.Y = jumpVelocity; 
+            }
+        }
+        private void SetDirection()
+        {
+            if (StateMachine.State.MovementDirection == DirectionEnum.Left)
+            {
+                Velocity.X = -Math.Abs(Velocity.X);
+                StateMachine.State.FacingDirection = DirectionEnum.Left;
+            }
+            else if (StateMachine.State.MovementDirection == DirectionEnum.Right)
+            {
+                Velocity.X = Math.Abs(Velocity.X);
+                StateMachine.State.FacingDirection = DirectionEnum.Right;
+            }
+        }
 
-		public void MoveCharacter(GameTime gameTime) //this may be permanent but should in the future maybe include acceleration
-		{
-			Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
-		}
+        private void SetAcceleration(GameTime gameTime)
+        {
+            // Checks whether the character is moving to see if acceleration is needed,
+            // Otherwise it decelerates them.
+            if (StateMachine.State.DesiredMovementDirection == DirectionEnum.Right)
+            {
+                if (StateMachine.State.continueMoving)
+                {
+                    Velocity.X += acceleration.X * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                }
+                else
+                {
+                    Velocity.X -= acceleration.X * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                }
+            }
+            else if (StateMachine.State.DesiredMovementDirection == DirectionEnum.Left)
+            {
+                if (StateMachine.State.continueMoving)
+                {
+                    Velocity.X -= acceleration.X * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                }
+                else
+                {
+                    Velocity.X += acceleration.X * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                }
+            }
+        }
+
+        private void CheckTransition()
+        {
+            // Checks the current state of the character to see if a transition
+            // to another state is needed (Walk -> Run -> Sprint -> Capped Sprint velocity)
+            //Debug.WriteLine("State: " + StateMachine.State.CurrentState + ", Velocity: " + Velocity.X);
+            if (StateMachine.State.CurrentState == StateEnum.Idle)
+            {
+                IdleHandler();
+            }
+            else if (StateMachine.State.CurrentState == StateEnum.Walk)
+            {
+                WalkHandler();
+            }
+            else if (StateMachine.State.CurrentState == StateEnum.Run)
+            {
+                RunHandler();
+            }
+            else if (StateMachine.State.CurrentState == StateEnum.Sprint)
+            {
+                SprintHandler();
+            }
+        }
+
+        private void IdleHandler()
+        {
+            if (StateMachine.State.DesiredMovementDirection == DirectionEnum.Right)
+            {
+                if (Velocity.X > maxVelocity)
+                {
+                    Walk();
+                    StateMachine.State.CurrentState = StateEnum.Walk;
+                    Velocity.X = minVelocity;
+                }
+            }
+            else if (StateMachine.State.DesiredMovementDirection == DirectionEnum.Left)
+            {
+                if (Velocity.X < -maxVelocity)
+                {
+                    Walk();
+                    StateMachine.State.CurrentState = StateEnum.Walk;
+                    Velocity.X = -minVelocity;
+                }
+            }
+        }
+
+        private void WalkHandler()
+        {
+            if (StateMachine.State.DesiredMovementDirection == DirectionEnum.Right)
+            {
+                if (Velocity.X > maxVelocity)
+                {
+                    Run();
+                    StateMachine.State.CurrentState = StateEnum.Run;
+                    Velocity.X = minVelocity;
+                }
+                else if (Velocity.X < minVelocity)
+                {
+                    Idle();
+                    StateMachine.State.CurrentState = StateEnum.Idle;
+                }
+            }
+            else if (StateMachine.State.DesiredMovementDirection == DirectionEnum.Left)
+            {
+                if (Velocity.X < -maxVelocity)
+                {
+                    Run();
+                    StateMachine.State.CurrentState = StateEnum.Run;
+                    Velocity.X = -minVelocity;
+                }
+                else if (Velocity.X > -minVelocity)
+                {
+                    Idle();
+                    StateMachine.State.CurrentState = StateEnum.Idle;
+                }
+            }
+        }
+
+        private void RunHandler()
+        {
+            if (StateMachine.State.DesiredMovementDirection == DirectionEnum.Right)
+            {
+                if (Velocity.X > maxVelocity)
+                {
+                    Sprint();
+                    StateMachine.State.CurrentState = StateEnum.Sprint;
+                    Velocity.X = minVelocity;
+                }
+                else if (Velocity.X < minVelocity)
+                {
+                    Walk();
+                    StateMachine.State.CurrentState = StateEnum.Walk;
+                    Velocity.X = maxVelocity;
+                }
+            }
+            else if (StateMachine.State.DesiredMovementDirection == DirectionEnum.Left)
+            {
+                if (Velocity.X < -maxVelocity)
+                {
+                    Sprint();
+                    StateMachine.State.CurrentState = StateEnum.Sprint;
+                    Velocity.X = -minVelocity;
+                }
+                else if (Velocity.X > -minVelocity)
+                {
+                    Walk();
+                    StateMachine.State.CurrentState = StateEnum.Walk;
+                    Velocity.X = -maxVelocity;
+                }
+            }
+            else if (StateMachine.State.CurrentState == StateEnum.Sprint)
+            {
+                SprintHandler();
+            }
+        }
+
+
+
+        private void SprintHandler()
+        {
+            if (StateMachine.State.DesiredMovementDirection == DirectionEnum.Right)
+            {
+                if (Velocity.X > capVelocity)
+                {
+                    Velocity.X = capVelocity;
+                }
+                else if (Velocity.X < minVelocity)
+                {
+                    Run();
+                    StateMachine.State.CurrentState = StateEnum.Run;
+                    Velocity.X = maxVelocity;
+                }
+            }
+            else if (StateMachine.State.DesiredMovementDirection == DirectionEnum.Left)
+            {
+                if (Velocity.X < -capVelocity)
+                {
+                    Velocity.X = -capVelocity;
+                }
+                else if (Velocity.X > -minVelocity)
+                {
+                    Run();
+                    StateMachine.State.CurrentState = StateEnum.Run;
+                    Velocity.X = -maxVelocity;
+                }
+            }
+        }
+
+        public void MoveCharacter(GameTime gameTime)
+        {
+            // Some movement should snap to a specific velocity value
+            // (Idle, Landing, etc.) thus Velocity should auto to that maxVelocity
+            // value
+            if (snapVelocity)
+            {
+                Velocity.X = maxVelocity;
+            }
+            CheckTransition();
+            SetAcceleration(gameTime);
+            SetDirection();
+            Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+        }
 
         /*
         public void CheckGroundCollision() //temporary
@@ -347,7 +671,7 @@ namespace KirbStomp
                 {
                     ActionList.AddAction(GameButtons.HitGround);
                     Velocity.Y = 0;
-                    //Velocity.X = 0;
+                    //Velocity.X = 
                     Position.Y = 400;
                     StateMachine.State.IsGrounded = true;
                     StateMachine.State.ResetJumps();
@@ -374,15 +698,15 @@ namespace KirbStomp
             if (StateMachine.State.IsGrounded != true)
             {
                 {
-                    if(StateMachine.State.CurrentState==StateEnum.Sprint||
-                        StateMachine.State.CurrentState == StateEnum.Run||
+                    if (StateMachine.State.CurrentState == StateEnum.Sprint ||
+                        StateMachine.State.CurrentState == StateEnum.Run ||
                         StateMachine.State.CurrentState == StateEnum.Walk)
                     {
                         StateMachine.State.CurrentState = StateEnum.AirMove;
                     }
                     Velocity.Y += 1300 * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 }
-                //Velocity = Velocity * .8f;
+                //Velocity.X += .9f * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
             StateMachine.State.IsGrounded = false;
         }
@@ -403,6 +727,18 @@ namespace KirbStomp
         public void TakeDamage(float amt)
         {
             this._health += amt;
+        }
+        public float GetHealth() {
+            return this._health;
+        }
+        public BodyCarrier GetBodyCarrier()
+        {
+            return this._bodyCarrier;   
+        }
+
+        public string GetName()
+        {
+            return this._name;
         }
     }
 

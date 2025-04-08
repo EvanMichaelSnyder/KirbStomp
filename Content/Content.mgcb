@@ -1,8 +1,8 @@
 
 #----------------------------- Global Properties ----------------------------#
 
-/outputDir:bin/$(Platform)
-/intermediateDir:obj/$(Platform)
+/outputDir:ContentBin/$(Platform)
+/intermediateDir:ContentObj/$(Platform)
 /platform:DesktopGL
 /config:
 /profile:Reach
@@ -13,12 +13,36 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin AttackWire.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:AttackWire.png
+
+#begin BattleUISpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BattleUISpriteSheet.png
+
 #begin File.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
 /build:File.xml
 
-#begin HitboxWire.png
+#begin GameButtons.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -28,7 +52,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:HitboxWire.png
+/build:GameButtons.png
+
+#begin GameName.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GameName.png
 
 #begin HitboxWire.png
 /importer:TextureImporter
@@ -41,6 +77,37 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:HitboxWire.png
+
+#begin impact.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:impact.spritefont
+
+#begin Items.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Items.png
+
+#begin LinkProjectileSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:LinkProjectileSpriteSheet.png
 
 #begin LinkTransparentSpriteSheet.png
 /importer:TextureImporter
@@ -53,6 +120,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:LinkTransparentSpriteSheet.png
+
+#begin MarioAttackHitboxSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:MarioAttackHitboxSpriteSheet.png
+
+#begin MarioHitBoxSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:MarioHitBoxSpriteSheet.png
 
 #begin MarioProjectileTransparentSpriteSheet.png
 /importer:TextureImporter
@@ -102,28 +193,49 @@
 /processorParam:TextureFormat=Color
 /build:Platforms.png
 
-#begin MarioHitBoxSpriteSheet.png
+#begin PlayerOneUI.png
 /importer:TextureImporter
 /processor:TextureProcessor
-/build:MarioHitBoxSpriteSheet.png
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:PlayerOneUI.png
 
-#begin LinkProjectileSpriteSheet.png
+#begin PlayerTwoUI.png
 /importer:TextureImporter
 /processor:TextureProcessor
-/build:LinkProjectileSpriteSheet.png
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:PlayerTwoUI.png
 
-#begin MarioAttackHitboxSpriteSheet.png
+#begin SpaceBackground.png
 /importer:TextureImporter
 /processor:TextureProcessor
-/build:MarioAttackHitboxSpriteSheet.png
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:SpaceBackground.png
 
-#begin Items.png
+#begin KirbyTransparentSpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
-/build:Items.png
+/build:KirbyTransparentSpriteSheet.png
 
-#begin AttackWire.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/build:AttackWire.png
+#begin BattlefieldTheme.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/build:BattlefieldTheme.mp3
 

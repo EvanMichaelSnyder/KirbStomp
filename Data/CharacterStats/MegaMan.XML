@@ -1,0 +1,75 @@
+﻿<Character>
+	<Name> MegaMan </Name>
+	<Health> 0.0 </Health>
+	<Position> 150 100 </Position>
+	<Movement>
+		<BaseWalkSpeed>		10.0	</BaseWalkSpeed>
+		<BaseRunSpeed>		20.0	</BaseRunSpeed>
+		<MaxRunSpeed>		30.0	</MaxRunSpeed>
+		<Accelerations>
+			<Walk>	 10	</Walk>
+			<Run>	 10	</Run>
+			<Air>	 8 	</Air>
+		</Accelerations>
+	</Movement>
+	<PhysicsEffects>
+		<KnockbackScalar> 1.0 </KnockbackScalar>
+		<Gravity> 1.0 </Gravity>
+		<SpeedDecay> 0.8 </SpeedDecay>
+	</PhysicsEffects> 
+	<Attacks>
+		<GroundAttacks>
+			<Neutrals>
+				<HasAttack1> true </HasAttack1>
+				<HasAttack2> true </HasAttack2>
+				<HasAttack3> true </HasAttack3>
+			</Neutrals>
+			<Directionals>
+				<HasAttackFront>	true	</HasAttackFront>
+				<HasAttackBack>		true	</HasAttackBack>
+				<HasAttackUp>		true	</HasAttackUp>
+				<HasAttackDown>		true	</HasAttackDown>
+			</Directionals>
+		</GroundAttacks>
+		<Aerials>
+			<Neutrals>
+				<HasAttack1> true</HasAttack1>
+			</Neutrals>
+			<Directionals>
+				<HasAttackFront>	true	</HasAttackFront>
+				<HasAttackBack>		true	</HasAttackBack>
+				<HasAttackUp>		true	</HasAttackUp>
+				<HasAttackDown>		true	</HasAttackDown>
+			</Directionals>
+		</Aerials>
+		<Specials>
+			<Neutral>
+				<HasAttack1>	true	</HasAttack1>
+			</Neutral>
+			<Directionals>
+				<HasAttackFront>	true	</HasAttackFront>
+				<HasAttackBack>		true	</HasAttackBack>
+				<HasAttackUp>		true	</HasAttackUp>
+				<HasAttackDown>		true	</HasAttackDown>
+			</Directionals>
+		</Specials>
+	</Attacks>
+	
+	<UI>
+		<StockIcon>
+			<SpriteSheet>BattleUISpriteSheet</SpriteSheet>
+			<SourcePosition>0 524</SourcePosition>
+			<SourceSize>99 60</SourceSize>
+			<Scale>0.2</Scale>
+		</StockIcon>
+
+		<PortraitIcon>
+			<SpriteSheet>BattleUISpriteSheet</SpriteSheet>
+			<SourcePosition>0 105</SourcePosition>
+			<SourceSize>424 307</SourceSize>
+			<Scale>0.2</Scale>
+		</PortraitIcon>
+	</UI>
+
+
+</Character>

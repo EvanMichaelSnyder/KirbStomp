@@ -1,0 +1,11 @@
+﻿<Scenes>
+	<Scene> GeneralSceneTemplate </Scene>
+	<Scene> StartScreen </Scene>
+	<Scene> EndScreen </Scene>
+	<Bindings>
+		<Pause></Pause>
+		<Quit></Quit>
+		<NextScene></NextScene>
+		<PreviousScene></PreviousScene>
+	</Bindings>
+</Scenes>

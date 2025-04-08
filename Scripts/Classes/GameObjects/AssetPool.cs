@@ -40,6 +40,13 @@ namespace KirbStomp.Scripts.Projectiles
 
         public static Animation GetAnimation(String xmlName, String animName)
         {
+            if (!Animations.ContainsKey(xmlName))
+            {
+                throw new Exception("ASSET POOL DOES NO CONTAIN animation WITH xmlName: " + xmlName);
+            }else if (!Animations[xmlName].ContainsKey(animName))
+            {
+                throw new Exception("ASSET POOL DOES NO CONTAIN animation WITH animName: " + animName);
+            }
             return Animations[xmlName][animName];
         }
 
@@ -76,7 +83,7 @@ namespace KirbStomp.Scripts.Projectiles
                     Vector2 PerFrameOffset = ParseVector(frameElement.Attribute("perFrameOffset").Value);
 
                     Rectangle srcRectangle = new Rectangle((int)position.X, (int)position.Y, (int)size.X, (int)size.Y);
-                    Animation.Frame frame = new Animation.Frame(srcRectangle, frameTime);
+                    Animation.Frame frame = new Animation.Frame(srcRectangle, frameTime, PerFrameOffset);
                     animation.AddFrame(frame);
                 }
                 animations.Add(animName, animation);

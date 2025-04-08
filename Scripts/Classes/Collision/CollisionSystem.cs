@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Diagnostics;
 using KirbStomp;
+using KirbStomp.Scripts.Projectiles;
 // using static HitboxTypeEnum;
 
 public class CollisionSystem
@@ -14,7 +15,8 @@ public class CollisionSystem
         { HitboxTypeEnum.Body, new List<Carrier>() },
         { HitboxTypeEnum.Attack, new List<Carrier>() },
         { HitboxTypeEnum.Platform, new List<Carrier>() },
-        { HitboxTypeEnum.Item, new List<Carrier>() }
+        { HitboxTypeEnum.Item, new List<Carrier>() },
+        { HitboxTypeEnum.Boundary, new List<Carrier>() }
     };
 
     private List<CollisionObject> _allObjects = new List<CollisionObject>();
@@ -33,6 +35,7 @@ public class CollisionSystem
                 }
             }
         }
+        //Debug.WriteLine(_carrierGroups[HitboxTypeEnum.Boundary].Count);
     }
 
     public void RemoveObject(CollisionObject obj)
@@ -54,13 +57,63 @@ public class CollisionSystem
 
         foreach (var carrierA in carriersA)
         {
+
+            foreach (var carrierB in carriersB)
+            {
+
+                //Debug.WriteLine("Collision Occured");
+                if (carrierA.Parent == carrierB.Parent) continue;
+
+
+                bool skip = false;
+                //carve out for projectiles
+                if(carrierB.Parent.GetType().BaseType == typeof(AProjectile))
+                {
+                    AProjectile Bcomp = (AProjectile)carrierB.Parent;
+                    if(carrierA.Parent.GetType() == typeof(Character))
+                    {
+                        Character Acomp = (Character)carrierA.Parent;
+                        if (Acomp == Bcomp.GetSpawningCharacter())
+                        {
+                            skip = true;
+                        }
+                    }
+                }
+
+                if (skip) continue;
+                if (carrierA.IsDisabled | carrierB.IsDisabled) continue;
+                
+                if (CheckCollisionApprox(carrierA.HitboxManager, carrierB.HitboxManager))
+                {
+                    //Debug.WriteLine("Approx is Collide");
+                    var intersection = GetDetailedIntersection(
+                        carrierA.HitboxManager,
+                        carrierB.HitboxManager
+                    );
+
+                    if (intersection != Rectangle.Empty)
+                    {
+                        HandleCollision(carrierA, carrierB, intersection);
+                    }
+                }
+            }
+        }
+    }
+
+    public void CheckCollisionPairGround(HitboxTypeEnum typeA, HitboxTypeEnum typeB)
+    {
+        var carriersA = _carrierGroups[typeA];
+        var carriersB = _carrierGroups[typeB];
+
+        foreach (var carrierA in carriersA)
+        {
             foreach (var carrierB in carriersB)
             {
                 //Debug.WriteLine("Collision Occured");
                 if (carrierA.Parent == carrierB.Parent) continue;
 
-                if(carrierA.IsDisabled | carrierB.IsDisabled) continue;
-                
+                if (carrierA.IsDisabled | carrierB.IsDisabled) continue;
+
                 if (CheckCollisionApprox(carrierA.HitboxManager, carrierB.HitboxManager))
                 {
                     //Debug.WriteLine("Approx is Collide");
@@ -86,6 +139,7 @@ public class CollisionSystem
             AttackCarrier _ => HitboxTypeEnum.Attack,
             ItemCarrier _ => HitboxTypeEnum.Item,
             PlatformCarrier _ => HitboxTypeEnum.Platform,
+            BoundaryCarrier _ => HitboxTypeEnum.Boundary,
             _ => HitboxTypeEnum.Body
         };
     }
@@ -110,13 +164,14 @@ public class CollisionSystem
 
     private bool CheckCollisionApprox(HitboxManager a, HitboxManager b)
     {
-        /*
-        Debug.WriteLine(a.GetApproximation().ToString());
-        Debug.WriteLine(b.GetApproximation().ToString());
-        */
-        //Debug.WriteLine("checking approx");
-
         return a.GetApproximation().Intersects(b.GetApproximation());
+    }
+    private bool CheckCollisionApproxForGround(HitboxManager a, HitboxManager b)
+    {
+        Rectangle approx = a.GetApproximation();
+        approx.Y = approx.Y + (1 * (approx.Height / 2));
+        approx.Height += approx.Height / 2;
+        return approx.Intersects(b.GetApproximation());
     }
 
     private void HandleCollision(Carrier a, Carrier b, Rectangle intersect)

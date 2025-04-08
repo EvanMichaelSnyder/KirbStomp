@@ -4,15 +4,16 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System;
+using KirbStomp.Scripts.Classes.Collision;
 
 namespace KirbStomp
 {
-    class CharacterMovement
+    class CharacterMovement : PhysicsComponent
     {
         private MovementStats _movementStats;
-        private Vector2 _velocity;
         private CharacterStateMachine _stateMachine;
         private Dictionary<StateEnum, Action> _movementBehaviors;
+
         public CharacterMovement(MovementStats movementStats, CharacterStateMachine stateMachine)
         {
             _movementStats = new MovementStats();
@@ -41,12 +42,6 @@ namespace KirbStomp
                 behavior.Invoke();
             }
         }
-        public void MoveCharacter(GameTime gameTime, Vector2 position)
-        {
-            // Need to figure out acceleration along with phase shifting
-            // Walk -> Run -> Sprint
-            position += _velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
-        }
 
         /*
          * List of all actions that are called given the
@@ -56,49 +51,49 @@ namespace KirbStomp
          */
         private void AirMove()
         {
-            _velocity.X = 300;
+            Velocity.X = 300;
             SetDirection();
         }
         private void Walk()
         {
-            _velocity.X = 40;
+            Velocity.X = 40;
             SetDirection();
         }
 
         private void Run()
         {
-            _velocity.X = 80;
+            Velocity.X = 80;
             SetDirection();
         }
         private void Sprint()
         {
-            _velocity.X = 300;
+            Velocity.X = 300;
             SetDirection();
         }
         private void SlideTurn()
         {
-            _velocity.X = 10;
+            Velocity.X = 10;
             SetDirection();
         }
         private void Idle()
         {
-            _velocity.X = 0;
+            Velocity.X = 0;
         }
         private void Landing()
         {
-            _velocity.X = 0;
+            Velocity.X = 0;
         }
         private void SpecialUp()
         {
-            _velocity.Y = 150;
+            Velocity.Y = 150;
         }
         private void Jump()
         {
-            if(_stateMachine.State.GetFrameIndex() == 0) { _velocity.Y = -510; }
+            if(_stateMachine.State.GetFrameIndex() == 0) { Velocity.Y = -510; }
         }
         private void SetDirection()
         {
-            if (_stateMachine.State.FacingDirection == DirectionEnum.Left) { _velocity.X *= -1; }
+            if (_stateMachine.State.DesiredMovementDirection == DirectionEnum.Left) { Velocity.X *= -1; }
         }
     }
 }

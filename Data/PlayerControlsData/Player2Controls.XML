@@ -1,0 +1,13 @@
+﻿<PlayerControls>
+	<Movement>
+		<Up>P</Up>
+		<Down>OemSemicolon</Down>
+		<Left>L</Left>
+		<Right>OemQuotes</Right>
+		<Jump>Up</Jump>
+	</Movement>
+	<Attack>
+		<Neutral>Down</Neutral>
+		<Special>Left</Special>
+	</Attack>
+</PlayerControls>

@@ -53,7 +53,9 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Items
 
         protected override void GiveItemAbillity(Character c)
         {
-            c.RecieveItemAbillity(new HealItemAbillity(c, this._healAmount));
+            AItemAbillity aItemAbillity = new HealItemAbillity(c, this._healAmount);
+            c.RecieveItemAbillity(aItemAbillity);
+            aItemAbillity.ExectuteAbillity();
         }
     }
 }

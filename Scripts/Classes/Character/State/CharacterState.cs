@@ -7,6 +7,7 @@ using static KirbStomp.StateEnum;
 using static KirbStomp.EventType;
 using static KirbStomp.DirectionEnum;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 namespace KirbStomp.StateMachine
 {
@@ -24,6 +25,8 @@ namespace KirbStomp.StateMachine
 
 		public DirectionEnum DesiredMovementDirection { get; set; }
 		public DirectionEnum DesiredAttackDirection { get; set; }
+
+		public bool continueMoving = false;
 
 		public StateEnum CurrentState
 		{
@@ -240,12 +243,13 @@ namespace KirbStomp.StateMachine
 			if (current.CurrentState == FreeFall)
 			{
 				current.CurrentState = LayingDown;
+				current.MovementDirection = None;
 			}
 			else
 			{
 				current.CurrentState = Landing;
-				current.MovementDirection = None;
 			}
+
 
             //the hitGround will reset our jumps
         }
@@ -255,6 +259,7 @@ namespace KirbStomp.StateMachine
         }
         public static void EnterIdle(CharacterState current)
         {
+			current.DesiredAttackDirection = None;
 			if(current.CurrentState==KnockedBack)
 			{
 				current.CurrentState = Ragdolled;
@@ -299,6 +304,7 @@ namespace KirbStomp.StateMachine
                     current.FacingDirection = current.DesiredMovementDirection;
                 }
                 current.MovementDirection = current.DesiredMovementDirection;
+                current.FacingDirection = current.DesiredMovementDirection;
                 current.CurrentState = Walk;
             }
             else
@@ -329,11 +335,11 @@ namespace KirbStomp.StateMachine
                         if (current.ConvertToRelativeMovementDirection(current.DesiredMovementDirection) == Forward)
                         {
                             //will later check speed to see if we should increase for now we will assume
-                            current.CurrentState = Run;
+                            //current.CurrentState = Run;
                         }
                         else
                         {
-                            current.CurrentState = Run;
+                            //current.CurrentState = Run;
                             current.MovementDirection = current.DesiredMovementDirection;
                             current.FacingDirection = current.DesiredMovementDirection;
                         }
@@ -369,8 +375,8 @@ namespace KirbStomp.StateMachine
             }
 
 		}
+        #endregion
 
-		#endregion
-	}
+    }
 
 }

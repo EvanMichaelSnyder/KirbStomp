@@ -15,6 +15,12 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
 {
     public class MarioFireBall : AProjectile
     {
+        private readonly String TEXTURE_NAME = "MarioProjectile";
+        private readonly String ANIM_STATE_RELEASED = "FireballReleased";
+        private readonly String ANIM_STATE_DEATH = "FireballDeath";
+        private readonly String ANIM_NAME = "MarioProjectileTransparentSpriteSheet";
+        private float DAMAGE = 8;
+
         private Sprite _sprite;
         private AnimationSystem _animationSystem;
 
@@ -38,11 +44,11 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
             _animationSystem = new AnimationSystem(_sprite);
 
 
-            Animation releasedAnimation = AssetPool.GetAnimation("MarioProjectileTransparentSpriteSheet", "FireballReleased");
-            Animation deathAnimation = AssetPool.GetAnimation("MarioProjectileTransparentSpriteSheet", "FireballDeath");
+            Animation releasedAnimation = AssetPool.GetAnimation(ANIM_NAME, ANIM_STATE_RELEASED);
+            Animation deathAnimation = AssetPool.GetAnimation(ANIM_NAME, ANIM_STATE_DEATH);
             _animationSystem.AddAnimation(releasedAnimation);
             _animationSystem.AddAnimation(deathAnimation);
-            _animationSystem.SetAnimation("FireballReleased");
+            _animationSystem.SetAnimation(ANIM_STATE_RELEASED);
 
             Velocity = new Vector2(400, 0);
             if (!facingRight)
@@ -62,8 +68,10 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
         public override void RegisterCollider()
         {
             // this.ProvideCharacterCarriers();
+            this._attackCarrier.SetDamage(DAMAGE);
             this._dimension.Height *= (int)this._scale;
             this._dimension.Width *= (int)this._scale;
+            this._attackCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
             this._bodyCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
 
             RegisterCollisionResponse(HitboxTypeEnum.Body,
@@ -79,7 +87,7 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
         public void Bounce(CollisionObject obj, CollisionContext context)
         {
             this.Velocity.Y *= -1;
-            this.Position.Y -= 5 + context.Intersection.Height;
+            this.Position.Y -= context.Intersection.Height;
            // Debug.WriteLine("BALL BOUNCE");
         }
 
@@ -91,7 +99,7 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
         public void BeginDeath()
         {
             _isDying = true;
-            _animationSystem.SetAnimation("FireballDeath");
+            _animationSystem.SetAnimation(ANIM_STATE_DEATH);
             Velocity = new Vector2();
             _gravity = 0;
             this._attackCarrier.IsDisabled = true;

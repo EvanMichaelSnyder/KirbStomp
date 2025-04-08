@@ -1,0 +1,20 @@
+﻿<Platforms>
+	<Platform>
+		<Type> SideDirtPlatform </Type>
+		<SourcePos>10 370</SourcePos>
+		<SourceSize>780 20</SourceSize>
+		<SpriteSheet>Platforms</SpriteSheet>
+	</Platform>
+	<Platform>
+		<Type> SideDirtPlatform </Type>
+		<SourcePos>500 200</SourcePos>
+		<SourceSize>200 20</SourceSize>
+		<SpriteSheet>Platforms</SpriteSheet>
+	</Platform>
+		<Platform>
+		<Type> SideDirtPlatform </Type>
+		<SourcePos>100 200</SourcePos>
+		<SourceSize>200 20</SourceSize>
+		<SpriteSheet>Platforms</SpriteSheet>
+	</Platform>
+</Platforms>

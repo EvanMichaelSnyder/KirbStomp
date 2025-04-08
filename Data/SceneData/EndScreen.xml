@@ -1,0 +1,23 @@
+<Scene>
+	<Name> EndScreen </Name>
+	<FilesToLoad>
+		<Characters>
+		</Characters>
+		<Platforms>
+		</Platforms>
+		<UIs>
+            <ButtonUI> TempButton </ButtonUI>
+            <!-- Way of temporarily bypassing checks of parser -->
+		</UIs>
+		<Projectiles>
+		</Projectiles>
+		
+		<AssetPool>
+			<Textures>
+			</Textures>
+			<Animations>
+			</Animations>
+		</AssetPool>
+
+	</FilesToLoad>
+</Scene>

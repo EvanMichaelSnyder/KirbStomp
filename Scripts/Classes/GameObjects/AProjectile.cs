@@ -21,6 +21,11 @@ namespace KirbStomp.Scripts.Projectiles
 
         protected Rectangle _dimension;
 
+        protected Character _spawningCharacter;
+
+        protected int _xOffSetCollider = 0;
+        protected int _yOffSetCollider = 0;
+
 
         public abstract void Draw(SpriteBatch spriteBatch);
 
@@ -30,6 +35,16 @@ namespace KirbStomp.Scripts.Projectiles
             _attackCarrier = new AttackCarrier() { Parent = this };
             Carriers.Add(_bodyCarrier);
             Carriers.Add(_attackCarrier);
+        }
+
+        public void SetSpawningCharacter(Character character)
+        {
+            this._spawningCharacter = character;
+        }
+
+        public Character GetSpawningCharacter()
+        {
+            return this._spawningCharacter;
         }
 
         //only used by projectilemanager to avoid extra param in projectiles
@@ -59,14 +74,18 @@ namespace KirbStomp.Scripts.Projectiles
 
         public void UpdateCollider()
         {
-            this._dimension.X = (int)this.Position.X;
-            this._dimension.Y = (int)this.Position.Y;
+            this._dimension.X = (int)this.Position.X +this._xOffSetCollider;
+            this._dimension.Y = (int)this.Position.Y + this._yOffSetCollider;
             this._bodyCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
             this._attackCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
         }
 
         public abstract void RegisterCollider();
 
+        public AttackCarrier GetAttackCarrier()
+        {
+            return this._attackCarrier;
+        }
 
     }
 }

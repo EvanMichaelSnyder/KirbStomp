@@ -35,7 +35,12 @@ namespace KirbStomp
 				{
 					AddAction(buttonType);
 				}
-			}
+				else if (button.GetButtonState() == ButtonState.Released)
+				{
+					AddAction(buttonType);
+				}
+
+            }
 			else if (button.GetButtonState() == ButtonState.Pressed)
 			{
 				AddAction(buttonType);

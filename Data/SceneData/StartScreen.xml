@@ -1,0 +1,23 @@
+<Scene>
+	<Name> StartScreen </Name>
+	<FilesToLoad>
+		<Characters>
+		</Characters>
+		<Platforms>
+		</Platforms>
+		<UIs>
+            <ButtonUI> TempButton </ButtonUI>
+		</UIs>
+		<Projectiles>
+		</Projectiles>
+		
+		<AssetPool>
+			<Textures>
+			</Textures>
+			<Animations>
+			</Animations>
+		</AssetPool>
+    
+    
+	</FilesToLoad>
+</Scene>

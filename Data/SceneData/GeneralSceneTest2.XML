@@ -1,0 +1,27 @@
+﻿<Scene>
+	<Name> TestScene </Name>
+	<FilesToLoad>
+		<Characters>
+			<Character> Link LinkTransparentSpriteSheet Player2Controls	</Character>
+			<Character> Megaman MegamanTransparentSpriteSheet Player1Controls	</Character>
+		</Characters>
+		<Platforms>
+			<Platform> 	PlatformMain </Platform>
+		</Platforms>
+		<UIs>
+
+		</UIs>
+
+		<AssetPool>
+			<Textures>
+				<Texture> Items Items </Texture>
+				<Texture> MarioProjectiles MarioTransparentSpriteSheet </Texture>
+				<Texture> LinkProjectiles LinkTransparentSpriteSheet </Texture>
+			</Textures>
+			<Animations>
+				<Animation> LinkProjectile </Animation>
+				<Animation> MarioProjectile </Animation>
+			</Animations>
+		</AssetPool>
+	</FilesToLoad>
+</Scene>

@@ -1,7 +1,44 @@
 <Animations>
 	<Texture spriteSheet="LinkProjectileTransparentSpriteSheet" scale="2.0" boundX="2280" offsetDirectional = "30"/>
 
-	<Animation name="ArrowShoot" duration ="1.0" loop="true" animationOffset="(0, 0)">
+	<Animation name="NeutralAttackThrustShoot" duration =".15" loop="false" animationOffset="(75, 2)">
+		<Frame position="(603, 1177)" size="(46, 32)" perFrameOffset="(0, 0)"/>
+		<Frame position="(653, 1177)" size="(48, 32)" perFrameOffset="(1, 0)"/>
+	</Animation>
+
+	<Animation name="NeutralAttackThrustAir" duration ="1.0" loop="true" animationOffset="(0, 0)">
+		<Frame position="(705, 1187)" size="(46, 12)" perFrameOffset="(0, 12)"/>
+	</Animation>
+
+	<Animation name="SideAttackThrustShoot" duration =".2" loop="false" animationOffset="(90, -26)">
+		<Frame position="(493, 4091)" size="(48, 73)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+	<Animation name="SideAttackThrustAir" duration ="1.0" loop="true" animationOffset="(0, 0)">
+		<Frame position="(552, 4089)" size="(46, 76)" perFrameOffset="(1, -1)"/>
+	</Animation>
+
+	<Animation name="UpAerialThrustShoot" duration ="0.15" loop="false" animationOffset="(-6, -75)">
+		<Frame position="(122, 2532)" size="(32, 46)" perFrameOffset="(0, 0)"/>
+		<Frame position="(162, 2531)" size="(32, 48)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+	<Animation name="UpAerialThrustAir" duration ="1.0" loop="true" animationOffset="(0, 0)">
+		<Frame position="(202, 2531)" size="(12, 48)" perFrameOffset="(10, 0)"/>
+	</Animation>
+
+	<Animation name="DownAerialThrustShoot" duration ="0.25" loop="false" animationOffset="(-25, 70)">
+		<Frame position="(429, 2184)" size="(104, 28)" perFrameOffset="(0, 0)"/>
+		<Frame position="(316, 2189)" size="(102, 36)" perFrameOffset="(1, 0)"/>
+	</Animation>
+
+	<Animation name="DownAerialThrustGround" duration =".2" loop="false" animationOffset="(0, 0)">
+		<Frame position="(209, 2202)" size="(96, 48)" perFrameOffset="(4, -16)"/>
+		<Frame position="(111, 2234)" size="(92, 13)" perFrameOffset="(6, 16)"/>
+		<Frame position="(27, 2237)" size="(78, 10)" perFrameOffset="(13, 17)"/>
+	</Animation>
+
+	<Animation name="ArrowShoot" duration ="1.0" loop="true" animationOffset="(40, 20)">
 		<Frame position="(327, 2936)" size="(27, 9)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
@@ -13,7 +50,7 @@
 		<Frame position="(329, 2974)" size="(25, 17)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
-	<Animation name="BombShoot" duration ="0.5" loop="false" animationOffset="(0, 0)">
+	<Animation name="BombShoot" duration ="0.2" loop="false" animationOffset="(0, 0)">
 		<Frame position="(390, 3273)" size="(18, 17)" perFrameOffset="(0, 0)"/>
 		<Frame position="(414, 3269)" size="(24, 21)" perFrameOffset="(-6, -4)"/>
 		<Frame position="(443, 3265)" size="(25, 25)" perFrameOffset="(-7, -8)"/>
@@ -21,11 +58,11 @@
 		<Frame position="(435, 3291)" size="(25, 33)" perFrameOffset="(-7, -16)"/>
 	</Animation>
 
-	<Animation name="BombAir" duration ="1.0" loop="true" animationOffset="(0, 0)">
+	<Animation name="BombAir" duration ="0.15" loop="true" animationOffset="(0, 0)">
 		<Frame position="(390, 3273)" size="(18, 17)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
-	<Animation name="BombDeath" duration ="1.0" loop="false" animationOffset="(0, 0)">
+	<Animation name="BombDeath" duration ="0.15" loop="false" animationOffset="(0, 0)">
 		<Frame position="(475, 3266)" size="(28, 26)" perFrameOffset="(0, 0)"/>
 		<Frame position="(507, 3262)" size="(39, 32)" perFrameOffset="(-5, -3)"/>
 		<Frame position="(551, 3251)" size="(44, 53)" perFrameOffset="(-8, -13)"/>
@@ -33,7 +70,7 @@
 		<Frame position="(538, 3313)" size="(30, 24)" perFrameOffset="(-1, 1)"/>
 	</Animation>
 
-	<Animation name="Boomerang" duration ="1.0" loop="true" animationOffset="(0, 0)">
+	<Animation name="Boomerang" duration =".05" loop="true" animationOffset="(0, 0)">
 		<Frame position="(255, 3140)" size="(13, 11)" perFrameOffset="(0, 0)"/>
 		<Frame position="(271, 3140)" size="(11, 9)" perFrameOffset="(0, 0)"/>
 		<Frame position="(284, 3140)" size="(16, 7)" perFrameOffset="(0, 0)"/>

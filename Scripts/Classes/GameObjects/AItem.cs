@@ -42,13 +42,14 @@ namespace KirbStomp.Scripts.Classes.Projectiles
             Carriers.Add(_itemCarrier);
         }
 
+
         public abstract void Update(float dt);
 
         public abstract void RegisterCollider();
 
         public void Destroy()
         {
-           this._itemManager.RemoveProjectile(this);
+           this._itemManager.RemoveItem(this);
         }
 
 

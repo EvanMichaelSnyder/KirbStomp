@@ -13,6 +13,7 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Items
 {
     public class ArrowStormItem : AItem
     {
+        private readonly String TEXTURE_NAME = "LinkProjectile";
         private Sprite _sprite;
         private Rectangle _spriteSrc = new Rectangle(327, 2936, 27, 9);
         private float _scale = 3;
@@ -21,7 +22,7 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Items
             this.Position = startPosition;
             this.Velocity = new Vector2(0, 150);
             this._dimension = new Rectangle((int)startPosition.X, (int)startPosition.Y, _spriteSrc.Width, _spriteSrc.Height);
-            this._sprite = new Sprite(AssetPool.GetTexture("LinkProjectile"), this._spriteSrc, this._scale);
+            this._sprite = new Sprite(AssetPool.GetTexture(TEXTURE_NAME), this._spriteSrc, this._scale);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -51,7 +52,8 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Items
         protected override void GiveItemAbillity(Character character)
         {
             //TODO just for test undo comment character.RecieveItemAbillity(new ArrowStormItemAbillity(SceneManager.Get().GetCurrentScene().GetProjectileManager()));
-            AItemAbillity test = new ArrowStormItemAbillity(SceneManager.Get().GetCurrentScene().GetProjectileManager());
+            AItemAbillity test = new ArrowStormItemAbillity(SceneManager.Get().GetCurrentScene().GetProjectileManager(), character);
+           
             test.ExectuteAbillity();
             
         }

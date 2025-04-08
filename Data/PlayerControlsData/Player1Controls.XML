@@ -1,0 +1,16 @@
+﻿<PlayerControls>
+	<Movement>
+		<Up>W</Up>
+		<Down>S</Down>
+		<Left>A</Left>
+		<Right>D</Right>
+		<Jump>Space</Jump>
+	</Movement>
+	<Attack>
+		<Neutral>Y</Neutral>
+		<Special>T</Special>
+	</Attack>
+	<Misc>
+		<GotHit>V</GotHit>
+	</Misc>
+</PlayerControls>

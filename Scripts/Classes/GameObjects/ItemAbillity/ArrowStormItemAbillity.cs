@@ -15,9 +15,11 @@ namespace KirbStomp.Scripts.Classes.GameObjects.ItemAbillity
         private int _numArrowsToSpawn = 10;
         private int _spawnDistance = 100;
         private int _layers = 3;
-        public ArrowStormItemAbillity(ProjectileManager projectileManager)
+        private Character _spawner;
+        public ArrowStormItemAbillity(ProjectileManager projectileManager, Character spawner)
         {
             this._projectileManager = projectileManager;
+            this._spawner = spawner;
         }
         public override void ExectuteAbillity()
         {
@@ -26,7 +28,9 @@ namespace KirbStomp.Scripts.Classes.GameObjects.ItemAbillity
                 for(int j = 0; j < _layers; j++)
                 {
                     Vector2 pos = new Vector2(0 -j*_spawnDistance, i * this._spawnDistance);
-                    this._projectileManager.AddProjectile(new LinkArrow(pos, true));
+                    AProjectile arrow = new LinkArrow(pos, true);
+                    arrow.SetSpawningCharacter(_spawner);
+                    this._projectileManager.AddProjectile(arrow);
                 }
             }
         }

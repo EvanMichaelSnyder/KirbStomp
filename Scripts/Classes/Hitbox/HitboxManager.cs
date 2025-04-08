@@ -18,6 +18,7 @@ namespace KirbStomp {
         Attack,
         Platform,
         Item,
+        Boundary
     }
     public class HitboxManager
     {

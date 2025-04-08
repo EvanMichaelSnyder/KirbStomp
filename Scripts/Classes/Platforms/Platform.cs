@@ -32,15 +32,17 @@ namespace KirbStomp.Scripts.Classes.Platforms
 
         public Platform(PlatformTypeEnum type, Rectangle rectangle,Texture2D spriteSheet)
         {
-            _ID = BattleScene.getNewID();
-            _platformDimensions = rectangle;
-            _platformType = type;
-            _sprite = new AllPurposeSprite(spriteSheet);
+            {
+                _ID = BattleScene.getNewID();
+                _platformDimensions = rectangle;
+                _platformType = type;
+                _sprite = new AllPurposeSprite(spriteSheet);
 
-            PlatformCarrier = new PlatformCarrier() { Parent = this };
-            Carriers.Add(PlatformCarrier);
+                PlatformCarrier = new PlatformCarrier() { Parent = this };
+                Carriers.Add(PlatformCarrier);
 
-            PlatformCarrier.HitboxManager.basicUpdateHitbox(rectangle);
+                PlatformCarrier.HitboxManager.basicUpdateHitbox(rectangle);
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)

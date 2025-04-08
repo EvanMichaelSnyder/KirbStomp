@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using KirbStomp.Data;
 using KirbStomp.Scripts.Projectiles;
+using KirbStomp.Scripts.Scenes;
 
 namespace KirbStomp
 {
@@ -63,23 +64,55 @@ namespace KirbStomp
 		{
             _sceneManager.UpdateScene(gameTime);
 
+            // if(Keyboard.GetState().IsKeyDown(Keys.D1))
+            // {
+            //    // _sceneManager.SwitchScene("TestScene");
+            //     _sceneManager.UpdateSceneByCall(SceneCalls.Previous);
+            // }
+            // else if(Keyboard.GetState().IsKeyDown(Keys.D2))
+            // {
+            //     //_sceneManager.SwitchScene("BattleScene");
+            //     _sceneManager.UpdateSceneByCall(SceneCalls.Next);
+            // } 
+            // else if(Keyboard.GetState().IsKeyDown(Keys.D4))
+            // {
+            //     //_sceneManager.SwitchScene("GeneralSceneTemplate");
+            //     _sceneManager.UpdateSceneByCall(SceneCalls.Pause);
+            // }
+            // else if(Keyboard.GetState().IsKeyDown(Keys.D3))
+            // {
+            //     //_sceneManager.ResetCurrentScene();
+            //     _sceneManager.UpdateSceneByCall(SceneCalls.Reset);
+            // }
+
             if(Keyboard.GetState().IsKeyDown(Keys.D1))
             {
-                _sceneManager.SwitchScene("TestScene");
+               _sceneManager.SwitchScene("StartScreen");
             }
             else if(Keyboard.GetState().IsKeyDown(Keys.D2))
             {
-                _sceneManager.SwitchScene("BattleScene");
+                //_sceneManager.SwitchScene("BattleScene");
+                _sceneManager.SwitchScene("GeneralSceneTemplate");
+            } 
+            else if(Keyboard.GetState().IsKeyDown(Keys.D4))
+            {
+                //_sceneManager.SwitchScene("GeneralSceneTemplate");
+                _sceneManager.UpdateSceneByCall(SceneCalls.Pause);
             }
             else if(Keyboard.GetState().IsKeyDown(Keys.D3))
             {
-                _sceneManager.ResetCurrentScene();
+                //_sceneManager.ResetCurrentScene();
+                _sceneManager.SwitchScene("EndScreen");
             }
+            else if(Keyboard.GetState().IsKeyDown(Keys.D5)) {
+                _sceneManager.UpdateSceneByCall(SceneCalls.Reset);
+            }
+            
 			base.Update(gameTime);
 		}
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.DarkGray);
             _sceneManager.DrawScene(gameTime, _spriteBatch);
 			base.Draw(gameTime);
 		}

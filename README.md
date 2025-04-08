@@ -7,28 +7,35 @@ All our project documentation can be found on our team Notion Webpage. This incl
 ### Project Documentation:
 Notion Documentation and Task management: [KirbStomp Super Smash Notion](https://www.notion.so/Temp-Smash-Name-18b0992c88eb80bf8935dc57b3a3be01)
 
-The [Sprint 3 Specific Page](https://possible-aletopelta-198.notion.site/Sprint-3-19d0992c88eb80e4b850cd00e3a972f2?pvs=4) includes sample collision demo video with hitboxes.
+[Sprint 4 Specific Page](https://possible-aletopelta-198.notion.site/Sprint-4-1b90992c88eb8078b9c8d93d9757e40a?pvs=4)
 
-Note: All tasks are listed in Task Universe page
+**Please read Notion Documentation on [bugs with sound](https://possible-aletopelta-198.notion.site/Work-Around-Sound-Build-Errors-1cc0992c88eb8074a6f7e6e5d49031f8?pvs=4)** and do the following before you do dotnet run (if you are using Visual Studio Builds to run, then try to follow steps in Notion, but this works better)
+````
+git restore Content/
+git clean -f -d
+dotnet run
+````
+
+Note: All tasks are listed in Task Universe page and also in the bottom of Sprint 4 page
 
 All Documentation files listed below are in the Documentation folder:
 * KirbStomp Sprint Requirements.pdf - this list all the our game plan to meet each sprint requirement
-* KirbStomp Sprint 3 Initial Planning.pdf - this lists our Sprint3 initial task planning. NOTE: this was done on time, but there was a merge issue that messed up our branch (Please check this [pull request](https://github.com/StaticYolt/KirbStomp/pull/86))
+* KirbStomp Sprint 4 Initial Planning.pdf - this lists our Sprint4 initial task planning
 * KirbStomp Code Analysis.pdf - this contains our code metrics data obtained from Visual Studio's code analysis tool
-* KirbStomp Sprint 3 Reflection.pdf - this documents our team sprint3 overall progress reflection
+* KirbStomp Sprint 4 Reflection.pdf - this documents our team sprint4 overall progress reflection
 
-### Runtime Action
-* Character, platform block, items have collision with each other
-* Both Mario can attack each other and result in damage collision
-* Arrow and fireball hurt Mario
-* Hitting the arrow will sprawn arrows
-* Collision with hamburger will remove it from the screen
-* NOTE: our hitbox is set to be drawn (Checked with grader and they said this is fine)
+### Runtime Action (More details in Notion)
+* 3 scenes - start scene, battle scene, and end scene
+* Switch scene with key 1, 2, 3 - end scene should be automatic when one character used up all its lives
+* 2 Player game - 3 chracters but link and megaman is using the same controller
+* Items are randomly spawn
 
 ### Scenes
-* D1 - Test Scene w/o items or attack collision but w/ platform collision
-* D2 - Battle Scene w/ all items and collision
-* D3 - Reset Current Scene to initial conditions
+* D1 - Start Scene
+* D2 - Battle Scene w/ 3 characters (does not reset automatically)
+* D3 - End Scene
+* D4 - Pause / Resume
+* D5 - Reset
   
 ### Controller
 Mario 1 Character:
@@ -39,13 +46,9 @@ Mario 1 Character:
 
 Mario 2 Character:
 * PL;' - up, left, down, right
-* Down - Regular/aerial attack
-* Left - Special attack
-* Right Shift - jump
-
-Items:
-* Fireball - 0 key, move mouse to control placement
-* Arrow - 9 key, move mouse to control placement
+* Down arrow - Regular/aerial attack
+* Left arrow - Special attack
+* Up arrow - jump
 
 Camera:
 * UHJK - up, left, down, right
@@ -56,8 +59,9 @@ Camera:
 
 * The code reviews are commented under a pull request
 * Pull requests with code review is tagged CR in the closed pull request (Go to Pull request tabs -> select closed pull requests -> select CR label)
-* NOTE: most code reviews for the team were done verbally when the team met, so the timestamp on the pull request comment may not accurately represent the date the CR was done. We will make sure to document them on the right date for the next sprint (based on the feedback we got back from Sprint 2).
 
 ### Known Bugs
-* Attack hitboxes are too precise, so collision damage only occurs when characters are very close
-* Collision does not work if Key 1 is pressed
+* Pause mechanism only work with Battle Scene
+* Pause function is a little glitchy - you might need to wait at least a second or press the key a couple time to pause or resume
+* Sometimes the arrows stop right before it hits the ground
+* Please read notes in notion about music

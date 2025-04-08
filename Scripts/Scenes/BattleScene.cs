@@ -16,6 +16,7 @@ using KirbStomp.Scripts.Classes.Platforms;
 using KirbStomp.Scripts.Classes.GameObjects.Projectiles;
 using KirbStomp.Scripts.Classes.Projectiles;
 using KirbStomp.Scripts.Classes.GameObjects.Items;
+using static System.Net.Mime.MediaTypeNames;
 public class BattleScene : IScene
 {
     public static Texture2D boxSheet = Game1.Get().Content.Load<Texture2D>("HitboxWire");
@@ -38,7 +39,9 @@ public class BattleScene : IScene
     private ArrayList _characterList;
     private ArrayList _platformList;
     private ArrayList _controllerList;
+    private ArrayList _boundaryList;
     private ProjectileManager _projectileManager;
+
     private ItemManager _itemManager;
     
     private Texture2D _platformSheet;
@@ -46,6 +49,7 @@ public class BattleScene : IScene
     private Texture2D _linkSheet;
     private Texture2D _marioFireBallSheet;
     private Texture2D _linkArrowSheet;
+    private Texture2D _btUISheet;
 
     //debounce purely for demenstration
     private float _debounce = 0f;
@@ -54,6 +58,11 @@ public class BattleScene : IScene
     private string linkSpriteSheetName = "LinkTransparentSpriteSheet";
 
     private Camera2D _camera;
+    private SpriteFont impactFont;
+    private Sprite _background;
+    private List<IUI> _uiList;
+    // private List<IUI> _uiList;
+
     public BattleScene() {
         
         _numFrames = 0;
@@ -89,16 +98,49 @@ public class BattleScene : IScene
         _debounce += (float)gameTime.ElapsedGameTime.TotalSeconds;
         if(_debounce > .2f)
         {
+            
+
             if (Keyboard.GetState().IsKeyDown(Keys.D0))
             {
-                this._projectileManager.AddProjectile(new MarioFireBall(new Vector2(Mouse.GetState().X / (float)Game1.Get().GetScreenWindow().globalScaleX, Mouse.GetState().Y / (float)Game1.Get().GetScreenWindow().globalScaleY), true));
+                this._projectileManager.SpawnProjectile("MarioFireBall", new Vector2(Mouse.GetState().X / (float)Game1.Get().GetScreenWindow().globalScaleX, Mouse.GetState().Y / (float)Game1.Get().GetScreenWindow().globalScaleY), true);
                 _debounce = 0;
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.D9))
             {
                 this._projectileManager.AddProjectile(new LinkArrow(new Vector2(Mouse.GetState().X / (float)Game1.Get().GetScreenWindow().globalScaleX, Mouse.GetState().Y / (float)Game1.Get().GetScreenWindow().globalScaleY), false));
                 _debounce = 0;
+            }else if (Keyboard.GetState().IsKeyDown(Keys.D8))
+            {
+                this._projectileManager.SpawnProjectile("Boomerang", new Vector2(Mouse.GetState().X / (float)Game1.Get().GetScreenWindow().globalScaleX, Mouse.GetState().Y / (float)Game1.Get().GetScreenWindow().globalScaleY), true);
+                _debounce = 0;
             }
+            else if (Keyboard.GetState().IsKeyDown(Keys.D7))
+            {
+                this._projectileManager.SpawnProjectile("Bomb", new Vector2(Mouse.GetState().X / (float)Game1.Get().GetScreenWindow().globalScaleX, Mouse.GetState().Y / (float)Game1.Get().GetScreenWindow().globalScaleY), true);
+                _debounce = 0;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.D6))
+            {
+                this._projectileManager.SpawnProjectile("LinkThrustSide", new Vector2(Mouse.GetState().X / (float)Game1.Get().GetScreenWindow().globalScaleX, Mouse.GetState().Y / (float)Game1.Get().GetScreenWindow().globalScaleY), true);
+                _debounce = 0;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.OemCloseBrackets))
+            {
+                this._projectileManager.SpawnProjectile("LinkUpThrust", new Vector2(Mouse.GetState().X / (float)Game1.Get().GetScreenWindow().globalScaleX, Mouse.GetState().Y / (float)Game1.Get().GetScreenWindow().globalScaleY), true,(Character) _characterList[1]);
+                _debounce = 0;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.D5))
+            {
+                this._projectileManager.SpawnProjectile("LinkSideSlash", new Vector2(Mouse.GetState().X / (float)Game1.Get().GetScreenWindow().globalScaleX, Mouse.GetState().Y / (float)Game1.Get().GetScreenWindow().globalScaleY), true, (Character)_characterList[1]);
+                _debounce = 0;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.OemMinus))
+            {
+                this._projectileManager.SpawnProjectile("LinkDownThrust", new Vector2(Mouse.GetState().X / (float)Game1.Get().GetScreenWindow().globalScaleX, Mouse.GetState().Y / (float)Game1.Get().GetScreenWindow().globalScaleY), true, (Character)_characterList[1]);
+                _debounce = 0;
+            }
+
+
         }
 
         this._projectileManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
@@ -125,7 +167,8 @@ public class BattleScene : IScene
         foreach (ICharacter chara in _characterList) { chara.MoveCharacter(gameTime); }
 
         //right now this is actually called under process buttons
-        _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Body, HitboxTypeEnum.Platform);
+        _collisionSystem.CheckCollisionPairGround(HitboxTypeEnum.Body, HitboxTypeEnum.Platform);
+        _collisionSystem.CheckCollisionPairGround(HitboxTypeEnum.Body, HitboxTypeEnum.Boundary);
         _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Platform);
         _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Body);
         //State is actually changed
@@ -146,23 +189,28 @@ public class BattleScene : IScene
         //nothing to do with mario, DEBUGGING 
     }
 
-    public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+    public void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.Begin(transformMatrix: _camera.GetTranslationMatrix());
-
+        _background.Draw(spriteBatch, new Vector2(0, 0));
         this._projectileManager.Draw(spriteBatch);
         this._itemManager.Draw(spriteBatch);
-        foreach (ICharacter chara in _characterList)
-        {
-            chara.Draw(spriteBatch);
-            chara.DrawHitbox(spriteBatch);
-        }
         foreach(Platform platform in _platformList)
         {
             platform.Draw(spriteBatch);
             platform.DrawHitbox(spriteBatch);
         }
-
+        foreach (IUI ui in _uiList)
+        {
+            ui.Draw(spriteBatch);
+        }
+        foreach (ICharacter chara in _characterList)
+        {
+            chara.Draw(spriteBatch);
+            chara.DrawHitbox(spriteBatch);
+        }
+        // spriteBatch.DrawString(impactFont, "MARIO", new Vector2(220, 770), Color.White);
+        // spriteBatch.DrawString(impactFont, "LINK", new Vector2(575, 770), Color.White);
         spriteBatch.End();
     }
     private string GetRelativeFilePath(string file)
@@ -176,14 +224,16 @@ public class BattleScene : IScene
     }
     public void LoadContent()
     {
-        //much of this should be moved to load content 
-        
-        _marioSheet = Game1.Get().Content.Load<Texture2D>(marioSpriteSheetName);
-        _linkSheet = Game1.Get().Content.Load<Texture2D>(linkSpriteSheetName);
+        impactFont = Game1.Get().Content.Load<SpriteFont>("impact");
+        _btUISheet = Game1.Get().Content.Load<Texture2D>("BattleUISpriteSheet");
+        _background = new Sprite(Game1.Get().Content.Load<Texture2D>("SpaceBackground"), new Rectangle(0, 0, 3000, 2000), .27f);
+
         //projectile stuff***
         _marioFireBallSheet = Game1.Get().Content.Load<Texture2D>("MarioProjectileTransparentSpriteSheet");
         _linkArrowSheet = Game1.Get().Content.Load<Texture2D>(linkSpriteSheetName);
         Texture2D itemSheet = Game1.Get().Content.Load<Texture2D>("Items");
+        _marioSheet = Game1.Get().Content.Load<Texture2D>(marioSpriteSheetName);
+        _linkSheet = Game1.Get().Content.Load<Texture2D>(linkSpriteSheetName);
         AssetPool.LoadTexture(itemSheet, "Items");
         AssetPool.LoadTexture(_marioSheet, "MarioProjectile");
         AssetPool.LoadTexture(_linkSheet, "LinkProjectile");
@@ -203,9 +253,14 @@ public class BattleScene : IScene
         HitboxRepository.LoadHitboxesFromXml(xmlPathMarioHitbox);
         string xmlPathMarioAttackHitbox = GetRelativeFilePath("MarioAttackHitbox.XML");
         AttackHitboxRepository.LoadHitboxesFromXml(xmlPathMarioAttackHitbox);
+        string xmlPathLinkHitbox = GetRelativeFilePath("LinkHitbox.XML");
+        HitboxRepository.LoadHitboxesFromXml(xmlPathLinkHitbox);
+        string xmlPathLinkAttackHitbox = GetRelativeFilePath("LinkAttackHitbox.XML");
+        AttackHitboxRepository.LoadHitboxesFromXml(xmlPathLinkAttackHitbox);
     }
 
-    private void DebugFPS() {
+    private void DebugFPS()
+    {
         //fps
         _numFrames++;
         _framesRendered++;
@@ -223,7 +278,19 @@ public class BattleScene : IScene
         return this._projectileManager;
     }
     public void ResetScene() {
-        Character mario = new Character("Mario", _marioSheet, marioSpriteSheetName, new Vector2(100, 100));
+        float scale = .2f;
+        CharacterUIData marioUIData = new CharacterUIData(
+            new Sprite(_btUISheet, new Rectangle(0, 524, 99, 60), scale), // stock icon
+            new Sprite(_btUISheet, new Rectangle(0, 621, 240, 299), scale), // portrait icon
+            "MARIO"
+        );
+        CharacterUIData linkUIData = new CharacterUIData(
+            new Sprite(_btUISheet, new Rectangle(0, 0, 104, 85), scale), // stock icon
+            new Sprite(_btUISheet, new Rectangle(0, 105, 424, 307), scale), // portrait icon
+            "LINK"
+        );
+
+        Character mario = new Character("Mario", _marioSheet, new Vector2(100, 100), marioUIData);
         IController controllerMario = new KeyboardController(mario.GetButtonDataManager, new Dictionary<Keys, ICommand>()
         {
             {Keys.W, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Up])},
@@ -233,44 +300,79 @@ public class BattleScene : IScene
             {Keys.Y, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Attack])},
             {Keys.T, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Special])},
             {Keys.Space, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Jump])},
-            {Keys.V, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.GotHit])}
         });
-        Character mario2 = new Character("Mario", _marioSheet, marioSpriteSheetName, new Vector2(300, 100));
-        IController controllerMario2 = new KeyboardController(mario2.GetButtonDataManager, new Dictionary<Keys, ICommand>()
+        Character link = new Character("Link", _linkSheet, new Vector2(300, 70), linkUIData);
+        IController controllerLink = new KeyboardController(link.GetButtonDataManager, new Dictionary<Keys, ICommand>()
         {
-            {Keys.P, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Up])},
-            {Keys.L, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Left])},
-            {Keys.OemSemicolon, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Down])},
-            {Keys.OemQuotes, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Right])},
-            {Keys.Down, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Attack])},
-            {Keys.Left, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Special])},
-            {Keys.RightShift, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Jump])}
+            {Keys.P, new UpdateButtonCommand(link.GetButtonDataManager.ButtonDataSheet[GameButtons.Up])},
+            {Keys.L, new UpdateButtonCommand(link.GetButtonDataManager.ButtonDataSheet[GameButtons.Left])},
+            {Keys.OemSemicolon, new UpdateButtonCommand(link.GetButtonDataManager.ButtonDataSheet[GameButtons.Down])},
+            {Keys.OemQuotes, new UpdateButtonCommand(link.GetButtonDataManager.ButtonDataSheet[GameButtons.Right])},
+            {Keys.Down, new UpdateButtonCommand(link.GetButtonDataManager.ButtonDataSheet[GameButtons.Attack])},
+            {Keys.Left, new UpdateButtonCommand(link.GetButtonDataManager.ButtonDataSheet[GameButtons.Special])},
+            {Keys.RightShift, new UpdateButtonCommand(link.GetButtonDataManager.ButtonDataSheet[GameButtons.Jump])}
         });
         //ICharacter link = new Character(linkSheet, LinkSpriteSheetName);
         //IController controllerLink = new KeyboardController(link.GetButtonDataManager);
 
         // mario.AssignLegitimateHitboxSheet(boxSheet);
-        
-        Platform platform = new Platform(PlatformTypeEnum.SideDirtPlatform,new Rectangle(10,420,780,20), _platformSheet);
-        Platform platform2 = new Platform(PlatformTypeEnum.SideDirtPlatform, new Rectangle(500, 250, 200, 20), _platformSheet);
+
+        PlayerBattleUI _playerOneBTUI = new PlayerBattleUI(impactFont, 
+            mario,
+            new Vector2(100, 380),
+            new Sprite(_btUISheet, new Rectangle(515, 561, 508, 339), scale), // portrait background
+            new Sprite(_btUISheet, new Rectangle(0, 956, 874, 49), scale)  // name holder
+        );
+        PlayerBattleUI _playerTwoBTUI = new PlayerBattleUI(impactFont, 
+            link,
+            new Vector2(440, 380),
+            new Sprite(_btUISheet, new Rectangle(515, 0, 508, 339), scale), // portrait background
+            new Sprite(_btUISheet, new Rectangle(1, 437, 874, 49), scale)  // name holder
+        );
+
+        _uiList = new List<IUI>();
+        _uiList.Add(_playerOneBTUI);
+        _uiList.Add(_playerTwoBTUI);
+
+
+        Platform platformMain = new Platform(PlatformTypeEnum.SideDirtPlatform,new Rectangle(10,370,780,20), _platformSheet);
+        Platform platformSideR = new Platform(PlatformTypeEnum.SideDirtPlatform, new Rectangle(500, 200, 200, 20), _platformSheet);
+        Platform platformSideL = new Platform(PlatformTypeEnum.SideDirtPlatform, new Rectangle(100, 200, 200, 20), _platformSheet);
         _platformList = new ArrayList();
-        _platformList.Add(platform);
-        _platformList.Add(platform2);
+        _platformList.Add(platformMain);
+        _platformList.Add(platformSideR);
+        _platformList.Add(platformSideL);
+
+        StageBoundary BoundaryBottom = new StageBoundary(new Rectangle(-100, 700, 1000, 50), _platformSheet);
+        StageBoundary BoundaryTop = new StageBoundary(new Rectangle(-100, -500, 1000, 50), _platformSheet);
+        StageBoundary BoundaryLeft = new StageBoundary(new Rectangle(-150, -500, 50, 1250), _platformSheet);
+        StageBoundary BoundaryRight = new StageBoundary(new Rectangle(900, -500, 50, 1250), _platformSheet);
+
+        _boundaryList = new ArrayList();
+        _boundaryList.Add(BoundaryBottom);
+        _boundaryList.Add(BoundaryTop);
+        _boundaryList.Add(BoundaryLeft);
+        _boundaryList.Add(BoundaryRight);
 
         _characterList = new ArrayList();
         _characterList.Add(mario);
-        _characterList.Add(mario2);
+        _characterList.Add(link);
        // _characterList.Add(new Character("Link", linkSheet, linkSpriteSheetName, new Vector2(600, 700)));
 
         _controllerList = new ArrayList();
         _controllerList.Add(controllerMario);
-        _controllerList.Add(controllerMario2);
+        _controllerList.Add(controllerLink);
 
         _collisionSystem = new CollisionSystem();
         _collisionSystem.RegisterObject(mario);
-        _collisionSystem.RegisterObject(mario2);
-        _collisionSystem.RegisterObject(platform);
-        _collisionSystem.RegisterObject(platform2);
+        _collisionSystem.RegisterObject(link);
+        _collisionSystem.RegisterObject(platformMain);
+        _collisionSystem.RegisterObject(platformSideR);
+        _collisionSystem.RegisterObject(platformSideL);
+        _collisionSystem.RegisterObject(BoundaryTop);
+        _collisionSystem.RegisterObject(BoundaryLeft);
+        _collisionSystem.RegisterObject(BoundaryRight);
+        _collisionSystem.RegisterObject(BoundaryBottom);
 
         this._projectileManager = new ProjectileManager(_collisionSystem);
         this._itemManager = new ItemManager(_collisionSystem);
@@ -280,6 +382,8 @@ public class BattleScene : IScene
 
         this._itemManager.AddItem(new HamburgerItem(new Vector2(500, 200)));
         this._itemManager.AddItem(new ArrowStormItem(new Vector2(200, 200)));
+        this._itemManager.AddItem(new BombItem(new Vector2(400, 200)));
         CharacterXMLParser.LoadCharacter("Mario");
+        CharacterXMLParser.LoadCharacter("Link");
     }
 }

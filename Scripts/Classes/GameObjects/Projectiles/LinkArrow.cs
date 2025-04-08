@@ -12,6 +12,14 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
 {
     public class LinkArrow : AProjectile
     {
+        private readonly String TEXTURE_NAME = "LinkProjectile";
+        private readonly String ANIM_NAME = "LinkProjectileTransparentSpriteSheet";
+        private readonly String ANIM_STATE_SPAWN = "ArrowShoot";
+        private readonly String ANIM_STATE_DOWN = "ArrowDown";
+        private readonly String ANIM_STATE_DEATH = "ArrowDeath";
+        private readonly int WIDTH = 32;
+        private readonly int HEIGHT = 32;
+        private float _scale = 1.5f;
         private Sprite _sprite;
         private AnimationSystem _animationSystem;
         private float _maxSpeedX = 600;
@@ -20,24 +28,29 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
         private float _deathTimeLeft = 3f;
         private float _noHitTimeLeft = 4f;
 
+        private float DAMAGE = 10;
+
+        
+
         
         
 
         public LinkArrow(Vector2 position, bool facingRight)
         {
+            
             this.Position = position;
-            this._sprite = new Sprite(AssetPool.GetTexture("LinkProjectile"), new Rectangle()/*doesnt matter, will be animated*/, 1f);
+            this._sprite = new Sprite(AssetPool.GetTexture(TEXTURE_NAME), new Rectangle()/*doesnt matter, will be animated*/, _scale);
             this._animationSystem = new AnimationSystem(_sprite);
 
-            Animation spawnArrow = AssetPool.GetAnimation("LinkProjectileTransparentSpriteSheet", "ArrowShoot");
-            Animation downArrow = AssetPool.GetAnimation("LinkProjectileTransparentSpriteSheet", "ArrowDown");
-            Animation downDeath = AssetPool.GetAnimation("LinkProjectileTransparentSpriteSheet", "ArrowDeath");
+            Animation spawnArrow = AssetPool.GetAnimation(ANIM_NAME, ANIM_STATE_SPAWN);
+            Animation downArrow = AssetPool.GetAnimation(ANIM_NAME, ANIM_STATE_DOWN);
+            Animation downDeath = AssetPool.GetAnimation(ANIM_NAME, ANIM_STATE_DEATH);
 
             this._animationSystem.AddAnimation(spawnArrow);
             this._animationSystem.AddAnimation(downArrow);
             this._animationSystem.AddAnimation(downDeath);
 
-            this._animationSystem.SetAnimation("ArrowShoot");
+            this._animationSystem.SetAnimation(ANIM_STATE_SPAWN);
 
             this.Velocity = new Vector2(_maxSpeedX, 0);
             if (!facingRight)
@@ -46,7 +59,7 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
                 this._sprite.FlipTextureX();
             }
 
-            this._dimension = new Rectangle((int)this.Position.X, (int)this.Position.Y, 32, 16);
+            this._dimension = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)(WIDTH * _scale), (int)(HEIGHT* _scale));
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -56,8 +69,9 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
 
         public override void RegisterCollider()
         {
-            // this.ProvideCharacterCarriers();
+            this._attackCarrier.SetDamage(DAMAGE);
             this._bodyCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
+            this._attackCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
 
             RegisterCollisionResponse(HitboxTypeEnum.Body,
                                     HitboxTypeEnum.Platform,
@@ -75,6 +89,7 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
 
         public void HitPlayer(CollisionObject obj, CollisionContext context)
         {
+            
             this.Destroy();
         }
 
@@ -109,7 +124,7 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
         public void BeginDeath()
         {
             this._isDead = true;
-            this._animationSystem.SetAnimation("ArrowDeath");
+            this._animationSystem.SetAnimation(ANIM_STATE_DEATH);
             this.Velocity = Vector2.Zero;
             this._gravity = 0;
             this._attackCarrier.IsDisabled = true;

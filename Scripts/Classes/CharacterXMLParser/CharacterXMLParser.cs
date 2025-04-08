@@ -1,4 +1,5 @@
 ﻿using KirbStomp.Data;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -36,31 +37,10 @@ namespace KirbStomp
 	}
 	internal class CharacterXMLParser
 	{
-		private static Dictionary<string, TempCharacterStats> characters = new();
-		
 
-	
 		public static void LoadCharacter(string name)
 		{
-			if(!characters.ContainsKey(name))
-			{
-				characters.Add(name, ParseCharacterXML(name));
-			}
-			// if(!characters.TryAdd(name, ParseCharacterXML(name)))
-			// {
-			// 	throw new Exception($"Already added character {name}");
-			// }
-			
-		}
-	
-		private static TempCharacterStats GetCharacterStats(string name)
-		{
-			TempCharacterStats stats;
-			if(characters.TryGetValue(name, out stats))
-			{
-				return stats;
-			}
-			return default;
+      
 		}
 
 		private static TempCharacterStats ParseCharacterXML(string fileName)
@@ -74,6 +54,28 @@ namespace KirbStomp
 			return new TempCharacterStats(characterName, characterHealth, movementStats, physicsStats);
 		}
 		
+		public static CharacterStats LoadCharacterStatsFile(string fileName)
+		{
+			XElement characterElement = GetCharacterStatsXElement(fileName);
+
+			string characterName = GetXElementOrAssert("Name", characterElement).Value;
+			float characterHealth = float.Parse(GetXElementOrAssert("Health", characterElement).Value);
+			string positionStr = GetXElementOrAssert("Position", characterElement).Value;
+			int[] positionInts = Array.ConvertAll(positionStr.Split(new char[] { ' ', '\t', '\n' }, StringSplitOptions.RemoveEmptyEntries), int.Parse);
+            Vector2 position = new(positionInts[0], positionInts[1]);
+			MovementStats movementStats = GetMovementStatsFromCharacter(characterElement);
+			PhysicsStats physicsStats = GetPhysicsStatsFromCharacter(characterElement);
+			AvailableAttacks availableAttacks = GetAvailableAttacksFromCharacter(characterElement); // Not actually implemented
+
+			XElement UIs = GetXElementOrAssert("UI", characterElement);
+			UIIconData stockIcon = GetUIIconData(GetXElementOrAssert("StockIcon", UIs));
+			UIIconData portraitIcon = GetUIIconData(GetXElementOrAssert("PortraitIcon", UIs));
+
+
+			return new CharacterStats(characterName, characterHealth, position, movementStats, physicsStats, availableAttacks, stockIcon, portraitIcon);
+		}
+
+
 		private static XElement GetCharacterStatsXElement(string name)
 		{
 			string dataFolder = XMLData.GetDataFolder();
@@ -119,6 +121,58 @@ namespace KirbStomp
 			float gravity = float.Parse(GetXElementOrAssert("Gravity", physicsElement).Value);
 			float speedDecay = float.Parse(GetXElementOrAssert("SpeedDecay", physicsElement).Value);
 			return new PhysicsStats(knockbackScale, gravity, speedDecay);
+		}
+
+		
+		private static UIIconData GetUIIconData(XElement uiIcon)
+		{
+			string spriteSheet = GetXElementOrAssert("SpriteSheet", uiIcon).Value.Replace(" ", string.Empty);
+
+			string sourcePositionStr = GetXElementOrAssert("SourcePosition", uiIcon).Value;
+			int[] positionInts = Array.ConvertAll(sourcePositionStr.Split(new char[] {' ', '\t', '\n' }, StringSplitOptions.RemoveEmptyEntries), int.Parse);
+			string sourceSizeStr = GetXElementOrAssert("SourceSize", uiIcon).Value;
+			int[] sizeInts = Array.ConvertAll(sourceSizeStr.Split(new char[] {' ', '\t', '\n' }, StringSplitOptions.RemoveEmptyEntries), int.Parse);
+			Rectangle source = new(positionInts[0], positionInts[1], sizeInts[0], sizeInts[1]);
+			float iconScale = float.Parse(GetXElementOrAssert("Scale", uiIcon).Value);
+
+			return new UIIconData(spriteSheet, source, iconScale);
+		}
+
+		private static AvailableAttacks GetAvailableAttacksFromCharacter(XElement characterElemenet)
+		{
+			XElement attacksElements = GetXElementOrAssert("Attacks", characterElemenet);
+			
+
+			return default;
+		}
+
+		private static void GetDirectionalAttacks(XElement directionalXElement, out bool front, out bool back, out bool up, out bool down)
+		{
+			front = bool.Parse(GetElementStringValueNoWhiteSpace("HasAttackFront", directionalXElement));
+			back = bool.Parse(GetElementStringValueNoWhiteSpace("HasAttackBack", directionalXElement));
+			up = bool.Parse(GetElementStringValueNoWhiteSpace("HasAttackUp", directionalXElement));
+			down = bool.Parse(GetElementStringValueNoWhiteSpace("HasAttackDown", directionalXElement));
+		}
+
+		private static int GetHasAttacks(XElement elements, out List<int> attacksAvailable)
+		{
+			int attackNum = 0;
+			int count = 0;
+			attacksAvailable = new();
+			foreach(XElement element in elements.Elements("HasAttack"))
+			{
+				if(!int.TryParse(element.Value, out attackNum))
+				{
+					throw new Exception($"Tried parsing {element.Value} into int for attacks and failed");
+				}
+				attacksAvailable.Add(attackNum);
+				count++;
+			}
+			return count;
+		}
+		private static string GetElementStringValueNoWhiteSpace(string name, XElement element)
+		{
+			return GetXElementOrAssert(name, element).Value.Replace(" ", string.Empty);
 		}
 	}
 }

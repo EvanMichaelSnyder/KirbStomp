@@ -1,6 +1,7 @@
 ﻿<Character>
 	<Name> Mario </Name>
 	<Health> 0.0 </Health>
+	<Position> 100 100 </Position>
 	<Movement>
 		<BaseWalkSpeed>		10.0	</BaseWalkSpeed>
 		<BaseRunSpeed>		20.0	</BaseRunSpeed>
@@ -19,9 +20,9 @@
 	<Attacks>
 		<GroundAttacks>
 			<Neutrals>
-				<HasAttack1> true </HasAttack1>
-				<HasAttack2> true </HasAttack2>
-				<HasAttack3> true </HasAttack3>
+				<HasAttack> 1 </HasAttack>
+				<HasAttack> 2 </HasAttack>
+				<HasAttack> 3 </HasAttack>
 			</Neutrals>
 			<Directionals>
 				<HasAttackFront>	true	</HasAttackFront>
@@ -32,7 +33,7 @@
 		</GroundAttacks>
 		<Aerials>
 			<Neutrals>
-				<HasAttack1> true</HasAttack1>
+				<HasAttack> 1 </HasAttack>
 			</Neutrals>
 			<Directionals>
 				<HasAttackFront>	true	</HasAttackFront>
@@ -43,7 +44,7 @@
 		</Aerials>
 		<Specials>
 			<Neutral>
-				<HasAttack1>	true	</HasAttack1>
+				<HasAttack>	1 </HasAttack>
 			</Neutral>
 			<Directionals>
 				<HasAttackFront>	true	</HasAttackFront>
@@ -53,5 +54,20 @@
 			</Directionals>
 		</Specials>
 	</Attacks>
+	<UI>
+		<StockIcon>
+			<SpriteSheet>BattleUISpriteSheet</SpriteSheet>
+			<SourcePosition>0 524</SourcePosition>
+			<SourceSize>99 60</SourceSize>
+			<Scale>0.2</Scale>
+		</StockIcon>
+
+		<PortraitIcon>
+			<SpriteSheet>BattleUISpriteSheet</SpriteSheet>
+			<SourcePosition>0 621</SourcePosition>
+			<SourceSize>240 299</SourceSize>
+			<Scale>0.2</Scale>
+		</PortraitIcon>
+	</UI>
 
 </Character>

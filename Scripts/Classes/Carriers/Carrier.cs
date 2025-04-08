@@ -10,13 +10,16 @@ using Microsoft.Xna.Framework.Graphics;
 namespace KirbStomp.Scripts.Classes.Carriers
 {
 
-    public abstract class Carrier
-    {
-        public HitboxManager HitboxManager { get; protected set; }
-        public CollisionObject Parent { get; set; }
+public abstract class Carrier
+{
+    private CollisionObject _parent;
+    
+    public HitboxManager HitboxManager { get; protected set; }
+    public CollisionObject Parent { get; set; }
+
 
         public bool IsDisabled { get; set; } = false;
-    }
+}
 
     public class BodyCarrier : Carrier
     {
@@ -35,7 +38,7 @@ namespace KirbStomp.Scripts.Classes.Carriers
         //can flip is used for bidirectional attacks where the facing direction of the parent cannot be used to determine behavior
         private bool CanFlipX = true;
         private bool CanFlipY = false;
-        private bool hitboxAngleShearing = true;
+        private bool hitboxAngleShearing = true;//always do true
 
         //then some special function
 
@@ -44,9 +47,20 @@ namespace KirbStomp.Scripts.Classes.Carriers
             return Damage;
         }
 
+        public void SetDamage(float amt)
+        {
+            this.Damage = amt;
+        }
+
         public AttackCarrier()
         {
             HitboxManager = new HitboxManager(BattleScene.attackBoxSheet, HitboxTypeEnum.Attack);
+        }
+
+
+        public void assignAttackDataFromXML()
+        {
+
         }
 
         //returns a resulting vector for collision after being fed all relevant information
@@ -101,6 +115,14 @@ namespace KirbStomp.Scripts.Classes.Carriers
         public PlatformCarrier()
         {
             HitboxManager = new HitboxManager(BattleScene.boxSheet, HitboxTypeEnum.Platform);
+        }
+    }
+
+    public class BoundaryCarrier : Carrier
+    {
+        public BoundaryCarrier()
+        {
+            HitboxManager = new HitboxManager(BattleScene.boxSheet, HitboxTypeEnum.Boundary);
         }
     }
 

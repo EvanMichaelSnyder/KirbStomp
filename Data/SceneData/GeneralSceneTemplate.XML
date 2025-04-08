@@ -1,0 +1,29 @@
+﻿<Scene>
+	<Name> SceneMain </Name>
+	<FilesToLoad>
+		<Characters>
+			<Character> Mario MarioTransparentSpriteSheet Player1Controls </Character>
+			<Character> Link LinkTransparentSpriteSheet Player2Controls	</Character>
+			<Character> Megaman MegamanTransparentSpriteSheet Player2Controls	</Character> 
+		</Characters>
+		<Platforms>
+			<Platform> PlatformMain </Platform>
+    	</Platforms>
+		<UIs>
+			<PlayerUI> Player1UI </PlayerUI>
+			<PlayerUI> Player2UI </PlayerUI>
+		</UIs>
+
+		<AssetPool>
+			<Textures>
+				<Texture> Items Items </Texture>
+				<Texture> MarioProjectile MarioTransparentSpriteSheet </Texture>
+				<Texture> LinkProjectile LinkTransparentSpriteSheet </Texture>
+			</Textures>
+			<Animations>
+				<Animation> LinkProjectile </Animation>
+				<Animation> MarioProjectile </Animation>
+			</Animations>
+		</AssetPool>		
+	</FilesToLoad>
+</Scene>

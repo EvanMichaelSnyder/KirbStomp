@@ -6,6 +6,7 @@ namespace KirbStomp.Interfaces
 {
     internal interface ICharacter
     {
+        public string GetName();
         public void UpdateState();
         public void DoBehavior();
         ButtonDataManager GetButtonDataManager { get; }

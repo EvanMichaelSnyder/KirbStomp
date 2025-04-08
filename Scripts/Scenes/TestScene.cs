@@ -95,7 +95,7 @@ public class TestScene : IScene
         //nothing to do with mario, DEBUGGING 
     }
 
-    public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+    public void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.Begin(transformMatrix: _camera.GetTranslationMatrix());
 
@@ -149,7 +149,7 @@ public class TestScene : IScene
         return null;
     }
     public void ResetScene() {
-        Character mario = new Character("Mario", _marioSheet, marioSpriteSheetName, new Vector2(100, 100));
+        Character mario = new Character("Mario", _marioSheet, new Vector2(100, 100));
         IController controllerMario = new KeyboardController(mario.GetButtonDataManager, new Dictionary<Keys, ICommand>()
         {
             {Keys.W, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Up])},
@@ -161,7 +161,7 @@ public class TestScene : IScene
             {Keys.Space, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.Jump])},
             {Keys.V, new UpdateButtonCommand(mario.GetButtonDataManager.ButtonDataSheet[GameButtons.GotHit])}
         });
-        Character mario2 = new Character("Mario", _marioSheet, marioSpriteSheetName, new Vector2(300, 100));
+        Character mario2 = new Character("Mario", _marioSheet, new Vector2(300, 100));
         IController controllerMario2 = new KeyboardController(mario2.GetButtonDataManager, new Dictionary<Keys, ICommand>()
         {
             {Keys.P, new UpdateButtonCommand(mario2.GetButtonDataManager.ButtonDataSheet[GameButtons.Up])},

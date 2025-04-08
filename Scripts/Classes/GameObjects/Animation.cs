@@ -13,10 +13,12 @@ namespace KirbStomp.Scripts.Projectiles
         {
             private Rectangle _srcRectangle;
             private float _frameTime;
-            public Frame(Rectangle srcRectangle, float frameTime)
+            private Vector2 _offset;
+            public Frame(Rectangle srcRectangle, float frameTime, Vector2 offset)
             {
                 _srcRectangle = srcRectangle;
                 _frameTime = frameTime;
+                _offset = offset;
             }
 
             public Rectangle GetSrcRectangle()
@@ -27,6 +29,11 @@ namespace KirbStomp.Scripts.Projectiles
             public float GetFrameTime()
             {
                 return _frameTime;
+            }
+
+            public Vector2 GetOffset()
+            {
+                return this._offset;
             }
 
         }
