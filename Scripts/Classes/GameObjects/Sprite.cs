@@ -20,6 +20,7 @@ namespace KirbStomp.Scripts.Projectiles
         private bool _isFlipped;
         private Vector2 _rotateOrigin;
         private Vector2 _offset;
+        private Vector2 _position;
         public Sprite(Texture2D sprSheet, Rectangle src, float scale)
         {
             this._spriteSheet = sprSheet;
@@ -30,6 +31,19 @@ namespace KirbStomp.Scripts.Projectiles
             this._zIndex = 0;
             this._color = Color.White;
         }
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            Vector2 coords = _position;
+            coords += _offset;
+            coords.X *= (float)Game1.Get().GetScreenWindow().globalScaleX;
+            coords.Y *= (float)Game1.Get().GetScreenWindow().globalScaleY;
+
+            Vector2 adjustedScale = new Vector2(this._scale * (float)Game1.Get().GetScreenWindow().globalScaleX, this._scale * (float)Game1.Get().GetScreenWindow().globalScaleY);
+
+            SpriteEffects spriteEffects = this._isFlipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            spriteBatch.Draw(this._spriteSheet, coords, this._srcRectangle, this._color, this._rotation, this._rotateOrigin, adjustedScale, spriteEffects, this._zIndex);
+        }
+
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
             Vector2 coords = new Vector2(position.X, position.Y);
