@@ -25,6 +25,12 @@
 /processorParam:TextureFormat=Color
 /build:AttackWire.png
 
+#begin BattlefieldTheme.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:BattlefieldTheme.mp3
+
 #begin BattleUISpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -96,6 +102,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Items.png
+
+#begin KirbyTransparentSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:KirbyTransparentSpriteSheet.png
+
+#begin lava.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:lava.png
 
 #begin LinkProjectileSpriteSheet.png
 /importer:TextureImporter
@@ -228,14 +258,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:SpaceBackground.png
-
-#begin KirbyTransparentSpriteSheet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/build:KirbyTransparentSpriteSheet.png
-
-#begin BattlefieldTheme.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/build:BattlefieldTheme.mp3
 

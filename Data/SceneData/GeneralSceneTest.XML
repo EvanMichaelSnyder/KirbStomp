@@ -17,6 +17,8 @@
 				<Texture> Items Items </Texture>
 				<Texture> MarioProjectiles MarioTransparentSpriteSheet </Texture>
 				<Texture> LinkProjectiles LinkTransparentSpriteSheet </Texture>
+				<Texture> lava lava </Texture>
+				<Texture> Platforms Platforms </Texture>
 			</Textures>
 			<Animations>
 				<Animation> LinkProjectile </Animation>

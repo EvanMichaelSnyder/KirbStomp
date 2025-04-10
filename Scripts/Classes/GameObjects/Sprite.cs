@@ -56,6 +56,21 @@ namespace KirbStomp.Scripts.Projectiles
             spriteBatch.Draw(this._spriteSheet, coords, this._srcRectangle, new Color(this._color.R, this._color.G, this._color.B, (int)(alphaPercent * 2.55f)), this._rotation, this._rotateOrigin, adjustedScale, spriteEffects, this._zIndex);
         }
 
+        public void Draw(SpriteBatch spriteBatch, Rectangle posHW)
+        {
+            Rectangle coordsHW = new Rectangle((int)(posHW.X + _offset.X),(int)(posHW.Y + _offset.Y), posHW.Width, posHW.Height );
+            coordsHW.X = (int)(Game1.Get().GetScreenWindow().globalScaleX * coordsHW.X);
+            coordsHW.Y = (int)(Game1.Get().GetScreenWindow().globalScaleY * coordsHW.Y);
+
+            coordsHW.Width = (int)(Game1.Get().GetScreenWindow().globalScaleX * coordsHW.Width);
+            coordsHW.Height = (int)(Game1.Get().GetScreenWindow().globalScaleY * coordsHW.Height);
+
+
+            SpriteEffects spriteEffects = this._isFlipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            spriteBatch.Draw(this._spriteSheet,coordsHW, this._srcRectangle, _color, _rotation, this._rotateOrigin, spriteEffects, _zIndex);
+            
+        }
+
         public void SetSrcRectangle(Rectangle srcRectangle)
         {
             this._srcRectangle = srcRectangle;

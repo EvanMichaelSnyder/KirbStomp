@@ -1,5 +1,6 @@
 ﻿using KirbStomp.Interfaces;
 using KirbStomp.Scripts.Classes.GameObjects.Projectiles;
+using KirbStomp.Scripts.Classes.Managers;
 using KirbStomp.Scripts.Classes.Platforms;
 using KirbStomp.Scripts.Classes.Projectiles;
 using KirbStomp.Scripts.Classes.Sound;
@@ -40,6 +41,7 @@ namespace KirbStomp.Scripts.Scenes
         private CollisionSystem _collisionSystem;
         private ProjectileManager _projectileManager;
         private ItemManager _itemManager;
+        private LevelManager _levelManager;
         private MusicManager _musicManager;
         private Sprite _background;
 
@@ -67,13 +69,17 @@ namespace KirbStomp.Scripts.Scenes
         
         public void Initialize()
         {
+            
             var (width, height) = Game1.Get().GetScreenWindow().GetAdjustedWindowSize();
             this._camera = new(Game1.Get().GraphicsDevice, new Point(width, height));
             _collisionSystem = new CollisionSystem();
             _projectileManager = new ProjectileManager(_collisionSystem);
             _itemManager = new ItemManager(_collisionSystem);
             _musicManager = MusicManager.Get();
+            //todo load string
             LoadContent();
+            _levelManager = new LevelManager(_collisionSystem, 100, "Platforms", Game1.Get().GetScreenWindow().GetXSize(), Game1.Get().GetScreenWindow().GetYSize());
+            
         }
 
 
@@ -130,6 +136,7 @@ namespace KirbStomp.Scripts.Scenes
 
             this._projectileManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             this._itemManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+            this._levelManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             //this._itemManager.SpawnRandomItem();
             this._camera.Update(gameTime);
             _musicManager.PlayMusic();
@@ -183,8 +190,10 @@ namespace KirbStomp.Scripts.Scenes
             // _background.Draw(spriteBatch, new());
 
             // Draw projectiles, Items, Characters, and Platforms
+            this._levelManager.Draw(spriteBatch);
             this._projectileManager.Draw(spriteBatch);
             this._itemManager.Draw(spriteBatch);
+            
 
 
 
