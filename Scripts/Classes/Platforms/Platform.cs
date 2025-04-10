@@ -45,6 +45,7 @@ namespace KirbStomp.Scripts.Classes.Platforms
             }
         }
 
+
         public void Draw(SpriteBatch spriteBatch)
 
         {
