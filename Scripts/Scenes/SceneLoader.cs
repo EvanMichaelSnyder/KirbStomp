@@ -151,18 +151,20 @@ namespace KirbStomp.Scripts.Scenes
             {
                 return;
             }
-            IUI ui;
-            int charaIndex = 0;
-            foreach (XElement UIElement in UIs.Elements("PlayerUI"))
-            {
-                UIToLoad = UIElement.Value.Replace(" ", string.Empty);
+            // IUI ui;
+            // int charaIndex = 0;
+            // foreach (XElement UIElement in UIs.Elements("PlayerUI"))
+            // {
+            //     UIToLoad = UIElement.Value.Replace(" ", string.Empty);
                 
-                ui = GeneratePlayerUI(UIToLoad, characters[charaIndex]);
-                UIList.Add(ui);
-                charaIndex++;
-            }
+            //     ui = GeneratePlayerUI(UIToLoad, characters[charaIndex]);
+            //     UIList.Add(ui);
+            //     charaIndex++;
+            // }
             Texture2D gameButtonsUISheet = Game1.Get().Content.Load<Texture2D>("GameButtons");
             Texture2D gameNameSheet = Game1.Get().Content.Load<Texture2D>("GameName");
+            SpriteFont impactFont = Game1.Get().Content.Load<SpriteFont>("impact");
+
             if(name.Contains("StartScreen")){
                 ButtonUI startButton = new ButtonUI(new Sprite(gameButtonsUISheet, new Rectangle(28, 240, 142, 89), 1f), new Vector2(330, 200));
                 ButtonUI exitButton = new ButtonUI(new Sprite(gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(325, 300));
@@ -179,6 +181,25 @@ namespace KirbStomp.Scripts.Scenes
                 
                 UIList.Add(menuButton);
                 UIList.Add(exitButton);
+            }
+            else if (name.Contains("GeneralSceneTemplate"))
+            {
+                float scale = .2f;
+                Texture2D _btUISheet = Game1.Get().Content.Load<Texture2D>("BattleUISpriteSheet");
+                
+                // PlayerBattleUINew playerOneUI = new PlayerBattleUINew {
+                //     "PlayerOneUI",
+                //     new Vector2(100, 380),
+                //     new List<Sprite>() {
+                //         new Sprite("PortraitBackground", _btUISheet, new Rectangle(515, 561, 508, 339), scale), // portrait background
+                //         new Sprite("NameHolder", _btUISheet, new Rectangle(0, 956, 874, 49), scale)  // name holder
+                //     },
+                //     new List<SpriteString>() {
+                //         new SpriteString("PlayerOneName", impactFont)
+                //     }
+                // }
+
+
             }
             // foreach(XElement UIElement in UIs.Elements("ButtonUI")) {
             //     UIToLoad = UIElement.Value.Replace(" ", string.Empty);

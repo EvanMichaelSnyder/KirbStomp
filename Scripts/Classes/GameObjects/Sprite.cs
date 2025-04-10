@@ -21,6 +21,7 @@ namespace KirbStomp.Scripts.Projectiles
         private Vector2 _rotateOrigin;
         private Vector2 _offset;
         private Vector2 _position;
+        public string Name { get; set; }
         public Sprite(Texture2D sprSheet, Rectangle src, float scale)
         {
             this._spriteSheet = sprSheet;
@@ -30,6 +31,19 @@ namespace KirbStomp.Scripts.Projectiles
             this._rotation = 0;
             this._zIndex = 0;
             this._color = Color.White;
+            this.Name = null;
+        }
+
+        public Sprite(string name, Texture2D sprSheet, Rectangle src, float scale)
+        {
+            this._spriteSheet = sprSheet;
+            this._srcRectangle = src;
+            this._scale = scale;
+            this._isFlipped = false;
+            this._rotation = 0;
+            this._zIndex = 0;
+            this._color = Color.White;
+            this.Name = name;
         }
         public void Draw(SpriteBatch spriteBatch)
         {
