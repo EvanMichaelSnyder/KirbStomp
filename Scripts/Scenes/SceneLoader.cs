@@ -56,24 +56,13 @@ namespace KirbStomp.Scripts.Scenes
             fileElementsToLoad = GetXElementOrAssert("FilesToLoad", sceneElement);
             name = GetXElementOrAssert("Name", sceneElement).Value;
         }
-        public static void LoadScene(List<ICharacter> characters, List<IController> controllerList, List<Platform> platformList, List<IUI> UIList, List<StageBoundary> boundaryList)
+        public static void LoadScene(List<ICharacter> characters, List<IController> controllerList, List<Platform> platformList, List<IUINew> UIList, List<StageBoundary> boundaryList)
         {
             if (loadFile == "")
                 throw new Exception("Error load file was never set. Load file is \"\"");
             LoadCharacters(characters, controllerList);
             LoadPlatforms(platformList);    // Only thing hard coded now
-            // LoadUI(UIList, characters);
-            LoadBoundaries(boundaryList);  // Also hardcoded but it exactly like platforms
-            LoadAssetPool();
-        }
-
-        public static void LoadScene(List<ICharacter> characters, List<IController> controllerList, List<Platform> platformList, List<IUI> UIList, List<StageBoundary> boundaryList, List<IUINew> UIListNew)
-        {
-            if (loadFile == "")
-                throw new Exception("Error load file was never set. Load file is \"\"");
-            LoadCharacters(characters, controllerList);
-            LoadPlatforms(platformList);    // Only thing hard coded now
-            LoadUI(UIList, characters, UIListNew);
+            LoadUI(UIList, characters);
             LoadBoundaries(boundaryList);  // Also hardcoded but it exactly like platforms
             LoadAssetPool();
         }
@@ -154,70 +143,7 @@ namespace KirbStomp.Scripts.Scenes
             boundaryList.Add(BoundaryRight);
         }
 
-        // public static void LoadUI(List<IUI> UIList, List<ICharacter> characters)
-        // {
-        //     string UIToLoad = default;
-        //     XElement UIs = GetXElementOrAssert("UIs", fileElementsToLoad);
-        //     if (UIs.Elements().Count() == 0)
-        //     {
-        //         return;
-        //     }
-        //     // IUI ui;
-        //     // int charaIndex = 0;
-        //     // foreach (XElement UIElement in UIs.Elements("PlayerUI"))
-        //     // {
-        //     //     UIToLoad = UIElement.Value.Replace(" ", string.Empty);
-                
-        //     //     ui = GeneratePlayerUI(UIToLoad, characters[charaIndex]);
-        //     //     UIList.Add(ui);
-        //     //     charaIndex++;
-        //     // }
-        //     Texture2D gameButtonsUISheet = Game1.Get().Content.Load<Texture2D>("GameButtons");
-        //     Texture2D gameNameSheet = Game1.Get().Content.Load<Texture2D>("GameName");
-        //     SpriteFont impactFont = Game1.Get().Content.Load<SpriteFont>("impact");
-
-        //     if(name.Contains("StartScreen")){
-        //         ButtonUI startButton = new ButtonUI(new Sprite(gameButtonsUISheet, new Rectangle(28, 240, 142, 89), 1f), new Vector2(330, 200));
-        //         ButtonUI exitButton = new ButtonUI(new Sprite(gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(325, 300));
-        //         ButtonUI titleButton = new ButtonUI(new Sprite(gameNameSheet, new Rectangle(13, 119, 273, 59), 1.2f), new Vector2(240, 70));
-              
-        //         UIList.Add(startButton);
-        //         UIList.Add(exitButton);
-        //         UIList.Add(titleButton);
-        //     }
-        //     else if (name.Contains("EndScreen"))
-        //     {
-        //         ButtonUI menuButton = new ButtonUI(new Sprite(gameButtonsUISheet, new Rectangle(186, 134, 154, 89), 1f), new Vector2(330, 200));
-        //         ButtonUI exitButton = new ButtonUI(new Sprite(gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(325, 300));
-                
-        //         UIList.Add(menuButton);
-        //         UIList.Add(exitButton);
-        //     }
-        //     else if (name.Contains("GeneralSceneTemplate"))
-        //     {
-        //         float scale = .2f;
-        //         Texture2D _btUISheet = Game1.Get().Content.Load<Texture2D>("BattleUISpriteSheet");
-                
-        //         PlayerBattleUINew playerOneUI = new PlayerBattleUINew (
-        //             "PlayerOneUI", //name
-        //             new Vector2(100, 380), //position
-        //             (Character)characters[0], //first character
-        //             impactFont, //font
-        //             new Sprite("PortraitBackground", _btUISheet, new Rectangle(515, 561, 508, 339), scale), // portrait background
-        //             new Sprite("NameHolder", _btUISheet, new Rectangle(0, 956, 874, 49), scale)  // name holder
-        //         );
-        //         UIList.Add((IUI)playerOneUI);
-
-
-        //     }
-        //     // foreach(XElement UIElement in UIs.Elements("ButtonUI")) {
-        //     //     UIToLoad = UIElement.Value.Replace(" ", string.Empty);
-        //         // ui = GenerateButtonUI(UIToLoad);
-        //         // UIList.Add(ui);
-        //     // }
-        // }
-
-        public static void LoadUI(List<IUI> UIList, List<ICharacter> characters, List<IUINew> UIListNew)
+        public static void LoadUI(List<IUINew> UIList, List<ICharacter> characters)
         {
             string UIToLoad = default;
             XElement UIs = GetXElementOrAssert("UIs", fileElementsToLoad);
@@ -240,9 +166,9 @@ namespace KirbStomp.Scripts.Scenes
             SpriteFont impactFont = Game1.Get().Content.Load<SpriteFont>("impact");
 
             if(name.Contains("StartScreen")){
-                ButtonUI startButton = new ButtonUI(new Sprite(gameButtonsUISheet, new Rectangle(28, 240, 142, 89), 1f), new Vector2(330, 200));
-                ButtonUI exitButton = new ButtonUI(new Sprite(gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(325, 300));
-                ButtonUI titleButton = new ButtonUI(new Sprite(gameNameSheet, new Rectangle(13, 119, 273, 59), 1.2f), new Vector2(240, 70));
+                ButtonUI startButton = new ButtonUI(new Sprite("StartButton", gameButtonsUISheet, new Rectangle(28, 240, 142, 89), 1f), new Vector2(330, 200));
+                ButtonUI exitButton = new ButtonUI(new Sprite("ExitButton", gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(325, 300));
+                ButtonUI titleButton = new ButtonUI(new Sprite("TitleButton", gameNameSheet, new Rectangle(13, 119, 273, 59), 1.2f), new Vector2(240, 70));
               
                 UIList.Add(startButton);
                 UIList.Add(exitButton);
@@ -250,8 +176,8 @@ namespace KirbStomp.Scripts.Scenes
             }
             else if (name.Contains("EndScreen"))
             {
-                ButtonUI menuButton = new ButtonUI(new Sprite(gameButtonsUISheet, new Rectangle(186, 134, 154, 89), 1f), new Vector2(330, 200));
-                ButtonUI exitButton = new ButtonUI(new Sprite(gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(325, 300));
+                ButtonUI menuButton = new ButtonUI(new Sprite("MenuButton", gameButtonsUISheet, new Rectangle(186, 134, 154, 89), 1f), new Vector2(330, 200));
+                ButtonUI exitButton = new ButtonUI(new Sprite("ExitButton", gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(325, 300));
                 
                 UIList.Add(menuButton);
                 UIList.Add(exitButton);
@@ -279,8 +205,8 @@ namespace KirbStomp.Scripts.Scenes
                     new Sprite(PBACKGROUND, _btUISheet, new Rectangle(515, 0, 508, 339), scale), // portrait background
                     new Sprite(NAMEHOLDER, _btUISheet, new Rectangle(1, 437, 874, 49), scale)  // name holder
                 );
-                UIListNew.Add(playerOneUI);
-                UIListNew.Add(playerTwoUI);
+                UIList.Add(playerOneUI);
+                UIList.Add(playerTwoUI);
             }
             // foreach(XElement UIElement in UIs.Elements("ButtonUI")) {
             //     UIToLoad = UIElement.Value.Replace(" ", string.Empty);

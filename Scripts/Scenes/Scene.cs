@@ -34,9 +34,8 @@ namespace KirbStomp.Scripts.Scenes
         private List<IController> _controllers;
         private List<Platform> _platforms;
         private List<StageBoundary> _boundaries;
-        private List<IUI> _screenSpaceUI;   // Sprite'll be UI / Text
-        private List<IUINew> _screenSpaceUINew;   // Sprite'll be UI / Text
-        private List<IUI> _worldSpaceSprites;    // Sprite'll be UI / Text
+        private List<IUINew> _screenSpaceUI;   // Sprite'll be UI / Text
+        private List<IUINew> _worldSpaceSprites;    // Sprite'll be UI / Text
 
         private CollisionSystem _collisionSystem;
         private ProjectileManager _projectileManager;
@@ -56,7 +55,6 @@ namespace KirbStomp.Scripts.Scenes
             this._controllers = new();
             this._platforms = new();
             this._screenSpaceUI = new();
-            this._screenSpaceUINew = new();
             this._worldSpaceSprites = new();
             this._boundaries = new();
 
@@ -95,7 +93,7 @@ namespace KirbStomp.Scripts.Scenes
             // Add to collideable objects list
             // var (character, Controller) = LoadCharacter(characterXMLFile);
             SceneLoader.SetLoadFile(_name);    // This will be taken out into scene manager, which'll take care of scene initializations
-            SceneLoader.LoadScene(_characters, _controllers, _platforms, _screenSpaceUI, _boundaries, _screenSpaceUINew);
+            SceneLoader.LoadScene(_characters, _controllers, _platforms, _screenSpaceUI, _boundaries);
             _musicManager.LoadMusic();
             _musicManager.PlayMusic();
 
@@ -206,7 +204,7 @@ namespace KirbStomp.Scripts.Scenes
                 //character.DrawHitbox(spriteBatch);
             }
 
-            foreach (IUI sprite in _worldSpaceSprites)
+            foreach (IUINew sprite in _worldSpaceSprites)
             {
             }
             spriteBatch.End();
@@ -214,11 +212,7 @@ namespace KirbStomp.Scripts.Scenes
             // Draw all objects in screen space
             spriteBatch.Begin();
             // Draw UI
-            foreach (IUI sprite in _screenSpaceUI)
-            {
-                sprite.Draw(spriteBatch);
-            }
-            foreach (IUINew sprite in _screenSpaceUINew)
+            foreach (IUINew sprite in _screenSpaceUI)
             {
                 sprite.Draw(spriteBatch);
             }
