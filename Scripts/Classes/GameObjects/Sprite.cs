@@ -23,6 +23,7 @@ namespace KirbStomp.Scripts.Projectiles
         private Vector2 _position;
         private int _alphaPercent;
         public string Name { get; set; }
+        public bool Visible { get; set; }
         public Sprite(Texture2D sprSheet, Rectangle src, float scale)
         {
             this._spriteSheet = sprSheet;
@@ -34,6 +35,7 @@ namespace KirbStomp.Scripts.Projectiles
             this._color = Color.White;
             this.Name = null;
             this._alphaPercent = 100;
+            Visible = true;
         }
 
         public Sprite(string name, Texture2D sprSheet, Rectangle src, float scale)
@@ -47,9 +49,12 @@ namespace KirbStomp.Scripts.Projectiles
             this._color = Color.White;
             this.Name = name;
             this._alphaPercent = 100;
+            Visible = true;
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+            if (!Visible)
+                return;
             Vector2 coords = _position;
             coords += _offset;
             coords.X *= (float)Game1.Get().GetScreenWindow().globalScaleX;
@@ -63,6 +68,8 @@ namespace KirbStomp.Scripts.Projectiles
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
+            if (!Visible)
+                return;
             Vector2 coords = new Vector2(position.X, position.Y);
             coords += _offset;
             coords.X *= (float)Game1.Get().GetScreenWindow().globalScaleX;

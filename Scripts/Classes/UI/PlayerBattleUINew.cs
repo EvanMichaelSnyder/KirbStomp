@@ -43,8 +43,9 @@ public class PlayerBattleUINew : UIElement{
         _stockIconOne = new Sprite(_sourceIcon.Name + "1", iconTexture, iconSourceRectangle, iconScale);
         _stockIconTwo = new Sprite(_sourceIcon.Name + "2", iconTexture, iconSourceRectangle, iconScale);
         _stockIconThree = new Sprite(_sourceIcon.Name + "3", iconTexture, iconSourceRectangle, iconScale);
+        _stockIconOne.SetAlphaPercent(2);
         _stockIconTwo.SetAlphaPercent(15);
-        _stockIconThree.SetAlphaPercent(2);
+        _stockIconThree.SetAlphaPercent(100);
 
         _nameString.SetPosition(Position + new Vector2(95 - _font.MeasureString(_character.GetCharacterUIData().CharacterName.ToUpper()).X / 2, 67 - 2));
         _healthString.SetPosition(Position + new Vector2(102, 20));
@@ -76,22 +77,22 @@ public class PlayerBattleUINew : UIElement{
     {
         if (e.lives == 3)
         {
-            _stockIconOne.SetAlphaPercent(100);
-            _stockIconTwo.SetAlphaPercent(15);
-            _stockIconThree.SetAlphaPercent(2);
+            _stockIconOne.Visible = true;
+            _stockIconTwo.Visible = true;
+            _stockIconThree.Visible = true;
         }
         else if (e.lives == 2)
         {
-            _stockIconOne.SetAlphaPercent(0);
+            _stockIconThree.Visible = false;
 
         }
         else if (e.lives == 1)
         {
-            _stockIconTwo.SetAlphaPercent(0);
+            _stockIconTwo.Visible = false;   
         }
         else if (e.lives == 0)
         {
-            _stockIconThree.SetAlphaPercent(0);
+            _stockIconOne.Visible = false;
         }
     }
 }
