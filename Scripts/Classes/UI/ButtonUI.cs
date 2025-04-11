@@ -5,17 +5,16 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using KirbStomp;
 
-public class ButtonUI : IUI {
+public class ButtonUI : UIElement {
     private Sprite _buttonSprite;
-    private Vector2 _position;
-    public ButtonUI(Sprite buttonSprite, Vector2 position) {
+    public ButtonUI(Sprite buttonSprite, Vector2 position) :
+        base("ButtonUI", position) 
+    {
         this._buttonSprite = buttonSprite;
-        this._position = position;
+        Initialize();
     }
     public void Initialize() {
-        throw new NotImplementedException();
-    }
-    public void Draw(SpriteBatch spriteBatch) {
-        _buttonSprite.Draw(spriteBatch, this._position);
+        _buttonSprite.SetPosition(this.Position);
+        Sprites.Add(_buttonSprite);
     }
 }

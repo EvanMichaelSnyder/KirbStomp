@@ -151,22 +151,24 @@ namespace KirbStomp.Scripts.Scenes
             {
                 return;
             }
-            IUI ui;
-            int charaIndex = 0;
-            foreach (XElement UIElement in UIs.Elements("PlayerUI"))
-            {
-                UIToLoad = UIElement.Value.Replace(" ", string.Empty);
+            // IUI ui;
+            // int charaIndex = 0;
+            // foreach (XElement UIElement in UIs.Elements("PlayerUI"))
+            // {
+            //     UIToLoad = UIElement.Value.Replace(" ", string.Empty);
                 
-                ui = GeneratePlayerUI(UIToLoad, characters[charaIndex]);
-                UIList.Add(ui);
-                charaIndex++;
-            }
+            //     ui = GeneratePlayerUI(UIToLoad, characters[charaIndex]);
+            //     UIList.Add(ui);
+            //     charaIndex++;
+            // }
             Texture2D gameButtonsUISheet = Game1.Get().Content.Load<Texture2D>("GameButtons");
             Texture2D gameNameSheet = Game1.Get().Content.Load<Texture2D>("GameName");
+            SpriteFont impactFont = Game1.Get().Content.Load<SpriteFont>("impact");
+
             if(name.Contains("StartScreen")){
-                ButtonUI startButton = new ButtonUI(new Sprite(gameButtonsUISheet, new Rectangle(28, 240, 142, 89), 1f), new Vector2(330, 200));
-                ButtonUI exitButton = new ButtonUI(new Sprite(gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(325, 300));
-                ButtonUI titleButton = new ButtonUI(new Sprite(gameNameSheet, new Rectangle(13, 119, 273, 59), 1.2f), new Vector2(240, 70));
+                ButtonUI startButton = new ButtonUI(new Sprite("StartButton", gameButtonsUISheet, new Rectangle(28, 240, 142, 89), 1f), new Vector2(330, 200));
+                ButtonUI exitButton = new ButtonUI(new Sprite("ExitButton", gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(325, 300));
+                ButtonUI titleButton = new ButtonUI(new Sprite("TitleButton", gameNameSheet, new Rectangle(13, 119, 273, 59), 1.2f), new Vector2(240, 70));
               
                 UIList.Add(startButton);
                 UIList.Add(exitButton);
@@ -174,11 +176,37 @@ namespace KirbStomp.Scripts.Scenes
             }
             else if (name.Contains("EndScreen"))
             {
-                ButtonUI menuButton = new ButtonUI(new Sprite(gameButtonsUISheet, new Rectangle(186, 134, 154, 89), 1f), new Vector2(330, 200));
-                ButtonUI exitButton = new ButtonUI(new Sprite(gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(325, 300));
+                ButtonUI menuButton = new ButtonUI(new Sprite("MenuButton", gameButtonsUISheet, new Rectangle(186, 134, 154, 89), 1f), new Vector2(330, 200));
+                ButtonUI exitButton = new ButtonUI(new Sprite("ExitButton", gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(325, 300));
                 
                 UIList.Add(menuButton);
                 UIList.Add(exitButton);
+            }
+            else if (name.Contains("SceneMain"))
+            {
+                Console.WriteLine("Loading GeneralSceneTemplate UI");
+                float scale = .2f;
+                Texture2D _btUISheet = Game1.Get().Content.Load<Texture2D>("BattleUISpriteSheet");
+                const string PBACKGROUND = "PortraitBackground";
+                const string NAMEHOLDER = "NameHolder";
+                PlayerBattleUINew playerOneUI = new PlayerBattleUINew (
+                    "PlayerOneUI", //name
+                    new Vector2(100, 380), //position
+                    (Character)characters[0], //first character
+                    impactFont, //font
+                    new Sprite(PBACKGROUND, _btUISheet, new Rectangle(515, 561, 508, 339), scale), // portrait background
+                    new Sprite(NAMEHOLDER, _btUISheet, new Rectangle(0, 956, 874, 49), scale)  // name holder
+                );
+                PlayerBattleUINew playerTwoUI = new PlayerBattleUINew (
+                    "PlayerTwoUI", //name
+                    new Vector2(440, 380), //position
+                    (Character)characters[1], //first character
+                    impactFont, //font
+                    new Sprite(PBACKGROUND, _btUISheet, new Rectangle(515, 0, 508, 339), scale), // portrait background
+                    new Sprite(NAMEHOLDER, _btUISheet, new Rectangle(1, 437, 874, 49), scale)  // name holder
+                );
+                UIList.Add(playerOneUI);
+                UIList.Add(playerTwoUI);
             }
             // foreach(XElement UIElement in UIs.Elements("ButtonUI")) {
             //     UIToLoad = UIElement.Value.Replace(" ", string.Empty);
@@ -263,7 +291,9 @@ namespace KirbStomp.Scripts.Scenes
             Texture2D stockIconSheet = Game1.Get().Content.Load<Texture2D>(stats.stockIcon.spriteSheet);
             Texture2D portraitIconSheet = Game1.Get().Content.Load<Texture2D>(stats.portraitIcon.spriteSheet);
 
-            output = new Character(stats.name, tex, stats.position, new CharacterUIData(new Sprite(stockIconSheet, stats.stockIcon.sourceRectangle, stats.stockIcon.scale), new Sprite(portraitIconSheet, stats.portraitIcon.sourceRectangle, stats.stockIcon.scale), stats.name));
+            const string stockIconName = "StockIcon";
+            const string portraitIconName = "PortraitIcon";
+            output = new Character(stats.name, tex, stats.position, new CharacterUIData(new Sprite(stockIconName, stockIconSheet, stats.stockIcon.sourceRectangle, stats.stockIcon.scale), new Sprite(portraitIconName, portraitIconSheet, stats.portraitIcon.sourceRectangle, stats.stockIcon.scale), stats.name));
 
             /*
             Texture2D _btUISheet = Game1.Get().Content.Load<Texture2D>("BattleUISpriteSheet");
@@ -373,11 +403,11 @@ namespace KirbStomp.Scripts.Scenes
             return new Platform(typeEnum, sourceRect, tex);
         }
 
-        private static PlayerBattleUI GeneratePlayerUI(string UIFile, ICharacter character)
-        {
-            var (font, requiredIcons, position) = ParseUIFile(UIFile);
-            return new PlayerBattleUI(font, (Character) character, position, requiredIcons[0], requiredIcons[1]);;
-        }
+        // private static PlayerBattleUI GeneratePlayerUI(string UIFile, ICharacter character)
+        // {
+        //     var (font, requiredIcons, position) = ParseUIFile(UIFile);
+        //     return new PlayerBattleUI(font, (Character) character, position, requiredIcons[0], requiredIcons[1]);;
+        // }
     
         private static (SpriteFont, List<Sprite>, Vector2) ParseUIFile(string fileName)
         {
