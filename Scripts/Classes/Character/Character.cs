@@ -74,6 +74,7 @@ namespace KirbStomp
                 // _health = 100;
                 ResetHealth();
                 DecreaseLives();
+
                 ActionList.ResetList();
                 StateMachine.State.CurrentState = StateEnum.Idle;
                 Velocity = Vector2.Zero;
