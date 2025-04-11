@@ -184,12 +184,11 @@ namespace KirbStomp.Scripts.Scenes
             }
             else if (name.Contains("SceneMain"))
             {
-                Console.WriteLine("Loading GeneralSceneTemplate UI");
                 float scale = .2f;
                 Texture2D _btUISheet = Game1.Get().Content.Load<Texture2D>("BattleUISpriteSheet");
                 const string PBACKGROUND = "PortraitBackground";
                 const string NAMEHOLDER = "NameHolder";
-                PlayerBattleUINew playerOneUI = new PlayerBattleUINew (
+                PlayerBattleUI playerOneUI = new PlayerBattleUI (
                     "PlayerOneUI", //name
                     new Vector2(100, 380), //position
                     (Character)characters[0], //first character
@@ -197,7 +196,7 @@ namespace KirbStomp.Scripts.Scenes
                     new Sprite(PBACKGROUND, _btUISheet, new Rectangle(515, 561, 508, 339), scale), // portrait background
                     new Sprite(NAMEHOLDER, _btUISheet, new Rectangle(0, 956, 874, 49), scale)  // name holder
                 );
-                PlayerBattleUINew playerTwoUI = new PlayerBattleUINew (
+                PlayerBattleUI playerTwoUI = new PlayerBattleUI (
                     "PlayerTwoUI", //name
                     new Vector2(440, 380), //position
                     (Character)characters[1], //first character
