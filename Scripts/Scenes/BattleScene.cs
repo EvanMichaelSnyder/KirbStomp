@@ -60,7 +60,7 @@ public class BattleScene : IScene
     private Camera2D _camera;
     private SpriteFont impactFont;
     private Sprite _background;
-    private List<IUI> _uiList;
+    // private List<IUI> _uiList;
     // private List<IUI> _uiList;
 
     public BattleScene() {
@@ -200,10 +200,10 @@ public class BattleScene : IScene
             platform.Draw(spriteBatch);
             platform.DrawHitbox(spriteBatch);
         }
-        foreach (IUI ui in _uiList)
-        {
-            ui.Draw(spriteBatch);
-        }
+        // foreach (IUI ui in _uiList)
+        // {
+        //     ui.Draw(spriteBatch);
+        // }
         foreach (ICharacter chara in _characterList)
         {
             chara.Draw(spriteBatch);
@@ -317,22 +317,22 @@ public class BattleScene : IScene
 
         // mario.AssignLegitimateHitboxSheet(boxSheet);
 
-        PlayerBattleUI _playerOneBTUI = new PlayerBattleUI(impactFont, 
-            mario,
-            new Vector2(100, 380),
-            new Sprite(_btUISheet, new Rectangle(515, 561, 508, 339), scale), // portrait background
-            new Sprite(_btUISheet, new Rectangle(0, 956, 874, 49), scale)  // name holder
-        );
-        PlayerBattleUI _playerTwoBTUI = new PlayerBattleUI(impactFont, 
-            link,
-            new Vector2(440, 380),
-            new Sprite(_btUISheet, new Rectangle(515, 0, 508, 339), scale), // portrait background
-            new Sprite(_btUISheet, new Rectangle(1, 437, 874, 49), scale)  // name holder
-        );
+        // PlayerBattleUI _playerOneBTUI = new PlayerBattleUI(impactFont, 
+        //     mario,
+        //     new Vector2(100, 380),
+        //     new Sprite(_btUISheet, new Rectangle(515, 561, 508, 339), scale), // portrait background
+        //     new Sprite(_btUISheet, new Rectangle(0, 956, 874, 49), scale)  // name holder
+        // );
+        // PlayerBattleUI _playerTwoBTUI = new PlayerBattleUI(impactFont, 
+        //     link,
+        //     new Vector2(440, 380),
+        //     new Sprite(_btUISheet, new Rectangle(515, 0, 508, 339), scale), // portrait background
+        //     new Sprite(_btUISheet, new Rectangle(1, 437, 874, 49), scale)  // name holder
+        // );
 
-        _uiList = new List<IUI>();
-        _uiList.Add(_playerOneBTUI);
-        _uiList.Add(_playerTwoBTUI);
+        // _uiList = new List<IUI>();
+        // _uiList.Add(_playerOneBTUI);
+        // _uiList.Add(_playerTwoBTUI);
 
 
         Platform platformMain = new Platform(PlatformTypeEnum.SideDirtPlatform,new Rectangle(10,370,780,20), _platformSheet);

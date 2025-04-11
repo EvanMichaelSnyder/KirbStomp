@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using KirbStomp.Interfaces;
 using KirbStomp.Scripts.Projectiles;
-public class UIElement : IUINew {
+public class UIElement : IUI {
     
     public string Name { get; set; }
     public Vector2 Position { get; set; }

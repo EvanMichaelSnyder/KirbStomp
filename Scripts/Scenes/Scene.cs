@@ -34,8 +34,8 @@ namespace KirbStomp.Scripts.Scenes
         private List<IController> _controllers;
         private List<Platform> _platforms;
         private List<StageBoundary> _boundaries;
-        private List<IUINew> _screenSpaceUI;   // Sprite'll be UI / Text
-        private List<IUINew> _worldSpaceSprites;    // Sprite'll be UI / Text
+        private List<IUI> _screenSpaceUI;   // Sprite'll be UI / Text
+        private List<IUI> _worldSpaceSprites;    // Sprite'll be UI / Text
 
         private CollisionSystem _collisionSystem;
         private ProjectileManager _projectileManager;
@@ -204,7 +204,7 @@ namespace KirbStomp.Scripts.Scenes
                 //character.DrawHitbox(spriteBatch);
             }
 
-            foreach (IUINew sprite in _worldSpaceSprites)
+            foreach (IUI sprite in _worldSpaceSprites)
             {
             }
             spriteBatch.End();
@@ -212,7 +212,7 @@ namespace KirbStomp.Scripts.Scenes
             // Draw all objects in screen space
             spriteBatch.Begin();
             // Draw UI
-            foreach (IUINew sprite in _screenSpaceUI)
+            foreach (IUI sprite in _screenSpaceUI)
             {
                 sprite.Draw(spriteBatch);
             }

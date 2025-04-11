@@ -31,7 +31,7 @@ public class PlayerBattleUINew : UIElement{
     }
     public void Initialize()
     {
-        _nameString = new SpriteString(_font, _character.GetCharacterUIData().CharacterName, 0.6f);
+        _nameString = new SpriteString(_font, _character.GetCharacterUIData().CharacterName.ToUpper(), 0.6f);
         _healthString = new SpriteString(_font, _character.GetHealth().ToString(), 2f);
         _sourceIcon = _character.GetCharacterUIData().StockIcon;
         _portraitIcon = _character.GetCharacterUIData().PortraitIcon;
@@ -46,7 +46,7 @@ public class PlayerBattleUINew : UIElement{
         _stockIconTwo.SetAlphaPercent(15);
         _stockIconThree.SetAlphaPercent(2);
 
-        _nameString.SetPosition(Position + new Vector2(95 - _font.MeasureString(_character.GetCharacterUIData().CharacterName).X / 2, 67 - 2));
+        _nameString.SetPosition(Position + new Vector2(95 - _font.MeasureString(_character.GetCharacterUIData().CharacterName.ToUpper()).X / 2, 67 - 2));
         _healthString.SetPosition(Position + new Vector2(102, 20));
         _portraitBackground.SetPosition(Position);
         _nameHolder.SetPosition(Position + new Vector2(8, 67));

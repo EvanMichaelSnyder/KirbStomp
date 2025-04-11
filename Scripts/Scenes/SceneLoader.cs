@@ -56,7 +56,7 @@ namespace KirbStomp.Scripts.Scenes
             fileElementsToLoad = GetXElementOrAssert("FilesToLoad", sceneElement);
             name = GetXElementOrAssert("Name", sceneElement).Value;
         }
-        public static void LoadScene(List<ICharacter> characters, List<IController> controllerList, List<Platform> platformList, List<IUINew> UIList, List<StageBoundary> boundaryList)
+        public static void LoadScene(List<ICharacter> characters, List<IController> controllerList, List<Platform> platformList, List<IUI> UIList, List<StageBoundary> boundaryList)
         {
             if (loadFile == "")
                 throw new Exception("Error load file was never set. Load file is \"\"");
@@ -143,7 +143,7 @@ namespace KirbStomp.Scripts.Scenes
             boundaryList.Add(BoundaryRight);
         }
 
-        public static void LoadUI(List<IUINew> UIList, List<ICharacter> characters)
+        public static void LoadUI(List<IUI> UIList, List<ICharacter> characters)
         {
             string UIToLoad = default;
             XElement UIs = GetXElementOrAssert("UIs", fileElementsToLoad);
@@ -403,11 +403,11 @@ namespace KirbStomp.Scripts.Scenes
             return new Platform(typeEnum, sourceRect, tex);
         }
 
-        private static PlayerBattleUI GeneratePlayerUI(string UIFile, ICharacter character)
-        {
-            var (font, requiredIcons, position) = ParseUIFile(UIFile);
-            return new PlayerBattleUI(font, (Character) character, position, requiredIcons[0], requiredIcons[1]);;
-        }
+        // private static PlayerBattleUI GeneratePlayerUI(string UIFile, ICharacter character)
+        // {
+        //     var (font, requiredIcons, position) = ParseUIFile(UIFile);
+        //     return new PlayerBattleUI(font, (Character) character, position, requiredIcons[0], requiredIcons[1]);;
+        // }
     
         private static (SpriteFont, List<Sprite>, Vector2) ParseUIFile(string fileName)
         {
