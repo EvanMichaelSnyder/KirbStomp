@@ -151,4 +151,12 @@ public class SpriteString
     {
         return this._content;
     }
+    public Vector2 GetPosition()
+    {
+        return this._position;
+    }
+    public void SetPosition(Vector2 position)
+    {
+        this._position = position;
+    }
 }

@@ -21,6 +21,7 @@ namespace KirbStomp.Scripts.Projectiles
         private Vector2 _rotateOrigin;
         private Vector2 _offset;
         private Vector2 _position;
+        private int _alphaPercent;
         public string Name { get; set; }
         public Sprite(Texture2D sprSheet, Rectangle src, float scale)
         {
@@ -32,6 +33,7 @@ namespace KirbStomp.Scripts.Projectiles
             this._zIndex = 0;
             this._color = Color.White;
             this.Name = null;
+            this._alphaPercent = 100;
         }
 
         public Sprite(string name, Texture2D sprSheet, Rectangle src, float scale)
@@ -44,6 +46,7 @@ namespace KirbStomp.Scripts.Projectiles
             this._zIndex = 0;
             this._color = Color.White;
             this.Name = name;
+            this._alphaPercent = 100;
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -55,7 +58,7 @@ namespace KirbStomp.Scripts.Projectiles
             Vector2 adjustedScale = new Vector2(this._scale * (float)Game1.Get().GetScreenWindow().globalScaleX, this._scale * (float)Game1.Get().GetScreenWindow().globalScaleY);
 
             SpriteEffects spriteEffects = this._isFlipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            spriteBatch.Draw(this._spriteSheet, coords, this._srcRectangle, this._color, this._rotation, this._rotateOrigin, adjustedScale, spriteEffects, this._zIndex);
+            spriteBatch.Draw(this._spriteSheet, coords, this._srcRectangle, new Color(this._color.R, this._color.G, this._color.B, (int)(_alphaPercent * 2.55f)), this._rotation, this._rotateOrigin, adjustedScale, spriteEffects, this._zIndex);
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
@@ -68,7 +71,7 @@ namespace KirbStomp.Scripts.Projectiles
             Vector2 adjustedScale = new Vector2(this._scale * (float)Game1.Get().GetScreenWindow().globalScaleX, this._scale * (float)Game1.Get().GetScreenWindow().globalScaleY);
 
             SpriteEffects spriteEffects = this._isFlipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            spriteBatch.Draw(this._spriteSheet, coords, this._srcRectangle, this._color, this._rotation, this._rotateOrigin, adjustedScale, spriteEffects, this._zIndex);
+            spriteBatch.Draw(this._spriteSheet, coords, this._srcRectangle, new Color(this._color.R, this._color.G, this._color.B, (int)(_alphaPercent * 2.55f)), this._rotation, this._rotateOrigin, adjustedScale, spriteEffects, this._zIndex);
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position, int alphaPercent)
@@ -108,10 +111,18 @@ namespace KirbStomp.Scripts.Projectiles
         {
             this._rotation = rotation;
         }
+        public float GetRotation()
+        {
+            return this._rotation;
+        }
 
         public void SetColor(Color color)
         {
             this._color = color;
+        }
+        public Color GetColor()
+        {
+            return this._color;
         }
 
         public void FlipTextureX(bool flip)
@@ -127,6 +138,10 @@ namespace KirbStomp.Scripts.Projectiles
         public void SetZIndex(float zIndex)
         {
             this._zIndex = zIndex;
+        }
+        public float GetZIndex()
+        {
+            return this._zIndex;
         }
 
         public void SetRotateOrigin(Vector2 origin)
@@ -148,6 +163,21 @@ namespace KirbStomp.Scripts.Projectiles
         {
             return (int)this._offset.Y;
         }
-
+        public void SetAlphaPercent(int alphaPercent)
+        {
+            this._alphaPercent = alphaPercent;
+        }
+        public Texture2D GetTexture()
+        {
+            return this._spriteSheet;
+        }
+        public Vector2 GetPosition()
+        {
+            return this._position;
+        }
+        public void SetPosition(Vector2 position)
+        {
+            this._position = position;
+        }
     }
 }

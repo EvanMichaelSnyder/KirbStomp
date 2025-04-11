@@ -33,6 +33,7 @@ public class UIElement : IUINew {
     }
 
     public void Draw(SpriteBatch spriteBatch) {
+        
         if (this.IsVisible) {
             foreach (var sprite in this.Sprites) {
                 sprite.Draw(spriteBatch);

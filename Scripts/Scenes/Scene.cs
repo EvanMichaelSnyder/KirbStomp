@@ -35,6 +35,7 @@ namespace KirbStomp.Scripts.Scenes
         private List<Platform> _platforms;
         private List<StageBoundary> _boundaries;
         private List<IUI> _screenSpaceUI;   // Sprite'll be UI / Text
+        private List<IUINew> _screenSpaceUINew;   // Sprite'll be UI / Text
         private List<IUI> _worldSpaceSprites;    // Sprite'll be UI / Text
 
         private CollisionSystem _collisionSystem;
@@ -55,6 +56,7 @@ namespace KirbStomp.Scripts.Scenes
             this._controllers = new();
             this._platforms = new();
             this._screenSpaceUI = new();
+            this._screenSpaceUINew = new();
             this._worldSpaceSprites = new();
             this._boundaries = new();
 
@@ -93,7 +95,7 @@ namespace KirbStomp.Scripts.Scenes
             // Add to collideable objects list
             // var (character, Controller) = LoadCharacter(characterXMLFile);
             SceneLoader.SetLoadFile(_name);    // This will be taken out into scene manager, which'll take care of scene initializations
-            SceneLoader.LoadScene(_characters, _controllers, _platforms, _screenSpaceUI, _boundaries);
+            SceneLoader.LoadScene(_characters, _controllers, _platforms, _screenSpaceUI, _boundaries, _screenSpaceUINew);
             _musicManager.LoadMusic();
             _musicManager.PlayMusic();
 
@@ -213,6 +215,10 @@ namespace KirbStomp.Scripts.Scenes
             spriteBatch.Begin();
             // Draw UI
             foreach (IUI sprite in _screenSpaceUI)
+            {
+                sprite.Draw(spriteBatch);
+            }
+            foreach (IUINew sprite in _screenSpaceUINew)
             {
                 sprite.Draw(spriteBatch);
             }
