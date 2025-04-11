@@ -75,6 +75,7 @@ namespace KirbStomp.Scripts.Classes.Managers
         public void SpawnPlatform()
         {
             //reset next spawn distance
+            
             this._distanceTillNextSpawnPlatform = _random.Next(MIN_HEIGHT_PLATFORM_APART, MAX_HEIGHT_PLATFORM_APART);
 
             //spawn platform at DIST_SPAWN_ABOVE
@@ -86,6 +87,7 @@ namespace KirbStomp.Scripts.Classes.Managers
             MovingPlatform platform = new MovingPlatform(_spritePlatform, posHW);
             this._collisionSystem.RegisterObject(platform);
             this._platforms.Add(platform);
+            
         }
 
 
