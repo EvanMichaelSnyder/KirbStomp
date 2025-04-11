@@ -167,15 +167,15 @@ public class BattleScene : IScene
         foreach (ICharacter chara in _characterList) { chara.MoveCharacter(gameTime); }
 
         //right now this is actually called under process buttons
-        _collisionSystem.CheckCollisionPairGround(HitboxTypeEnum.Body, HitboxTypeEnum.Platform);
-        _collisionSystem.CheckCollisionPairGround(HitboxTypeEnum.Body, HitboxTypeEnum.Boundary);
-        _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Platform);
-        _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Body);
+        _collisionSystem.CheckCollisionPairGround(HitboxTypeEnum.Body, HitboxTypeEnum.Platform, gameTime);
+        _collisionSystem.CheckCollisionPairGround(HitboxTypeEnum.Body, HitboxTypeEnum.Boundary, gameTime);
+        _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Platform, gameTime);
+        _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Body, gameTime);
         //State is actually changed
         foreach (ICharacter chara in _characterList) { chara.UpdateState(); }
 
         //mario.checkHitCollision
-        _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Body, HitboxTypeEnum.Attack);
+        _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Body, HitboxTypeEnum.Attack, gameTime);
         //mario.UpdateState(); //State is actually changed
         foreach (ICharacter chara in _characterList) { chara.UpdateState(); }
         //mario.doSpecialBehaviors

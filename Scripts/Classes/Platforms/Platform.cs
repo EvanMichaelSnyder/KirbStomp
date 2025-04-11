@@ -22,7 +22,7 @@ namespace KirbStomp.Scripts.Classes.Platforms
         private AllPurposeSprite _sprite;
         private PlatformTypeEnum _platformType;
         private int _ID;
-        private PlatformCarrier PlatformCarrier;
+        internal PlatformCarrier PlatformCarrier;
 
 
         public Rectangle GetPosition()

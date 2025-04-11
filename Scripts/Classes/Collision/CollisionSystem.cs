@@ -50,7 +50,7 @@ public class CollisionSystem
         }
     }
 
-    public void CheckCollisionPair(HitboxTypeEnum typeA, HitboxTypeEnum typeB)
+    public void CheckCollisionPair(HitboxTypeEnum typeA, HitboxTypeEnum typeB, GameTime gameTime)
     {
         var carriersA = _carrierGroups[typeA];
         var carriersB = _carrierGroups[typeB];
@@ -93,14 +93,14 @@ public class CollisionSystem
 
                     if (intersection != Rectangle.Empty)
                     {
-                        HandleCollision(carrierA, carrierB, intersection);
+                        HandleCollision(carrierA, carrierB, intersection, gameTime);
                     }
                 }
             }
         }
     }
 
-    public void CheckCollisionPairGround(HitboxTypeEnum typeA, HitboxTypeEnum typeB)
+    public void CheckCollisionPairGround(HitboxTypeEnum typeA, HitboxTypeEnum typeB, GameTime gameTime)
     {
         var carriersA = _carrierGroups[typeA];
         var carriersB = _carrierGroups[typeB];
@@ -124,7 +124,7 @@ public class CollisionSystem
 
                     if (intersection != Rectangle.Empty)
                     {
-                        HandleCollision(carrierA, carrierB, intersection);
+                        HandleCollision(carrierA, carrierB, intersection, gameTime);
                     }
                 }
             }
@@ -182,6 +182,34 @@ public class CollisionSystem
             GetCarrierHitboxType(a),
             GetCarrierHitboxType(b),
             intersect
+        );
+
+        var contextB = contextA.SwapPerspective();
+
+        /*
+        Debug.Assert(a.Parent != null, "Carrier A has no Parent");
+        Debug.Assert(b.Parent != null, "Carrier B has no Parent");
+
+        Debug.WriteLine(a.Parent.ToString());
+        Debug.WriteLine(b.Parent.ToString());
+        Debug.WriteLine(contextA.ToString());
+        Debug.WriteLine(contextB.ToString());
+        */
+        a.Parent.HandleCollision(contextA);
+        b.Parent.HandleCollision(contextB);
+        //Debug.WriteLine("COLLISION HERE___________________________________________________");
+
+    }
+
+    private void HandleCollision(Carrier a, Carrier b, Rectangle intersect, GameTime gameTime)
+    {
+        var contextA = new CollisionContext(
+            a.Parent,
+            b.Parent,
+            GetCarrierHitboxType(a),
+            GetCarrierHitboxType(b),
+            intersect,
+            gameTime
         );
 
         var contextB = contextA.SwapPerspective();

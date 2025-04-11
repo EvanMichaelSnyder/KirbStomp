@@ -162,13 +162,13 @@ namespace KirbStomp.Scripts.Scenes
 
             //State is actually changed
             //right now this is actually called under process buttons
-            _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Body, HitboxTypeEnum.Platform);
-            _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Body, HitboxTypeEnum.Boundary);
-            _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Platform);
-            _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Body);
+            _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Body, HitboxTypeEnum.Platform, gameTime);
+            _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Body, HitboxTypeEnum.Boundary, gameTime);
+            _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Platform, gameTime);
+            _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Body, gameTime);
             foreach (ICharacter chara in _characters) { chara.UpdateState(); }
 
-            _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Body, HitboxTypeEnum.Attack);
+            _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Body, HitboxTypeEnum.Attack, gameTime);
             
 
 
