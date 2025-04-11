@@ -73,6 +73,8 @@ namespace KirbStomp
             {
                 // _health = 100;
                 ResetHealth();
+                DecreaseLives();
+
                 ActionList.ResetList();
                 StateMachine.State.CurrentState = StateEnum.Idle;
                 Velocity = Vector2.Zero;
@@ -112,6 +114,7 @@ namespace KirbStomp
             AssignCollisionData();
 
             hitboxDrawEnabled = true;
+            OnLivesChange?.Invoke(this, new OnLivesChangeEventArgs { lives = _lives });
         }
         public Character(string name, Texture2D spriteSheet, Vector2 spawnLocation, CharacterUIData characterUIData)
         {
@@ -134,6 +137,7 @@ namespace KirbStomp
             AssignCollisionData();
 
             hitboxDrawEnabled = true;
+            OnLivesChange?.Invoke(this, new OnLivesChangeEventArgs { lives = _lives });
         }
 
         public Rectangle GetPosition()
