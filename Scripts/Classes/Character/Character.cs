@@ -56,13 +56,23 @@ namespace KirbStomp
         private bool hitboxDrawEnabled;
         private CharacterUIData _characterUIData;
 
+        public event EventHandler<OnHealthChangeEventArgs> OnHealthChange;
+        public class OnHealthChangeEventArgs : EventArgs {
+            public float health;
+        }
+        public event EventHandler<OnLivesChangeEventArgs> OnLivesChange;
+        public class OnLivesChangeEventArgs : EventArgs
+        {
+            public int lives;
+        }
+        public event EventHandler OnDeath;
+
         public void Respawn()
         {
             if (_lives==1)
             {
-                _health = 100;
-                _lives--;
-
+                // _health = 100;
+                ResetHealth();
                 ActionList.ResetList();
                 StateMachine.State.CurrentState = StateEnum.Idle;
                 Velocity = Vector2.Zero;
@@ -70,12 +80,14 @@ namespace KirbStomp
                 Vector2 respawnLocation = new Vector2(-100000, -100000);
                 Position = respawnLocation;
 
-                SceneManager.Get().SwitchScene("EndScreen");
+                OnDeath?.Invoke(this, EventArgs.Empty);
+                // SceneManager.Get().SwitchScene("EndScreen");
             }
             else
             {
-                _health = 100;
-                _lives--;
+                // _health = 100;
+                ResetHealth();
+                DecreaseLives();
 
                 ActionList.ResetList();
                 StateMachine.State.CurrentState = StateEnum.Idle;
@@ -723,13 +735,23 @@ namespace KirbStomp
             {
                 this._health = 100;
             }
+            OnHealthChange?.Invoke(this, new OnHealthChangeEventArgs { health = this._health });
         }
         public void TakeDamage(float amt)
         {
             this._health += amt;
+            OnHealthChange?.Invoke(this, new OnHealthChangeEventArgs { health = this._health });
+        }
+        public void ResetHealth() {
+            this._health = 0;
+            OnHealthChange?.Invoke(this, new OnHealthChangeEventArgs { health = this._health });
         }
         public float GetHealth() {
             return this._health;
+        }
+        public void DecreaseLives() {
+            this._lives--;
+            OnLivesChange?.Invoke(this, new OnLivesChangeEventArgs { lives = this._lives });
         }
         public BodyCarrier GetBodyCarrier()
         {

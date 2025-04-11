@@ -63,5 +63,12 @@ public class PlayerBattleUINew : UIElement{
         Sprites.Add(_stockIconThree);
         TextSprites.Add(_nameString);
         TextSprites.Add(_healthString);
+
+        //Events
+        _character.OnHealthChange += Character_OnHealthChange;
+    }
+    private void Character_OnHealthChange(object sender, Character.OnHealthChangeEventArgs e)
+    {
+        _healthString.SetContent(e.health.ToString());
     }
 }
