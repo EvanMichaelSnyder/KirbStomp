@@ -66,9 +66,32 @@ public class PlayerBattleUINew : UIElement{
 
         //Events
         _character.OnHealthChange += Character_OnHealthChange;
+        _character.OnLivesChange += Character_OnLivesChange;
     }
     private void Character_OnHealthChange(object sender, Character.OnHealthChangeEventArgs e)
     {
         _healthString.SetContent(e.health.ToString());
+    }
+    private void Character_OnLivesChange(object sender, Character.OnLivesChangeEventArgs e)
+    {
+        if (e.lives == 3)
+        {
+            _stockIconOne.SetAlphaPercent(100);
+            _stockIconTwo.SetAlphaPercent(15);
+            _stockIconThree.SetAlphaPercent(2);
+        }
+        else if (e.lives == 2)
+        {
+            _stockIconOne.SetAlphaPercent(0);
+
+        }
+        else if (e.lives == 1)
+        {
+            _stockIconTwo.SetAlphaPercent(0);
+        }
+        else if (e.lives == 0)
+        {
+            _stockIconThree.SetAlphaPercent(0);
+        }
     }
 }
