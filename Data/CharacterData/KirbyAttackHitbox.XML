@@ -1,0 +1,677 @@
+﻿<Animations>
+	<Texture character = "Kirby" spriteSheet="KirbyTransparentSpriteSheet">
+		<Animation name="Idle" hasFrames="false">
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="Walk" hasFrames="false">
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="Run" hasFrames="false">
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="Sprint" hasFrames="false">
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="SlideTurn" hasFrames="false">
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="Jump" hasFrames="false">
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="AirIdle" hasFrames="false">
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="AirMove" hasFrames="false">
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="Landing" hasFrames="false">
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="AttackNeutral" hasFrames="true">
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                <Hitbox position="(117,429)" size="(22,22)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(148,428)" size="(22,23)"/>
+			</Frame>
+		</Animation>
+		<Animation name="AttackNeutral2" hasFrames="true">
+			<Frame>
+                <Hitbox position="(181,429)" size="(31,22)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(231,429)" size="(36,22)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(286,420)" size="(34,30)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(338,424)" size="(33,36)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(394,432)" size="(31,31)"/>
+			</Frame>
+		</Animation>
+		<Animation name="AttackNeutral3" hasFrames="true">
+			<Frame>
+                <Hitbox position="(181,429)" size="(31,22)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(231,429)" size="(36,22)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(286,420)" size="(34,30)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(338,424)" size="(33,36)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(394,432)" size="(31,31)"/>
+			</Frame>
+		</Animation>
+		<Animation name="AttackBack" hasFrames="true">
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                <Hitbox position="(88,464)" size="(23,28)"/>
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="AttackForward" hasFrames="true">
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                <Hitbox position="(88,464)" size="(23,28)"/>
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="AttackUp" hasFrames="true">
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                <Hitbox position="(69,575)" size="(25,22)"/>
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="AttackDown" hasFrames="true">
+			<Frame>
+                <Hitbox position="(27,681)" size="(29,22)"/>
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="AttackDash" hasFrames="true">
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                <Hitbox position="(39,806)" size="(37,15)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(77,806)" size="(33,15)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(111,805)" size="(33,16)"/>
+			</Frame>
+		</Animation>
+		<Animation name="AerialNeutral" hasFrames="true">
+			<Frame>
+                <Hitbox position="(14,867)" size="(23,26)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(41,863)" size="(30,32)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(75,867)" size="(25,24)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(104,863)" size="(30,31)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(138,863)" size="(23,27)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(165,862)" size="(30,32)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(199,865)" size="(25,24)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(228,863)" size="(30,30)"/>
+			</Frame>
+		</Animation>
+		<Animation name="AerialForward" hasFrames="true">
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                <Hitbox position="(86,540)" size="(26,27)"/>
+			</Frame>
+			<Frame>
+
+			</Frame>
+			<Frame>
+                <Hitbox position="(160,539)" size="(23,28)"/>
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                <Hitbox position="(230,540)" size="(20,27)"/>
+			</Frame>
+		</Animation>
+		<Animation name="AerialBack" hasFrames="true">
+			<Frame>
+                <Hitbox position="(9,768)" size="(16,15)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(38,768)" size="(17,15)"/>
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="AerialUp" hasFrames="true">
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                <Hitbox position="(135,621)" size="(20,22)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(157,616)" size="(22,27)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(181,624)" size="(30,19)"/>
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="AerialDown" hasFrames="true">
+			<Frame>
+                <Hitbox position="(9,768)" size="(16,15)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(38,768)" size="(17,15)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(66,768)" size="(17,15)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(93,768)" size="(17,15)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(123,767)" size="(20,16)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(151,767)" size="(21,16)"/>
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="SpecialNeutral" hasFrames="true">
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="SpecialForward" hasFrames="true">
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                <Hitbox position="(204,1215)" size="(34,30)"/>
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="SpecialBack" hasFrames="true">
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                <Hitbox position="(204,1215)" size="(34,30)"/>
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="SpecialUp" hasFrames="true">
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                <Hitbox position="(154,1129)" size="(38,41)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(198,1113)" size="(37,33)"/>
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                <Hitbox position="(424,1111)" size="(37,33)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(480,1131)" size="(38,43)"/>
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="SpecialDown" hasFrames="true">
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                <Hitbox position="(145,1085)" size="(25,20)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(178,1083)" size="(28,22)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(212,1080)" size="(28,24)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(245,1079)" size="(28,27)"/>
+			</Frame>
+			<Frame>
+                <Hitbox position="(277,1076)" size="(28,30)"/>
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="KnockedBack" hasFrames="false">
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="Ragdolled" hasFrames="false">
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="LayingDown" hasFrames="false">
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="Recover" hasFrames="false">
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+		<Animation name="FreeFall" hasFrames="false">
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+			<Frame>
+                 
+			</Frame>
+		</Animation>
+	</Texture>
+</Animations>
