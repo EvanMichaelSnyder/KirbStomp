@@ -83,7 +83,7 @@ namespace KirbStomp.Scripts.Classes.Collision.CollisionHandlers
 
                 character.snapVelocity = false;
                 var result = otherCharacter._attackCarrier.GetImpulseVector(character._bodyCarrier);
-                character.Velocity = result.impulse * (float)(1.0 + character._health / 1000.0); ;
+                character.Velocity = result.impulse * (float)(1.0 + character._health / 500.0); ;
             }
             else if (context.Other.GetType().BaseType == typeof(AProjectile))
             {
