@@ -285,6 +285,8 @@ namespace KirbStomp.Scripts.Scenes
             AnimationRepository.LoadAnimationsFromXml(fileLocation + ".XML");
             HitboxRepository.LoadHitboxesFromXml(fileLocation + "Hitbox.XML");
             AttackHitboxRepository.LoadHitboxesFromXml(fileLocation + "AttackHitbox.XML");
+            AttackDataRepository.LoadAttackDataFromXml(fileLocation + "Attacks.XML");
+
 
             Character output;
             Texture2D stockIconSheet = Game1.Get().Content.Load<Texture2D>(stats.stockIcon.spriteSheet);
