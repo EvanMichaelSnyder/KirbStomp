@@ -651,7 +651,11 @@ namespace KirbStomp
             }
             CheckTransition();
             SetAcceleration(gameTime);
-            SetDirection();
+            if (StateMachine.State.CurrentState != StateEnum.KnockedBack
+                && StateMachine.State.CurrentState != StateEnum.Ragdolled)
+            {
+                SetDirection();
+            }
             Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
