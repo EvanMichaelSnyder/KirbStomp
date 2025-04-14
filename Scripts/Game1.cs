@@ -112,7 +112,7 @@ namespace KirbStomp
 		}
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.DarkGray);
+            GraphicsDevice.Clear(Color.Black);
             _sceneManager.DrawScene(gameTime, _spriteBatch);
 			base.Draw(gameTime);
 		}

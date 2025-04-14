@@ -48,7 +48,7 @@ namespace KirbStomp
         private float maxVelocity;
         private const float capVelocity = 450;
         private Vector2 acceleration = Vector2.Zero;
-        private bool snapVelocity = false;
+        internal bool snapVelocity = false;
         private const float jumpVelocity = -600;
         private const float specialUpVelocity = 150;
         bool projSpawnedOnThisFrame = false;
@@ -269,6 +269,7 @@ namespace KirbStomp
             ActionList.ResetList();
             _bodyCarrier.HitboxManager.UpdateHitboxList(Position, StateMachine.State.FacingDirection, _name, StateMachine.State.CurrentState, StateMachine.State.GetFrameIndex());
             _attackCarrier.HitboxManager.UpdateAttackHitboxList(Position, StateMachine.State.FacingDirection, _name, StateMachine.State.CurrentState, StateMachine.State.GetFrameIndex());
+            _attackCarrier.assignAttackDataFromXML(_name, this.StateMachine.State.CurrentState);
         }
         internal void HandleStates()
         {
@@ -703,7 +704,8 @@ namespace KirbStomp
                     || StateMachine.State.CurrentState == StateEnum.SpecialNeutral
                     || StateMachine.State.CurrentState == StateEnum.SpecialUp)
                 {
-                    Velocity.X = 0;
+                    Velocity.X 
+        ;
                 }
             }
         }
@@ -711,6 +713,8 @@ namespace KirbStomp
 
         public void Gravity(GameTime gameTime) //this is temporary
         {
+            //weird place to put this but i dont care
+            ClockTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (StateMachine.State.IsGrounded != true)
             {
                 {

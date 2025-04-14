@@ -57,7 +57,8 @@ namespace KirbStomp.Scripts.Classes.Collision
         public PhysicsComponent Physics { get; } = new PhysicsComponent();
         public bool IsActive { get; internal set; }
         public List<Carrier> Carriers { get; } = new List<Carrier>();
-
+        public float ClockTime 
+            ;
 
         public void RegisterCollisionResponse(HitboxTypeEnum selfType,
                                            HitboxTypeEnum otherType,
@@ -76,10 +77,13 @@ namespace KirbStomp.Scripts.Classes.Collision
                 Debug.WriteLine($"Registered handler: {key}");
             }
             */
-            if (_collisionHandlers.TryGetValue((context.SelfType, context.OtherType),
-                out var handler))
+            if (ClockTime <= 0)
             {
-                handler(this, context);
+                if (_collisionHandlers.TryGetValue((context.SelfType, context.OtherType),
+                    out var handler))
+                {
+                    handler(this, context);
+                }
             }
         }
     }

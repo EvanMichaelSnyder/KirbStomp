@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,14 +32,12 @@ public abstract class Carrier
 
     public class AttackCarrier : Carrier
     {
-        private float Damage = 10f;
-        private Vector2 Impulse = new Vector2(100, 300);
-
-
-        //can flip is used for bidirectional attacks where the facing direction of the parent cannot be used to determine behavior
-        private bool CanFlipX = true;
-        private bool CanFlipY = false;
-        private bool hitboxAngleShearing = true;//always do true
+        public float Damage { get; private set; }
+        public Vector2 Impulse { get; private set; }
+        public bool CanFlipX { get; private set; }
+        public bool CanFlipY { get; private set; }
+        public bool HitboxAngleShearing { get; private set; }
+        public float ClockTime { get; private set; }
 
         //then some special function
 
@@ -51,6 +50,10 @@ public abstract class Carrier
         {
             this.Damage = amt;
         }
+        public void SetClock(float amt)
+        {
+            this.Damage = amt;
+        }
 
         public AttackCarrier()
         {
@@ -58,13 +61,22 @@ public abstract class Carrier
         }
 
 
-        public void assignAttackDataFromXML()
+        public void assignAttackDataFromXML(string name, StateEnum state)
         {
-
+            AttackDataRepository.AttackData data = AttackDataRepository.GetAttackData(name, state);
+            if (data.hasData)
+            {
+                Damage = data.Damage;
+                Impulse = data.Impulse;
+                CanFlipX = data.CanFlipX;
+                CanFlipY = data.CanFlipY;
+                HitboxAngleShearing = data.HitboxAngleShearing;
+                ClockTime = data.ClockTime;
+            }
         }
 
         //returns a resulting vector for collision after being fed all relevant information
-        public Vector2 GetImpulseVector(BodyCarrier otherObjectBodyCarrier)
+        public (Vector2 impulse, DirectionEnum direction) GetImpulseVector(BodyCarrier otherObjectBodyCarrier)
         {
             Vector2 WeightedRelevance = Impulse;
             WeightedRelevance.Normalize();
@@ -78,33 +90,52 @@ public abstract class Carrier
             Vector2 AverageWeightedRelevance = (WeightedRelevance + WeightedRelevanceOther) / 2.0f;
 
             Vector2 ResultingImpulse = Impulse;
-            if (hitboxAngleShearing)
+            if (false)
             {
                 ResultingImpulse = AverageWeightedRelevance * Impulse;
             }
 
+            /*
             if(CanFlipX)
+            { 
+                if(otherPosition.X < ownPosition.X) 
                 { 
-                    if(otherPosition.X < ownPosition.X) { ResultingImpulse.X = Math.Abs(ResultingImpulse.X) * -1; } }
-            else
-            {
-                if (otherObjectBodyCarrier.Parent.GetType() == typeof(Character))
+                    ResultingImpulse.X = Math.Abs(ResultingImpulse.X) * -; 
+                }
+                else
                 {
-                    if(((Character)(otherObjectBodyCarrier.Parent)).StateMachine.State.FacingDirection == DirectionEnum.Left)
-                    {
-                        ResultingImpulse.X *= -1;
-                    }
+                    ResultingImpulse.X = Math.Abs(ResultingImpulse.X);
+                }
+            }
+            else if (this.Parent.GetType() == typeof(Character))
+            {
+                if (((Character)(this.Parent)).StateMachine.State.FacingDirection == DirectionEnum.Left)
+                {
+                    Debug.WriteLine(((Character)(this.Parent)).StateMachine.State.FacingDirection);
+                    ResultingImpulse.X = (Math.Abs(ResultingImpulse.X));
+                }
+                else if (((Character)(this.Parent)).StateMachine.State.FacingDirection == DirectionEnum.Right)
+                {
+                    Debug.WriteLine(((Character)(this.Parent)).StateMachine.State.FacingDirection);
+                    ResultingImpulse.X = (Math.Abs(ResultingImpulse.X)) * -1;
                 }
             }
             if (CanFlipY)
             {
                 if (otherPosition.Y > ownPosition.Y) { ResultingImpulse.X *= -1; }
             }
-
-
+            */
+            if (this.Parent.GetType() == typeof(Character))
+            {
+                if (((Character)(this.Parent)).StateMachine.State.FacingDirection == DirectionEnum.Left)
+                {
+                    ResultingImpulse.X *= -1;
+                }
+            }
+            Debug.WriteLine(ResultingImpulse);
             //y velocity is flipped its annoying but whatever;
             ResultingImpulse.Y *= -1;
-            return ResultingImpulse;
+            return (ResultingImpulse, ((Character)(this.Parent)).StateMachine.State.FacingDirection);
         }
 
     }
