@@ -23,6 +23,7 @@ namespace KirbStomp
         private ScreenWindow _screenWindow;
 
         private SceneManager _sceneManager;
+        private MouseController _mouseController;
         //singleton
         private static Game1 inst;
 
@@ -51,6 +52,7 @@ namespace KirbStomp
             _screenWindow.UpdateWindowSize();
 
             _sceneManager = SceneManager.Get();
+            _mouseController = new MouseController();
 
             base.Initialize();
         }
@@ -63,6 +65,7 @@ namespace KirbStomp
 		protected override void Update(GameTime gameTime)
 		{
             _sceneManager.UpdateScene(gameTime);
+            _mouseController.Update();
 
             // if(Keyboard.GetState().IsKeyDown(Keys.D1))
             // {

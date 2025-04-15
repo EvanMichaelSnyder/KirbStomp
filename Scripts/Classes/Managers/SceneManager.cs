@@ -37,7 +37,7 @@ namespace KirbStomp
 
         private UpdateMethod _updateMethod;
         private bool _paused;
-
+        public event EventHandler OnSceneChange;
         private readonly string _scenesToLoad = Path.Combine(XMLData.GetDataFolder(), "SceneData", "AllScenesToLoad");
         /*
          * This scene manager will deal with pause, quit, and reset
@@ -46,6 +46,7 @@ namespace KirbStomp
          * 
          * 
          */
+
         public static SceneManager Get()
         {
             if(inst == null)
@@ -102,6 +103,7 @@ namespace KirbStomp
                 if(scene.GetName() == sceneName)
                 {
                     _currentScene = scene;
+                    OnSceneChange?.Invoke(this, EventArgs.Empty);
                     break;
                 }
             }

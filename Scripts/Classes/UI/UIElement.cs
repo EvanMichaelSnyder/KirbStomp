@@ -32,7 +32,7 @@ public class UIElement : IUI {
         // Initialization logic here
     }
 
-    public void Draw(SpriteBatch spriteBatch) {
+    public virtual void Draw(SpriteBatch spriteBatch) {
         
         if (this.IsVisible) {
             foreach (var sprite in this.Sprites) {

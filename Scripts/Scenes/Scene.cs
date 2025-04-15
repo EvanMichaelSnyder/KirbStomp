@@ -37,12 +37,12 @@ namespace KirbStomp.Scripts.Scenes
         private List<StageBoundary> _boundaries;
         private List<IUI> _screenSpaceUI;   // Sprite'll be UI / Text
         private List<IUI> _worldSpaceSprites;    // Sprite'll be UI / Text
-
+        private List<AreaUI2D> _areaUI2Ds;
         private CollisionSystem _collisionSystem;
         private ProjectileManager _projectileManager;
         private ItemManager _itemManager;
         private LevelManager _levelManager;
-        private MusicManager _musicManager;
+        // private MusicManager _musicManager;
         private Sprite _background;
 
         private Camera2D _camera;
@@ -59,8 +59,6 @@ namespace KirbStomp.Scripts.Scenes
             this._screenSpaceUI = new();
             this._worldSpaceSprites = new();
             this._boundaries = new();
-
-
         }
         public ProjectileManager GetProjectileManager()
         {
@@ -69,17 +67,17 @@ namespace KirbStomp.Scripts.Scenes
         
         public void Initialize()
         {
-            
+            _areaUI2Ds = new List<AreaUI2D>();
             var (width, height) = Game1.Get().GetScreenWindow().GetAdjustedWindowSize();
             this._camera = new(Game1.Get().GraphicsDevice, new Point(width, height));
             _collisionSystem = new CollisionSystem();
             _projectileManager = new ProjectileManager(_collisionSystem);
             _itemManager = new ItemManager(_collisionSystem);
-            _musicManager = MusicManager.Get();
+            // _musicManager = MusicManager.Get();
             //todo load string
             LoadContent();
-            // _levelManager = new LevelManager(_collisionSystem, 100, "Platforms", Game1.Get().GetScreenWindow().GetXSize(), Game1.Get().GetScreenWindow().GetYSize());
-            
+            _levelManager = new LevelManager(_collisionSystem, 100, "Platforms", Game1.Get().GetScreenWindow().GetXSize(), Game1.Get().GetScreenWindow().GetYSize());
+
         }
 
 
@@ -100,8 +98,8 @@ namespace KirbStomp.Scripts.Scenes
             // var (character, Controller) = LoadCharacter(characterXMLFile);
             SceneLoader.SetLoadFile(_name);    // This will be taken out into scene manager, which'll take care of scene initializations
             SceneLoader.LoadScene(_characters, _controllers, _platforms, _screenSpaceUI, _boundaries);
-            _musicManager.LoadMusic();
-            _musicManager.PlayMusic();
+            // _musicManager.LoadMusic();
+            // _musicManager.PlayMusic();
 
             foreach (ICharacter character in _characters)
             {
@@ -115,7 +113,15 @@ namespace KirbStomp.Scripts.Scenes
             {
                 _collisionSystem.RegisterObject(boundary);
             }
-
+            foreach (IUI ui in _screenSpaceUI)
+            {
+                if (ui is ButtonUI button)
+                {
+                    Console.WriteLine("Adding button to areaUI2D");
+                    _areaUI2Ds.Add(button.Area);
+                }
+            }
+            
             // _background = new Sprite(Game1.Get().Content.Load<Texture2D>("SpaceBackground"), new Rectangle(0, 0, 3000, 2000), 0.27f);// To be taken out later
 
             // Load all platforms
@@ -133,13 +139,12 @@ namespace KirbStomp.Scripts.Scenes
 
         public void Update(GameTime gameTime)
         {
-
             this._projectileManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             this._itemManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             // this._levelManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             //this._itemManager.SpawnRandomItem();
             this._camera.Update(gameTime);
-            _musicManager.PlayMusic();
+            // _musicManager.PlayMusic();
 
             foreach (ICharacter chara in _characters) { chara.Animate(gameTime); }
 
@@ -242,6 +247,10 @@ namespace KirbStomp.Scripts.Scenes
         public string GetName()
         {
             return _name;
+        }
+        public List<AreaUI2D> GetAreas()
+        {
+            return _areaUI2Ds;
         }         
     }
 }
