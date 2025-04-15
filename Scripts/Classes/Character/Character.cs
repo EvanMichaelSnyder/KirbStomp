@@ -341,7 +341,6 @@ namespace KirbStomp
                         break;
 
                     case GameButtons.Jump:
-                        this.ClockTime = .1f;
                         StateMachine.HandleEvent(EventType.TryJump);
                         _soundManager.PlaySound("Jump");
                         break;
