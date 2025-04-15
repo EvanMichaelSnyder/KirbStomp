@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/Attack.wav</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/AttackWire.png</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/BattlefieldTheme.mp3</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/BattleUISpriteSheet.png</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/DashStart.wav</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/File.xml</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/GameButtons.png</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/GameName.png</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/Hit.wav</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/HitboxWire.png</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/impact.spritefont</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/Items.png</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/Jump.wav</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/KirbyTransparentSpriteSheet.png</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/Landing.wav</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/LinkProjectileSpriteSheet.png</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/LinkTransparentSpriteSheet.png</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/MarioAttackHitboxSpriteSheet.png</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/MarioHitBoxSpriteSheet.png</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/MarioProjectileTransparentSpriteSheet.png</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/MarioTransparentSpriteSheet.png</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/MegaManTransparentSpriteSheet.png</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/Platforms.png</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/PlayerOneUI.png</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/PlayerTwoUI.png</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/SpaceBackground.png</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/Special.wav</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/SpecialUp.wav</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/Walk.wav</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

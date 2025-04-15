@@ -13,6 +13,12 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Attack.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Attack.wav
+
 #begin AttackWire.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -43,6 +49,12 @@
 /processorParam:TextureFormat=Color
 /build:BattleUISpriteSheet.png
 
+#begin DashStart.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:DashStart.wav
+
 #begin File.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
@@ -71,6 +83,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:GameName.png
+
+#begin Hit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Hit.wav
 
 #begin HitboxWire.png
 /importer:TextureImporter
@@ -103,6 +121,12 @@
 /processorParam:TextureFormat=Color
 /build:Items.png
 
+#begin Jump.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Jump.wav
+
 #begin KirbyTransparentSpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -126,6 +150,11 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:lava.png
+#begin Landing.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Landing.wav
 
 #begin LinkProjectileSpriteSheet.png
 /importer:TextureImporter
@@ -258,4 +287,22 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:SpaceBackground.png
+
+#begin Special.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Special.wav
+
+#begin SpecialUp.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SpecialUp.wav
+
+#begin Walk.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Walk.wav
 
