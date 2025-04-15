@@ -1,0 +1,8 @@
+﻿<Animations>
+	<Texture spriteSheet="KirbyProjectileTransparentSpriteSheet" scale="1.0" boundX="1172" offsetDirectional = "-30" />
+
+	<Animation name="AirEffect" duration ="1.0" loop="true" animationOffset="(0, 0)">
+		<Frame position="(324, 855)" size="(36, 60)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+</Animations>

@@ -80,6 +80,16 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
             RegisterCollisionResponse(HitboxTypeEnum.Body,
                                     HitboxTypeEnum.Platform,
                                     (obj, ctx) => HitGround(obj, ctx));
+
+            RegisterCollisionResponse(HitboxTypeEnum.Attack,
+                                    HitboxTypeEnum.Body,
+                                    (obj, ctx) => HitPlayer(obj, ctx));
+
+        }
+
+        public void HitPlayer(CollisionObject obj, CollisionContext context)
+        {
+            this.Destroy();
         }
 
         public override void Update(float dt)

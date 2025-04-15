@@ -10,34 +10,37 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
 {
-    public class LinkSideSlash : AProjectile
+    public class MegaManLeafShield : AProjectile
     {
         //some variables to stop magic num/string!
-        private float _scale = 1.3f;
-        private string SPR_NAME = "LinkProjectile";
-        private string ANIM_NAME = "LinkProjectileTransparentSpriteSheet";
-        private string ANIM_STATE_SHOOT = "SideAttackThrustShoot";
-        private string ANIM_STATE_AIR = "SideAttackThrustAir";
-        private float X_SPEED = 400f;
+        private float _scale = 1.75f;
+        private string SPR_NAME = "MegaManProjectile";
+        private string ANIM_NAME = "MegaManProjectileTransparentSpriteSheet";
+        private string ANIM_STATE_SHOOT = "LeafShield";
+        private float X_SPEED = 150f;
         private float DAMAGE = 5f;
         private float TIME_TO_LIVE = 5f;
 
-        private bool _doneShoot = false;
-
+        //variable for calculating circular motion
+        private float RADIUS = 50f;             // Radius of the circular path
+        private float ANGULAR_SPEED = 10f;      // Speed of rotation (radians per second)
+        private float _currentAngle = 20f;      // Current angle (in radians)
+        private int _rotationDirection = 1;     // 1 for clockwise, -1 for counterclockwise
+        private Vector2 center;
 
         private Sprite _sprite;
         private AnimationSystem _animationSystem;
 
 
-        public LinkSideSlash(Vector2 startPos, bool facingRight)
+        public MegaManLeafShield(Vector2 startPos, bool facingRight)
         {
             this.Position = startPos;
+            this.center = startPos;
             Texture2D texture = AssetPool.GetTexture(SPR_NAME);
             this._sprite = new Sprite(texture, new Rectangle()/*doesnt matter, anim will change*/, _scale);
             this._animationSystem = new AnimationSystem(_sprite);
 
             this._animationSystem.AddAnimation(AssetPool.GetAnimation(ANIM_NAME, ANIM_STATE_SHOOT));
-            this._animationSystem.AddAnimation(AssetPool.GetAnimation(ANIM_NAME, ANIM_STATE_AIR));
             this._animationSystem.SetAnimation(ANIM_STATE_SHOOT);
 
             this._dimension = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)(_scale * _sprite.GetSrcRectangle().Width), (int)(_scale * _sprite.GetSrcRectangle().Height));
@@ -47,6 +50,7 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
             {
                 this.Velocity.X *= -1f;
                 this._sprite.FlipTextureX();
+                this._rotationDirection = -1;
             }
         }
 
@@ -62,7 +66,6 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
             this._attackCarrier.SetDamage(DAMAGE);
             this._bodyCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
             this._attackCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
-            
             RegisterCollisionResponse(HitboxTypeEnum.Attack,
                                     HitboxTypeEnum.Body,
                                     (obj, ctx) => HitPlayer(obj, ctx));
@@ -84,19 +87,24 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
                 return;
             }
 
-            if (!_doneShoot)
+
+            center += Velocity * dt;
+
+            // increment the angle based on the rotation direction and speed
+            _currentAngle += _rotationDirection * ANGULAR_SPEED * dt;
+
+            // setting the angle limit to [0, 2PI]
+            if (_currentAngle > 2 * (float)Math.PI)
             {
-                if (this._animationSystem.IsAnimationDone())
-                {
-                    this._doneShoot = true;
-                    this._animationSystem.SetAnimation(ANIM_STATE_AIR);
-                    this._dimension.Height = (int)(this._sprite.GetSrcRectangle().Height * _scale);
-                    this._yOffSetCollider = this._sprite.GetYOffset();
-                }
+                _currentAngle -= 2 * (float)Math.PI;
+            } else if (_currentAngle < 0)
+            {
+                _currentAngle += 2 * (float)Math.PI;
             }
 
-
-            Position += Velocity * dt;
+            // calculate the new position based on the center and angle
+            Position.X = center.X + RADIUS * (float)Math.Cos(_currentAngle);
+            Position.Y = center.Y + RADIUS * (float)Math.Sin(_currentAngle);
 
         }
     }

@@ -222,9 +222,13 @@ namespace KirbStomp.Scripts.Scenes
             Texture2D itemSheet = Game1.Get().Content.Load<Texture2D>("Items");
             Texture2D _marioSheet = Game1.Get().Content.Load<Texture2D>("MarioTransparentSpriteSheet");
             Texture2D _linkSheet = Game1.Get().Content.Load<Texture2D>("LinkTransparentSpriteSheet");
+            Texture2D _kirbySheet = Game1.Get().Content.Load<Texture2D>("KirbyTransparentSpriteSheet");
+            Texture2D _megaManSheet = Game1.Get().Content.Load<Texture2D>("MegaManTransparentSpriteSheet");
             AssetPool.LoadTexture(itemSheet, "Items");
             AssetPool.LoadTexture(_marioSheet, "MarioProjectile");
             AssetPool.LoadTexture(_linkSheet, "LinkProjectile");
+            AssetPool.LoadTexture(_kirbySheet, "KirbyProjectile");
+            AssetPool.LoadTexture(_megaManSheet, "MegaManProjectile");
 
             LoadAllTexturesFromXElement(GetXElementOrAssert("Textures", assetPool));
             LoadAllAnimationsFromXElement(GetXElementOrAssert("Animations", assetPool));

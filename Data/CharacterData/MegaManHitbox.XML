@@ -322,71 +322,11 @@
 		</Animation>
 		<Animation name="AttackBack">
 			<Frame>
-                <Hitbox position="(19,414)" size="(38,13)"/>
-                <Hitbox position="(28,399)" size="(18,16)"/>
-                <Hitbox position="(13,426)" size="(33,17)"/>
-			</Frame>
-			<Frame>
-                <Hitbox position="(69,414)" size="(39,12)"/>
-                <Hitbox position="(78,399)" size="(18,16)"/>
-                <Hitbox position="(62,425)" size="(33,18)"/>
-			</Frame>
-			<Frame>
-                <Hitbox position="(119,414)" size="(38,12)"/>
-                <Hitbox position="(128,399)" size="(19,16)"/>
-                <Hitbox position="(113,425)" size="(33,18)"/>
-			</Frame>
-			<Frame>
-                <Hitbox position="(170,414)" size="(38,12)"/>
-                <Hitbox position="(179,399)" size="(19,16)"/>
-                <Hitbox position="(163,425)" size="(33,18)"/>
-			</Frame>
-			<Frame>
-                <Hitbox position="(221,414)" size="(39,12)"/>
-                <Hitbox position="(214,425)" size="(33,18)"/>
-                <Hitbox position="(230,399)" size="(18,16)"/>
-			</Frame>
-			<Frame>
-                <Hitbox position="(271,415)" size="(38,12)"/>
-                <Hitbox position="(265,426)" size="(33,17)"/>
-                <Hitbox position="(280,399)" size="(19,17)"/>
-			</Frame>
-			<Frame>
                 <Hitbox position="(368,401)" size="(34,26)"/>
                 <Hitbox position="(355,426)" size="(36,17)"/>
 			</Frame>
 		</Animation>
 		<Animation name="AttackForward">
-			<Frame>
-                <Hitbox position="(19,414)" size="(38,13)"/>
-                <Hitbox position="(28,399)" size="(18,16)"/>
-                <Hitbox position="(13,426)" size="(33,17)"/>
-			</Frame>
-			<Frame>
-                <Hitbox position="(69,414)" size="(39,12)"/>
-                <Hitbox position="(78,399)" size="(18,16)"/>
-                <Hitbox position="(62,425)" size="(33,18)"/>
-			</Frame>
-			<Frame>
-                <Hitbox position="(119,414)" size="(38,12)"/>
-                <Hitbox position="(128,399)" size="(19,16)"/>
-                <Hitbox position="(113,425)" size="(33,18)"/>
-			</Frame>
-			<Frame>
-                <Hitbox position="(170,414)" size="(38,12)"/>
-                <Hitbox position="(179,399)" size="(19,16)"/>
-                <Hitbox position="(163,425)" size="(33,18)"/>
-			</Frame>
-			<Frame>
-                <Hitbox position="(221,414)" size="(39,12)"/>
-                <Hitbox position="(214,425)" size="(33,18)"/>
-                <Hitbox position="(230,399)" size="(18,16)"/>
-			</Frame>
-			<Frame>
-                <Hitbox position="(271,415)" size="(38,12)"/>
-                <Hitbox position="(265,426)" size="(33,17)"/>
-                <Hitbox position="(280,399)" size="(19,17)"/>
-			</Frame>
 			<Frame>
                 <Hitbox position="(368,401)" size="(34,26)"/>
                 <Hitbox position="(355,426)" size="(36,17)"/>

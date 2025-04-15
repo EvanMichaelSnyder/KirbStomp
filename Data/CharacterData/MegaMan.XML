@@ -113,22 +113,10 @@
 	</Animation>
 
 	<Animation name="AttackBack" duration ="0.5" loop="false" animationOffset="(0, 1)">
-		<Frame position="(13, 399)" size="(44, 44)" perFrameOffset="(0, 0)"/>
-		<Frame position="(62, 399)" size="(46, 44)" perFrameOffset="(0, 0)"/>
-		<Frame position="(113, 399)" size="(44, 44)" perFrameOffset="(0, 0)"/>
-		<Frame position="(163, 399)" size="(45, 44)" perFrameOffset="(0, 0)"/>
-		<Frame position="(214, 399)" size="(46, 44)" perFrameOffset="(0, 0)"/>
-		<Frame position="(265, 399)" size="(44, 44)" perFrameOffset="(0, 0)"/>
 		<Frame position="(355, 401)" size="(47, 42)" perFrameOffset="(0, 2)"/>
 	</Animation>
 
 	<Animation name="AttackForward" duration ="0.5" loop="false" animationOffset="(0, 1)">
-		<Frame position="(13, 399)" size="(44, 44)" perFrameOffset="(0, 0)"/>
-		<Frame position="(62, 399)" size="(46, 44)" perFrameOffset="(0, 0)"/>
-		<Frame position="(113, 399)" size="(44, 44)" perFrameOffset="(0, 0)"/>
-		<Frame position="(163, 399)" size="(45, 44)" perFrameOffset="(0, 0)"/>
-		<Frame position="(214, 399)" size="(46, 44)" perFrameOffset="(0, 0)"/>
-		<Frame position="(265, 399)" size="(44, 44)" perFrameOffset="(0, 0)"/>
 		<Frame position="(355, 401)" size="(47, 42)" perFrameOffset="(0, 2)"/>
 	</Animation>
 

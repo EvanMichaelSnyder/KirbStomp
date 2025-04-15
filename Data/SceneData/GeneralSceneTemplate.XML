@@ -2,10 +2,10 @@
 	<Name> SceneMain </Name>
 	<FilesToLoad>
 		<Characters>
-			<Character> Mario MarioTransparentSpriteSheet Player1Controls </Character>
+			<!-- <Character> Mario MarioTransparentSpriteSheet Player1Controls </Character> -->
 			<!-- <Character> Link LinkTransparentSpriteSheet Player2Controls	</Character> -->
-			<!-- <Character> Megaman MegamanTransparentSpriteSheet Player2Controls	</Character>  -->
-			<Character> Kirby KirbyTransparentSpriteSheet Player2Controls	</Character> 
+			<Character> Megaman MegamanTransparentSpriteSheet Player1Controls	</Character> 
+			<Character> Link LinkTransparentSpriteSheet Player2Controls	</Character> 
 		</Characters>
 		<Platforms>
 			<Platform> PlatformMain </Platform>
@@ -20,11 +20,15 @@
 				<Texture> Items Items </Texture>
 				<Texture> MarioProjectile MarioTransparentSpriteSheet </Texture>
 				<Texture> LinkProjectile LinkTransparentSpriteSheet </Texture>
+				<Texture> KirbyProjectile KirbyTransparentSpriteSheet </Texture>
+				<Texture> MegaManProjectile MegaManTransparentSpriteSheet </Texture>
 				<Texture> Platforms Platforms </Texture>
 			</Textures>
 			<Animations>
 				<Animation> LinkProjectile </Animation>
 				<Animation> MarioProjectile </Animation>
+				<Animation> KirbyProjectile </Animation>
+				<Animation> MegaManProjectile </Animation>
 			</Animations>
 		</AssetPool>		
 	</FilesToLoad>

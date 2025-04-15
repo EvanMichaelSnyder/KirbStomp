@@ -225,17 +225,16 @@ namespace KirbStomp
             {
                 StateMachine.State.IncrementFrameIndex();
                 StateMachine.State.resetElapsedTime();
+                projSpawnedOnThisFrame = false;
                 // Handle frame overflow
                 if (StateMachine.State.GetFrameIndex() >= animationData.Frames.Count)
                 {
                     if (animationData.Loop)
                     {
-                        projSpawnedOnThisFrame = false;
                         StateMachine.State.ResetFrameIndex();
                     }
                     else
                     {
-                        projSpawnedOnThisFrame = false;
                         ActionList.AddAction((GameButtons)GameButtons.End);
                     }
                 }

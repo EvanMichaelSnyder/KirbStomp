@@ -10,14 +10,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
 {
-    public class LinkSideSlash : AProjectile
+    public class MegaManMegaBuster : AProjectile
     {
         //some variables to stop magic num/string!
-        private float _scale = 1.3f;
-        private string SPR_NAME = "LinkProjectile";
-        private string ANIM_NAME = "LinkProjectileTransparentSpriteSheet";
-        private string ANIM_STATE_SHOOT = "SideAttackThrustShoot";
-        private string ANIM_STATE_AIR = "SideAttackThrustAir";
+        private float _scale = 1.75f;
+        private string SPR_NAME = "MegaManProjectile";
+        private string ANIM_NAME = "MegaManProjectileTransparentSpriteSheet";
+        private string ANIM_STATE_SHOOT = "MegaBusterShoot";
+        private string ANIM_STATE_AIR = "MegaBusterAir";
         private float X_SPEED = 400f;
         private float DAMAGE = 5f;
         private float TIME_TO_LIVE = 5f;
@@ -29,8 +29,9 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
         private AnimationSystem _animationSystem;
 
 
-        public LinkSideSlash(Vector2 startPos, bool facingRight)
+        public MegaManMegaBuster(Vector2 startPos, bool facingRight)
         {
+            // Console.WriteLine("MegaManMegaBuster Spawned");
             this.Position = startPos;
             Texture2D texture = AssetPool.GetTexture(SPR_NAME);
             this._sprite = new Sprite(texture, new Rectangle()/*doesnt matter, anim will change*/, _scale);
@@ -94,7 +95,6 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
                     this._yOffSetCollider = this._sprite.GetYOffset();
                 }
             }
-
 
             Position += Velocity * dt;
 

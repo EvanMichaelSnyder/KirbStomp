@@ -10,14 +10,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
 {
-    public class LinkSideSlash : AProjectile
+    public class MegaManSpinEffect : AProjectile
     {
         //some variables to stop magic num/string!
-        private float _scale = 1.3f;
-        private string SPR_NAME = "LinkProjectile";
-        private string ANIM_NAME = "LinkProjectileTransparentSpriteSheet";
-        private string ANIM_STATE_SHOOT = "SideAttackThrustShoot";
-        private string ANIM_STATE_AIR = "SideAttackThrustAir";
+        private float _scale = 1.75f;
+        private string SPR_NAME = "MegaManProjectile";
+        private string ANIM_NAME = "MegaManProjectileTransparentSpriteSheet";
+        private string ANIM_STATE_SHOOT = "SpinEffect";
         private float X_SPEED = 400f;
         private float DAMAGE = 5f;
         private float TIME_TO_LIVE = 5f;
@@ -29,7 +28,7 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
         private AnimationSystem _animationSystem;
 
 
-        public LinkSideSlash(Vector2 startPos, bool facingRight)
+        public MegaManSpinEffect(Vector2 startPos, bool facingRight)
         {
             this.Position = startPos;
             Texture2D texture = AssetPool.GetTexture(SPR_NAME);
@@ -37,7 +36,6 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
             this._animationSystem = new AnimationSystem(_sprite);
 
             this._animationSystem.AddAnimation(AssetPool.GetAnimation(ANIM_NAME, ANIM_STATE_SHOOT));
-            this._animationSystem.AddAnimation(AssetPool.GetAnimation(ANIM_NAME, ANIM_STATE_AIR));
             this._animationSystem.SetAnimation(ANIM_STATE_SHOOT);
 
             this._dimension = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)(_scale * _sprite.GetSrcRectangle().Width), (int)(_scale * _sprite.GetSrcRectangle().Height));
@@ -62,16 +60,7 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
             this._attackCarrier.SetDamage(DAMAGE);
             this._bodyCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
             this._attackCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
-            
-            RegisterCollisionResponse(HitboxTypeEnum.Attack,
-                                    HitboxTypeEnum.Body,
-                                    (obj, ctx) => HitPlayer(obj, ctx));
 
-        }
-
-        public void HitPlayer(CollisionObject obj, CollisionContext context)
-        {
-            this.Destroy();
         }
 
         public override void Update(float dt)
@@ -82,17 +71,6 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
             {
                 this.Destroy();
                 return;
-            }
-
-            if (!_doneShoot)
-            {
-                if (this._animationSystem.IsAnimationDone())
-                {
-                    this._doneShoot = true;
-                    this._animationSystem.SetAnimation(ANIM_STATE_AIR);
-                    this._dimension.Height = (int)(this._sprite.GetSrcRectangle().Height * _scale);
-                    this._yOffSetCollider = this._sprite.GetYOffset();
-                }
             }
 
 

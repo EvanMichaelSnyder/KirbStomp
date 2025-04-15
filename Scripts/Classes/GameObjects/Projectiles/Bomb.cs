@@ -16,8 +16,8 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
         //the magic stuff
         private readonly float DAMAGE = 20;
         private readonly float EXPLODE_TIME = .8f;
-        private readonly float THROW_SPEED = 100f;
-        private float GRAVITY = 100f;
+        private readonly float THROW_SPEED = 200f;
+        private float GRAVITY = 300f;
         private readonly String TEXTURE_NAME = "LinkProjectile";
         private string ANIM_NAME = "LinkProjectileTransparentSpriteSheet";
         private string ANIM_STATE_AIR = "BombAir";

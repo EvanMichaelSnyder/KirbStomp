@@ -95,9 +95,6 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
 
         public override void Update(float dt)
         {
-
-
-            
             _animationSystem.Animate(dt);
             if (this._isDead)
             {
