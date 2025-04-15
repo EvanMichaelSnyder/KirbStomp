@@ -310,7 +310,7 @@ namespace KirbStomp.StateMachine
                 }
                 current.MovementDirection = current.DesiredMovementDirection;
                 current.FacingDirection = current.DesiredMovementDirection;
-				current.CurrentState = Run;
+				current.CurrentState = Walk;
             }
             else
             {
