@@ -341,6 +341,7 @@ namespace KirbStomp
                         break;
 
                     case GameButtons.Jump:
+                        this.ClockTime = .1f;
                         StateMachine.HandleEvent(EventType.TryJump);
                         _soundManager.PlaySound("Jump");
                         break;
@@ -754,7 +755,8 @@ namespace KirbStomp
                         StateMachine.State.CurrentState == StateEnum.Run ||
                         StateMachine.State.CurrentState == StateEnum.Walk)
                     {
-                        StateMachine.State.CurrentState = StateEnum.AirMove;
+                        StateMachine.State.CurrentState = StateEnum.AirIdle;
+                        StateMachine.State.fancyPlatformCollisionFlag = true;
                     }
                     Velocity.Y += 1300 * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 }

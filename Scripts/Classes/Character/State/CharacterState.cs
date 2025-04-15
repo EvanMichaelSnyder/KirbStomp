@@ -22,8 +22,9 @@ namespace KirbStomp.StateMachine
 		private int _jumpsLeft = 2;
 		private DirectionEnum _desiredAttackDirection = DirectionEnum.None;
 		private DirectionEnum _desiredMovementDirection = DirectionEnum.None;
+        internal bool fancyPlatformCollisionFlag = false;
 
-		public DirectionEnum DesiredMovementDirection { get; set; }
+        public DirectionEnum DesiredMovementDirection { get; set; }
 		public DirectionEnum DesiredAttackDirection { get; set; }
 
 		public bool continueMoving = false;
@@ -232,6 +233,7 @@ namespace KirbStomp.StateMachine
 
 				//for now I will personally set isGrounded false this should likely be done by something else later
 				current.IsGrounded = false;
+				current.fancyPlatformCollisionFlag = true;
 			}
 			else
 			{
@@ -240,7 +242,8 @@ namespace KirbStomp.StateMachine
 		}
 		public static void EnterLanding(CharacterState current)
 		{
-			if (current.CurrentState == FreeFall)
+			current.fancyPlatformCollisionFlag = false;
+            if (current.CurrentState == FreeFall)
 			{
 				current.CurrentState = LayingDown;
 				current.MovementDirection = None;
@@ -255,7 +258,8 @@ namespace KirbStomp.StateMachine
         }
         public static void EnterKnockedBack(CharacterState current)
         {
-			current.CurrentState = KnockedBack;
+            current.fancyPlatformCollisionFlag = true;
+            current.CurrentState = KnockedBack;
         }
         public static void EnterIdle(CharacterState current)
         {
@@ -298,6 +302,7 @@ namespace KirbStomp.StateMachine
             }
             else if (current.IsGrounded)
             {
+				Debug.WriteLine(current.CurrentState);
                 if (current.ConvertToRelativeMovementDirection(current.DesiredMovementDirection) != Forward)
                 {
                     current.MovementDirection = current.DesiredMovementDirection;
@@ -305,7 +310,7 @@ namespace KirbStomp.StateMachine
                 }
                 current.MovementDirection = current.DesiredMovementDirection;
                 current.FacingDirection = current.DesiredMovementDirection;
-                current.CurrentState = Walk;
+				current.CurrentState = Run;
             }
             else
             {
