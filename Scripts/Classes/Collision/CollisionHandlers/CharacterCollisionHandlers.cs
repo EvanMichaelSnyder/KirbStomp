@@ -74,7 +74,9 @@ namespace KirbStomp.Scripts.Classes.Collision.CollisionHandlers
                             character.StateMachine.State.ResetJumps();
                             //Kirby avert your eyes the if statement of doom will hurt you
                             StateEnum state = character.StateMachine.State.CurrentState;
-                            if (state == StateEnum.SpecialNeutral || state == StateEnum.SpecialForward || state == StateEnum.SpecialBack || state == StateEnum.SpecialDown)
+                            if (state == StateEnum.SpecialNeutral || state == StateEnum.SpecialForward || state == StateEnum.SpecialBack || state == StateEnum.SpecialDown||
+                                state == StateEnum.AttackNeutral || state== StateEnum.AttackNeutral2 || state == StateEnum.AttackNeutral3 || state==StateEnum.AttackForward||
+                                state==StateEnum.AttackDown||state == StateEnum.AttackUp||state == StateEnum.AttackBack)
                             {
                                 character.Velocity.X = 0;
                                 //Debug.WriteLine("heyo");
@@ -94,7 +96,9 @@ namespace KirbStomp.Scripts.Classes.Collision.CollisionHandlers
 
                         //Kirby avert your eyes the if statement of doom will hurt you
                         StateEnum state = character.StateMachine.State.CurrentState;
-                        if (state == StateEnum.SpecialNeutral || state == StateEnum.SpecialForward || state == StateEnum.SpecialBack || state == StateEnum.SpecialDown)
+                        if (state == StateEnum.SpecialNeutral || state == StateEnum.SpecialForward || state == StateEnum.SpecialBack || state == StateEnum.SpecialDown ||
+                            state == StateEnum.AttackNeutral || state == StateEnum.AttackNeutral2 || state == StateEnum.AttackNeutral3 || state == StateEnum.AttackForward ||
+                            state == StateEnum.AttackDown || state == StateEnum.AttackUp || state == StateEnum.AttackBack)
                         {
                             character.Velocity.X = 0;
                             //Debug.WriteLine("heyo");
