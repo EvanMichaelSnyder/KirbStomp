@@ -41,28 +41,66 @@ namespace KirbStomp.Scripts.Classes.Collision.CollisionHandlers
                 if (context.Self.Velocity.Y >= 0)
                 {
 
-                    /*
-                    if (context.Other.GetType() == typeof(Platform))
-                    {
 
+                    if (context.Other.GetType() == typeof(Platform) && character.StateMachine.State.fancyPlatformCollisionFlag)
+                    {
+                        /*
                         Platform platform = (Platform)context.Other;
-                        if (character._bodyCarrier.HitboxManager.GetApproximation().Bottom - context.GameTime.ElapsedGameTime.TotalSeconds * character.Velocity.Y <= platform.PlatformCarrier.HitboxManager.GetApproximation().Top + 10)
+                        Microsoft.Xna.Framework.Rectangle charaApprox = character._bodyCarrier.HitboxManager.GetApproximation();
+                        Microsoft.Xna.Framework.Rectangle platformApprox = platform.PlatformCarrier.HitboxManager.GetApproximation();
+                        if (charaApprox.Y + charaApprox.Height - character.Velocity.Y * context.GameTime.ElapsedGameTime.TotalSeconds <= platformApprox.Y + platformApprox.Height)
                         {
-                            character.Position.Y = platform.PlatformCarrier.HitboxManager.GetApproximation().Top - character._bodyCarrier.HitboxManager.GetApproximation().Height + 2;
+                            {
+                                character.Position.Y = platformApprox.Y - charaApprox.Height/2;
+                                character.ActionList.AddAction(GameButtons.HitGround);
+                                character.Velocity.Y = 0;
+                                //character.Velocity.X = 0;
+                                character.StateMachine.State.IsGrounded = true;
+                                character.StateMachine.State.ResetJumps();
+                            }
+
+                        }
+                        */
+                        Platform platform = (Platform)context.Other;
+                        Microsoft.Xna.Framework.Rectangle charaApprox = character._bodyCarrier.HitboxManager.GetApproximation();
+                        Microsoft.Xna.Framework.Rectangle platformApprox = platform.PlatformCarrier.HitboxManager.GetApproximation();
+                        if (charaApprox.Y + charaApprox.Height - character.Velocity.Y * context.GameTime.ElapsedGameTime.TotalSeconds <= platformApprox.Y + platformApprox.Height)
+                        {
+                            character.Position.Y -= charaApprox.Height - (platformApprox.Y-charaApprox.Y)- 4;
                             character.ActionList.AddAction(GameButtons.HitGround);
                             character.Velocity.Y = 0;
                             //character.Velocity.X = 0;
                             character.StateMachine.State.IsGrounded = true;
                             character.StateMachine.State.ResetJumps();
+                            //Kirby avert your eyes the if statement of doom will hurt you
+                            StateEnum state = character.StateMachine.State.CurrentState;
+                            if (state == StateEnum.SpecialNeutral || state == StateEnum.SpecialForward || state == StateEnum.SpecialBack || state == StateEnum.SpecialDown)
+                            {
+                                character.Velocity.X = 0;
+                                //Debug.WriteLine("heyo");
+                                character.snapVelocity = false;
+                            }
                         }
-                        */
+                    }
+                    else
+                    {
+                        character.Position.Y -= context.Intersection.Height - 4;
+                        character.ActionList.AddAction(GameButtons.HitGround);
+                        character.Velocity.Y = 0;
+                        //character.Velocity.X = 0;
+                        character.StateMachine.State.IsGrounded = true;
+                        character.StateMachine.State.ResetJumps();
 
-                    character.Position.Y -= context.Intersection.Height - 4;
-                    character.ActionList.AddAction(GameButtons.HitGround);
-                    character.Velocity.Y = 0;
-                    //character.Velocity.X = 0;
-                    character.StateMachine.State.IsGrounded = true;
-                    character.StateMachine.State.ResetJumps();
+
+                        //Kirby avert your eyes the if statement of doom will hurt you
+                        StateEnum state = character.StateMachine.State.CurrentState;
+                        if (state == StateEnum.SpecialNeutral || state == StateEnum.SpecialForward || state == StateEnum.SpecialBack || state == StateEnum.SpecialDown)
+                        {
+                            character.Velocity.X = 0;
+                            //Debug.WriteLine("heyo");
+                            character.snapVelocity = false;
+                        }
+                    }
                 }
             }
         }
