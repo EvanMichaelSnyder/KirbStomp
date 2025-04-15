@@ -148,7 +148,7 @@ namespace KirbStomp.StateMachine
 			if (current.IsGrounded)//on ground
 			{
 				//combo stuffs
-				if (current.CurrentState == Sprint || current.CurrentState == Run) { current.CurrentState = AttackDash; }
+				if (current.CurrentState == Sprint ) { current.CurrentState = AttackDash; }
 				else if (current.CurrentState == AttackNeutral) { current.CurrentState = AttackNeutral2; }
 				else if (current.CurrentState == AttackNeutral2) { current.CurrentState = AttackNeutral3; }
 				else
@@ -310,7 +310,7 @@ namespace KirbStomp.StateMachine
                 }
                 current.MovementDirection = current.DesiredMovementDirection;
                 current.FacingDirection = current.DesiredMovementDirection;
-				current.CurrentState = Walk;
+				current.CurrentState = Run;
             }
             else
             {
