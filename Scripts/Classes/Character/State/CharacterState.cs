@@ -242,7 +242,8 @@ namespace KirbStomp.StateMachine
 		}
 		public static void EnterLanding(CharacterState current)
 		{
-			current.fancyPlatformCollisionFlag = false;
+            Debug.WriteLine(current.CurrentState + " " + current.GetFrameIndex());
+            current.fancyPlatformCollisionFlag = false;
             if (current.CurrentState == FreeFall)
 			{
 				current.CurrentState = LayingDown;
@@ -274,6 +275,7 @@ namespace KirbStomp.StateMachine
         }
         public static void EnterFalling(CharacterState current)
         {
+            Debug.WriteLine(current.CurrentState + " " + current.GetFrameIndex());
             //the specificity of this transition means we should check it
             if (current.CurrentState == SpecialUp)
             {
@@ -302,7 +304,7 @@ namespace KirbStomp.StateMachine
             }
             else if (current.IsGrounded)
             {
-				Debug.WriteLine(current.CurrentState);
+				Debug.WriteLine(current.CurrentState + " " + current.GetFrameIndex());
                 if (current.ConvertToRelativeMovementDirection(current.DesiredMovementDirection) != Forward)
                 {
                     current.MovementDirection = current.DesiredMovementDirection;
