@@ -164,12 +164,15 @@ namespace KirbStomp.Scripts.Scenes
             Texture2D gameButtonsUISheet = Game1.Get().Content.Load<Texture2D>("GameButtons");
             Texture2D gameNameSheet = Game1.Get().Content.Load<Texture2D>("GameName");
             SpriteFont impactFont = Game1.Get().Content.Load<SpriteFont>("impact");
+            UIEvents uiEvents = new UIEvents();
 
             if(name.Contains("StartScreen")){
                 ButtonUI startButton = new ButtonUI("Start", new Sprite("StartButton", gameButtonsUISheet, new Rectangle(28, 240, 142, 89), 1f), new Vector2(330, 200));
                 ButtonUI exitButton = new ButtonUI("Exit", new Sprite("ExitButton", gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(325, 300));
                 ButtonUI titleButton = new ButtonUI("Title", new Sprite("TitleButton", gameNameSheet, new Rectangle(13, 119, 273, 59), 1.2f), new Vector2(240, 70));
-
+                startButton.SetClickEvent((sender, args) => {
+                    uiEvents.HelloWorld();
+                });
                 UIList.Add(startButton);
                 UIList.Add(exitButton);
                 UIList.Add(titleButton);

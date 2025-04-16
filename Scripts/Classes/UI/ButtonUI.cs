@@ -41,6 +41,8 @@ public class ButtonUI : UIElement {
     }
 
     public void SetClickEvent(EventHandler e) {
+        Area.OnClick -= OnClickEvent;
         OnClickEvent = e;
+        Area.OnClick += OnClickEvent;
     }
 }
