@@ -772,9 +772,9 @@ namespace KirbStomp
         public void AddHealth(float amt)
         {
             this._health -= amt;
-            if(this._health < 100)
+            if(this._health < 0)
             {
-                this._health = 100;
+                this._health = 0;
             }
             OnHealthChange?.Invoke(this, new OnHealthChangeEventArgs { health = this._health });
         }

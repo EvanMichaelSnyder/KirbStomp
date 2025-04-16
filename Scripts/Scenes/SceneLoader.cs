@@ -166,18 +166,18 @@ namespace KirbStomp.Scripts.Scenes
             SpriteFont impactFont = Game1.Get().Content.Load<SpriteFont>("impact");
 
             if(name.Contains("StartScreen")){
-                ButtonUI startButton = new ButtonUI(new Sprite("StartButton", gameButtonsUISheet, new Rectangle(28, 240, 142, 89), 1f), new Vector2(330, 200));
-                ButtonUI exitButton = new ButtonUI(new Sprite("ExitButton", gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(325, 300));
-                ButtonUI titleButton = new ButtonUI(new Sprite("TitleButton", gameNameSheet, new Rectangle(13, 119, 273, 59), 1.2f), new Vector2(240, 70));
-              
+                ButtonUI startButton = new ButtonUI("Start", new Sprite("StartButton", gameButtonsUISheet, new Rectangle(28, 240, 142, 89), 1f), new Vector2(330, 200));
+                ButtonUI exitButton = new ButtonUI("Exit", new Sprite("ExitButton", gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(325, 300));
+                ButtonUI titleButton = new ButtonUI("Title", new Sprite("TitleButton", gameNameSheet, new Rectangle(13, 119, 273, 59), 1.2f), new Vector2(240, 70));
+
                 UIList.Add(startButton);
                 UIList.Add(exitButton);
                 UIList.Add(titleButton);
             }
             else if (name.Contains("EndScreen"))
             {
-                ButtonUI menuButton = new ButtonUI(new Sprite("MenuButton", gameButtonsUISheet, new Rectangle(186, 134, 154, 89), 1f), new Vector2(330, 200));
-                ButtonUI exitButton = new ButtonUI(new Sprite("ExitButton", gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(325, 300));
+                ButtonUI menuButton = new ButtonUI("Menu", new Sprite("MenuButton", gameButtonsUISheet, new Rectangle(186, 134, 154, 89), 1f), new Vector2(330, 200));
+                ButtonUI exitButton = new ButtonUI("Exit", new Sprite("ExitButton", gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(325, 300));
                 
                 UIList.Add(menuButton);
                 UIList.Add(exitButton);

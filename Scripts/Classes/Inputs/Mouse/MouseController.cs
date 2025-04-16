@@ -31,7 +31,7 @@ public class MouseController {
         if (LeftClicked) {
             foreach (var area in Areas) {
                 if (area.Contains(Position)) {
-                    Console.WriteLine("Mouse Clicked on Area: " + area.Name);
+                    area.OnClickEvent();
                 }
             }
         }

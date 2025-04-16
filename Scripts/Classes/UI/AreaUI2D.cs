@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using KirbStomp;
+using System;
 public class AreaUI2D {
     public string Name { get; set; }
     public Rectangle Area { get; set; }
+    public event EventHandler OnClick;
     public AreaUI2D(string name, Rectangle area) {
         this.Name = name;
         this.Area = area;
@@ -25,6 +27,10 @@ public class AreaUI2D {
 
     public bool Contains(Vector2 point) {
         return Area.Contains(point);
+    }
+    
+    public void OnClickEvent() {
+        OnClick?.Invoke(this, EventArgs.Empty);
     }
 
 }

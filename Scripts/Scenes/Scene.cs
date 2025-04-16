@@ -117,7 +117,6 @@ namespace KirbStomp.Scripts.Scenes
             {
                 if (ui is ButtonUI button)
                 {
-                    Console.WriteLine("Adding button to areaUI2D");
                     _areaUI2Ds.Add(button.Area);
                 }
             }
