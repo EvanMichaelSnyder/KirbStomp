@@ -42,13 +42,12 @@ namespace KirbStomp.Scripts.Scenes
         private ProjectileManager _projectileManager;
         private ItemManager _itemManager;
         private LevelManager _levelManager;
-        // private MusicManager _musicManager;
+        private MusicManager _musicManager;
         private Sprite _background;
 
         private Camera2D _camera;
 
-        //Only applicable for the win screen
-        private SpriteString _winScreenText;
+        public event EventHandler<IScene.OnGameEndEventArgs> OnGameEnd;
 
         // public class OnGameEndEventArgs : EventArgs {
         //     public Character character;
@@ -78,7 +77,7 @@ namespace KirbStomp.Scripts.Scenes
             _collisionSystem = new CollisionSystem();
             _projectileManager = new ProjectileManager(_collisionSystem);
             _itemManager = new ItemManager(_collisionSystem);
-            // _musicManager = MusicManager.Get();
+            _musicManager = MusicManager.Get();
             //todo load string
             LoadContent();
             _levelManager = new LevelManager(_collisionSystem, 100, "Platforms", Game1.Get().GetScreenWindow().GetXSize(), Game1.Get().GetScreenWindow().GetYSize());
@@ -103,8 +102,9 @@ namespace KirbStomp.Scripts.Scenes
             // var (character, Controller) = LoadCharacter(characterXMLFile);
             SceneLoader.SetLoadFile(_name);    // This will be taken out into scene manager, which'll take care of scene initializations
             SceneLoader.LoadScene(this, _characters, _controllers, _platforms, _screenSpaceUI, _boundaries);
-            // _musicManager.LoadMusic();
-            // _musicManager.PlayMusic();
+            _musicManager.LoadMusic();
+            _musicManager.PlayMusic();
+
 
             foreach (ICharacter character in _characters)
             {
@@ -159,7 +159,7 @@ namespace KirbStomp.Scripts.Scenes
             // this._levelManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             //this._itemManager.SpawnRandomItem();
             this._camera.Update(gameTime);
-            // _musicManager.PlayMusic();
+            _musicManager.PlayMusic();
 
             foreach (ICharacter chara in _characters) { chara.Animate(gameTime); }
 
