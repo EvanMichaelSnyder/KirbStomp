@@ -127,7 +127,18 @@ namespace KirbStomp.Scripts.Projectiles
             {
                 throw new Exception("projectilename: " + projectileName + " is not a projectile");
             }
-            AProjectile projectile = (AProjectile)Activator.CreateInstance(type, position, facingRight);
+            AProjectile projectile;
+            AProjectile projectileDumbFix = (AProjectile)Activator.CreateInstance(type, position, facingRight);
+            if (facingRight)
+            {
+                projectile = (AProjectile)Activator.CreateInstance(type, position, facingRight);
+            }
+            else
+            {
+                Vector2 positionFix = position;
+                positionFix.X= position.X - projectileDumbFix.getDimensions().Width;
+                projectile = (AProjectile)Activator.CreateInstance(type, positionFix, facingRight);
+            }
             projectile.SetSpawningCharacter(spawner);
             this.AddProjectile(projectile);
         }

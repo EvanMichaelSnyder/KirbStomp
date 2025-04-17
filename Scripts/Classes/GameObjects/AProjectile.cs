@@ -27,7 +27,10 @@ namespace KirbStomp.Scripts.Projectiles
         protected int _xOffSetCollider = 0;
         protected int _yOffSetCollider = 0;
 
-
+        public Rectangle getDimensions()
+        {
+            return _dimension;
+        }
         public abstract void Draw(SpriteBatch spriteBatch);
 
         public void ProvideProjectileCarriers()
@@ -80,6 +83,7 @@ namespace KirbStomp.Scripts.Projectiles
             this._bodyCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
             this._attackCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
         }
+
 
         public abstract void RegisterCollider();
 
