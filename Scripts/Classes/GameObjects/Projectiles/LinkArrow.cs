@@ -65,6 +65,9 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
         public override void Draw(SpriteBatch spriteBatch)
         {
             this._sprite.Draw(spriteBatch, this.Position);
+            if (this.DrawHitbox) {
+                this._bodyCarrier.HitboxManager.Draw(spriteBatch);
+            }  
         }
 
         public override void RegisterCollider()
@@ -96,6 +99,13 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
         public override void Update(float dt)
         {
             _animationSystem.Animate(dt);
+
+            this._dimension.Width = (int)(_scale * _sprite.GetSrcRectangle().Width);
+            this._dimension.Height = (int)(_scale * _sprite.GetSrcRectangle().Height);
+
+            this._yOffSetCollider = this._sprite.GetYOffset();
+            this._xOffSetCollider = this._sprite.GetXOffset();
+            
             if (this._isDead)
             {
                 this._deathTimeLeft -= dt;

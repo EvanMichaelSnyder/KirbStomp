@@ -33,6 +33,7 @@ namespace KirbStomp.Scripts.Scenes
         private static string name;
         private static XElement sceneElement;
         private static XElement fileElementsToLoad;
+        private static GameEvents gameEvents = new GameEvents();
 
         /*
         Dictionary<string, GameButtons> stringToGameButtonDict = new()
@@ -66,7 +67,21 @@ namespace KirbStomp.Scripts.Scenes
             LoadBoundaries(boundaryList);  // Also hardcoded but it exactly like platforms
             LoadAssetPool();
         }
-
+        public static void LoadScene(Scene scene, List<ICharacter> characters, List<IController> controllerList, List<Platform> platformList, List<IUI> UIList, List<StageBoundary> boundaryList)
+        {
+            if (loadFile == "")
+                throw new Exception("Error load file was never set. Load file is \"\"");
+            LoadCharacters(characters, controllerList);
+            LoadPlatforms(platformList);    // Only thing hard coded now
+            LoadUI(UIList, characters);
+            LoadBoundaries(boundaryList);  // Also hardcoded but it exactly like platforms
+            LoadAssetPool();
+            SetEvents(scene);
+        }
+        
+        public static void SetEvents(Scene scene) {
+            scene.OnGameEnd += gameEvents.EndGame;
+        }
         public static void LoadCharacters(List<ICharacter> characterList, List<IController> controllerList)
         {
             string[] characterFiles;
@@ -171,7 +186,11 @@ namespace KirbStomp.Scripts.Scenes
                 ButtonUI exitButton = new ButtonUI("Exit", new Sprite("ExitButton", gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(325, 300));
                 ButtonUI titleButton = new ButtonUI("Title", new Sprite("TitleButton", gameNameSheet, new Rectangle(13, 119, 273, 59), 1.2f), new Vector2(240, 70));
                 startButton.SetClickEvent((sender, args) => {
-                    uiEvents.HelloWorld();
+
+                    gameEvents.SwitchScene("GeneralSceneTemplate");
+                });
+                exitButton.SetClickEvent((sender, args) => {
+                    gameEvents.ExitGame();
                 });
                 UIList.Add(startButton);
                 UIList.Add(exitButton);
@@ -179,9 +198,15 @@ namespace KirbStomp.Scripts.Scenes
             }
             else if (name.Contains("EndScreen"))
             {
-                ButtonUI menuButton = new ButtonUI("Menu", new Sprite("MenuButton", gameButtonsUISheet, new Rectangle(186, 134, 154, 89), 1f), new Vector2(330, 200));
+                ButtonUI menuButton = new ButtonUI("Menu", new Sprite("MenuButton", gameButtonsUISheet, new Rectangle(186, 134, 154, 89), 1f), new Vector2(326, 200));
                 ButtonUI exitButton = new ButtonUI("Exit", new Sprite("ExitButton", gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(325, 300));
-                
+                menuButton.SetClickEvent((sender, args) => {
+                    gameEvents.SwitchScene("StartScreen");
+                });
+                exitButton.SetClickEvent((sender, args) => {
+                    gameEvents.ExitGame();
+                });
+
                 UIList.Add(menuButton);
                 UIList.Add(exitButton);
             }

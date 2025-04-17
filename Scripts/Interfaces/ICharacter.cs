@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace KirbStomp.Interfaces
 {
@@ -19,6 +20,7 @@ namespace KirbStomp.Interfaces
         public void Gravity(GameTime gameTime);
         public void MoveCharacter(GameTime gameTime);
         public Rectangle GetPosition();
+        public event EventHandler OnDeath;
         //public void CheckGroundCollision();
 
 

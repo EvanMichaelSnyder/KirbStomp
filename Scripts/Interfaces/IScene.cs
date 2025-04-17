@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using KirbStomp.Scripts.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using KirbStomp.Scripts.Scenes;
 
 
 namespace KirbStomp.Interfaces
@@ -18,5 +19,9 @@ namespace KirbStomp.Interfaces
         public void LoadContent();
         public ProjectileManager GetProjectileManager();
         public void ResetScene();
+        public class OnGameEndEventArgs : EventArgs {
+            public Character character;
+        }
+        public event EventHandler<OnGameEndEventArgs> OnGameEnd;
     }
 }

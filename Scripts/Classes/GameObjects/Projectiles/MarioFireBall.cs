@@ -128,6 +128,12 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
 
             _animationSystem.Animate(dt);
 
+            this._dimension.Width = (int)(_scale * _sprite.GetSrcRectangle().Width);
+            this._dimension.Height = (int)(_scale * _sprite.GetSrcRectangle().Height);
+
+            this._yOffSetCollider = this._sprite.GetYOffset();
+            this._xOffSetCollider = this._sprite.GetXOffset();
+
             Velocity.Y += _gravity * dt;
             Position += Velocity * dt;
             
@@ -139,9 +145,10 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            _bodyCarrier.HitboxManager.Draw(spriteBatch);
             _sprite.Draw(spriteBatch, Position);
-            //throw new Exception("TEST");
+            if (this.DrawHitbox) {
+                this._bodyCarrier.HitboxManager.Draw(spriteBatch);
+            }  
         }
 
 
