@@ -19,6 +19,7 @@ using KirbStomp.Scripts.Classes.GameObjects.Items;
 using static System.Net.Mime.MediaTypeNames;
 public class BattleScene : IScene
 {
+    public event EventHandler<IScene.OnGameEndEventArgs> OnGameEnd;
     public static Texture2D boxSheet = Game1.Get().Content.Load<Texture2D>("HitboxWire");
     public static Texture2D attackBoxSheet = Game1.Get().Content.Load<Texture2D>("AttackWire");
 

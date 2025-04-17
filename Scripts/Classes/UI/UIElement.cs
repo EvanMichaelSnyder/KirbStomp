@@ -26,6 +26,9 @@ public class UIElement : IUI {
         this.IsVisible = true;
         this.Sprites = sprites;
         this.TextSprites = textSprites;
+        // foreach (SpriteString textSprite in this.TextSprites) {
+        //     Console.WriteLine("TextSprite: " + textSprite.Name);
+        // }
     }
 
     public void Initialize() {

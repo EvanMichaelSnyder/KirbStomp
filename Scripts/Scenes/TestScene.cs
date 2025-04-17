@@ -18,6 +18,7 @@ using KirbStomp.Scripts.Classes.Projectiles;
 using KirbStomp.Scripts.Classes.GameObjects.Items;
 public class TestScene : IScene
 {
+    public event EventHandler<IScene.OnGameEndEventArgs> OnGameEnd;
     public static Texture2D boxSheet = Game1.Get().Content.Load<Texture2D>("HitboxWire");
 
     private static int entityID = 0;
