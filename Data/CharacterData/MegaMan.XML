@@ -212,7 +212,7 @@
 		<Frame position="(23, 1094)" size="(44, 44)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
-	<Animation name="SpecialUp" duration ="1.5" loop="false" animationOffset="(0, -5)">
+	<Animation name="SpecialUp" duration ="1.0" loop="false" animationOffset="(0, -5)">
 		<Frame position="(23, 1178)" size="(38, 39)" perFrameOffset="(0, 11)"/>
 		<Frame position="(65, 1179)" size="(38, 38)" perFrameOffset="(0, 12)"/>
 		<Frame position="(107, 1178)" size="(38, 39)" perFrameOffset="(0, 11)"/>

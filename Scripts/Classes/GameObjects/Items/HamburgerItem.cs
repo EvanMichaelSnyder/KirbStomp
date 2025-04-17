@@ -27,8 +27,11 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Items
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            this._itemCarrier.HitboxManager.Draw(spriteBatch);
             this._sprite.Draw(spriteBatch, this.Position);
+            if(this.drawHitbox)
+            {
+                this._itemCarrier.HitboxManager.Draw(spriteBatch);
+            }
         }
 
         public override void RegisterCollider()

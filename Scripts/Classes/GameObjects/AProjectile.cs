@@ -22,6 +22,7 @@ namespace KirbStomp.Scripts.Projectiles
         protected Rectangle _dimension;
 
         protected Character _spawningCharacter;
+        protected bool DrawHitbox = false;
 
         protected int _xOffSetCollider = 0;
         protected int _yOffSetCollider = 0;
@@ -74,7 +75,7 @@ namespace KirbStomp.Scripts.Projectiles
 
         public void UpdateCollider()
         {
-            this._dimension.X = (int)this.Position.X +this._xOffSetCollider;
+            this._dimension.X = (int)this.Position.X + this._xOffSetCollider;
             this._dimension.Y = (int)this.Position.Y + this._yOffSetCollider;
             this._bodyCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
             this._attackCarrier.HitboxManager.basicUpdateHitbox(this._dimension);

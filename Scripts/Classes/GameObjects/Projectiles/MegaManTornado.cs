@@ -13,7 +13,7 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
     public class MegaManTornado : AProjectile
     {
         //some variables to stop magic num/string!
-        private float _scale = 1.75f;
+        private float _scale = 1.85f;
         private string SPR_NAME = "MegaManProjectile";
         private string ANIM_NAME = "MegaManProjectileTransparentSpriteSheet";
         private string ANIM_STATE_SHOOT = "Tornado";
@@ -56,7 +56,9 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
         public override void Draw(SpriteBatch spriteBatch)
         {
             this._sprite.Draw(spriteBatch, this.Position);
-            _bodyCarrier.HitboxManager.Draw(spriteBatch);
+            if (this.DrawHitbox) {
+                this._bodyCarrier.HitboxManager.Draw(spriteBatch);
+            }  
 
         }
 
@@ -81,6 +83,13 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
         public override void Update(float dt)
         {
             this._animationSystem.Animate(dt);
+
+            this._dimension.Width = (int)(_scale * _sprite.GetSrcRectangle().Width);
+            this._dimension.Height = (int)(_scale * _sprite.GetSrcRectangle().Height);
+
+            this._yOffSetCollider = this._sprite.GetYOffset();
+            this._xOffSetCollider = this._sprite.GetXOffset();
+            
             TIME_TO_LIVE -= dt;
             if (TIME_TO_LIVE < 0)
             {
