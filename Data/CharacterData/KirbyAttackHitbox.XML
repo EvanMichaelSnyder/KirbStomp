@@ -453,6 +453,9 @@
                  
 			</Frame>
 			<Frame>
+                 
+			</Frame>
+			<Frame>
                 <Hitbox position="(204,1215)" size="(34,30)"/>
 			</Frame>
 			<Frame>
@@ -466,6 +469,9 @@
 			</Frame>
 		</Animation>
 		<Animation name="SpecialBack" hasFrames="true">
+			<Frame>
+                 
+			</Frame>
 			<Frame>
                  
 			</Frame>

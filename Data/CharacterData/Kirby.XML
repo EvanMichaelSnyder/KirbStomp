@@ -207,6 +207,7 @@
 
 	<Animation name="SpecialForward" duration ="0.5" loop="false" animationOffset="(0, -23)">
 		<Frame position="(8, 1209)" size="(42, 31)" perFrameOffset="(-17, 16)"/>
+		<Frame position="(8, 1209)" size="(42, 31)" perFrameOffset="(-17, 16)"/>
 		<Frame position="(54, 1199)" size="(37, 41)" perFrameOffset="(-12, 6)"/>
 		<Frame position="(95, 1214)" size="(45, 25)" perFrameOffset="(-19, 24)"/>
 		<Frame position="(144, 1218)" size="(36, 33)" perFrameOffset="(-10, 25)"/>
@@ -217,6 +218,7 @@
 	</Animation>
 
 	<Animation name="SpecialBack" duration ="0.5" loop="false" animationOffset="(0, -23)">
+		<Frame position="(8, 1209)" size="(42, 31)" perFrameOffset="(-17, 16)"/>
 		<Frame position="(8, 1209)" size="(42, 31)" perFrameOffset="(-17, 16)"/>
 		<Frame position="(54, 1199)" size="(37, 41)" perFrameOffset="(-12, 6)"/>
 		<Frame position="(95, 1214)" size="(45, 25)" perFrameOffset="(-19, 24)"/>

@@ -444,6 +444,9 @@
                 <Hitbox position="(26,1218)" size="(24,22)"/>
 			</Frame>
 			<Frame>
+                <Hitbox position="(26,1218)" size="(24,22)"/>
+			</Frame>
+			<Frame>
                 <Hitbox position="(67,1217)" size="(24,23)"/>
 			</Frame>
 			<Frame>
@@ -466,6 +469,9 @@
 			</Frame>
 		</Animation>
 		<Animation name="SpecialBack">
+			<Frame>
+                <Hitbox position="(26,1218)" size="(24,22)"/>
+			</Frame>
 			<Frame>
                 <Hitbox position="(26,1218)" size="(24,22)"/>
 			</Frame>
