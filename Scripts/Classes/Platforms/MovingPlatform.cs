@@ -31,7 +31,7 @@ namespace KirbStomp.Scripts.Classes.Platforms
         public void Draw(SpriteBatch spriteBatch)
         {
             this._sprite.Draw(spriteBatch, _posHW);
-            _platformCarrier.HitboxManager.Draw(spriteBatch);
+           // _platformCarrier.HitboxManager.Draw(spriteBatch);
         }
 
         public void Update(float dt)
