@@ -103,7 +103,7 @@ namespace KirbStomp.Scripts.Scenes
             // Add to collideable objects list
             // var (character, Controller) = LoadCharacter(characterXMLFile);
             SceneLoader.SetLoadFile(_name);    // This will be taken out into scene manager, which'll take care of scene initializations
-            SceneLoader.LoadScene(_characters, _controllers, _platforms, _screenSpaceUI, _boundaries);
+            SceneLoader.LoadScene(this, _characters, _controllers, _platforms, _screenSpaceUI, _boundaries);
 
             _levelManager = SceneLoader.GetSceneLevelManager(_collisionSystem);
 
