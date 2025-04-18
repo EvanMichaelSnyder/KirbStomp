@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using KirbStomp.Scripts.Classes.GameObjects;
 using KirbStomp.Scripts.Classes.Platforms;
+using KirbStomp.Scripts.Interfaces;
 using KirbStomp.Scripts.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,7 +13,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace KirbStomp.Scripts.Classes.Managers
 {
     //a manager that simulate the idea of rising lava. 
-    public class LevelManager
+    public class LevelManager : ILevelManager
     {
         private int MAX_HEIGHT_PLATFORM_APART = MagicNum.LevelManagerMagic.MAX_HEIGHT_PLATFORM_APART;
         private int MIN_HEIGHT_PLATFORM_APART = MagicNum.LevelManagerMagic.MIN_HEIGHT_PLATFORM_APART;
@@ -122,6 +123,7 @@ namespace KirbStomp.Scripts.Classes.Managers
             this._platforms.Add(platform);
             
         }
+        
 
 
         public void Update(float dt)

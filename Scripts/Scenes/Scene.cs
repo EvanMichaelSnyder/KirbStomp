@@ -4,6 +4,7 @@ using KirbStomp.Scripts.Classes.Managers;
 using KirbStomp.Scripts.Classes.Platforms;
 using KirbStomp.Scripts.Classes.Projectiles;
 using KirbStomp.Scripts.Classes.Sound;
+using KirbStomp.Scripts.Interfaces;
 using KirbStomp.Scripts.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,6 +23,7 @@ namespace KirbStomp.Scripts.Scenes
     {
         Animations, Hitboxes
     }
+    
     internal class Scene : IScene
     {
         private string _name;
@@ -41,15 +43,17 @@ namespace KirbStomp.Scripts.Scenes
         private CollisionSystem _collisionSystem;
         private ProjectileManager _projectileManager;
         private ItemManager _itemManager;
-        private LevelManager _levelManager;
+        private ILevelManager _levelManager;
         private MusicManager _musicManager;
         private Sprite _background;
 
         private Camera2D _camera;
+        private List<Vector2> _characterPositions;
 
         public event EventHandler<IScene.OnGameEndEventArgs> OnGameEnd;
 
-        public Scene(string name)
+        private bool _useSpecialSceneManager;   // Used for customizable behavior. Currently allow
+        public Scene(string name, bool useSpecialSceneManager)
         {
             this._name = name;
             this._characters = new();
@@ -58,6 +62,9 @@ namespace KirbStomp.Scripts.Scenes
             this._screenSpaceUI = new();
             this._worldSpaceSprites = new();
             this._boundaries = new();
+            this._characterPositions = new();
+            this._useSpecialSceneManager = useSpecialSceneManager;
+            this._levelManager = null;
         }
         public ProjectileManager GetProjectileManager()
         {
@@ -75,22 +82,8 @@ namespace KirbStomp.Scripts.Scenes
             _musicManager = MusicManager.Get();
             //todo load string
             LoadContent();
-            _levelManager = new LevelManager(_collisionSystem, 60, "Platforms", Game1.Get().GetScreenWindow().GetXSize(), Game1.Get().GetScreenWindow().GetYSize());
+            //_levelManager = new LevelManager(_collisionSystem, 60, "Platforms", Game1.Get().GetScreenWindow().GetXSize(), Game1.Get().GetScreenWindow().GetYSize());
 
-
-            foreach (ICharacter character in _characters)
-            {
-                _collisionSystem.RegisterObject((Character)character);
-                //register platforms for moving platform layer
-                Character c = (Character)character;
-                List<Rectangle> hitboxes = c._bodyCarrier.HitboxManager.getRectangles();
-                int h = 0;
-                foreach (Rectangle hitbox in hitboxes)
-                {
-                    h += hitbox.Height;
-                }
-                this._levelManager.SpawnPlayerPlatform((int)c.Position.X, (int)c.Position.Y, h);
-            }
         }
 
 
@@ -110,7 +103,26 @@ namespace KirbStomp.Scripts.Scenes
             // Add to collideable objects list
             // var (character, Controller) = LoadCharacter(characterXMLFile);
             SceneLoader.SetLoadFile(_name);    // This will be taken out into scene manager, which'll take care of scene initializations
-            SceneLoader.LoadScene(this, _characters, _controllers, _platforms, _screenSpaceUI, _boundaries);
+            SceneLoader.LoadScene(_characters, _controllers, _platforms, _screenSpaceUI, _boundaries);
+
+            _levelManager = SceneLoader.GetSceneLevelManager(_collisionSystem);
+
+            foreach (ICharacter character in _characters)
+            {
+                _collisionSystem.RegisterObject((Character)character);
+                //register platforms for moving platform layer
+                Character c = (Character)character;
+                List<Rectangle> hitboxes = c._bodyCarrier.HitboxManager.getRectangles();
+                int h = 0;
+                foreach (Rectangle hitbox in hitboxes)
+                {
+                    h += hitbox.Height;
+                }
+                this._levelManager.SpawnPlayerPlatform((int)c.Position.X, (int)c.Position.Y, h);
+            }
+
+            //_levelManager = _useSpecialSceneManager ? new LevelManager(_collisionSystem, 100, "Platforms", Game1.Get().GetScreenWindow().GetXSize(), Game1.Get().GetScreenWindow().GetYSize()) : new DefaultLevelManager();
+
             _musicManager.LoadMusic();
             _musicManager.PlayMusic();
 
@@ -165,12 +177,14 @@ namespace KirbStomp.Scripts.Scenes
         }
         public void Update(GameTime gameTime)
         {
+            UpdateAccessableDatas();
             this._projectileManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             this._itemManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             this._levelManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
-            //this._itemManager.SpawnRandomItem();
-            this._camera.Update(gameTime);
+            this._camera.Update(gameTime, _characterPositions);
             _musicManager.PlayMusic();
+
+
 
             foreach (ICharacter chara in _characters) { chara.Animate(gameTime); }
 
@@ -211,7 +225,6 @@ namespace KirbStomp.Scripts.Scenes
 
             // is every action commented out above
             foreach (ICharacter chara in _characters) { chara.DoBehavior(); }
-            
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -219,7 +232,7 @@ namespace KirbStomp.Scripts.Scenes
             
             // Draw all objects in world space
             spriteBatch.Begin(transformMatrix: _camera.GetTranslationMatrix());
-            // _background.Draw(spriteBatch, new());
+             //_background.Draw(spriteBatch, new Vector2());
 
             // Draw projectiles, Items, Characters, and Platforms
             this._levelManager.Draw(spriteBatch);
@@ -268,13 +281,23 @@ namespace KirbStomp.Scripts.Scenes
             this._screenSpaceUI.Clear();
             this._worldSpaceSprites.Clear();
             this._boundaries.Clear();
-
+            this._characterPositions.Clear();
             Initialize();
         }
         public string GetName()
         {
             return _name;
         }
+        public void UpdateAccessableDatas()
+        {
+            _characterPositions.Clear();
+            Point boxPosition;
+            foreach(ICharacter chara in _characters)
+            {
+                _characterPositions.Add(chara.GetPointPosition().ToVector2());
+            }
+        }
+
         public List<AreaUI2D> GetAreas()
         {
             return _areaUI2Ds;

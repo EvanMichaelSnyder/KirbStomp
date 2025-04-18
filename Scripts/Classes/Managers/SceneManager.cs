@@ -97,7 +97,17 @@ namespace KirbStomp
 
         public void SwitchScene(string sceneName)
         {
-            
+            for (int i = 0; i < this._scenesList.Count; i++)
+            {
+                if (_scenesList[_sceneIndex].GetName() == sceneName)
+                {
+                    OnSceneChange?.Invoke(this, EventArgs.Empty);
+                    _currentScene = _scenesList[_sceneIndex];
+                    break;
+                }
+                UpdateSceneByCall(SceneCalls.Next);
+            }
+            /*
             foreach(Scene scene in this._scenesList)
             {
                 if(scene.GetName() == sceneName)
@@ -107,6 +117,7 @@ namespace KirbStomp
                     break;
                 }
             }
+             */
             // switch (sceneName)
             // {
             //     case "BattleScene":
@@ -154,7 +165,8 @@ namespace KirbStomp
             Scene temp;
             foreach(XElement scene in XMLData.GetXMLRootElement("Scenes", this._scenesToLoad).Elements("Scene"))
             {
-                temp = new Scene(scene.Value.Replace(" ", string.Empty));
+                // Get The UseSceneManager bool here
+                temp = new Scene(scene.Value.Replace(" ", string.Empty), false);
                 this._scenesList.Add(temp);
                 _sceneUpdateList.Add(temp.Update);
             }

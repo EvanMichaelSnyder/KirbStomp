@@ -16,6 +16,8 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using KirbStomp.Scripts.Interfaces;
+using KirbStomp.Scripts.Classes.Managers;
 
 namespace KirbStomp.Scripts.Scenes
 {
@@ -34,7 +36,7 @@ namespace KirbStomp.Scripts.Scenes
         private static XElement sceneElement;
         private static XElement fileElementsToLoad;
         private static GameEvents gameEvents = new GameEvents();
-
+        private static bool useSpecialLevelManager = false;
         /*
         Dictionary<string, GameButtons> stringToGameButtonDict = new()
             {
@@ -56,7 +58,25 @@ namespace KirbStomp.Scripts.Scenes
             sceneElement = GetSceneXElement(loadFile);
             fileElementsToLoad = GetXElementOrAssert("FilesToLoad", sceneElement);
             name = GetXElementOrAssert("Name", sceneElement).Value;
+            useSpecialLevelManager = DoesSceneUseSpecialLevelManager();
         }
+        private static bool DoesSceneUseSpecialLevelManager()
+        {
+
+            XElement specialLevelManagerXElement = fileElementsToLoad.Element("UseSpecialLevelManager");
+            bool output = false;
+            if (specialLevelManagerXElement != null)
+            {
+                output = bool.TryParse(specialLevelManagerXElement.Value, out bool parsed);
+                output = output && parsed;
+                if(!parsed)
+                {
+                    Debug.WriteLine("Could not parse whether to use special level manager: defaulting behavior");
+                }
+            }
+            return output;
+        }
+
         public static void LoadScene(List<ICharacter> characters, List<IController> controllerList, List<Platform> platformList, List<IUI> UIList, List<StageBoundary> boundaryList)
         {
             if (loadFile == "")
@@ -81,6 +101,14 @@ namespace KirbStomp.Scripts.Scenes
         
         public static void SetEvents(Scene scene) {
             scene.OnGameEnd += gameEvents.EndGame;
+        }
+
+        // Collision System Used for Construction
+        public static ILevelManager GetSceneLevelManager(CollisionSystem collisionSystem)
+        {
+            // There's only 2 behavior for now, hard coded, or default
+            return useSpecialLevelManager ? new LevelManager(collisionSystem, 100, "Platforms", Game1.Get().GetScreenWindow().GetXSize(), Game1.Get().GetScreenWindow().GetYSize()) : new DefaultLevelManager();
+
         }
         public static void LoadCharacters(List<ICharacter> characterList, List<IController> controllerList)
         {
@@ -131,18 +159,6 @@ namespace KirbStomp.Scripts.Scenes
         {
  
             string[] platformFiles = default;
-            XElement platforms = GetXElementOrAssert("Platforms", fileElementsToLoad);
-            if (platforms.Elements().Count() == 0)
-            {
-                return;
-            }
-            Platform platform;
-            foreach (XElement platformItem in platforms.Elements("Platform"))
-            {
-                platformFiles = (platformItem.Value).Split(new char[] { ' ', '\t', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-                //platform = GeneratePlatform(platformFiles[0], platformFiles[1]);
-
-            }
 
             Texture2D tex = Game1.Get().Content.Load<Texture2D>("Platforms");
 
@@ -171,7 +187,7 @@ namespace KirbStomp.Scripts.Scenes
             // foreach (XElement UIElement in UIs.Elements("PlayerUI"))
             // {
             //     UIToLoad = UIElement.Value.Replace(" ", string.Empty);
-                
+
             //     ui = GeneratePlayerUI(UIToLoad, characters[charaIndex]);
             //     UIList.Add(ui);
             //     charaIndex++;
@@ -233,7 +249,7 @@ namespace KirbStomp.Scripts.Scenes
                 UIList.Add(menuButton);
                 UIList.Add(resumeButton);
             }
-            else if (name.Contains("SceneMain"))
+            else if (name.Contains("Scene"))
             {
                 float scale = .2f;
                 Texture2D _btUISheet = Game1.Get().Content.Load<Texture2D>("BattleUISpriteSheet");

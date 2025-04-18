@@ -1,15 +1,15 @@
 ﻿<Scene>
-	<Name> SceneMain </Name>
+	<Name> SceneMoving </Name>
 	<FilesToLoad>
-		<UseSpecialLevelManager> false </UseSpecialLevelManager>
+		<UseSpecialLevelManager> true </UseSpecialLevelManager>
 		<Characters>
 			<!-- <Character> Mario MarioTransparentSpriteSheet Player1Controls </Character> -->
 			<!-- <Character> Link LinkTransparentSpriteSheet Player2Controls	</Character> -->
 			<Character> Megaman MegamanTransparentSpriteSheet Player1Controls	</Character> 
-			<Character> Kirby KirbyTransparentSpriteSheet Player2Controls	</Character> 
+			<Character> Link LinkTransparentSpriteSheet Player2Controls	</Character> 
 		</Characters>
 		<Platforms>
-			<Platform> PlatformMain </Platform>
+			
     	</Platforms>
 		<UIs>
 			<PlayerUI> Player1UI </PlayerUI>

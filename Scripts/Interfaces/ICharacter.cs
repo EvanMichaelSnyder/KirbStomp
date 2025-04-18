@@ -20,6 +20,8 @@ namespace KirbStomp.Interfaces
         public void Gravity(GameTime gameTime);
         public void MoveCharacter(GameTime gameTime);
         public Rectangle GetPosition();
+
+        public Point GetPointPosition();
         public event EventHandler OnDeath;
         //public void CheckGroundCollision();
 

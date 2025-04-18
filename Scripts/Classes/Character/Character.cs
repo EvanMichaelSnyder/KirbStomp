@@ -798,7 +798,10 @@ namespace KirbStomp
         {
             return this._bodyCarrier;   
         }
-
+        public Point GetPointPosition()
+        {
+            return new((int)Position.X, (int)Position.Y);
+        }
         public string GetName()
         {
             return this._name;

@@ -37,6 +37,7 @@ namespace KirbStomp.Scripts.Classes.Sound
         public void LoadMusic()
         {
             _song = Game1.Get().Content.Load<Song>("BattlefieldTheme");
+            this.SetVolume();
         }
 
         public void PlayMusic()

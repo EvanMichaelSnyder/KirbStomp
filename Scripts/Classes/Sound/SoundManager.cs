@@ -24,9 +24,9 @@ namespace KirbStomp.Scripts.Classes.Sound
             _actionSounds = new Dictionary<string, SoundEffectInstance>();
             _volumePercentages = new Dictionary<string, float>()
             {
-                { "Walk", 0.7f },
-                { "Landing", 0.5f },
-                { "Hit", 0.4f }
+                { "Walk", 0.2f },
+                { "Landing", 0.3f },
+                { "Hit", 0.2f }
             };
         }
 

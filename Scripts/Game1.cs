@@ -123,6 +123,10 @@ namespace KirbStomp
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.D5)) {
                 _sceneManager.UpdateSceneByCall(SceneCalls.Reset);
+            } else if (Keyboard.GetState().IsKeyDown(Keys.D0))
+            {
+
+                _sceneManager.SwitchScene("MovingPlatformSceneTemplate");
             }
             
 			base.Update(gameTime);
