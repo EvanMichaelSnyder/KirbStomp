@@ -2,6 +2,7 @@
 	<Scene> GeneralSceneTemplate </Scene>
 	<Scene> StartScreen </Scene>
 	<Scene> EndScreen </Scene>
+	<Scene> PauseScreen </Scene>
 	<Bindings>
 		<Pause></Pause>
 		<Quit></Quit>

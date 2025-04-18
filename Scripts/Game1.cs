@@ -107,7 +107,11 @@ namespace KirbStomp
                 //_sceneManager.ResetCurrentScene();
                 _sceneManager.SwitchScene("EndScreen");
             }
-            else if(Keyboard.GetState().IsKeyDown(Keys.D5)) {
+            else if (Keyboard.GetState().IsKeyDown(Keys.D8))
+            {
+                _sceneManager.SwitchScene("PauseScreen");
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.D5)) {
                 _sceneManager.UpdateSceneByCall(SceneCalls.Reset);
             }
             
