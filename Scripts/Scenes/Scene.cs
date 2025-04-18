@@ -76,8 +76,22 @@ namespace KirbStomp.Scripts.Scenes
             // _musicManager = MusicManager.Get();
             //todo load string
             LoadContent();
-            _levelManager = new LevelManager(_collisionSystem, 100, "Platforms", Game1.Get().GetScreenWindow().GetXSize(), Game1.Get().GetScreenWindow().GetYSize());
+            _levelManager = new LevelManager(_collisionSystem, 60, "Platforms", Game1.Get().GetScreenWindow().GetXSize(), Game1.Get().GetScreenWindow().GetYSize());
 
+
+            foreach (ICharacter character in _characters)
+            {
+                _collisionSystem.RegisterObject((Character)character);
+                //register platforms for moving platform layer
+                Character c = (Character)character;
+                List<Rectangle> hitboxes = c._bodyCarrier.HitboxManager.getRectangles();
+                int h = 0;
+                foreach (Rectangle hitbox in hitboxes)
+                {
+                    h += hitbox.Height;
+                }
+                this._levelManager.SpawnPlayerPlatform((int)c.Position.X, (int)c.Position.Y, h);
+            }
         }
 
 
@@ -101,9 +115,11 @@ namespace KirbStomp.Scripts.Scenes
             // _musicManager.LoadMusic();
             // _musicManager.PlayMusic();
 
+
             foreach (ICharacter character in _characters)
             {
                 _collisionSystem.RegisterObject((Character)character);
+                
             }
             foreach (Platform platform in _platforms)
             {
@@ -141,7 +157,7 @@ namespace KirbStomp.Scripts.Scenes
         {
             this._projectileManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             this._itemManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
-            // this._levelManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+            this._levelManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             //this._itemManager.SpawnRandomItem();
             this._camera.Update(gameTime);
             // _musicManager.PlayMusic();
@@ -195,7 +211,7 @@ namespace KirbStomp.Scripts.Scenes
             // _background.Draw(spriteBatch, new());
 
             // Draw projectiles, Items, Characters, and Platforms
-            // this._levelManager.Draw(spriteBatch);
+            this._levelManager.Draw(spriteBatch);
             this._projectileManager.Draw(spriteBatch);
             this._itemManager.Draw(spriteBatch);
             

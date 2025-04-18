@@ -14,35 +14,40 @@ namespace KirbStomp.Scripts.Classes.Managers
     //a manager that simulate the idea of rising lava. 
     public class LevelManager
     {
-        private int MAX_HEIGHT_PLATFORM_APART = 250;
-        private int MIN_HEIGHT_PLATFORM_APART = 150;
-        private int PLATFORM_HEIGHT = 30;
-        private int MIN_PLATFORM_WIDTH = 100;
-        private int MAX_PLATFORM_WIDTH = 700;
-        private int DIST_SPAWN_ABOVE = 0;
+        private int MAX_HEIGHT_PLATFORM_APART = MagicNum.LevelManagerMagic.MAX_HEIGHT_PLATFORM_APART;
+        private int MIN_HEIGHT_PLATFORM_APART = MagicNum.LevelManagerMagic.MIN_HEIGHT_PLATFORM_APART;
+        private int PLATFORM_HEIGHT = MagicNum.LevelManagerMagic.PLATFORM_HEIGHT;
+        private int MIN_PLATFORM_WIDTH = MagicNum.LevelManagerMagic.MIN_PLATFORM_WIDTH;
+        private int MAX_PLATFORM_WIDTH = MagicNum.LevelManagerMagic.MAX_PLATFORM_WIDTH;
+        private int DIST_SPAWN_ABOVE = MagicNum.LevelManagerMagic.DIST_SPAWN_ABOVE;
+        private int TRIGGER_WIDTH_DOUBLE_SPAWN = MagicNum.LevelManagerMagic.TRIGGER_WIDTH_DOUBLE_SPAWN;
+        private int PLAYER_PLATFORM_WIDTH = MagicNum.LevelManagerMagic.PLAYER_PLATFORM_WIDTH;
 
-        private float TIME_TO_LIVE = 20f;
+        private float TIME_TO_LIVE = MagicNum.LevelManagerMagic.TIME_TO_LIVE;
 
         private int _distanceTillNextSpawnPlatform = 0;
         private float _platformSpeedY;
         private Random _random;
         private CollisionSystem _collisionSystem;
 
-        private int worldWidth, worldHeight;
 
         //TODO abstract out sprite
         private Sprite _spritePlatform;
-        private Rectangle PLATFORM_SRC = new Rectangle(4, 4, 300, 140);
+        private Rectangle PLATFORM_SRC = MagicNum.LevelManagerMagic.PLATFORM_SRC;
         private float SCALE = 1;
 
         private List<MovingPlatform> _platforms;
         private List<MovingPlatform> _removePool;
-        private Lava _lava;
-        private int _worldWidth;
+ 
+        private int _worldWidth, _worldHeight;
+
+        
+
+        
         public LevelManager(CollisionSystem collisionSystem, float platformSpeedY, String platformTexture, int worldWidth, int worldHeight) {
 
-            //this._lava = new Lava("lava");
-            this._worldWidth = worldWidth;
+            
+            
             this._collisionSystem = collisionSystem;
             this._platformSpeedY = platformSpeedY;
             this._platforms = new List<MovingPlatform>();
@@ -53,22 +58,22 @@ namespace KirbStomp.Scripts.Classes.Managers
 
             this._random = new Random();
 
-            this.worldHeight = worldHeight;
-            this.worldWidth = worldWidth;
+            this._worldHeight = worldHeight;
+            this._worldWidth = worldWidth;
 
             int yPos = worldHeight;
-            //bc of stupid screen coords - is above screen, pos below
-            while(yPos > DIST_SPAWN_ABOVE)
+            
+            /**while(yPos > DIST_SPAWN_ABOVE)
             {
                 foreach (MovingPlatform platform in _platforms)
                 {
                     platform.Position.Y += _distanceTillNextSpawnPlatform;
                 }
-                this.SpawnPlatform();
+               // this.SpawnPlatform();
                 yPos -= _distanceTillNextSpawnPlatform;
 
             }
-
+            **/
 
         }
 
@@ -80,10 +85,38 @@ namespace KirbStomp.Scripts.Classes.Managers
 
             //spawn platform at DIST_SPAWN_ABOVE
             int platformWidth = _random.Next(MIN_PLATFORM_WIDTH, MAX_PLATFORM_WIDTH);
-            int xPos = _random.Next(0, worldWidth -platformWidth);
+            if (platformWidth < TRIGGER_WIDTH_DOUBLE_SPAWN)
+            {
+                int xPos1 = _random.Next(0, _worldWidth/2 - platformWidth);
+                int xPos2 = _random.Next(_worldWidth / 2 - platformWidth, _worldWidth - platformWidth);
+                Rectangle posHW1 = new Rectangle(xPos1, DIST_SPAWN_ABOVE, platformWidth, PLATFORM_HEIGHT);
+                Rectangle posHW2 = new Rectangle(xPos2, DIST_SPAWN_ABOVE, platformWidth, PLATFORM_HEIGHT);
+                MovingPlatform platform = new MovingPlatform(_spritePlatform, posHW1);
+                this._collisionSystem.RegisterObject(platform);
+                this._platforms.Add(platform);
+                MovingPlatform platform2 = new MovingPlatform(_spritePlatform, posHW2);
+                this._collisionSystem.RegisterObject(platform2);
+                this._platforms.Add(platform2);
+            }
+            else
+            {
 
-            Rectangle posHW = new Rectangle(xPos, DIST_SPAWN_ABOVE, platformWidth, PLATFORM_HEIGHT);
+                int xPos = _random.Next(0, _worldWidth - platformWidth);
 
+                Rectangle posHW = new Rectangle(xPos, DIST_SPAWN_ABOVE, platformWidth, PLATFORM_HEIGHT);
+
+                MovingPlatform platform = new MovingPlatform(_spritePlatform, posHW);
+                this._collisionSystem.RegisterObject(platform);
+                this._platforms.Add(platform);
+            }
+
+            
+        }
+
+        public void SpawnPlayerPlatform(int x, int y, int playerHeight)
+        {
+            Rectangle posHW = new Rectangle(x -PLAYER_PLATFORM_WIDTH/2, y + playerHeight, PLAYER_PLATFORM_WIDTH, PLATFORM_HEIGHT);
+          
             MovingPlatform platform = new MovingPlatform(_spritePlatform, posHW);
             this._collisionSystem.RegisterObject(platform);
             this._platforms.Add(platform);
@@ -120,6 +153,7 @@ namespace KirbStomp.Scripts.Classes.Managers
             foreach (MovingPlatform platform in this._removePool)
             {
                 this._platforms.Remove(platform);
+                this._collisionSystem.RemoveObject(platform);
             }
             this._removePool.Clear();
 
@@ -135,7 +169,7 @@ namespace KirbStomp.Scripts.Classes.Managers
                 platform.Draw(spriteBatch);
             }
 
-            //this._lava.Draw(spriteBatch);
+            
         }
 
     }
