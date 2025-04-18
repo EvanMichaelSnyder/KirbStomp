@@ -8,7 +8,7 @@
 		<Frame position="(432, 1465)" size="(15, 15)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
-	<Animation name="FireballDeath" duration =".2" loop="false" animationOffset="(0, -1)">
+	<Animation name="FireballDeath" duration =".05" loop="false" animationOffset="(0, -1)">
 		<Frame position="(461, 1448)" size="(11, 11)" perFrameOffset="(0, 0)"/>
 		<Frame position="(476, 1448)" size="(11, 11)" perFrameOffset="(0, 0)"/>
 		<Frame position="(461, 1464)" size="(11, 11)" perFrameOffset="(0, 0)"/>

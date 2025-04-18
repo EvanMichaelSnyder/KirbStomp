@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/03cjp/source/repos/KirbStomp/Content/Special.wav</SourceFile>
-  <SourceTime>2025-04-10T17:47:26.5377159-04:00</SourceTime>
+  <SourceTime>2025-04-16T14:49:24.5183847-04:00</SourceTime>
   <DestFile>C:/Users/03cjp/source/repos/KirbStomp/Content/ContentBin/DesktopGL/Special.xnb</DestFile>
-  <DestTime>2025-04-10T17:47:49.7236269-04:00</DestTime>
+  <DestTime>2025-04-17T01:34:21.190399-04:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2024-08-16T13:05:56-04:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

@@ -63,7 +63,12 @@ public class CollisionSystem
 
                 //Debug.WriteLine("Collision Occured");
                 if (carrierA.Parent == carrierB.Parent) continue;
-
+                if (carrierA.Parent.GetType().BaseType == typeof(AProjectile) && carrierB.Parent.GetType().BaseType == typeof(AProjectile))
+                {
+                    AProjectile aProj = (AProjectile)carrierA.Parent;
+                    AProjectile bProj = (AProjectile)carrierB.Parent;
+                    if (aProj.GetSpawningCharacter() == bProj.GetSpawningCharacter()) continue;
+                }
 
                 bool skip = false;
                 //carve out for projectiles

@@ -19,6 +19,7 @@
     <File>C:/Users/03cjp/source/repos/KirbStomp/Content/Jump.wav</File>
     <File>C:/Users/03cjp/source/repos/KirbStomp/Content/KirbyTransparentSpriteSheet.png</File>
     <File>C:/Users/03cjp/source/repos/KirbStomp/Content/Landing.wav</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/lava.png</File>
     <File>C:/Users/03cjp/source/repos/KirbStomp/Content/LinkProjectileSpriteSheet.png</File>
     <File>C:/Users/03cjp/source/repos/KirbStomp/Content/LinkTransparentSpriteSheet.png</File>
     <File>C:/Users/03cjp/source/repos/KirbStomp/Content/MarioAttackHitboxSpriteSheet.png</File>
@@ -26,6 +27,7 @@
     <File>C:/Users/03cjp/source/repos/KirbStomp/Content/MarioProjectileTransparentSpriteSheet.png</File>
     <File>C:/Users/03cjp/source/repos/KirbStomp/Content/MarioTransparentSpriteSheet.png</File>
     <File>C:/Users/03cjp/source/repos/KirbStomp/Content/MegaManTransparentSpriteSheet.png</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/PauseScreen.png</File>
     <File>C:/Users/03cjp/source/repos/KirbStomp/Content/Platforms.png</File>
     <File>C:/Users/03cjp/source/repos/KirbStomp/Content/PlayerOneUI.png</File>
     <File>C:/Users/03cjp/source/repos/KirbStomp/Content/PlayerTwoUI.png</File>
@@ -35,6 +37,8 @@
     <File>C:/Users/03cjp/source/repos/KirbStomp/Content/Walk.wav</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

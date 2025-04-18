@@ -13,69 +13,36 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
     public class MegaManChargeShot : AProjectile
     {
         //some variables to stop magic num/string!
-        private float _scale = 1.75f;
+        private float SCALE = 1.75f;
         private string SPR_NAME = "MegaManProjectile";
         private string ANIM_NAME = "MegaManProjectileTransparentSpriteSheet";
         private string ANIM_STATE_SHOOT = "ChargeShot";
-        private float X_SPEED = 400f;
+        private float X_SPEED = 200f;
         private float DAMAGE = 5f;
-        private Sprite _sprite;
-        private AnimationSystem _animationSystem;
-
 
         public MegaManChargeShot (Vector2 startPos, bool facingRight)
         {
-            this.Position = startPos;
-            Texture2D texture = AssetPool.GetTexture(SPR_NAME);
-            this._sprite = new Sprite(texture, new Rectangle()/*doesnt matter, anim will change*/, _scale);
-            this._animationSystem = new AnimationSystem(_sprite);
+            this._scale = SCALE;
+            this._spriteName = SPR_NAME;
+            this._animName = ANIM_NAME;
+            this._animState = ANIM_STATE_SHOOT;
+            this._damage = DAMAGE;
+            SetVelocity(new Vector2(X_SPEED, 0));
 
-            this._animationSystem.AddAnimation(AssetPool.GetAnimation(ANIM_NAME, ANIM_STATE_SHOOT));
-            this._animationSystem.SetAnimation(ANIM_STATE_SHOOT);
-
-            this._dimension = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)(_scale * _sprite.GetSrcRectangle().Width), (int)(_scale * _sprite.GetSrcRectangle().Height));
-
-            this.Velocity = new Vector2(X_SPEED, 0);
-            if (!facingRight)
-            {
-                this.Velocity.X *= -1f;
-                this._sprite.FlipTextureX();
-            }
-        }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            this._sprite.Draw(spriteBatch, this.Position);
-            _bodyCarrier.HitboxManager.Draw(spriteBatch);
-
-        }
-
-        public override void RegisterCollider()
-        {
-            this._attackCarrier.SetDamage(DAMAGE);
-            this._bodyCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
-            this._attackCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
-
-            RegisterCollisionResponse(HitboxTypeEnum.Attack,
-                                    HitboxTypeEnum.Body,
-                                    (obj, ctx) => HitPlayer(obj, ctx));
-
-        }
-
-        public void HitPlayer(CollisionObject obj, CollisionContext context)
-        {
-            this.Destroy();
+            SetupAnimation(startPos, facingRight);
+            
         }
 
         public override void Update(float dt)
         {
-            this._animationSystem.Animate(dt);
+            base.Update(dt);
+
             // destroy when animation is done
             if (this._animationSystem.IsAnimationDone())
             {
                 this.Destroy();
+                return;
             } 
-            Position += Velocity * dt;
 
         }
     }

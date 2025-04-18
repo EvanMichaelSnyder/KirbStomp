@@ -168,7 +168,7 @@
 		</Animation>
 		<Animation name="AirMove">
 			<Frame>
-                <Hitbox position="(144,286)" size="(31,26)"/>
+                <Hitbox position="(144,286)" size="(31,19)"/>
                 <Hitbox position="(142,266)" size="(33,21)"/>
 			</Frame>
 		</Animation>

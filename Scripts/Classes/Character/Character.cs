@@ -50,7 +50,7 @@ namespace KirbStomp
         private const float capVelocity = 450;
         private Vector2 acceleration = Vector2.Zero;
         internal bool snapVelocity = false;
-        private const float jumpVelocity = -600;
+        private const float jumpVelocity = -675;
         private const float specialUpVelocity = -400;
         bool projSpawnedOnThisFrame = false;
 
@@ -772,9 +772,9 @@ namespace KirbStomp
         public void AddHealth(float amt)
         {
             this._health -= amt;
-            if(this._health < 100)
+            if(this._health < 0)
             {
-                this._health = 100;
+                this._health = 0;
             }
             OnHealthChange?.Invoke(this, new OnHealthChangeEventArgs { health = this._health });
         }

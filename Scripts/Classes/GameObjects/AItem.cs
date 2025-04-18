@@ -17,6 +17,7 @@ namespace KirbStomp.Scripts.Classes.Projectiles
         //dont like default dimen value
         protected Rectangle _dimension = new Rectangle(200,200,16,16);
         protected ItemCarrier _itemCarrier;
+        protected bool drawHitbox = false;
         public abstract void Draw(SpriteBatch spriteBatch);
 
         public void SetItemManager(ItemManager itemManager)

@@ -47,7 +47,7 @@ public class PlayerBattleUI : UIElement{
         _stockIconTwo.SetAlphaPercent(15);
         _stockIconThree.SetAlphaPercent(100);
 
-        _nameString.SetPosition(Position + new Vector2(95 - _font.MeasureString(_character.GetCharacterUIData().CharacterName.ToUpper()).X / 2, 67 - 2));
+        _nameString.SetPosition(Position + new Vector2(95 - _font.MeasureString(_character.GetCharacterUIData().CharacterName.ToUpper()).X / 2, 65));
         _healthString.SetPosition(Position + new Vector2(102, 20));
         _portraitBackground.SetPosition(Position);
         _nameHolder.SetPosition(Position + new Vector2(8, 67));
