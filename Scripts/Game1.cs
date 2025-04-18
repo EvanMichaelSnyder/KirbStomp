@@ -53,13 +53,13 @@ namespace KirbStomp
 
             _sceneManager = SceneManager.Get();
             _mouseController = new MouseController();
-
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _mouseController.InitializeCurrentSceneAreas();
         }
 
 		protected override void Update(GameTime gameTime)
