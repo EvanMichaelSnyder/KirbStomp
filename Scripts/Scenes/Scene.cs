@@ -266,6 +266,21 @@ namespace KirbStomp.Scripts.Scenes
         public void AddScreenIUI(IUI ui)
         {
             this._screenSpaceUI.Add(ui);
-        }         
+        } 
+        public void ClearScreenIUI()
+        {
+            this._screenSpaceUI.Clear();
+        }
+        public void RemoveScreenIUI(string uiName)
+        {
+            foreach (IUI ui in this._screenSpaceUI)
+            {
+                if (ui.Name == uiName)
+                {
+                    this._screenSpaceUI.Remove(ui);
+                    break;
+                }
+            }
+        }        
     }
 }

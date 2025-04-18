@@ -196,5 +196,9 @@ namespace KirbStomp
         {
 
         }
+        public bool IsPaused()
+        {
+            return _paused;
+        }
     }
 }

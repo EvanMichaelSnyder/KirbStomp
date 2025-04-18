@@ -180,7 +180,6 @@ namespace KirbStomp.Scripts.Scenes
             Texture2D gameNameSheet = Game1.Get().Content.Load<Texture2D>("GameName");
             SpriteFont impactFont = Game1.Get().Content.Load<SpriteFont>("impact");
             Texture2D pauseTitle = Game1.Get().Content.Load<Texture2D>("PauseScreen");
-            UIEvents uiEvents = new UIEvents();
 
             if (name.Contains("StartScreen")){
                 ButtonUI startButton = new ButtonUI("Start", new Sprite("StartButton", gameButtonsUISheet, new Rectangle(28, 240, 142, 89), 1f), new Vector2(330, 200));
@@ -188,7 +187,7 @@ namespace KirbStomp.Scripts.Scenes
                 ButtonUI titleButton = new ButtonUI("Title", new Sprite("TitleButton", gameNameSheet, new Rectangle(13, 119, 273, 59), 1.2f), new Vector2(240, 70));
                 startButton.SetClickEvent((sender, args) => {
 
-                    gameEvents.SwitchScene("GeneralSceneTemplate");
+                    gameEvents.StartGame();
                 });
                 exitButton.SetClickEvent((sender, args) => {
                     gameEvents.ExitGame();
@@ -225,7 +224,7 @@ namespace KirbStomp.Scripts.Scenes
                 ButtonUI menuButton = new ButtonUI("Menu", new Sprite("MenuButton", gameButtonsUISheet, new Rectangle(186, 134, 154, 89), 1f), new Vector2(318, 350));
                 ButtonUI resumeButton = new ButtonUI("Resume", new Sprite("ResumeButton", gameButtonsUISheet, new Rectangle(28, 134, 142, 89), 1f), new Vector2(325, 250));
                 resumeButton.SetClickEvent((sender, args) => {
-                    gameEvents.SwitchScene("GeneralSceneTemplate");
+                    gameEvents.ResumeGame();
                 });
                 menuButton.SetClickEvent((sender, args) => {
                     gameEvents.SwitchScene("StartScreen");

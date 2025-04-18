@@ -97,10 +97,20 @@ namespace KirbStomp
                 //_sceneManager.SwitchScene("BattleScene");
                 _sceneManager.SwitchScene("GeneralSceneTemplate");
             } 
-            else if(Keyboard.GetState().IsKeyDown(Keys.D4))
+            else if(Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
+                Scene currScene = (Scene)_sceneManager.GetCurrentScene();
                 //_sceneManager.SwitchScene("GeneralSceneTemplate");
-                _sceneManager.UpdateSceneByCall(SceneCalls.Pause);
+                // _sceneManager.UpdateSceneByCall(SceneCalls.Pause);
+                if(currScene.GetName() == "GeneralSceneTemplate")
+                {
+                    _sceneManager.UpdateSceneByCall(SceneCalls.Pause);
+                    _sceneManager.SwitchScene("PauseScreen");
+                }
+               
+                
+                // Console.WriteLine("Pause");
+                // _sceneManager.UpdateSceneByCall(SceneCalls.Pause);
             }
             else if(Keyboard.GetState().IsKeyDown(Keys.D3))
             {

@@ -15,6 +15,19 @@ public class GameEvents {
         // Logic to switch to a different scene
         SceneManager.Get().SwitchScene(sceneName);
     }
+    public void StartGame() {
+        SceneManager.Get().SwitchScene("GeneralSceneTemplate");
+        SceneManager.Get().ResetCurrentScene();
+        if(SceneManager.Get().IsPaused())
+        {
+            SceneManager.Get().UpdateSceneByCall(SceneCalls.Pause);
+        }
+        
+    }
+    public void ResumeGame() {
+        SceneManager.Get().SwitchScene("GeneralSceneTemplate");
+        SceneManager.Get().UpdateSceneByCall(SceneCalls.Pause);
+    }
     public void ExitGame(){
         // Logic to exit the game
         Game1.Get().Exit();
@@ -22,6 +35,8 @@ public class GameEvents {
     public void EndGame(object sender, IScene.OnGameEndEventArgs args) {
         // Logic to end the game
         SwitchScene("EndScreen");
+        Scene endScreen = (Scene)SceneManager.Get().GetCurrentScene();
+        endScreen.RemoveScreenIUI("EndTextUI");
         SpriteFont impactFont = Game1.Get().Content.Load<SpriteFont>("impact");
 
         string winnerText = "Winner: " + args.character.GetName();
