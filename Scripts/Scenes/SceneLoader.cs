@@ -222,10 +222,17 @@ namespace KirbStomp.Scripts.Scenes
                 Sprite pauseScreen = new Sprite("Pause", pauseTitle, new Rectangle(0, 0, 800, 600), 1f);
                 pause.AddSprite(pauseScreen);
                 //ButtonUI pause = new ButtonUI("PauseTitle", new Sprite("PauseTitle", pauseTitle, new Rectangle(0, 0, 176, 70), 2f), new Vector2(220, 50));
-                ButtonUI exitButton = new ButtonUI("Exit", new Sprite("ExitButton", gameButtonsUISheet, new Rectangle(186, 240, 142, 89), 1f), new Vector2(325, 250));
-
+                ButtonUI menuButton = new ButtonUI("Menu", new Sprite("MenuButton", gameButtonsUISheet, new Rectangle(186, 134, 154, 89), 1f), new Vector2(318, 350));
+                ButtonUI resumeButton = new ButtonUI("Resume", new Sprite("ResumeButton", gameButtonsUISheet, new Rectangle(28, 134, 142, 89), 1f), new Vector2(325, 250));
+                resumeButton.SetClickEvent((sender, args) => {
+                    gameEvents.SwitchScene("GeneralSceneTemplate");
+                });
+                menuButton.SetClickEvent((sender, args) => {
+                    gameEvents.SwitchScene("StartScreen");
+                });
                 UIList.Add(pause);
-                UIList.Add(exitButton);
+                UIList.Add(menuButton);
+                UIList.Add(resumeButton);
             }
             else if (name.Contains("SceneMain"))
             {
