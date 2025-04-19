@@ -15,7 +15,7 @@ public class GameEvents {
         // Logic to switch to a different scene
         SceneManager.Get().SwitchScene(sceneName);
     }
-    public void StartGame() {
+    public void StartGameBattleField() {
         SceneManager.Get().SwitchScene("GeneralSceneTemplate");
         SceneManager.Get().ResetCurrentScene();
         if(SceneManager.Get().IsPaused())
@@ -34,8 +34,25 @@ public class GameEvents {
         }
 
     }
+    public void StartGameMovingPlatforms() {
+        SceneManager.Get().SwitchScene("MovingPlatformSceneTemplate");
+        SceneManager.Get().ResetCurrentScene();
+        if(SceneManager.Get().IsPaused())
+        {
+            SceneManager.Get().UpdateSceneByCall(SceneCalls.Pause);
+        }
+        
+    }
     public void ResumeGame() {
-        SceneManager.Get().SwitchScene("GeneralSceneTemplate");
+        Scene prevScene = (Scene)SceneManager.Get().GetPreviousScene();
+        if(prevScene?.GetName() == "GeneralSceneTemplate")
+        {
+            SceneManager.Get().SwitchScene("GeneralSceneTemplate");
+        }
+        else if(prevScene?.GetName() == "MovingPlatformSceneTemplate")
+        {
+            SceneManager.Get().SwitchScene("MovingPlatformSceneTemplate");
+        }
         SceneManager.Get().UpdateSceneByCall(SceneCalls.Pause);
     }
     public void ExitGame(){

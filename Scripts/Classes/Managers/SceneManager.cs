@@ -25,9 +25,9 @@ namespace KirbStomp
         private IScene _currentScene;
         private static SceneManager inst;
 
-        private BattleScene _battleScene;
-        private TestScene _testScene;
-        private Scene _defaultScene;
+        // private BattleScene _battleScene;
+        // private TestScene _testScene;
+        // private Scene _defaultScene;
 
 
         private SceneCalls _sceneStateCall;
@@ -47,7 +47,7 @@ namespace KirbStomp
          * 
          * 
          */
-
+        private IScene _previousScene;
         public static SceneManager Get()
         {
             if(inst == null)
@@ -99,6 +99,7 @@ namespace KirbStomp
 
         public void SwitchScene(string sceneName)
         {
+            _previousScene = _currentScene;
             for (int i = 0; i < this._scenesList.Count; i++)
             {
                 if (_scenesList[_sceneIndex].GetName() == sceneName)
@@ -138,7 +139,10 @@ namespace KirbStomp
         }
         
 
-      
+        public IScene GetPreviousScene()
+        {
+            return _previousScene;
+        }
         public void UpdateScene(GameTime gameTime)
         {
             _sceneUpdateList[_sceneIndex](gameTime);
