@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using KirbStomp.Scripts.Interfaces;
 using KirbStomp.Scripts.Classes.Managers;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace KirbStomp.Scripts.Scenes
 {
@@ -196,24 +197,50 @@ namespace KirbStomp.Scripts.Scenes
             Texture2D gameNameSheet = Game1.Get().Content.Load<Texture2D>("GameName");
             SpriteFont impactFont = Game1.Get().Content.Load<SpriteFont>("impact");
             Texture2D pauseTitle = Game1.Get().Content.Load<Texture2D>("PauseScreen");
+            Texture2D menuTitle = Game1.Get().Content.Load<Texture2D>("MenuScreen");
+            Texture2D endGameBackground = Game1.Get().Content.Load<Texture2D>("EndGameBackground");
 
             if (name.Contains("StartScreen")){
-                ButtonUI startButton = new ButtonUI("Start", new Sprite("StartButton", gameButtonsUISheet, new Rectangle(28, 240, 142, 89), 1f), new Vector2(330, 200));
-                ButtonUI exitButton = new ButtonUI("Exit", new Sprite("ExitButton", gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(325, 300));
-                ButtonUI titleButton = new ButtonUI("Title", new Sprite("TitleButton", gameNameSheet, new Rectangle(13, 119, 273, 59), 1.2f), new Vector2(240, 70));
-                startButton.SetClickEvent((sender, args) => {
+                UIElement main = new UIElement("Main", new Vector2(0, 0));
+                Sprite mainScreen = new Sprite("Main", menuTitle, new Rectangle(0, 0, 800, 480), 1f);
+                main.AddSprite(mainScreen);
 
+                ButtonUI start1Button = new ButtonUI("Start1", new Sprite("Start1Button", gameButtonsUISheet, new Rectangle(28, 240, 142, 89), 1f), new Vector2(180, 250));
+                SpriteString stage1Text = new SpriteString("Stage1", impactFont, "Stage 1", 1.8f, new Vector2(200, 210));
+                stage1Text.SetColor(Color.Gold);
+                UIElement stage1TextUI = new UIElement("Stage1", new Vector2(0, 0));
+                stage1TextUI.AddTextSprite(stage1Text);
+
+                ButtonUI start2Button = new ButtonUI("Start2", new Sprite("Start2Button", gameButtonsUISheet, new Rectangle(28, 240, 142, 89), 1f), new Vector2(480, 250));
+                SpriteString stage2Text = new SpriteString("Stage1", impactFont, "Stage 2", 1.8f, new Vector2(500, 210));
+                stage2Text.SetColor(Color.Gold);
+                UIElement stage2TextUI = new UIElement("Stage1", new Vector2(0, 0));
+                stage2TextUI.AddTextSprite(stage2Text);
+
+                ButtonUI exitButton = new ButtonUI("Exit", new Sprite("ExitButton", gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(320, 375));
+                start1Button.SetClickEvent((sender, args) => {
+
+                    gameEvents.StartGame();
+                });
+                start2Button.SetClickEvent((sender, args) =>
+                {
                     gameEvents.StartGame();
                 });
                 exitButton.SetClickEvent((sender, args) => {
                     gameEvents.ExitGame();
                 });
-                UIList.Add(startButton);
+                UIList.Add(main);
+                UIList.Add(start1Button);
+                UIList.Add(stage1TextUI);
+                UIList.Add(start2Button);
+                UIList.Add(stage2TextUI);
                 UIList.Add(exitButton);
-                UIList.Add(titleButton);
             }
             else if (name.Contains("EndScreen"))
             {
+                UIElement background = new UIElement("EndGameBackground", new Vector2(0, 0));
+                Sprite endGame = new Sprite("EndGameBackground", endGameBackground, new Rectangle(0, 0, 800, 480), 1f);
+                background.AddSprite(endGame);
                 ButtonUI menuButton = new ButtonUI("Menu", new Sprite("MenuButton", gameButtonsUISheet, new Rectangle(186, 134, 154, 89), 1f), new Vector2(326, 200));
                 ButtonUI exitButton = new ButtonUI("Exit", new Sprite("ExitButton", gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(325, 300));
                 menuButton.SetClickEvent((sender, args) => {
@@ -222,21 +249,16 @@ namespace KirbStomp.Scripts.Scenes
                 exitButton.SetClickEvent((sender, args) => {
                     gameEvents.ExitGame();
                 });
-
+                UIList.Add(background);
                 UIList.Add(menuButton);
                 UIList.Add(exitButton);
             }
             else if (name.Contains("PauseScreen"))
             {
-                /*
-                Sprite pauseTitleSprite = new Sprite("PauseTitle", pauseTitle, new Rectangle(0, 0, 176, 70), 2f);
-                UIElement pause = new UIElement("Pause", new Vector2(325, 100));
-                pause.AddSprite(pauseTitleSprite);
-                */
                 UIElement pause = new UIElement("Pause", new Vector2(0, 0));
-                Sprite pauseScreen = new Sprite("Pause", pauseTitle, new Rectangle(0, 0, 800, 600), 1f);
+                Sprite pauseScreen = new Sprite("Pause", pauseTitle, new Rectangle(0, 0, 800, 480), 1f);
                 pause.AddSprite(pauseScreen);
-                //ButtonUI pause = new ButtonUI("PauseTitle", new Sprite("PauseTitle", pauseTitle, new Rectangle(0, 0, 176, 70), 2f), new Vector2(220, 50));
+                
                 ButtonUI menuButton = new ButtonUI("Menu", new Sprite("MenuButton", gameButtonsUISheet, new Rectangle(186, 134, 154, 89), 1f), new Vector2(318, 350));
                 ButtonUI resumeButton = new ButtonUI("Resume", new Sprite("ResumeButton", gameButtonsUISheet, new Rectangle(28, 134, 142, 89), 1f), new Vector2(325, 250));
                 resumeButton.SetClickEvent((sender, args) => {

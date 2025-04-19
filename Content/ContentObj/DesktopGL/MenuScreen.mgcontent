@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/03cjp/source/repos/KirbStomp/Content/AttackWire.png</SourceFile>
-  <SourceTime>2025-04-07T11:27:08.2831405-04:00</SourceTime>
-  <DestFile>C:/Users/03cjp/source/repos/KirbStomp/Content/ContentBin/DesktopGL/AttackWire.xnb</DestFile>
-  <DestTime>2025-04-18T22:03:17.0985793-04:00</DestTime>
+  <SourceFile>C:/Users/03cjp/source/repos/KirbStomp/Content/MenuScreen.png</SourceFile>
+  <SourceTime>2025-04-18T20:48:25.7389851-04:00</SourceTime>
+  <DestFile>C:/Users/03cjp/source/repos/KirbStomp/Content/ContentBin/DesktopGL/MenuScreen.xnb</DestFile>
+  <DestTime>2025-04-18T22:03:25.7051627-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2024-08-16T13:05:56-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
