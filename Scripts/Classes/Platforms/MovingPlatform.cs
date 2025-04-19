@@ -16,7 +16,7 @@ namespace KirbStomp.Scripts.Classes.Platforms
         private Sprite _sprite;
         private Rectangle _posHW;
         private float _timeAlive = 0;
-        private PlatformCarrier _platformCarrier;
+        internal PlatformCarrier _platformCarrier;
         public MovingPlatform(Sprite spr, Rectangle posHW)
         { 
             this._sprite = spr;
