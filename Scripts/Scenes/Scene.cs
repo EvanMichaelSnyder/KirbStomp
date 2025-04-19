@@ -182,7 +182,7 @@ namespace KirbStomp.Scripts.Scenes
             this._itemManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             this._levelManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             this._camera.Update(gameTime, _characterPositions);
-            _musicManager.PlayMusic();
+            this._musicManager.PlayMusic();
 
 
 

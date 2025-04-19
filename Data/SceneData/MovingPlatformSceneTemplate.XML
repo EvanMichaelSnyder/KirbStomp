@@ -3,10 +3,10 @@
 	<FilesToLoad>
 		<UseSpecialLevelManager> true </UseSpecialLevelManager>
 		<Characters>
-			<!-- <Character> Mario MarioTransparentSpriteSheet Player1Controls </Character> -->
+			<Character> Mario MarioTransparentSpriteSheet Player1Controls </Character>
 			<!-- <Character> Link LinkTransparentSpriteSheet Player2Controls	</Character> -->
-			<Character> Megaman MegamanTransparentSpriteSheet Player1Controls	</Character> 
-			<Character> Link LinkTransparentSpriteSheet Player2Controls	</Character> 
+			<Character> Megaman MegamanTransparentSpriteSheet Player2Controls	</Character> 
+			<!-- <Character> Link LinkTransparentSpriteSheet Player2Controls	</Character>  -->
 		</Characters>
 		<Platforms>
 			

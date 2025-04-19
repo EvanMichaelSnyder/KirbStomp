@@ -194,6 +194,7 @@ namespace KirbStomp
 
                     break;
                 case SceneCalls.Pause:
+                    // Console.WriteLine($"Pause Scene: {_paused}");
                     _paused = !_paused;
                     if (_paused) _updateMethod = DoNothingUpdate;
                     else _updateMethod = _scenesList[_sceneIndex].Update;

@@ -4,9 +4,9 @@
 		<UseSpecialLevelManager> false </UseSpecialLevelManager>
 		<Characters>
 			<!-- <Character> Mario MarioTransparentSpriteSheet Player1Controls </Character> -->
-			<!-- <Character> Link LinkTransparentSpriteSheet Player2Controls	</Character> -->
-			<Character> Megaman MegamanTransparentSpriteSheet Player1Controls	</Character> 
-			<Character> Kirby KirbyTransparentSpriteSheet Player2Controls	</Character> 
+			<Character> Link LinkTransparentSpriteSheet Player2Controls	</Character>
+			<!-- <Character> Megaman MegamanTransparentSpriteSheet Player1Controls	</Character>  -->
+			<Character> Kirby KirbyTransparentSpriteSheet Player1Controls	</Character> 
 		</Characters>
 		<Platforms>
 			<Platform> PlatformMain </Platform>
