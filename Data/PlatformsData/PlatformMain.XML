@@ -2,19 +2,19 @@
 	<Platform>
 		<Type> SideDirtPlatform </Type>
 		<SourcePos>10 370</SourcePos>
-		<SourceSize>780 20</SourceSize>
+		<SourceSize>780 35</SourceSize>
 		<SpriteSheet>Platforms</SpriteSheet>
 	</Platform>
 	<Platform>
 		<Type> SideDirtPlatform </Type>
 		<SourcePos>500 230</SourcePos>
-		<SourceSize>200 20</SourceSize>
+		<SourceSize>200 25</SourceSize>
 		<SpriteSheet>Platforms</SpriteSheet>
 	</Platform>
 		<Platform>
 		<Type> SideDirtPlatform </Type>
 		<SourcePos>100 230</SourcePos>
-		<SourceSize>200 20</SourceSize>
+		<SourceSize>200 25</SourceSize>
 		<SpriteSheet>Platforms</SpriteSheet>
 	</Platform>
 </Platforms>
