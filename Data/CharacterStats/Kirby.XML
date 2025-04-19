@@ -57,15 +57,15 @@
 	<UI>
 		<StockIcon>
 			<SpriteSheet>BattleUISpriteSheet</SpriteSheet>
-			<SourcePosition>0 0</SourcePosition>
-			<SourceSize>104 85</SourceSize>
+			<SourcePosition>1053 0</SourcePosition>
+			<SourceSize>90 91</SourceSize>
 			<Scale>0.2</Scale>
 		</StockIcon>
 
 		<PortraitIcon>
 			<SpriteSheet>BattleUISpriteSheet</SpriteSheet>
-			<SourcePosition>0 105</SourcePosition>
-			<SourceSize>424 299</SourceSize>
+			<SourcePosition>1150 83</SourcePosition>
+			<SourceSize>312 312</SourceSize>
 			<Scale>0.2</Scale>
 		</PortraitIcon>
 	</UI>
