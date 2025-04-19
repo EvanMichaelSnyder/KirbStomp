@@ -687,7 +687,14 @@ namespace KirbStomp
             {
                 SetDirection();
             }
-            Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (Velocity.X != 1 && Velocity.X != -1 && this.StateMachine.State.CurrentState!=StateEnum.Idle)
+            {
+                Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+            else
+            {
+                Position.Y += Velocity.Y * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
         }
 
         /*

@@ -48,6 +48,7 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
             this._animationSystem.AddAnimation(AssetPool.GetAnimation(ANIM_NAME, ANIM_STATE_DEATH));
 
         }
+        /*
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
@@ -56,6 +57,7 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
                 this._attackCarrier.HitboxManager.Draw(spriteBatch);
             }
         }
+        */
 
         public override void RegisterCollider()
         {
