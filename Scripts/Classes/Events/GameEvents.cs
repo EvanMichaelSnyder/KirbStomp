@@ -22,7 +22,17 @@ public class GameEvents {
         {
             SceneManager.Get().UpdateSceneByCall(SceneCalls.Pause);
         }
-        
+    }
+
+    public void StartGame(string scene)
+    {
+        SceneManager.Get().SwitchScene(scene);
+        SceneManager.Get().ResetCurrentScene();
+        if(SceneManager.Get().IsPaused())
+        {
+            SceneManager.Get().UpdateSceneByCall(SceneCalls.Pause);
+        }
+
     }
     public void ResumeGame() {
         SceneManager.Get().SwitchScene("GeneralSceneTemplate");

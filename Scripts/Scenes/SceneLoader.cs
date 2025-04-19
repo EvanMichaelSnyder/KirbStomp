@@ -220,11 +220,11 @@ namespace KirbStomp.Scripts.Scenes
                 ButtonUI exitButton = new ButtonUI("Exit", new Sprite("ExitButton", gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(320, 375));
                 start1Button.SetClickEvent((sender, args) => {
 
-                    gameEvents.StartGame();
+                    gameEvents.StartGame("GeneralSceneTemplate");
                 });
                 start2Button.SetClickEvent((sender, args) =>
                 {
-                    gameEvents.StartGame();
+                    gameEvents.StartGame("MovingPlatformSceneTemplate");
                 });
                 exitButton.SetClickEvent((sender, args) => {
                     gameEvents.ExitGame();

@@ -18,10 +18,12 @@ namespace KirbStomp.Scripts.Classes.Sound
         // Singleton
         private static MusicManager inst;
 
+        private const float defaultVolume = 0.15f;
+
         public MusicManager()
         {
             _song = null;
-            _volumePercent = 0.25f;
+            _volumePercent = defaultVolume;
             isSongPlaying = false;
         }
 
@@ -65,7 +67,7 @@ namespace KirbStomp.Scripts.Classes.Sound
 
         public void SetVolume()
         {
-            MediaPlayer.Volume *= _volumePercent;
+            MediaPlayer.Volume = _volumePercent;
         }
 
     }

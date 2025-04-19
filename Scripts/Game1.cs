@@ -86,8 +86,8 @@ namespace KirbStomp
             //         _sceneManager.UpdateSceneByCall(SceneCalls.Pause);
             //         _sceneManager.SwitchScene("PauseScreen");
             //     }
-               
-                
+
+
             //     // Console.WriteLine("Pause");
             //     // _sceneManager.UpdateSceneByCall(SceneCalls.Pause);
             // }
@@ -101,23 +101,18 @@ namespace KirbStomp
             //     _sceneManager.UpdateSceneByCall(SceneCalls.Pause);
             //     _sceneManager.SwitchScene("PauseScreen");
             // }
-            
 
-            if(Keyboard.GetState().IsKeyDown(Keys.Escape))
+            // 
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 Scene currScene = (Scene)_sceneManager.GetCurrentScene();
-                
-                if(currScene.GetName() == "GeneralSceneTemplate" || currScene.GetName() == "MovingPlatformSceneTemplate")
+
+                if (currScene.GetName() == "GeneralSceneTemplate" || currScene.GetName() == "MovingPlatformSceneTemplate")
                 {
                     _sceneManager.UpdateSceneByCall(SceneCalls.Pause);
                     _sceneManager.SwitchScene("PauseScreen");
                 }
-                
-            } else if (Keyboard.GetState().IsKeyDown(Keys.D5)) {
-                _sceneManager.UpdateSceneByCall(SceneCalls.Reset);
-            } else if (Keyboard.GetState().IsKeyDown(Keys.D0))
-            {
-                _sceneManager.SwitchScene("MovingPlatformSceneTemplate");
+
             }
             
 			base.Update(gameTime);

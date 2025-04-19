@@ -150,7 +150,7 @@ namespace KirbStomp.Scripts.Scenes
                 }
             }
             
-            // _background = new Sprite(Game1.Get().Content.Load<Texture2D>("SpaceBackground"), new Rectangle(0, 0, 3000, 2000), 0.27f);// To be taken out later
+             _background = new Sprite(Game1.Get().Content.Load<Texture2D>("SpaceBackground"), new Rectangle(0, 0, 3000, 2000), 1.0f);// To be taken out later
 
             // Load all platforms
                 // Add the platform to the list
@@ -232,7 +232,7 @@ namespace KirbStomp.Scripts.Scenes
             
             // Draw all objects in world space
             spriteBatch.Begin(transformMatrix: _camera.GetTranslationMatrix());
-             //_background.Draw(spriteBatch, new Vector2());
+             _background.Draw(spriteBatch, new Vector2(-1500, -1000));
 
             // Draw projectiles, Items, Characters, and Platforms
             this._levelManager.Draw(spriteBatch);
