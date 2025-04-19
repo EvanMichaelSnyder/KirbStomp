@@ -51,7 +51,7 @@ namespace KirbStomp
         private Vector2 acceleration = Vector2.Zero;
         internal bool snapVelocity = false;
         private const float jumpVelocity = -675;
-        private const float specialUpVelocity = -400;
+        private const float specialUpVelocity = -600;
         bool projSpawnedOnThisFrame = false;
 
         private bool hitboxDrawEnabled;
@@ -448,7 +448,10 @@ namespace KirbStomp
         }
         private void SpecialUp()
         {
-            Velocity.Y = specialUpVelocity;
+            if (StateMachine.State.GetFrameIndex() == 0)
+            {
+                Velocity.Y = specialUpVelocity;
+            }
             maxVelocity = 100;
             acceleration.X = 0;
             snapVelocity = true;
@@ -684,7 +687,14 @@ namespace KirbStomp
             {
                 SetDirection();
             }
-            Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (Velocity.X != 1 && Velocity.X != -1 && this.StateMachine.State.CurrentState!=StateEnum.Idle)
+            {
+                Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+            else
+            {
+                Position.Y += Velocity.Y * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
         }
 
         /*

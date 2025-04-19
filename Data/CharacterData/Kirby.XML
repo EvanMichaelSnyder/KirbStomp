@@ -111,14 +111,14 @@
 		<Frame position="(108, 471)" size="(30, 21)" perFrameOffset="(0, 6)"/>
 	</Animation>
 
-	<Animation name="AttackForward" duration ="0.5" loop="false" animationOffset="(0, -3)">
+	<Animation name="AttackForward" duration ="0.4" loop="false" animationOffset="(0, -3)">
 		<Frame position="(13, 468)" size="(26, 24)" perFrameOffset="(0, 3)"/>
 		<Frame position="(43, 467)" size="(27, 25)" perFrameOffset="(0, 2)"/>
 		<Frame position="(74, 465)" size="(30, 27)" perFrameOffset="(0, 0)"/>
 		<Frame position="(108, 471)" size="(30, 21)" perFrameOffset="(0, 6)"/>
 	</Animation>
 
-	<Animation name="AttackUp" duration ="0.5" loop="false" animationOffset="(0, -11)">
+	<Animation name="AttackUp" duration ="0.2" loop="false" animationOffset="(0, -11)">
 		<Frame position="(13, 588)" size="(25, 25)" perFrameOffset="(0, 10)"/>
 		<Frame position="(42, 587)" size="(24, 26)" perFrameOffset="(4, 9)"/>
 		<Frame position="(70, 578)" size="(24, 35)" perFrameOffset="(6, 0)"/>
@@ -194,7 +194,7 @@
 		<Frame position="(208, 757)" size="(23, 23)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
-	<Animation name="SpecialNeutral" duration ="1.0" loop="false" animationOffset="(0, -2)">
+	<Animation name="SpecialNeutral" duration =".8" loop="false" animationOffset="(0, -2)">
 		<Frame position="(12, 961)" size="(27, 19)" perFrameOffset="(0, 7)"/>
 		<Frame position="(44, 958)" size="(27, 22)" perFrameOffset="(0, 4)"/>
 		<Frame position="(76, 957)" size="(27, 23)" perFrameOffset="(0, 3)"/>
@@ -229,7 +229,7 @@
 		<Frame position="(313, 1193)" size="(28, 47)" perFrameOffset="(-5, 0)"/>
 	</Animation>
 
-	<Animation name="SpecialUp" duration ="1.0" loop="false" animationOffset="(0, -31)">
+	<Animation name="SpecialUp" duration =".8" loop="false" animationOffset="(0, -31)">
 		<Frame position="(9, 1148)" size="(34, 38)" perFrameOffset="(-4, 33)"/>
 		<Frame position="(47, 1148)" size="(29, 38)" perFrameOffset="(0, 33)"/>
 		<Frame position="(86, 1148)" size="(43, 34)" perFrameOffset="(0, 33)"/>
@@ -276,7 +276,7 @@
 		<Frame position="(399, 1492)" size="(24, 21)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
-	<Animation name="Recover" duration ="0.5" loop="false" animationOffset="(0, -3)">
+	<Animation name="Recover" duration ="0.25" loop="false" animationOffset="(0, -3)">
 		<Frame position="(15, 1560)" size="(26, 21)" perFrameOffset="(0, 4)"/>
 		<Frame position="(45, 1556)" size="(24, 25)" perFrameOffset="(0, 0)"/>
 		<Frame position="(73, 1557)" size="(22, 25)" perFrameOffset="(0, 1)"/>

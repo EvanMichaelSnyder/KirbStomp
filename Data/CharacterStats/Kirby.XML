@@ -1,7 +1,7 @@
 ﻿<Character>
 	<Name> Kirby </Name>
 	<Health> 0.0 </Health>
-	<Position> 500 100</Position>
+	<Position> 100 100</Position>
 	<Movement>
 		<BaseWalkSpeed>		10.0	</BaseWalkSpeed>
 		<BaseRunSpeed>		20.0	</BaseRunSpeed>

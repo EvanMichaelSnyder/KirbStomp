@@ -255,7 +255,7 @@
 		<Frame position="(13, 590)" size="(35, 47)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
-	<Animation name="Recover" duration ="0.5" loop="false" animationOffset="(0, -5)">
+	<Animation name="Recover" duration ="0.25" loop="false" animationOffset="(0, -5)">
 		<Frame position="(268, 273)" size="(38, 39)" perFrameOffset="(-2, 11)"/>
 		<Frame position="(310, 268)" size="(29, 44)" perFrameOffset="(0, 0)"/>
 		<Frame position="(345, 262)" size="(31, 50)" perFrameOffset="(0, 0)"/>

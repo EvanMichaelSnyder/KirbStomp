@@ -37,10 +37,16 @@ public class MouseController {
         }
     }
     private void SceneManager_OnSceneChanged(object sender, EventArgs e) {
-        SceneObject = (Scene)KirbStomp.SceneManager.Get().GetCurrentScene();
-        SetAreas(SceneObject.GetAreas());
+        InitializeCurrentSceneAreas();
     }
     public void SetAreas(List<AreaUI2D> areas) {
         this.Areas = areas;
+    }
+
+    public void InitializeCurrentSceneAreas()
+    {
+        SceneObject = (Scene)KirbStomp.SceneManager.Get().GetCurrentScene();
+        SetAreas(SceneObject.GetAreas());
+
     }
 }

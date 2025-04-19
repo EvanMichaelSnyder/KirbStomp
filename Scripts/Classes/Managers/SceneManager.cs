@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Xml.Linq;
 
+
 namespace KirbStomp
 {
     public enum SceneCalls
@@ -93,6 +94,7 @@ namespace KirbStomp
             /*
              * Register the hard coded bindings for pause, quit, next, previous, reset
              */
+            
         }
 
         public void SwitchScene(string sceneName)
@@ -192,6 +194,7 @@ namespace KirbStomp
 
                     break;
                 case SceneCalls.Pause:
+                    // Console.WriteLine($"Pause Scene: {_paused}");
                     _paused = !_paused;
                     if (_paused) _updateMethod = DoNothingUpdate;
                     else _updateMethod = _scenesList[_sceneIndex].Update;
