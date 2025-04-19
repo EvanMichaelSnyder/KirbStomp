@@ -6,9 +6,11 @@
   <SourceFiles>
     <File>C:/Users/03cjp/source/repos/KirbStomp/Content/Attack.wav</File>
     <File>C:/Users/03cjp/source/repos/KirbStomp/Content/AttackWire.png</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/BattlefieldBackground.png</File>
     <File>C:/Users/03cjp/source/repos/KirbStomp/Content/BattlefieldTheme.mp3</File>
     <File>C:/Users/03cjp/source/repos/KirbStomp/Content/BattleUISpriteSheet.png</File>
     <File>C:/Users/03cjp/source/repos/KirbStomp/Content/DashStart.wav</File>
+    <File>C:/Users/03cjp/source/repos/KirbStomp/Content/EndGameBackground.png</File>
     <File>C:/Users/03cjp/source/repos/KirbStomp/Content/File.xml</File>
     <File>C:/Users/03cjp/source/repos/KirbStomp/Content/GameButtons.png</File>
     <File>C:/Users/03cjp/source/repos/KirbStomp/Content/GameName.png</File>
@@ -38,6 +40,8 @@
     <File>C:/Users/03cjp/source/repos/KirbStomp/Content/Walk.wav</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

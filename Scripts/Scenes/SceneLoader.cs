@@ -197,6 +197,7 @@ namespace KirbStomp.Scripts.Scenes
             SpriteFont impactFont = Game1.Get().Content.Load<SpriteFont>("impact");
             Texture2D pauseTitle = Game1.Get().Content.Load<Texture2D>("PauseScreen");
             Texture2D menuTitle = Game1.Get().Content.Load<Texture2D>("MenuScreen");
+            Texture2D endGameBackground = Game1.Get().Content.Load<Texture2D>("EndGameBackground");
 
             if (name.Contains("StartScreen")){
                 UIElement main = new UIElement("Main", new Vector2(0, 0));
@@ -205,9 +206,13 @@ namespace KirbStomp.Scripts.Scenes
 
                 ButtonUI start1Button = new ButtonUI("Start1", new Sprite("Start1Button", gameButtonsUISheet, new Rectangle(28, 240, 142, 89), 1f), new Vector2(180, 250));
                 ButtonUI start2Button = new ButtonUI("Start2", new Sprite("Start2Button", gameButtonsUISheet, new Rectangle(28, 240, 142, 89), 1f), new Vector2(480, 250));
-                ButtonUI exitButton = new ButtonUI("Exit", new Sprite("ExitButton", gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(325, 375));
+                ButtonUI exitButton = new ButtonUI("Exit", new Sprite("ExitButton", gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(320, 375));
                 start1Button.SetClickEvent((sender, args) => {
 
+                    gameEvents.StartGame();
+                });
+                start2Button.SetClickEvent((sender, args) =>
+                {
                     gameEvents.StartGame();
                 });
                 exitButton.SetClickEvent((sender, args) => {
@@ -220,6 +225,9 @@ namespace KirbStomp.Scripts.Scenes
             }
             else if (name.Contains("EndScreen"))
             {
+                UIElement background = new UIElement("EndGameBackground", new Vector2(0, 0));
+                Sprite endGame = new Sprite("EndGameBackground", endGameBackground, new Rectangle(0, 0, 800, 480), 1f);
+                background.AddSprite(endGame);
                 ButtonUI menuButton = new ButtonUI("Menu", new Sprite("MenuButton", gameButtonsUISheet, new Rectangle(186, 134, 154, 89), 1f), new Vector2(326, 200));
                 ButtonUI exitButton = new ButtonUI("Exit", new Sprite("ExitButton", gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(325, 300));
                 menuButton.SetClickEvent((sender, args) => {
@@ -228,7 +236,7 @@ namespace KirbStomp.Scripts.Scenes
                 exitButton.SetClickEvent((sender, args) => {
                     gameEvents.ExitGame();
                 });
-
+                UIList.Add(background);
                 UIList.Add(menuButton);
                 UIList.Add(exitButton);
             }
