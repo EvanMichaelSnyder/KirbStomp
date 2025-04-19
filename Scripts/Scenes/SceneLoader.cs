@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using KirbStomp.Scripts.Interfaces;
 using KirbStomp.Scripts.Classes.Managers;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace KirbStomp.Scripts.Scenes
 {
@@ -205,7 +206,17 @@ namespace KirbStomp.Scripts.Scenes
                 main.AddSprite(mainScreen);
 
                 ButtonUI start1Button = new ButtonUI("Start1", new Sprite("Start1Button", gameButtonsUISheet, new Rectangle(28, 240, 142, 89), 1f), new Vector2(180, 250));
+                SpriteString stage1Text = new SpriteString("Stage1", impactFont, "Stage 1", 1.8f, new Vector2(200, 210));
+                stage1Text.SetColor(Color.Gold);
+                UIElement stage1TextUI = new UIElement("Stage1", new Vector2(0, 0));
+                stage1TextUI.AddTextSprite(stage1Text);
+
                 ButtonUI start2Button = new ButtonUI("Start2", new Sprite("Start2Button", gameButtonsUISheet, new Rectangle(28, 240, 142, 89), 1f), new Vector2(480, 250));
+                SpriteString stage2Text = new SpriteString("Stage1", impactFont, "Stage 2", 1.8f, new Vector2(500, 210));
+                stage2Text.SetColor(Color.Gold);
+                UIElement stage2TextUI = new UIElement("Stage1", new Vector2(0, 0));
+                stage2TextUI.AddTextSprite(stage2Text);
+
                 ButtonUI exitButton = new ButtonUI("Exit", new Sprite("ExitButton", gameButtonsUISheet, new Rectangle(186, 240, 154, 89), 1f), new Vector2(320, 375));
                 start1Button.SetClickEvent((sender, args) => {
 
@@ -220,7 +231,9 @@ namespace KirbStomp.Scripts.Scenes
                 });
                 UIList.Add(main);
                 UIList.Add(start1Button);
+                UIList.Add(stage1TextUI);
                 UIList.Add(start2Button);
+                UIList.Add(stage2TextUI);
                 UIList.Add(exitButton);
             }
             else if (name.Contains("EndScreen"))
