@@ -4,7 +4,7 @@
 		<Animation name="AttackNeutral"  Damage="8"  ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
 		<Animation name="AttackNeutral3" Damage="11" ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
 		<Animation name="AttackBack"	 Damage="14" ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
-		<Animation name="AttackForward"  Damage="13" ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
+		<Animation name="AttackForward"  Damage="13" ForceX="600" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
 		<Animation name="AttackUp"       Damage="12" ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
 		<Animation name="AttackDown"     Damage="17" ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
 		<Animation name="AttackDash"     Damage="9"  ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
