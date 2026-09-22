@@ -1,8 +1,10 @@
 ﻿using KirbStomp.Interfaces;
 using KirbStomp.Scripts.Classes.GameObjects.Projectiles;
+using KirbStomp.Scripts.Classes.Managers;
 using KirbStomp.Scripts.Classes.Platforms;
 using KirbStomp.Scripts.Classes.Projectiles;
 using KirbStomp.Scripts.Classes.Sound;
+using KirbStomp.Scripts.Interfaces;
 using KirbStomp.Scripts.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -21,6 +23,7 @@ namespace KirbStomp.Scripts.Scenes
     {
         Animations, Hitboxes
     }
+    
     internal class Scene : IScene
     {
         private string _name;
@@ -36,19 +39,21 @@ namespace KirbStomp.Scripts.Scenes
         private List<StageBoundary> _boundaries;
         private List<IUI> _screenSpaceUI;   // Sprite'll be UI / Text
         private List<IUI> _worldSpaceSprites;    // Sprite'll be UI / Text
-
+        private List<AreaUI2D> _areaUI2Ds;
         private CollisionSystem _collisionSystem;
         private ProjectileManager _projectileManager;
         private ItemManager _itemManager;
+        private ILevelManager _levelManager;
         private MusicManager _musicManager;
         private Sprite _background;
 
         private Camera2D _camera;
+        private List<Vector2> _characterPositions;
 
-        //Only applicable for the win screen
-        private SpriteString _winScreenText;
+        public event EventHandler<IScene.OnGameEndEventArgs> OnGameEnd;
 
-        public Scene(string name)
+        private bool _useSpecialSceneManager;   // Used for customizable behavior. Currently allow
+        public Scene(string name, bool useSpecialSceneManager)
         {
             this._name = name;
             this._characters = new();
@@ -57,8 +62,9 @@ namespace KirbStomp.Scripts.Scenes
             this._screenSpaceUI = new();
             this._worldSpaceSprites = new();
             this._boundaries = new();
-
-
+            this._characterPositions = new();
+            this._useSpecialSceneManager = useSpecialSceneManager;
+            this._levelManager = null;
         }
         public ProjectileManager GetProjectileManager()
         {
@@ -67,13 +73,17 @@ namespace KirbStomp.Scripts.Scenes
         
         public void Initialize()
         {
+            _areaUI2Ds = new List<AreaUI2D>();
             var (width, height) = Game1.Get().GetScreenWindow().GetAdjustedWindowSize();
             this._camera = new(Game1.Get().GraphicsDevice, new Point(width, height));
             _collisionSystem = new CollisionSystem();
             _projectileManager = new ProjectileManager(_collisionSystem);
             _itemManager = new ItemManager(_collisionSystem);
             _musicManager = MusicManager.Get();
+            //todo load string
             LoadContent();
+            //_levelManager = new LevelManager(_collisionSystem, 60, "Platforms", Game1.Get().GetScreenWindow().GetXSize(), Game1.Get().GetScreenWindow().GetYSize());
+
         }
 
 
@@ -93,13 +103,36 @@ namespace KirbStomp.Scripts.Scenes
             // Add to collideable objects list
             // var (character, Controller) = LoadCharacter(characterXMLFile);
             SceneLoader.SetLoadFile(_name);    // This will be taken out into scene manager, which'll take care of scene initializations
-            SceneLoader.LoadScene(_characters, _controllers, _platforms, _screenSpaceUI, _boundaries);
-            _musicManager.LoadMusic();
-            _musicManager.PlayMusic();
+            SceneLoader.LoadScene(this, _characters, _controllers, _platforms, _screenSpaceUI, _boundaries);
+
+            _levelManager = SceneLoader.GetSceneLevelManager(_collisionSystem);
 
             foreach (ICharacter character in _characters)
             {
                 _collisionSystem.RegisterObject((Character)character);
+                //register platforms for moving platform layer
+                Character c = (Character)character;
+                List<Rectangle> hitboxes = c._bodyCarrier.HitboxManager.getRectangles();
+                int h = 0;
+                foreach (Rectangle hitbox in hitboxes)
+                {
+                    h += hitbox.Height;
+                }
+                this._levelManager.SpawnPlayerPlatform((int)c.Position.X, (int)c.Position.Y, h);
+            }
+
+            //_levelManager = _useSpecialSceneManager ? new LevelManager(_collisionSystem, 100, "Platforms", Game1.Get().GetScreenWindow().GetXSize(), Game1.Get().GetScreenWindow().GetYSize()) : new DefaultLevelManager();
+
+            _musicManager.LoadMusic();
+            _musicManager.PlayMusic();
+
+
+
+            foreach (ICharacter character in _characters)
+            {
+                _collisionSystem.RegisterObject((Character)character);
+                
+                character.OnDeath += Character_OnDeath;    
             }
             foreach (Platform platform in _platforms)
             {
@@ -109,8 +142,15 @@ namespace KirbStomp.Scripts.Scenes
             {
                 _collisionSystem.RegisterObject(boundary);
             }
-
-            // _background = new Sprite(Game1.Get().Content.Load<Texture2D>("SpaceBackground"), new Rectangle(0, 0, 3000, 2000), 0.27f);// To be taken out later
+            foreach (IUI ui in _screenSpaceUI)
+            {
+                if (ui is ButtonUI button)
+                {
+                    _areaUI2Ds.Add(button.Area);
+                }
+            }
+            
+             _background = new Sprite(Game1.Get().Content.Load<Texture2D>("SpaceBackground"), new Rectangle(0, 0, 3000, 2000), 1.0f);// To be taken out later
 
             // Load all platforms
                 // Add the platform to the list
@@ -124,15 +164,27 @@ namespace KirbStomp.Scripts.Scenes
             // Load necessary stuff for items
         }
 
-
+        public void Character_OnDeath(object sender, EventArgs e) {
+            if (sender is Character character)
+            {
+                // Remove character from the list
+                _characters.Remove(character);
+            }
+            if(_characters.Count == 1)
+            {
+                OnGameEnd?.Invoke(this, new IScene.OnGameEndEventArgs { character = (Character)_characters[0]});
+            }
+        }
         public void Update(GameTime gameTime)
         {
-
+            UpdateAccessableDatas();
             this._projectileManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             this._itemManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
-            //this._itemManager.SpawnRandomItem();
-            this._camera.Update(gameTime);
-            _musicManager.PlayMusic();
+            this._levelManager.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+            this._camera.Update(gameTime, _characterPositions);
+            this._musicManager.PlayMusic();
+
+
 
             foreach (ICharacter chara in _characters) { chara.Animate(gameTime); }
 
@@ -155,13 +207,13 @@ namespace KirbStomp.Scripts.Scenes
 
             //State is actually changed
             //right now this is actually called under process buttons
-            _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Body, HitboxTypeEnum.Platform);
-            _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Body, HitboxTypeEnum.Boundary);
-            _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Platform);
-            _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Body);
+            _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Body, HitboxTypeEnum.Platform, gameTime);
+            _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Body, HitboxTypeEnum.Boundary, gameTime);
+            _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Platform, gameTime);
+            _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Body, gameTime);
             foreach (ICharacter chara in _characters) { chara.UpdateState(); }
 
-            _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Body, HitboxTypeEnum.Attack);
+            _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Body, HitboxTypeEnum.Attack, gameTime);
             
 
 
@@ -180,11 +232,13 @@ namespace KirbStomp.Scripts.Scenes
             
             // Draw all objects in world space
             spriteBatch.Begin(transformMatrix: _camera.GetTranslationMatrix());
-            // _background.Draw(spriteBatch, new());
+             _background.Draw(spriteBatch, new Vector2(-1500, -1000));
 
             // Draw projectiles, Items, Characters, and Platforms
+            this._levelManager.Draw(spriteBatch);
             this._projectileManager.Draw(spriteBatch);
             this._itemManager.Draw(spriteBatch);
+            
 
 
 
@@ -227,12 +281,45 @@ namespace KirbStomp.Scripts.Scenes
             this._screenSpaceUI.Clear();
             this._worldSpaceSprites.Clear();
             this._boundaries.Clear();
-
+            this._characterPositions.Clear();
             Initialize();
         }
         public string GetName()
         {
             return _name;
-        }         
+        }
+        public void UpdateAccessableDatas()
+        {
+            _characterPositions.Clear();
+            Point boxPosition;
+            foreach(ICharacter chara in _characters)
+            {
+                _characterPositions.Add(chara.GetPointPosition().ToVector2());
+            }
+        }
+
+        public List<AreaUI2D> GetAreas()
+        {
+            return _areaUI2Ds;
+        }
+        public void AddScreenIUI(IUI ui)
+        {
+            this._screenSpaceUI.Add(ui);
+        } 
+        public void ClearScreenIUI()
+        {
+            this._screenSpaceUI.Clear();
+        }
+        public void RemoveScreenIUI(string uiName)
+        {
+            foreach (IUI ui in this._screenSpaceUI)
+            {
+                if (ui.Name == uiName)
+                {
+                    this._screenSpaceUI.Remove(ui);
+                    break;
+                }
+            }
+        }        
     }
 }

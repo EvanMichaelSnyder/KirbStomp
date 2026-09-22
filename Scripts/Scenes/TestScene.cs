@@ -18,6 +18,7 @@ using KirbStomp.Scripts.Classes.Projectiles;
 using KirbStomp.Scripts.Classes.GameObjects.Items;
 public class TestScene : IScene
 {
+    public event EventHandler<IScene.OnGameEndEventArgs> OnGameEnd;
     public static Texture2D boxSheet = Game1.Get().Content.Load<Texture2D>("HitboxWire");
 
     private static int entityID = 0;
@@ -77,9 +78,9 @@ public class TestScene : IScene
 
         //right now this is actually called under process buttons
         //foreach (ICharacter chara in _characterList) { chara.CheckGroundCollision(); } 
-        _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Body, HitboxTypeEnum.Platform);
-        _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Platform);
-        _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Body);
+        _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Body, HitboxTypeEnum.Platform, gameTime);
+        _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Platform, gameTime);
+        _collisionSystem.CheckCollisionPair(HitboxTypeEnum.Item, HitboxTypeEnum.Body, gameTime);
         //State is actually changed
         foreach (ICharacter chara in _characterList) { chara.UpdateState(); } 
     

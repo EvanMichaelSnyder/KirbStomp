@@ -17,6 +17,7 @@ namespace KirbStomp.Scripts.Classes.Collision
         public HitboxTypeEnum SelfType;
         public HitboxTypeEnum OtherType;
         public Rectangle Intersection;
+        public GameTime GameTime;
 
         public CollisionContext(CollisionObject self, CollisionObject other, HitboxTypeEnum selfType, HitboxTypeEnum otherType, Rectangle intersection)
         {
@@ -25,10 +26,20 @@ namespace KirbStomp.Scripts.Classes.Collision
             SelfType = selfType;
             OtherType = otherType;
             Intersection = intersection;
+            
+        }
+        public CollisionContext(CollisionObject self, CollisionObject other, HitboxTypeEnum selfType, HitboxTypeEnum otherType, Rectangle intersection, GameTime gameTime)
+        {
+            Self = self;
+            Other = other;
+            SelfType = selfType;
+            OtherType = otherType;
+            Intersection = intersection;
+            GameTime = gameTime;
         }
 
         public CollisionContext SwapPerspective() => new CollisionContext(
-            Other, Self, OtherType, SelfType, Intersection
+            Other, Self, OtherType, SelfType, Intersection, GameTime
         );
 
         public override string ToString()
@@ -46,7 +57,8 @@ namespace KirbStomp.Scripts.Classes.Collision
         public PhysicsComponent Physics { get; } = new PhysicsComponent();
         public bool IsActive { get; internal set; }
         public List<Carrier> Carriers { get; } = new List<Carrier>();
-
+        public float ClockTime 
+            ;
 
         public void RegisterCollisionResponse(HitboxTypeEnum selfType,
                                            HitboxTypeEnum otherType,
@@ -65,10 +77,13 @@ namespace KirbStomp.Scripts.Classes.Collision
                 Debug.WriteLine($"Registered handler: {key}");
             }
             */
-            if (_collisionHandlers.TryGetValue((context.SelfType, context.OtherType),
-                out var handler))
+            if (ClockTime <= 0)
             {
-                handler(this, context);
+                if (_collisionHandlers.TryGetValue((context.SelfType, context.OtherType),
+                    out var handler))
+                {
+                    handler(this, context);
+                }
             }
         }
     }

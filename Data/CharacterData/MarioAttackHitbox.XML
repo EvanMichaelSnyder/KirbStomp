@@ -429,7 +429,7 @@
 				
 			</Frame>
 			<Frame>
-				
+                <Hitbox position="(64,641)" size="(46,29)"/>
 			</Frame>
 			<Frame>
                 <Hitbox position="(113,612)" size="(23,24)"/>

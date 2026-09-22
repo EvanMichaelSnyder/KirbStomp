@@ -1,6 +1,6 @@
 # KirbStomp
 
-This is our working branch for Sprint 4 functionality. 
+This is our working branch for Sprint 5 functionality. 
 
 All our project documentation can be found on our team Notion Webpage. This include tasks, meeting notes, and other project notes. Other documentations are in the Documentation folder.
 
@@ -9,20 +9,13 @@ Notion Documentation and Task management: [KirbStomp Super Smash Notion](https:/
 
 [Sprint 4 Specific Page](https://possible-aletopelta-198.notion.site/Sprint-4-1b90992c88eb8078b9c8d93d9757e40a?pvs=4)
 
-**Please read Notion Documentation on [bugs with sound](https://possible-aletopelta-198.notion.site/Work-Around-Sound-Build-Errors-1cc0992c88eb8074a6f7e6e5d49031f8?pvs=4)** and do the following before you do dotnet run (if you are using Visual Studio Builds to run, then try to follow steps in Notion, but this works better)
-````
-git restore Content/
-git clean -f -d
-dotnet run
-````
-
 Note: All tasks are listed in Task Universe page and also in the bottom of Sprint 4 page
 
 All Documentation files listed below are in the Documentation folder:
 * KirbStomp Sprint Requirements.pdf - this list all the our game plan to meet each sprint requirement
-* KirbStomp Sprint 4 Initial Planning.pdf - this lists our Sprint4 initial task planning
+* KirbStomp Sprint 5 Initial Planning.pdf - this lists our Sprint4 initial task planning
 * KirbStomp Code Analysis.pdf - this contains our code metrics data obtained from Visual Studio's code analysis tool
-* KirbStomp Sprint 4 Reflection.pdf - this documents our team sprint4 overall progress reflection
+* KirbStomp Sprint 5 Reflection.pdf - this documents our team sprint4 overall progress reflection
 
 ### Runtime Action (More details in Notion)
 * 3 scenes - start scene, battle scene, and end scene

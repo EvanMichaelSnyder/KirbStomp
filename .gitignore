@@ -1,5 +1,6 @@
 bin/*
 Content/obj/*
+Content/bin/*
 obj/*
 .vs/*
 obj/KirbStomp.csproj.nuget.dgspec.json

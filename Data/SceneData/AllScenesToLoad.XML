@@ -1,7 +1,9 @@
 ﻿<Scenes>
-	<Scene> GeneralSceneTemplate </Scene>
 	<Scene> StartScreen </Scene>
+	<Scene> GeneralSceneTemplate </Scene>
+	<Scene> MovingPlatformSceneTemplate </Scene>
 	<Scene> EndScreen </Scene>
+	<Scene> PauseScreen </Scene>
 	<Bindings>
 		<Pause></Pause>
 		<Quit></Quit>

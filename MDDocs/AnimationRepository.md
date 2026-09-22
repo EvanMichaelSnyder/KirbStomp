@@ -38,7 +38,8 @@
 |------|-------------|------------|
 | GetAnimationData | [`AnimationData`](AnimationData.md) | `String` name, `StateEnum` animationName |
 | LoadAnimationsFromXml | `Void` | `String` xmlPath |
-| GetFrameData | ValueTuple<[`FrameData`](FrameData.md), `Vector2`, `String`, `Single`, `Single`, `Single`> | `String` name, `StateEnum` animationName, `Int32` frameIndex |
+| GetFrameData | Value
+<[`FrameData`](FrameData.md), `Vector2`, `String`, `Single`, `Single`, `Single`> | `String` name, `StateEnum` animationName, `Int32` frameIndex |
 
 ### Private Static Methods
 | Name | Return Type | Parameters |

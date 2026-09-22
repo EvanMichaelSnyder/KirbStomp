@@ -1,0 +1,59 @@
+﻿<Animations>
+	<Texture spriteSheet="MegaManProjectileTransparentSpriteSheet" scale="1.0" boundX="1172" offsetDirectional = "-30" />
+
+	<Animation name="MegaBusterShoot" duration =".025" loop="false" animationOffset="(40, 12)">
+		<Frame position="(549, 465)" size="(9, 15)" perFrameOffset="(0, 0)"/>
+		<Frame position="(562, 464)" size="(16, 17)" perFrameOffset="(0, -1)"/>
+		<Frame position="(582, 462)" size="(13, 21)" perFrameOffset="(0, -3)"/>
+		<Frame position="(546, 488)" size="(9, 7)" perFrameOffset="(2, 4)"/>
+		<Frame position="(559, 488)" size="(10, 7)" perFrameOffset="(2, 4)"/>
+		<Frame position="(573, 489)" size="(8, 5)" perFrameOffset="(2, 5)"/>
+	</Animation>
+
+	<Animation name="MegaBusterAir" duration ="1.0" loop="true" animationOffset="(40, 12)">
+		<Frame position="(585, 489)" size="(6, 5)" perFrameOffset="(2, 5)"/>
+	</Animation>
+
+	<Animation name="ChargeShot" duration =".02" loop="false" animationOffset="(40, 12)">
+		<Frame position="(415, 283)" size="(23, 23)" perFrameOffset="(0, 0)"/>
+		<Frame position="(444, 274)" size="(35, 42)" perFrameOffset="(0, -9)"/>
+		<Frame position="(484, 271)" size="(45, 48)" perFrameOffset="(0, -12)"/>
+		<Frame position="(534, 267)" size="(51, 56)" perFrameOffset="(0, -16)"/>
+		<Frame position="(434, 326)" size="(56, 58)" perFrameOffset="(0, -17)"/>
+		<Frame position="(496, 327)" size="(59, 56)" perFrameOffset="(0, -16)"/>
+	</Animation>
+
+	<Animation name="CrashBomb" duration ="1.0" loop="true" animationOffset="(50, 15)">
+		<Frame position="(73, 1108)" size="(17, 13)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+	<Animation name="LeafShield" duration ="1.0" loop="true" animationOffset="(40, 15)">
+		<Frame position="(455, 1264)" size="(20, 17)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+	<Animation name="MetalBlade" duration =".05" loop="true" animationOffset="(40, 10)">
+		<Frame position="(307, 1343)" size="(20, 20)" perFrameOffset="(0, 0)"/>
+		<Frame position="(332, 1343)" size="(20, 20)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+	<Animation name="Tornado" duration =".2" loop="true" animationOffset="(40, 4)">
+		<Frame position="(292, 1504)" size="(38, 36)" perFrameOffset="(0, 0)"/>
+		<Frame position="(336, 1504)" size="(35, 37)" perFrameOffset="(0, 0)"/>
+		<Frame position="(379, 1504)" size="(35, 37)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+	<Animation name="SlashEffect" duration =".2" loop="true" animationOffset="(40, 20)">
+		<Frame position="(307, 1679)" size="(29, 10)" perFrameOffset="(0, 0)"/>
+		<Frame position="(343, 1671)" size="(62, 17)" perFrameOffset="(0, -3)"/>
+		<Frame position="(412, 1665)" size="(60, 23)" perFrameOffset="(0, -6)"/>
+		<Frame position="(479, 1665)" size="(39, 23)" perFrameOffset="(0, -6)"/>
+		<Frame position="(525, 1665)" size="(27, 23)" perFrameOffset="(0, -6)"/>
+	</Animation>
+
+	<Animation name="SpinEffect" duration =".2" loop="true" animationOffset="(40, -15)">
+		<Frame position="(534, 1785)" size="(71, 58)" perFrameOffset="(0, 0)"/>
+		<Frame position="(613, 1732)" size="(72, 66)" perFrameOffset="(0, -4)"/>
+		<Frame position="(697, 1732)" size="(66, 59)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+</Animations>

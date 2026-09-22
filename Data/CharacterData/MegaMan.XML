@@ -113,22 +113,10 @@
 	</Animation>
 
 	<Animation name="AttackBack" duration ="0.5" loop="false" animationOffset="(0, 1)">
-		<Frame position="(13, 399)" size="(44, 44)" perFrameOffset="(0, 0)"/>
-		<Frame position="(62, 399)" size="(46, 44)" perFrameOffset="(0, 0)"/>
-		<Frame position="(113, 399)" size="(44, 44)" perFrameOffset="(0, 0)"/>
-		<Frame position="(163, 399)" size="(45, 44)" perFrameOffset="(0, 0)"/>
-		<Frame position="(214, 399)" size="(46, 44)" perFrameOffset="(0, 0)"/>
-		<Frame position="(265, 399)" size="(44, 44)" perFrameOffset="(0, 0)"/>
 		<Frame position="(355, 401)" size="(47, 42)" perFrameOffset="(0, 2)"/>
 	</Animation>
 
 	<Animation name="AttackForward" duration ="0.5" loop="false" animationOffset="(0, 1)">
-		<Frame position="(13, 399)" size="(44, 44)" perFrameOffset="(0, 0)"/>
-		<Frame position="(62, 399)" size="(46, 44)" perFrameOffset="(0, 0)"/>
-		<Frame position="(113, 399)" size="(44, 44)" perFrameOffset="(0, 0)"/>
-		<Frame position="(163, 399)" size="(45, 44)" perFrameOffset="(0, 0)"/>
-		<Frame position="(214, 399)" size="(46, 44)" perFrameOffset="(0, 0)"/>
-		<Frame position="(265, 399)" size="(44, 44)" perFrameOffset="(0, 0)"/>
 		<Frame position="(355, 401)" size="(47, 42)" perFrameOffset="(0, 2)"/>
 	</Animation>
 
@@ -224,7 +212,7 @@
 		<Frame position="(23, 1094)" size="(44, 44)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
-	<Animation name="SpecialUp" duration ="1.5" loop="false" animationOffset="(0, -5)">
+	<Animation name="SpecialUp" duration ="1.0" loop="false" animationOffset="(0, -5)">
 		<Frame position="(23, 1178)" size="(38, 39)" perFrameOffset="(0, 11)"/>
 		<Frame position="(65, 1179)" size="(38, 38)" perFrameOffset="(0, 12)"/>
 		<Frame position="(107, 1178)" size="(38, 39)" perFrameOffset="(0, 11)"/>
@@ -267,7 +255,7 @@
 		<Frame position="(13, 590)" size="(35, 47)" perFrameOffset="(0, 0)"/>
 	</Animation>
 
-	<Animation name="Recover" duration ="0.5" loop="false" animationOffset="(0, -5)">
+	<Animation name="Recover" duration ="0.25" loop="false" animationOffset="(0, -5)">
 		<Frame position="(268, 273)" size="(38, 39)" perFrameOffset="(-2, 11)"/>
 		<Frame position="(310, 268)" size="(29, 44)" perFrameOffset="(0, 0)"/>
 		<Frame position="(345, 262)" size="(31, 50)" perFrameOffset="(0, 0)"/>

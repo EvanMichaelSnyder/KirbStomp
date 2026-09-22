@@ -20,6 +20,16 @@ namespace KirbStomp {
             globalAspectRatio = 5 / 3.0;
             this._graphics = graphics;
         }
+
+        public int GetXSize()
+        {
+            return (int)globalXBoundMax;
+        }
+
+        public int GetYSize()
+        {
+            return (int)globalYBoundMax;
+        }
         public (int width, int height) GetAdjustedWindowSize()
         {
             // Get screen dimensions

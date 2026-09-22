@@ -22,8 +22,9 @@ namespace KirbStomp.StateMachine
 		private int _jumpsLeft = 2;
 		private DirectionEnum _desiredAttackDirection = DirectionEnum.None;
 		private DirectionEnum _desiredMovementDirection = DirectionEnum.None;
+        internal bool fancyPlatformCollisionFlag = false;
 
-		public DirectionEnum DesiredMovementDirection { get; set; }
+        public DirectionEnum DesiredMovementDirection { get; set; }
 		public DirectionEnum DesiredAttackDirection { get; set; }
 
 		public bool continueMoving = false;
@@ -147,7 +148,7 @@ namespace KirbStomp.StateMachine
 			if (current.IsGrounded)//on ground
 			{
 				//combo stuffs
-				if (current.CurrentState == Sprint || current.CurrentState == Run) { current.CurrentState = AttackDash; }
+				if (current.CurrentState == Sprint ) { current.CurrentState = AttackDash; }
 				else if (current.CurrentState == AttackNeutral) { current.CurrentState = AttackNeutral2; }
 				else if (current.CurrentState == AttackNeutral2) { current.CurrentState = AttackNeutral3; }
 				else
@@ -232,6 +233,7 @@ namespace KirbStomp.StateMachine
 
 				//for now I will personally set isGrounded false this should likely be done by something else later
 				current.IsGrounded = false;
+				current.fancyPlatformCollisionFlag = true;
 			}
 			else
 			{
@@ -240,7 +242,9 @@ namespace KirbStomp.StateMachine
 		}
 		public static void EnterLanding(CharacterState current)
 		{
-			if (current.CurrentState == FreeFall)
+            Debug.WriteLine(current.CurrentState + " " + current.GetFrameIndex());
+            current.fancyPlatformCollisionFlag = false;
+            if (current.CurrentState == FreeFall)
 			{
 				current.CurrentState = LayingDown;
 				current.MovementDirection = None;
@@ -255,7 +259,8 @@ namespace KirbStomp.StateMachine
         }
         public static void EnterKnockedBack(CharacterState current)
         {
-			current.CurrentState = KnockedBack;
+            current.fancyPlatformCollisionFlag = true;
+            current.CurrentState = KnockedBack;
         }
         public static void EnterIdle(CharacterState current)
         {
@@ -270,6 +275,7 @@ namespace KirbStomp.StateMachine
         }
         public static void EnterFalling(CharacterState current)
         {
+            Debug.WriteLine(current.CurrentState + " " + current.GetFrameIndex());
             //the specificity of this transition means we should check it
             if (current.CurrentState == SpecialUp)
             {
@@ -298,6 +304,7 @@ namespace KirbStomp.StateMachine
             }
             else if (current.IsGrounded)
             {
+				Debug.WriteLine(current.CurrentState + " " + current.GetFrameIndex());
                 if (current.ConvertToRelativeMovementDirection(current.DesiredMovementDirection) != Forward)
                 {
                     current.MovementDirection = current.DesiredMovementDirection;
@@ -305,7 +312,7 @@ namespace KirbStomp.StateMachine
                 }
                 current.MovementDirection = current.DesiredMovementDirection;
                 current.FacingDirection = current.DesiredMovementDirection;
-                current.CurrentState = Walk;
+				current.CurrentState = Run;
             }
             else
             {

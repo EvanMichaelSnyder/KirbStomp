@@ -13,7 +13,7 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
     public class LinkDownThrust : AProjectile
     {
         //some variables to stop magic num/string!
-        private float _scale = 1f;
+        private float SCALE = 1f;
         private string SPR_NAME = "LinkProjectile";
         private string ANIM_NAME = "LinkProjectileTransparentSpriteSheet";
         private string ANIM_STATE_SHOOT = "DownAerialThrustShoot";
@@ -22,39 +22,21 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
         private float DAMAGE = 10f;
         private int GROUND_HEIGHT = 20;
         private float TIME_TO_LIVE = 5f;
-
         private bool _hitGround = false;
-
-
-        private Sprite _sprite;
-        private AnimationSystem _animationSystem;
-
 
         public LinkDownThrust(Vector2 startPos, bool facingRight)
         {
-            this.Position = startPos;
-            Texture2D texture = AssetPool.GetTexture(SPR_NAME);
-            this._sprite = new Sprite(texture, new Rectangle()/*doesnt matter, anim will change*/, _scale);
-            this._animationSystem = new AnimationSystem(_sprite);
+            this._scale = SCALE;
+            this._spriteName = SPR_NAME;
+            this._animName = ANIM_NAME;
+            this._animState = ANIM_STATE_SHOOT;
+            this._damage = DAMAGE;
+            this._timeToLive = TIME_TO_LIVE;
+            SetVelocity(new Vector2(0, Y_SPEED));
 
-            this._animationSystem.AddAnimation(AssetPool.GetAnimation(ANIM_NAME, ANIM_STATE_SHOOT));
+            SetupAnimation(startPos, facingRight);
+
             this._animationSystem.AddAnimation(AssetPool.GetAnimation(ANIM_NAME, ANIM_STATE_GROUND));
-            this._animationSystem.SetAnimation(ANIM_STATE_SHOOT);
-
-            this._dimension = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)(_scale * _sprite.GetSrcRectangle().Width), (int)(_scale * _sprite.GetSrcRectangle().Height));
-            this.Velocity = new Vector2(0, Y_SPEED);
-
-            if (!facingRight)
-            {
-                this._sprite.FlipTextureX();
-            }
-
-        }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            this._sprite.Draw(spriteBatch, this.Position);
-            _bodyCarrier.HitboxManager.Draw(spriteBatch);
 
         }
 
@@ -68,30 +50,23 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
                 this._animationSystem.SetAnimation(ANIM_STATE_GROUND);
                 this.Position.Y -= context.Intersection.Height;
                 this._yOffSetCollider = -this._sprite.GetYOffset();
-                this._dimension = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)(_scale * _sprite.GetSrcRectangle().Width), (int)(_scale * GROUND_HEIGHT));
+                this._dimension = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)(SCALE * _sprite.GetSrcRectangle().Width), (int)(SCALE * GROUND_HEIGHT));
             }
         }
         public override void RegisterCollider()
         {
-            this._attackCarrier.SetDamage(DAMAGE);
-            this._bodyCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
-            this._attackCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
+            base.RegisterCollider();
 
             RegisterCollisionResponse(HitboxTypeEnum.Body,
                                     HitboxTypeEnum.Platform,
                                     (obj, ctx) => HitGround(obj, ctx));
+
         }
 
         public override void Update(float dt)
         {
-            this._animationSystem.Animate(dt);
-            TIME_TO_LIVE -= dt;
-            if (TIME_TO_LIVE < 0)
-            {
-                this.Destroy();
-                return;
-            }
-
+            base.Update(dt);
+            
             if (_hitGround)
             {
                 if (this._animationSystem.IsAnimationDone())
@@ -99,9 +74,6 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
                     this.Destroy();
                 }
             }
-
-
-            Position += Velocity * dt;
 
         }
     }

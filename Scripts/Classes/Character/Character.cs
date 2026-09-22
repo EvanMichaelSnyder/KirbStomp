@@ -14,6 +14,7 @@ using KirbStomp.Scripts.Classes.Collision;
 using KirbStomp.Scripts.Classes.Collision.CollisionHandlers;
 using KirbStomp.Scripts.Classes.GameObjects.ItemAbillity;
 using KirbStomp.Scripts.Classes.Platforms;
+using KirbStomp.Scripts.Classes.Sound;
 using KirbStomp.Scripts.Projectiles;
 using KirbStomp.StateMachine;
 using Microsoft.Xna.Framework;
@@ -48,20 +49,33 @@ namespace KirbStomp
         private float maxVelocity;
         private const float capVelocity = 450;
         private Vector2 acceleration = Vector2.Zero;
-        private bool snapVelocity = false;
-        private const float jumpVelocity = -600;
-        private const float specialUpVelocity = 150;
+        internal bool snapVelocity = false;
+        private const float jumpVelocity = -675;
+        private const float specialUpVelocity = -600;
         bool projSpawnedOnThisFrame = false;
 
         private bool hitboxDrawEnabled;
         private CharacterUIData _characterUIData;
 
+        public event EventHandler<OnHealthChangeEventArgs> OnHealthChange;
+        public class OnHealthChangeEventArgs : EventArgs {
+            public float health;
+        }
+        public event EventHandler<OnLivesChangeEventArgs> OnLivesChange;
+        public class OnLivesChangeEventArgs : EventArgs
+        {
+            public int lives;
+        }
+        public event EventHandler OnDeath;
+
+        private SoundManager _soundManager;
         public void Respawn()
         {
             if (_lives==1)
             {
-                _health = 100;
-                _lives--;
+                // _health = 100;
+                ResetHealth();
+                DecreaseLives();
 
                 ActionList.ResetList();
                 StateMachine.State.CurrentState = StateEnum.Idle;
@@ -70,12 +84,14 @@ namespace KirbStomp
                 Vector2 respawnLocation = new Vector2(-100000, -100000);
                 Position = respawnLocation;
 
-                SceneManager.Get().SwitchScene("EndScreen");
+                OnDeath?.Invoke(this, EventArgs.Empty);
+                // SceneManager.Get().SwitchScene("EndScreen");
             }
             else
             {
-                _health = 100;
-                _lives--;
+                // _health = 100;
+                ResetHealth();
+                DecreaseLives();
 
                 ActionList.ResetList();
                 StateMachine.State.CurrentState = StateEnum.Idle;
@@ -95,11 +111,14 @@ namespace KirbStomp
             _buttonDataManager = new ButtonDataManager();
             ActionList = new ActionList();
             _sprite = new AllPurposeSprite(spriteSheet);
+            _soundManager = SoundManager.Get();
+            _soundManager.LoadContent();
 
             provideCharacterCarriers();
             AssignCollisionData();
 
             hitboxDrawEnabled = true;
+            OnLivesChange?.Invoke(this, new OnLivesChangeEventArgs { lives = _lives });
         }
         public Character(string name, Texture2D spriteSheet, Vector2 spawnLocation, CharacterUIData characterUIData)
         {
@@ -112,6 +131,8 @@ namespace KirbStomp
             ActionList = new ActionList();
             _sprite = new AllPurposeSprite(spriteSheet);
             _characterUIData = characterUIData;
+            _soundManager = SoundManager.Get();
+            _soundManager.LoadContent();
 
             if (name == "Link")
             {
@@ -122,6 +143,7 @@ namespace KirbStomp
             AssignCollisionData();
 
             hitboxDrawEnabled = true;
+            OnLivesChange?.Invoke(this, new OnLivesChangeEventArgs { lives = _lives });
         }
 
         public Rectangle GetPosition()
@@ -209,17 +231,16 @@ namespace KirbStomp
             {
                 StateMachine.State.IncrementFrameIndex();
                 StateMachine.State.resetElapsedTime();
+                projSpawnedOnThisFrame = false;
                 // Handle frame overflow
                 if (StateMachine.State.GetFrameIndex() >= animationData.Frames.Count)
                 {
                     if (animationData.Loop)
                     {
-                        projSpawnedOnThisFrame = false;
                         StateMachine.State.ResetFrameIndex();
                     }
                     else
                     {
-                        projSpawnedOnThisFrame = false;
                         ActionList.AddAction((GameButtons)GameButtons.End);
                     }
                 }
@@ -253,6 +274,7 @@ namespace KirbStomp
             ActionList.ResetList();
             _bodyCarrier.HitboxManager.UpdateHitboxList(Position, StateMachine.State.FacingDirection, _name, StateMachine.State.CurrentState, StateMachine.State.GetFrameIndex());
             _attackCarrier.HitboxManager.UpdateAttackHitboxList(Position, StateMachine.State.FacingDirection, _name, StateMachine.State.CurrentState, StateMachine.State.GetFrameIndex());
+            _attackCarrier.assignAttackDataFromXML(_name, this.StateMachine.State.CurrentState);
         }
         internal void HandleStates()
         {
@@ -304,20 +326,28 @@ namespace KirbStomp
                 {
                     case GameButtons.Attack:
                         StateMachine.HandleEvent(EventType.TryAttack);
+                        _soundManager.PlaySound("Attack");
                         StateMachine.State.DesiredAttackDirection = DirectionEnum.None; // Clear after use
                         break;
 
                     case GameButtons.Special:
+                        /*
+                        Velocity.X = 1;
+                        acceleration.X = 0;
+                        */
                         StateMachine.HandleEvent(EventType.TrySpecial);
+                        _soundManager.PlaySound("Special");
                         StateMachine.State.DesiredAttackDirection = DirectionEnum.None;
                         break;
 
                     case GameButtons.Jump:
                         StateMachine.HandleEvent(EventType.TryJump);
+                        _soundManager.PlaySound("Jump");
                         break;
 
                     case GameButtons.GotHit:
                         StateMachine.HandleEvent(EventType.GotHit);
+                        _soundManager.PlaySound("Hit");
                         break;
 
                     case GameButtons.End:
@@ -362,11 +392,13 @@ namespace KirbStomp
                 { StateEnum.Walk, Walk },
                 { StateEnum.Run, Run },
                 { StateEnum.Sprint, Sprint },
-                { StateEnum.SlideTurn, SlideTurn },
                 { StateEnum.Idle, Idle },
                 { StateEnum.Landing, Landing },
                 { StateEnum.SpecialUp, SpecialUp },
-                { StateEnum.Jump, Jump }
+                { StateEnum.Jump, Jump },
+                { StateEnum.LayingDown, LayingDown},
+                { StateEnum.SpecialForward, Special },
+                { StateEnum.AttackDash, Slide }
             };
             if (_movementBehaviors.TryGetValue(StateMachine.State.CurrentState, out Action behavior))
             {
@@ -389,16 +421,15 @@ namespace KirbStomp
         private void Walk()
         {
             minVelocity = 1;
-            maxVelocity = 80;
-            acceleration.X = 200;
+            maxVelocity = 100;
+            acceleration.X = 500;
             snapVelocity = false;
         }
-
         private void Run()
         {
-            minVelocity = 80;
+            minVelocity = 100;
             maxVelocity = 300;
-            acceleration.X = 500;
+            acceleration.X = 800;
             snapVelocity = false;
         }
         private void Sprint()
@@ -408,30 +439,48 @@ namespace KirbStomp
             acceleration.X = 600;
             snapVelocity = false;
         }
-
-        private void SlideTurn()
-        {
-            minVelocity = 0;
-            maxVelocity = 0;
-            acceleration.X = 100;
-            snapVelocity = true;
-        }
         private void Landing()
         {
-            minVelocity = 0;
-            maxVelocity = 0;
+            maxVelocity = 1;
             acceleration.X = 0;
             snapVelocity = true;
+            _soundManager.PlaySound("Landing");
         }
         private void SpecialUp()
         {
-            Velocity.Y = specialUpVelocity;
+            if (StateMachine.State.GetFrameIndex() == 0)
+            {
+                Velocity.Y = specialUpVelocity;
+            }
+            maxVelocity = 100;
+            acceleration.X = 0;
+            snapVelocity = true;
+            _soundManager.PlaySound("SpecialUp");
+        }
+
+        private void Special()
+        {
+            maxVelocity = 50;
+            acceleration.X = 0;
+            snapVelocity = true;
+        }
+        private void Slide()
+        {
+            maxVelocity = 200;
+            acceleration.X = 0;
+            snapVelocity = true;
+        }
+
+        private void LayingDown()
+        {
+            maxVelocity = 1;
+            acceleration.X = 0;
         }
         private void Jump()
         {
             if (StateMachine.State.GetFrameIndex() == 0) 
             { 
-                Velocity.Y = jumpVelocity; 
+                Velocity.Y = jumpVelocity;
             }
         }
         private void SetDirection()
@@ -488,14 +537,17 @@ namespace KirbStomp
             else if (StateMachine.State.CurrentState == StateEnum.Walk)
             {
                 WalkHandler();
+                _soundManager.PlaySound("Walk");
             }
             else if (StateMachine.State.CurrentState == StateEnum.Run)
             {
                 RunHandler();
+                _soundManager.PlaySound("Walk");
             }
             else if (StateMachine.State.CurrentState == StateEnum.Sprint)
             {
                 SprintHandler();
+                _soundManager.PlaySound("Walk");
             }
         }
 
@@ -513,7 +565,7 @@ namespace KirbStomp
             else if (StateMachine.State.DesiredMovementDirection == DirectionEnum.Left)
             {
                 if (Velocity.X < -maxVelocity)
-                {
+                { 
                     Walk();
                     StateMachine.State.CurrentState = StateEnum.Walk;
                     Velocity.X = -minVelocity;
@@ -585,10 +637,6 @@ namespace KirbStomp
                     Velocity.X = -maxVelocity;
                 }
             }
-            else if (StateMachine.State.CurrentState == StateEnum.Sprint)
-            {
-                SprintHandler();
-            }
         }
 
 
@@ -634,8 +682,19 @@ namespace KirbStomp
             }
             CheckTransition();
             SetAcceleration(gameTime);
-            SetDirection();
-            Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (StateMachine.State.CurrentState != StateEnum.KnockedBack
+                && StateMachine.State.CurrentState != StateEnum.Ragdolled)
+            {
+                SetDirection();
+            }
+            if (Velocity.X != 1 && Velocity.X != -1 && this.StateMachine.State.CurrentState!=StateEnum.Idle)
+            {
+                Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+            else
+            {
+                Position.Y += Velocity.Y * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
         }
 
         /*
@@ -687,7 +746,8 @@ namespace KirbStomp
                     || StateMachine.State.CurrentState == StateEnum.SpecialNeutral
                     || StateMachine.State.CurrentState == StateEnum.SpecialUp)
                 {
-                    Velocity.X = 0;
+                    Velocity.X 
+        ;
                 }
             }
         }
@@ -695,6 +755,8 @@ namespace KirbStomp
 
         public void Gravity(GameTime gameTime) //this is temporary
         {
+            //weird place to put this but i dont care
+            ClockTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (StateMachine.State.IsGrounded != true)
             {
                 {
@@ -702,7 +764,8 @@ namespace KirbStomp
                         StateMachine.State.CurrentState == StateEnum.Run ||
                         StateMachine.State.CurrentState == StateEnum.Walk)
                     {
-                        StateMachine.State.CurrentState = StateEnum.AirMove;
+                        StateMachine.State.CurrentState = StateEnum.AirIdle;
+                        StateMachine.State.fancyPlatformCollisionFlag = true;
                     }
                     Velocity.Y += 1300 * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 }
@@ -719,23 +782,36 @@ namespace KirbStomp
         public void AddHealth(float amt)
         {
             this._health -= amt;
-            if(this._health < 100)
+            if(this._health < 0)
             {
-                this._health = 100;
+                this._health = 0;
             }
+            OnHealthChange?.Invoke(this, new OnHealthChangeEventArgs { health = this._health });
         }
         public void TakeDamage(float amt)
         {
             this._health += amt;
+            OnHealthChange?.Invoke(this, new OnHealthChangeEventArgs { health = this._health });
+        }
+        public void ResetHealth() {
+            this._health = 0;
+            OnHealthChange?.Invoke(this, new OnHealthChangeEventArgs { health = this._health });
         }
         public float GetHealth() {
             return this._health;
+        }
+        public void DecreaseLives() {
+            this._lives--;
+            OnLivesChange?.Invoke(this, new OnLivesChangeEventArgs { lives = this._lives });
         }
         public BodyCarrier GetBodyCarrier()
         {
             return this._bodyCarrier;   
         }
-
+        public Point GetPointPosition()
+        {
+            return new((int)Position.X, (int)Position.Y);
+        }
         public string GetName()
         {
             return this._name;

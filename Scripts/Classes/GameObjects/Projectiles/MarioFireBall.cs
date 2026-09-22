@@ -15,71 +15,49 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
 {
     public class MarioFireBall : AProjectile
     {
-        private readonly String TEXTURE_NAME = "MarioProjectile";
+        private float SCALE = 1f;
+        private readonly String SPR_NAME = "MarioProjectile";
         private readonly String ANIM_STATE_RELEASED = "FireballReleased";
         private readonly String ANIM_STATE_DEATH = "FireballDeath";
         private readonly String ANIM_NAME = "MarioProjectileTransparentSpriteSheet";
-        private float DAMAGE = 8;
-
-        private Sprite _sprite;
-        private AnimationSystem _animationSystem;
-
+        private float DAMAGE = 5f;
+        private float X_SPEED = 400f;
         private float _elapsedTime = 0;
         private float _gravity = 800;
-        private float _scale = 1f;
         private bool _isDying = false;
         private float _deathTimeLeft = 1f;
-        private float _lifeTime = 5;
+        private float TIME_TO_LIVE = 5;
 
-        
 
-        
-        public MarioFireBall(Vector2 startPosition, bool facingRight)
+
+
+        public MarioFireBall(Vector2 startPos, bool facingRight)
         {
-            Position.X = startPosition.X;
-            Position.Y = startPosition.Y;
-            //setting up fireball
-            _sprite = new Sprite(AssetPool.GetTexture("MarioProjectile"), new Rectangle()/*doesnt matter, will be animated*/, 1f);
+            this._scale = SCALE;
+            this._spriteName = SPR_NAME;
+            this._animName = ANIM_NAME;
+            this._animState = ANIM_STATE_RELEASED;
+            this._damage = DAMAGE;
+            this._timeToLive = TIME_TO_LIVE;
+            this._destroyOnPlayerHit = false;
+            SetVelocity(new Vector2(X_SPEED, 0));
 
-            _animationSystem = new AnimationSystem(_sprite);
-
-
-            Animation releasedAnimation = AssetPool.GetAnimation(ANIM_NAME, ANIM_STATE_RELEASED);
-            Animation deathAnimation = AssetPool.GetAnimation(ANIM_NAME, ANIM_STATE_DEATH);
-            _animationSystem.AddAnimation(releasedAnimation);
-            _animationSystem.AddAnimation(deathAnimation);
-            _animationSystem.SetAnimation(ANIM_STATE_RELEASED);
-
-            Velocity = new Vector2(400, 0);
-            if (!facingRight)
-            {
-                Velocity.X *= -1;
-            }
-           
-           
-            
-            this._dimension = new Rectangle((int)this.Position.X, (int)this.Position.Y, 16, 16);
-            
-
+            SetupAnimation(startPos, facingRight);
+            this._animationSystem.AddAnimation(AssetPool.GetAnimation(ANIM_NAME, ANIM_STATE_DEATH));
 
         }
 
 
         public override void RegisterCollider()
         {
-            // this.ProvideCharacterCarriers();
-            this._attackCarrier.SetDamage(DAMAGE);
-            this._dimension.Height *= (int)this._scale;
-            this._dimension.Width *= (int)this._scale;
-            this._attackCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
-            this._bodyCarrier.HitboxManager.basicUpdateHitbox(this._dimension);
+            base.RegisterCollider();
 
             RegisterCollisionResponse(HitboxTypeEnum.Body,
                                     HitboxTypeEnum.Platform,
                                     (obj, ctx) => Bounce(obj, ctx));
             RegisterCollisionResponse(HitboxTypeEnum.Attack,
                                     HitboxTypeEnum.Body,
-                                    (obj, ctx) => HitPlayer(obj,ctx));
+                                    (obj, ctx) => HitPlayer(obj, ctx));
         }
 
 
@@ -88,7 +66,7 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
         {
             this.Velocity.Y *= -1;
             this.Position.Y -= context.Intersection.Height;
-           // Debug.WriteLine("BALL BOUNCE");
+            // Debug.WriteLine("BALL BOUNCE");
         }
 
         public void HitPlayer(CollisionObject obj, CollisionContext context)
@@ -106,11 +84,11 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
             this._bodyCarrier.IsDisabled = true;
         }
 
-        
+
         public override void Update(float dt)
         {
             //Debug.WriteLine(this._dimension);
-            
+
             _elapsedTime += dt;
 
             if (_isDying)
@@ -121,31 +99,16 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Projectiles
                     Destroy();
                 }
             }
-            else if (_elapsedTime > _lifeTime)
+            else if (_elapsedTime > TIME_TO_LIVE)
             {
                 this.BeginDeath();
             }
 
-            _animationSystem.Animate(dt);
-
             Velocity.Y += _gravity * dt;
-            Position += Velocity * dt;
-            
+
+            base.Update(dt);
+
         }
-
-        
-
-        
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            _bodyCarrier.HitboxManager.Draw(spriteBatch);
-            _sprite.Draw(spriteBatch, Position);
-            //throw new Exception("TEST");
-        }
-
-
-
 
     }
 }

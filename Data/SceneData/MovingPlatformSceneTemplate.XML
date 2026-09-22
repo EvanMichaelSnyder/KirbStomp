@@ -1,0 +1,36 @@
+﻿<Scene>
+	<Name> SceneMoving </Name>
+	<FilesToLoad>
+		<UseSpecialLevelManager> true </UseSpecialLevelManager>
+		<Characters>
+			<Character> Mario MarioTransparentSpriteSheet Player1Controls </Character>
+			<!-- <Character> Link LinkTransparentSpriteSheet Player2Controls	</Character> -->
+			<Character> Megaman MegamanTransparentSpriteSheet Player2Controls	</Character> 
+			<!-- <Character> Link LinkTransparentSpriteSheet Player2Controls	</Character>  -->
+		</Characters>
+		<Platforms>
+			
+    	</Platforms>
+		<UIs>
+			<PlayerUI> Player1UI </PlayerUI>
+			<PlayerUI> Player2UI </PlayerUI>
+		</UIs>
+
+		<AssetPool>
+			<Textures>
+				<Texture> Items Items </Texture>
+				<Texture> MarioProjectile MarioTransparentSpriteSheet </Texture>
+				<Texture> LinkProjectile LinkTransparentSpriteSheet </Texture>
+				<Texture> KirbyProjectile KirbyTransparentSpriteSheet </Texture>
+				<Texture> MegaManProjectile MegaManTransparentSpriteSheet </Texture>
+				<Texture> Platforms Platforms </Texture>
+			</Textures>
+			<Animations>
+				<Animation> LinkProjectile </Animation>
+				<Animation> MarioProjectile </Animation>
+				<Animation> KirbyProjectile </Animation>
+				<Animation> MegaManProjectile </Animation>
+			</Animations>
+		</AssetPool>		
+	</FilesToLoad>
+</Scene>

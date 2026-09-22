@@ -1,0 +1,309 @@
+﻿<Animations>
+	<Texture character = "Kirby" spriteSheet="KirbyTransparentSpriteSheet" scale="2.5" boundX="1172" offsetDirectional = "-30" />
+
+	<Animation name="Idle" duration ="0.5" loop="true" animationOffset="(0, 0)" isDefault ="true">
+		<Frame position="(13, 119)" size="(25, 22)" perFrameOffset="(0, 0)"/>
+		<Frame position="(42, 119)" size="(25, 22)" perFrameOffset="(0, 0)"/>
+		<Frame position="(71, 118)" size="(25, 23)" perFrameOffset="(0, 0)"/>
+		<Frame position="(100, 117)" size="(24, 24)" perFrameOffset="(1, 0)"/>
+		<Frame position="(128, 117)" size="(23, 24)" perFrameOffset="(2, 0)"/>
+		<Frame position="(155, 117)" size="(24, 24)" perFrameOffset="(2, 0)"/>
+		<Frame position="(183, 118)" size="(24, 23)" perFrameOffset="(2, 0)"/>
+		<Frame position="(211, 119)" size="(23, 22)" perFrameOffset="(2, 0)"/>
+		<Frame position="(238, 119)" size="(24, 22)" perFrameOffset="(1, 0)"/>
+	</Animation>
+
+	<Animation name="Walk" duration ="0.6" loop="true" animationOffset="(0, 1)">
+		<Frame position="(14, 170)" size="(23, 21)" perFrameOffset="(0, 2)"/>
+		<Frame position="(41, 169)" size="(24, 21)" perFrameOffset="(0, 1)"/>
+		<Frame position="(69, 168)" size="(26, 21)" perFrameOffset="(0, 0)"/>
+		<Frame position="(99, 169)" size="(24, 21)" perFrameOffset="(0, 1)"/>
+		<Frame position="(127, 171)" size="(23, 21)" perFrameOffset="(0, 3)"/>
+		<Frame position="(154, 170)" size="(21, 21)" perFrameOffset="(0, 2)"/>
+		<Frame position="(179, 169)" size="(22, 21)" perFrameOffset="(0, 1)"/>
+		<Frame position="(205, 168)" size="(26, 21)" perFrameOffset="(0, 0)"/>
+		<Frame position="(235, 169)" size="(24, 21)" perFrameOffset="(0, 1)"/>
+		<Frame position="(263, 171)" size="(23, 21)" perFrameOffset="(0, 3)"/>
+	</Animation>
+
+	<Animation name="Run" duration ="0.5" loop="true" animationOffset="(0, 0)">
+		<Frame position="(14, 219)" size="(30, 24)" perFrameOffset="(0, 0)"/>
+		<Frame position="(48, 220)" size="(23, 23)" perFrameOffset="(0, 1)"/>
+		<Frame position="(75, 221)" size="(21, 22)" perFrameOffset="(0, 2)"/>
+		<Frame position="(100, 220)" size="(22, 23)" perFrameOffset="(0, 1)"/>
+		<Frame position="(126, 220)" size="(23, 23)" perFrameOffset="(0, 1)"/>
+		<Frame position="(153, 220)" size="(22, 23)" perFrameOffset="(0, 1)"/>
+		<Frame position="(179, 221)" size="(21, 22)" perFrameOffset="(0, 2)"/>
+		<Frame position="(204, 220)" size="(23, 23)" perFrameOffset="(0, 1)"/>
+	</Animation>
+
+	<Animation name="Sprint" duration ="0.5" loop="true" animationOffset="(0, 0)">
+		<Frame position="(14, 219)" size="(30, 24)" perFrameOffset="(0, 0)"/>
+		<Frame position="(48, 220)" size="(23, 23)" perFrameOffset="(0, 1)"/>
+		<Frame position="(75, 221)" size="(21, 22)" perFrameOffset="(0, 2)"/>
+		<Frame position="(100, 220)" size="(22, 23)" perFrameOffset="(0, 1)"/>
+		<Frame position="(126, 220)" size="(23, 23)" perFrameOffset="(0, 1)"/>
+		<Frame position="(153, 220)" size="(22, 23)" perFrameOffset="(0, 1)"/>
+		<Frame position="(179, 221)" size="(21, 22)" perFrameOffset="(0, 2)"/>
+		<Frame position="(204, 220)" size="(23, 23)" perFrameOffset="(0, 1)"/>
+	</Animation>
+
+	<Animation name="SlideTurn" duration ="0.4" loop="false" animationOffset="(0, 0)">
+		<Frame position="(204, 220)" size="(23, 23)" perFrameOffset="(0, 1)"/>
+	</Animation>
+
+	<Animation name="Crouch" duration ="0.5" loop="true" animationOffset="(0, 9)">
+		<Frame position="(485, 853)" size="(42, 46)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+	<Animation name="Jump" duration ="0.5" loop="false" animationOffset="(0, -4)">
+		<Frame position="(16, 270)" size="(24, 24)" perFrameOffset="(0, 4)"/>
+		<Frame position="(44, 270)" size="(27, 23)" perFrameOffset="(0, 4)"/>
+		<Frame position="(75, 270)" size="(28, 21)" perFrameOffset="(0, 4)"/>
+		<Frame position="(107, 270)" size="(24, 22)" perFrameOffset="(0, 4)"/>
+		<Frame position="(135, 267)" size="(22, 25)" perFrameOffset="(0, 1)"/>
+		<Frame position="(161, 266)" size="(24, 25)" perFrameOffset="(0, 0)"/>
+		<Frame position="(189, 270)" size="(26, 21)" perFrameOffset="(0, 4)"/>
+		<Frame position="(219, 270)" size="(25, 24)" perFrameOffset="(0, 4)"/>
+		<Frame position="(248, 270)" size="(27, 24)" perFrameOffset="(0, 4)"/>
+	</Animation>
+
+	<Animation name="AirIdle" duration ="0.5" loop="true" animationOffset="(0, -4)">
+		<Frame position="(248, 270)" size="(27, 24)" perFrameOffset="(0, 4)"/>
+	</Animation>
+
+	<Animation name="AirMove" duration ="0.5" loop="true" animationOffset="(0, -4)">
+		<Frame position="(248, 270)" size="(27, 24)" perFrameOffset="(0, 4)"/>
+	</Animation>
+
+	<Animation name="Landing" duration ="0.5" loop="false" animationOffset="(0, 1)">
+		<Frame position="(288, 282)" size="(23, 23)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+	<Animation name="AttackNeutral" duration ="0.5" loop="false" animationOffset="(0, 1)">
+		<Frame position="(12, 428)" size="(31, 23)" perFrameOffset="(0, 0)"/>
+		<Frame position="(45, 428)" size="(28, 23)" perFrameOffset="(0, 0)"/>
+		<Frame position="(77, 429)" size="(23, 22)" perFrameOffset="(0, 0)"/>
+		<Frame position="(104, 429)" size="(27, 22)" perFrameOffset="(0, 0)"/>
+		<Frame position="(135, 429)" size="(25, 22)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+	<Animation name="AttackNeutral2" duration ="0.5" loop="false" animationOffset="(0, -3)">
+		<Frame position="(164, 429)" size="(46, 22)" perFrameOffset="(0, 5)"/>
+		<Frame position="(215, 429)" size="(48, 22)" perFrameOffset="(0, 5)"/>
+		<Frame position="(268, 424)" size="(48, 27)" perFrameOffset="(0, 0)"/>
+		<Frame position="(321, 428)" size="(47, 30)" perFrameOffset="(0, 4)"/>
+		<Frame position="(373, 429)" size="(48, 31)" perFrameOffset="(0, 5)"/>
+	</Animation>
+
+	<Animation name="AttackNeutral3" duration ="0.5" loop="false" animationOffset="(0, -3)">
+		<Frame position="(164, 429)" size="(46, 22)" perFrameOffset="(0, 5)"/>
+		<Frame position="(215, 429)" size="(48, 22)" perFrameOffset="(0, 5)"/>
+		<Frame position="(268, 424)" size="(48, 27)" perFrameOffset="(0, 0)"/>
+		<Frame position="(321, 428)" size="(47, 30)" perFrameOffset="(0, 4)"/>
+		<Frame position="(373, 429)" size="(48, 31)" perFrameOffset="(0, 5)"/>
+	</Animation>
+
+	<Animation name="AttackBack" duration ="0.5" loop="false" animationOffset="(0, -3)">
+		<Frame position="(13, 468)" size="(26, 24)" perFrameOffset="(0, 3)"/>
+		<Frame position="(43, 467)" size="(27, 25)" perFrameOffset="(0, 2)"/>
+		<Frame position="(74, 465)" size="(30, 27)" perFrameOffset="(0, 0)"/>
+		<Frame position="(108, 471)" size="(30, 21)" perFrameOffset="(0, 6)"/>
+	</Animation>
+
+	<Animation name="AttackForward" duration ="0.4" loop="false" animationOffset="(0, -3)">
+		<Frame position="(13, 468)" size="(26, 24)" perFrameOffset="(0, 3)"/>
+		<Frame position="(43, 467)" size="(27, 25)" perFrameOffset="(0, 2)"/>
+		<Frame position="(74, 465)" size="(30, 27)" perFrameOffset="(0, 0)"/>
+		<Frame position="(108, 471)" size="(30, 21)" perFrameOffset="(0, 6)"/>
+	</Animation>
+
+	<Animation name="AttackUp" duration ="0.2" loop="false" animationOffset="(0, -11)">
+		<Frame position="(13, 588)" size="(25, 25)" perFrameOffset="(0, 10)"/>
+		<Frame position="(42, 587)" size="(24, 26)" perFrameOffset="(4, 9)"/>
+		<Frame position="(70, 578)" size="(24, 35)" perFrameOffset="(6, 0)"/>
+		<Frame position="(98, 587)" size="(24, 26)" perFrameOffset="(4, 9)"/>
+		<Frame position="(126, 588)" size="(25, 25)" perFrameOffset="(0, 10)"/>
+	</Animation>
+
+	<Animation name="AttackDown" duration ="0.5" loop="false" animationOffset="(0, 2)">
+		<Frame position="(12, 681)" size="(34, 22)" perFrameOffset="(0, 0)"/>
+		<Frame position="(51, 683)" size="(27, 20)" perFrameOffset="(0, 2)"/>
+	</Animation>
+
+	<Animation name="AttackDash" duration ="0.5" loop="false" animationOffset="(0, -7)">
+		<Frame position="(14, 802)" size="(24, 31)" perFrameOffset="(0, 0)"/>
+		<Frame position="(42, 810)" size="(32, 22)" perFrameOffset="(-6, 8)"/>
+		<Frame position="(78, 809)" size="(30, 23)" perFrameOffset="(-5, 7)"/>
+		<Frame position="(112, 809)" size="(30, 23)" perFrameOffset="(-5, 7)"/>
+	</Animation>
+
+	<Animation name="AerialNeutral" duration ="0.5" loop="false" animationOffset="(0, -9)">
+		<Frame position="(14, 867)" size="(23, 26)" perFrameOffset="(0, 5)"/>
+		<Frame position="(41, 863)" size="(30, 32)" perFrameOffset="(-2, 1)"/>
+		<Frame position="(75, 867)" size="(25, 24)" perFrameOffset="(-3, 5)"/>
+		<Frame position="(104, 863)" size="(30, 31)" perFrameOffset="(-3, 1)"/>
+		<Frame position="(138, 864)" size="(23, 26)" perFrameOffset="(0, 2)"/>
+		<Frame position="(165, 862)" size="(30, 32)" perFrameOffset="(0, 0)"/>
+		<Frame position="(199, 866)" size="(25, 24)" perFrameOffset="(3, 4)"/>
+		<Frame position="(228, 863)" size="(30, 31)" perFrameOffset="(0, 1)"/>
+	</Animation>
+
+	<Animation name="AerialForward" duration ="0.5" loop="false" animationOffset="(0, -4)">
+		<Frame position="(14, 545)" size="(26, 22)" perFrameOffset="(0, 6)"/>
+		<Frame position="(44, 539)" size="(29, 28)" perFrameOffset="(1, 0)"/>
+		<Frame position="(77, 540)" size="(30, 27)" perFrameOffset="(5, 1)"/>
+		<Frame position="(111, 539)" size="(30, 28)" perFrameOffset="(0, 0)"/>
+		<Frame position="(145, 541)" size="(30, 26)" perFrameOffset="(5, 2)"/>
+		<Frame position="(179, 539)" size="(29, 28)" perFrameOffset="(0, 0)"/>
+		<Frame position="(212, 540)" size="(30, 27)" perFrameOffset="(5, 1)"/>
+	</Animation>
+
+	<Animation name="AerialBack" duration ="0.5" loop="false" animationOffset="(0, -4)">
+		<Frame position="(13, 757)" size="(23, 23)" perFrameOffset="(0, 5)"/>
+		<Frame position="(41, 757)" size="(23, 23)" perFrameOffset="(0, 5)"/>
+		<Frame position="(44, 270)" size="(27, 23)" perFrameOffset="(0, 4)"/>
+		<Frame position="(75, 270)" size="(28, 21)" perFrameOffset="(0, 4)"/>
+		<Frame position="(107, 270)" size="(24, 22)" perFrameOffset="(0, 4)"/>
+		<Frame position="(135, 267)" size="(22, 25)" perFrameOffset="(0, 1)"/>
+		<Frame position="(161, 266)" size="(24, 25)" perFrameOffset="(0, 0)"/>
+		<Frame position="(189, 270)" size="(26, 21)" perFrameOffset="(0, 4)"/>
+		<Frame position="(219, 270)" size="(25, 24)" perFrameOffset="(0, 4)"/>
+	</Animation>
+
+	<Animation name="AerialUp" duration ="0.5" loop="false" animationOffset="(0, -22)">
+		<Frame position="(14, 641)" size="(30, 22)" perFrameOffset="(0, 24)"/>
+		<Frame position="(48, 636)" size="(33, 27)" perFrameOffset="(0, 19)"/>
+		<Frame position="(85, 635)" size="(35, 28)" perFrameOffset="(0, 18)"/>
+		<Frame position="(124, 627)" size="(29, 31)" perFrameOffset="(0, 10)"/>
+		<Frame position="(157, 617)" size="(21, 41)" perFrameOffset="(0, 0)"/>
+		<Frame position="(182, 628)" size="(31, 31)" perFrameOffset="(-7, 11)"/>
+		<Frame position="(217, 630)" size="(31, 30)" perFrameOffset="(-7, 13)"/>
+		<Frame position="(252, 636)" size="(25, 27)" perFrameOffset="(0, 19)"/>
+		<Frame position="(281, 650)" size="(30, 13)" perFrameOffset="(0, 33)"/>
+	</Animation>
+
+	<Animation name="AerialDown" duration =".5" loop="false" animationOffset="(0, 1)">
+		<Frame position="(13, 757)" size="(23, 23)" perFrameOffset="(0, 0)"/>
+		<Frame position="(41, 757)" size="(23, 23)" perFrameOffset="(0, 0)"/>
+		<Frame position="(69, 758)" size="(23, 22)" perFrameOffset="(0, 0)"/>
+		<Frame position="(97, 757)" size="(23, 23)" perFrameOffset="(0, 0)"/>
+		<Frame position="(125, 757)" size="(23, 23)" perFrameOffset="(0, 0)"/>
+		<Frame position="(153, 757)" size="(23, 23)" perFrameOffset="(0, 0)"/>
+		<Frame position="(181, 757)" size="(23, 23)" perFrameOffset="(1, 0)"/>
+		<Frame position="(208, 757)" size="(23, 23)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+	<Animation name="SpecialNeutral" duration =".8" loop="false" animationOffset="(0, -2)">
+		<Frame position="(12, 961)" size="(27, 19)" perFrameOffset="(0, 7)"/>
+		<Frame position="(44, 958)" size="(27, 22)" perFrameOffset="(0, 4)"/>
+		<Frame position="(76, 957)" size="(27, 23)" perFrameOffset="(0, 3)"/>
+		<Frame position="(108, 957)" size="(28, 23)" perFrameOffset="(-1, 3)"/>
+		<Frame position="(141, 956)" size="(29, 24)" perFrameOffset="(-2, 2)"/>
+		<Frame position="(84, 1019)" size="(26, 26)" perFrameOffset="(-2, 0)"/>
+		<Frame position="(115, 1021)" size="(26, 24)" perFrameOffset="(-2, 2)"/>
+		<Frame position="(146, 1022)" size="(26, 23)" perFrameOffset="(-3, 3)"/>
+	</Animation>
+
+	<Animation name="SpecialForward" duration ="0.5" loop="false" animationOffset="(0, -23)">
+		<Frame position="(8, 1209)" size="(42, 31)" perFrameOffset="(-17, 16)"/>
+		<Frame position="(8, 1209)" size="(42, 31)" perFrameOffset="(-17, 16)"/>
+		<Frame position="(54, 1199)" size="(37, 41)" perFrameOffset="(-12, 6)"/>
+		<Frame position="(95, 1214)" size="(45, 25)" perFrameOffset="(-19, 24)"/>
+		<Frame position="(144, 1218)" size="(36, 33)" perFrameOffset="(-10, 25)"/>
+		<Frame position="(184, 1219)" size="(51, 23)" perFrameOffset="(0, 26)"/>
+		<Frame position="(239, 1197)" size="(40, 43)" perFrameOffset="(0, 4)"/>
+		<Frame position="(283, 1193)" size="(26, 47)" perFrameOffset="(-2, 0)"/>
+		<Frame position="(313, 1193)" size="(28, 47)" perFrameOffset="(-5, 0)"/>
+	</Animation>
+
+	<Animation name="SpecialBack" duration ="0.5" loop="false" animationOffset="(0, -23)">
+		<Frame position="(8, 1209)" size="(42, 31)" perFrameOffset="(-17, 16)"/>
+		<Frame position="(8, 1209)" size="(42, 31)" perFrameOffset="(-17, 16)"/>
+		<Frame position="(54, 1199)" size="(37, 41)" perFrameOffset="(-12, 6)"/>
+		<Frame position="(95, 1214)" size="(45, 25)" perFrameOffset="(-19, 24)"/>
+		<Frame position="(144, 1218)" size="(36, 33)" perFrameOffset="(-10, 25)"/>
+		<Frame position="(184, 1219)" size="(51, 23)" perFrameOffset="(0, 26)"/>
+		<Frame position="(239, 1197)" size="(40, 43)" perFrameOffset="(0, 4)"/>
+		<Frame position="(283, 1193)" size="(26, 47)" perFrameOffset="(-2, 0)"/>
+		<Frame position="(313, 1193)" size="(28, 47)" perFrameOffset="(-5, 0)"/>
+	</Animation>
+
+	<Animation name="SpecialUp" duration =".8" loop="false" animationOffset="(0, -31)">
+		<Frame position="(9, 1148)" size="(34, 38)" perFrameOffset="(-4, 33)"/>
+		<Frame position="(47, 1148)" size="(29, 38)" perFrameOffset="(0, 33)"/>
+		<Frame position="(86, 1148)" size="(43, 34)" perFrameOffset="(0, 33)"/>
+		<Frame position="(133, 1135)" size="(52, 39)" perFrameOffset="(-4, 16)"/>
+		<Frame position="(189, 1118)" size="(41, 55)" perFrameOffset="(-3, 0)"/>
+		<Frame position="(234, 1119)" size="(34, 52)" perFrameOffset="(-21, 3)"/>
+		<Frame position="(272, 1138)" size="(51, 32)" perFrameOffset="(-36, 23)"/>
+		<Frame position="(327, 1140)" size="(49, 27)" perFrameOffset="(-34, 25)"/>
+		<Frame position="(380, 1126)" size="(43, 42)" perFrameOffset="(-27, 11)"/>
+		<Frame position="(427, 1115)" size="(34, 53)" perFrameOffset="(-16, 0)"/>
+		<Frame position="(465, 1135)" size="(45, 35)" perFrameOffset="(0, 27)"/>
+		<Frame position="(514, 1140)" size="(24, 23)" perFrameOffset="(0, 32)"/>
+	</Animation>
+
+	<Animation name="SpecialDown" duration ="1.0" loop="false" animationOffset="(0, -7)">
+		<Frame position="(12, 1081)" size="(24, 23)" perFrameOffset="(0, 6)"/>
+		<Frame position="(41, 1087)" size="(28, 17)" perFrameOffset="(0, 12)"/>
+		<Frame position="(74, 1086)" size="(29, 18)" perFrameOffset="(0, 11)"/>
+		<Frame position="(108, 1082)" size="(30, 22)" perFrameOffset="(0, 7)"/>
+		<Frame position="(145, 1085)" size="(25, 20)" perFrameOffset="(0, 10)"/>
+		<Frame position="(178, 1083)" size="(28, 22)" perFrameOffset="(0, 8)"/>
+		<Frame position="(212, 1080)" size="(28, 24)" perFrameOffset="(0, 5)"/>
+		<Frame position="(245, 1079)" size="(28, 27)" perFrameOffset="(0, 4)"/>
+		<Frame position="(277, 1076)" size="(28, 29)" perFrameOffset="(0, 1)"/>
+		<Frame position="(309, 1079)" size="(24, 22)" perFrameOffset="(0, 4)"/>
+		<Frame position="(338, 1076)" size="(22, 25)" perFrameOffset="(0, 4)"/>
+		<Frame position="(365, 1075)" size="(24, 25)" perFrameOffset="(0, 0)"/>
+		<Frame position="(394, 1079)" size="(26, 21)" perFrameOffset="(0, 4)"/>
+		<Frame position="(425, 1079)" size="(25, 24)" perFrameOffset="(0, 4)"/>
+	</Animation>
+
+	<Animation name="KnockedBack" duration ="0.5" loop="false" animationOffset="(0, 0)">
+		<Frame position="(15, 1497)" size="(27, 23)" perFrameOffset="(0, 1)"/>
+		<Frame position="(48, 1496)" size="(24, 24)" perFrameOffset="(6, 1)"/>
+		<Frame position="(74, 1496)" size="(24, 24)" perFrameOffset="(-2, 1)"/>
+		<Frame position="(371, 1489)" size="(23, 24)" perFrameOffset="(-2, 0)"/>
+	</Animation>
+
+	<Animation name="Ragdolled" duration ="0.5" loop="true" animationOffset="(0, 1)">
+		<Frame position="(371, 1489)" size="(23, 24)" perFrameOffset="(-2, 0)"/>
+	</Animation>
+
+	<Animation name="LayingDown" duration ="0.5" loop="true" animationOffset="(0, 3)">
+		<Frame position="(399, 1492)" size="(24, 21)" perFrameOffset="(0, 0)"/>
+	</Animation>
+
+	<Animation name="Recover" duration ="0.25" loop="false" animationOffset="(0, -3)">
+		<Frame position="(15, 1560)" size="(26, 21)" perFrameOffset="(0, 4)"/>
+		<Frame position="(45, 1556)" size="(24, 25)" perFrameOffset="(0, 0)"/>
+		<Frame position="(73, 1557)" size="(22, 25)" perFrameOffset="(0, 1)"/>
+		<Frame position="(99, 1560)" size="(24, 22)" perFrameOffset="(0, 4)"/>
+		<Frame position="(127, 1560)" size="(28, 21)" perFrameOffset="(0, 4)"/>
+		<Frame position="(159, 1560)" size="(27, 23)" perFrameOffset="(0, 4)"/>
+		<Frame position="(190, 1559)" size="(23, 23)" perFrameOffset="(0, 3)"/>
+		<Frame position="(217, 1559)" size="(27, 24)" perFrameOffset="(-1, 3)"/>
+	</Animation>
+
+	<Animation name="FreeFall" duration ="0.5" loop="true" animationOffset="(0, -4)">
+		<Frame position="(107, 1485)" size="(24, 24)" perFrameOffset="(0, 3)"/>
+		<Frame position="(135, 1482)" size="(25, 28)" perFrameOffset="(0, 3)"/>
+		<Frame position="(164, 1482)" size="(28, 28)" perFrameOffset="(0, 3)"/>
+		<Frame position="(196, 1484)" size="(28, 25)" perFrameOffset="(0, 3)"/>
+		<Frame position="(228, 1484)" size="(24, 24)" perFrameOffset="(0, 3)"/>
+		<Frame position="(256, 1485)" size="(28, 25)" perFrameOffset="(0, 3)"/>
+		<Frame position="(288, 1482)" size="(28, 28)" perFrameOffset="(0, 3)"/>
+		<Frame position="(320, 1482)" size="(25, 28)" perFrameOffset="(0, 3)"/>
+		<Frame position="(123, 1518)" size="(24, 24)" perFrameOffset="(0, 3)"/>
+		<Frame position="(151, 1514)" size="(25, 28)" perFrameOffset="(0, 3)"/>
+		<Frame position="(180, 1514)" size="(28, 28)" perFrameOffset="(0, 3)"/>
+		<Frame position="(212, 1517)" size="(28, 25)" perFrameOffset="(0, 3)"/>
+		<Frame position="(244, 1518)" size="(24, 24)" perFrameOffset="(0, 3)"/>
+		<Frame position="(272, 1517)" size="(28, 25)" perFrameOffset="(0, 3)"/>
+		<Frame position="(304, 1514)" size="(28, 28)" perFrameOffset="(0, 3)"/>
+		<Frame position="(336, 1514)" size="(25, 28)" perFrameOffset="(0, 3)"/>
+	</Animation>
+	
+</Animations>

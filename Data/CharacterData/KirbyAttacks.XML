@@ -1,0 +1,22 @@
+﻿<Animations>
+	<Texture character = "Kirby">
+		<Animation name="AttackNeutral2" Damage="6"  ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
+		<Animation name="AttackNeutral"  Damage="8"  ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
+		<Animation name="AttackNeutral3" Damage="11" ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
+		<Animation name="AttackBack"	 Damage="14" ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
+		<Animation name="AttackForward"  Damage="13" ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
+		<Animation name="AttackUp"       Damage="12" ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
+		<Animation name="AttackDown"     Damage="17" ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
+		<Animation name="AttackDash"     Damage="9"  ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
+		<Animation name="AerialNeutral"  Damage="10" ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
+		<Animation name="AerialForward"  Damage="14" ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
+		<Animation name="AerialBack"     Damage="10" ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
+		<Animation name="AerialUp"       Damage="12" ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
+		<Animation name="AerialDown"     Damage="11" ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
+		<Animation name="SpecialNeutral" Damage="13" ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
+		<Animation name="SpecialForward" Damage="12" ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
+		<Animation name="SpecialBack"    Damage="10" ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
+		<Animation name="SpecialUp"      Damage="9"  ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
+		<Animation name="SpecialDown"    Damage="11" ForceX="300" ForceY="500" canFlipX ="true" hitboxAngleShearing ="false" clock =".5"/>
+	</Texture>
+</Animations>

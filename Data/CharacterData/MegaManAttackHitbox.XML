@@ -241,44 +241,8 @@
 			<Frame>
                 
 			</Frame>
-			<Frame>
-                
-			</Frame>
-			<Frame>
-                
-			</Frame>
-			<Frame>
-                
-			</Frame>
-			<Frame>
-                
-			</Frame>
-			<Frame>
-                
-			</Frame>
-			<Frame>
-                
-			</Frame>
 		</Animation>
 		<Animation name="AttackForward" hasFrames="true">
-			<Frame>
-                
-			</Frame>
-			<Frame>
-                
-			</Frame>
-			<Frame>
-                
-			</Frame>
-			<Frame>
-                
-			</Frame>
-			<Frame>
-                
-			</Frame>
-			<Frame>
-                
-			</Frame>
 			<Frame>
                 
 			</Frame>
@@ -438,7 +402,7 @@
                 
 			</Frame>
 			<Frame>
-                <Hitbox position="(71,1606)" size="(29,22)"/>
+                <Hitbox position="(63,1604)" size="(46,25)"/>
 			</Frame>
 			<Frame>
 

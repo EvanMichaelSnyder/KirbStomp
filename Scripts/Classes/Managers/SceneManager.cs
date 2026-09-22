@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Xml.Linq;
 
+
 namespace KirbStomp
 {
     public enum SceneCalls
@@ -24,9 +25,9 @@ namespace KirbStomp
         private IScene _currentScene;
         private static SceneManager inst;
 
-        private BattleScene _battleScene;
-        private TestScene _testScene;
-        private Scene _defaultScene;
+        // private BattleScene _battleScene;
+        // private TestScene _testScene;
+        // private Scene _defaultScene;
 
 
         private SceneCalls _sceneStateCall;
@@ -37,7 +38,7 @@ namespace KirbStomp
 
         private UpdateMethod _updateMethod;
         private bool _paused;
-
+        public event EventHandler OnSceneChange;
         private readonly string _scenesToLoad = Path.Combine(XMLData.GetDataFolder(), "SceneData", "AllScenesToLoad");
         /*
          * This scene manager will deal with pause, quit, and reset
@@ -46,6 +47,7 @@ namespace KirbStomp
          * 
          * 
          */
+        private IScene _previousScene;
         public static SceneManager Get()
         {
             if(inst == null)
@@ -92,19 +94,33 @@ namespace KirbStomp
             /*
              * Register the hard coded bindings for pause, quit, next, previous, reset
              */
+            
         }
 
         public void SwitchScene(string sceneName)
         {
-            
+            _previousScene = _currentScene;
+            for (int i = 0; i < this._scenesList.Count; i++)
+            {
+                if (_scenesList[_sceneIndex].GetName() == sceneName)
+                {
+                    OnSceneChange?.Invoke(this, EventArgs.Empty);
+                    _currentScene = _scenesList[_sceneIndex];
+                    break;
+                }
+                UpdateSceneByCall(SceneCalls.Next);
+            }
+            /*
             foreach(Scene scene in this._scenesList)
             {
                 if(scene.GetName() == sceneName)
                 {
                     _currentScene = scene;
+                    OnSceneChange?.Invoke(this, EventArgs.Empty);
                     break;
                 }
             }
+             */
             // switch (sceneName)
             // {
             //     case "BattleScene":
@@ -123,7 +139,10 @@ namespace KirbStomp
         }
         
 
-      
+        public IScene GetPreviousScene()
+        {
+            return _previousScene;
+        }
         public void UpdateScene(GameTime gameTime)
         {
             _sceneUpdateList[_sceneIndex](gameTime);
@@ -152,7 +171,8 @@ namespace KirbStomp
             Scene temp;
             foreach(XElement scene in XMLData.GetXMLRootElement("Scenes", this._scenesToLoad).Elements("Scene"))
             {
-                temp = new Scene(scene.Value.Replace(" ", string.Empty));
+                // Get The UseSceneManager bool here
+                temp = new Scene(scene.Value.Replace(" ", string.Empty), false);
                 this._scenesList.Add(temp);
                 _sceneUpdateList.Add(temp.Update);
             }
@@ -178,6 +198,7 @@ namespace KirbStomp
 
                     break;
                 case SceneCalls.Pause:
+                    // Console.WriteLine($"Pause Scene: {_paused}");
                     _paused = !_paused;
                     if (_paused) _updateMethod = DoNothingUpdate;
                     else _updateMethod = _scenesList[_sceneIndex].Update;
@@ -193,6 +214,10 @@ namespace KirbStomp
         private void DoNothingUpdate(GameTime gameTime)
         {
 
+        }
+        public bool IsPaused()
+        {
+            return _paused;
         }
     }
 }

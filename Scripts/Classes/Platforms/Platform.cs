@@ -22,7 +22,7 @@ namespace KirbStomp.Scripts.Classes.Platforms
         private AllPurposeSprite _sprite;
         private PlatformTypeEnum _platformType;
         private int _ID;
-        private PlatformCarrier PlatformCarrier;
+        internal PlatformCarrier PlatformCarrier;
 
 
         public Rectangle GetPosition()
@@ -41,9 +41,11 @@ namespace KirbStomp.Scripts.Classes.Platforms
                 PlatformCarrier = new PlatformCarrier() { Parent = this };
                 Carriers.Add(PlatformCarrier);
 
-                PlatformCarrier.HitboxManager.basicUpdateHitbox(rectangle);
+                Rectangle rectangleAdjusted = new Rectangle(rectangle.X + 32, rectangle.Y, rectangle.Width - 64, rectangle.Height);
+                PlatformCarrier.HitboxManager.basicUpdateHitbox(rectangleAdjusted);
             }
         }
+
 
         public void Draw(SpriteBatch spriteBatch)
 

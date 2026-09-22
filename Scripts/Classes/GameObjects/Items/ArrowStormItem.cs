@@ -16,7 +16,7 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Items
         private readonly String TEXTURE_NAME = "LinkProjectile";
         private Sprite _sprite;
         private Rectangle _spriteSrc = new Rectangle(327, 2936, 27, 9);
-        private float _scale = 3;
+        private float _scale = 2f;
         public ArrowStormItem(Vector2 startPosition) 
         {
             this.Position = startPosition;
@@ -26,8 +26,11 @@ namespace KirbStomp.Scripts.Classes.GameObjects.Items
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            this._itemCarrier.HitboxManager.Draw(spriteBatch);
             this._sprite.Draw(spriteBatch, this.Position);
+            if(this.drawHitbox)
+            {
+                this._itemCarrier.HitboxManager.Draw(spriteBatch);
+            }
         }
 
         public override void RegisterCollider()

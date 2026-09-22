@@ -23,6 +23,7 @@ namespace KirbStomp
         private ScreenWindow _screenWindow;
 
         private SceneManager _sceneManager;
+        private MouseController _mouseController;
         //singleton
         private static Game1 inst;
 
@@ -51,68 +52,74 @@ namespace KirbStomp
             _screenWindow.UpdateWindowSize();
 
             _sceneManager = SceneManager.Get();
-
+            _mouseController = new MouseController();
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _mouseController.InitializeCurrentSceneAreas();
         }
 
 		protected override void Update(GameTime gameTime)
 		{
             _sceneManager.UpdateScene(gameTime);
+            _mouseController.Update();
 
             // if(Keyboard.GetState().IsKeyDown(Keys.D1))
             // {
-            //    // _sceneManager.SwitchScene("TestScene");
-            //     _sceneManager.UpdateSceneByCall(SceneCalls.Previous);
+            //    _sceneManager.SwitchScene("StartScreen");
             // }
             // else if(Keyboard.GetState().IsKeyDown(Keys.D2))
             // {
             //     //_sceneManager.SwitchScene("BattleScene");
-            //     _sceneManager.UpdateSceneByCall(SceneCalls.Next);
+            //     _sceneManager.SwitchScene("GeneralSceneTemplate");
             // } 
-            // else if(Keyboard.GetState().IsKeyDown(Keys.D4))
+            // else if(Keyboard.GetState().IsKeyDown(Keys.Escape))
             // {
+            //     Scene currScene = (Scene)_sceneManager.GetCurrentScene();
             //     //_sceneManager.SwitchScene("GeneralSceneTemplate");
-            //     _sceneManager.UpdateSceneByCall(SceneCalls.Pause);
+            //     // _sceneManager.UpdateSceneByCall(SceneCalls.Pause);
+            //     if(currScene.GetName() == "GeneralSceneTemplate" || currScene.GetName() == "MovingPlatformSceneTemplate")
+            //     {
+            //         _sceneManager.UpdateSceneByCall(SceneCalls.Pause);
+            //         _sceneManager.SwitchScene("PauseScreen");
+            //     }
+
+
+            //     // Console.WriteLine("Pause");
+            //     // _sceneManager.UpdateSceneByCall(SceneCalls.Pause);
             // }
             // else if(Keyboard.GetState().IsKeyDown(Keys.D3))
             // {
             //     //_sceneManager.ResetCurrentScene();
-            //     _sceneManager.UpdateSceneByCall(SceneCalls.Reset);
+            //     _sceneManager.SwitchScene("EndScreen");
+            // }
+            // else if (Keyboard.GetState().IsKeyDown(Keys.D8))
+            // {
+            //     _sceneManager.UpdateSceneByCall(SceneCalls.Pause);
+            //     _sceneManager.SwitchScene("PauseScreen");
             // }
 
-            if(Keyboard.GetState().IsKeyDown(Keys.D1))
+            // 
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
-               _sceneManager.SwitchScene("StartScreen");
-            }
-            else if(Keyboard.GetState().IsKeyDown(Keys.D2))
-            {
-                //_sceneManager.SwitchScene("BattleScene");
-                _sceneManager.SwitchScene("GeneralSceneTemplate");
-            } 
-            else if(Keyboard.GetState().IsKeyDown(Keys.D4))
-            {
-                //_sceneManager.SwitchScene("GeneralSceneTemplate");
-                _sceneManager.UpdateSceneByCall(SceneCalls.Pause);
-            }
-            else if(Keyboard.GetState().IsKeyDown(Keys.D3))
-            {
-                //_sceneManager.ResetCurrentScene();
-                _sceneManager.SwitchScene("EndScreen");
-            }
-            else if(Keyboard.GetState().IsKeyDown(Keys.D5)) {
-                _sceneManager.UpdateSceneByCall(SceneCalls.Reset);
+                Scene currScene = (Scene)_sceneManager.GetCurrentScene();
+
+                if (currScene.GetName() == "GeneralSceneTemplate" || currScene.GetName() == "MovingPlatformSceneTemplate")
+                {
+                    _sceneManager.UpdateSceneByCall(SceneCalls.Pause);
+                    _sceneManager.SwitchScene("PauseScreen");
+                }
+
             }
             
 			base.Update(gameTime);
 		}
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.DarkGray);
+            GraphicsDevice.Clear(Color.Black);
             _sceneManager.DrawScene(gameTime, _spriteBatch);
 			base.Draw(gameTime);
 		}
